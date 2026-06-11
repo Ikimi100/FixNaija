@@ -190,6 +190,86 @@
             width: 100%;
         }
 
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 44px;
+            height: 44px;
+            background: rgba(0, 135, 81, 0.15);
+            border: 1px solid rgba(0, 135, 81, 0.4);
+            border-radius: 8px;
+            cursor: pointer;
+            padding: 0 10px;
+            flex-shrink: 0;
+        }
+
+        .menu-toggle span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background: var(--white);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .menu-toggle.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: rgba(26, 26, 46, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            flex-direction: column;
+            padding: 12px 20px 20px;
+        }
+
+        .mobile-menu.open {
+            display: flex;
+        }
+
+        .mobile-menu-link {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 14px 4px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .mobile-menu-link:active {
+            color: var(--green);
+        }
+
+        .mobile-menu-register {
+            margin-top: 14px;
+            background: var(--green);
+            color: var(--white);
+            text-align: center;
+            border-radius: 10px;
+            border-bottom: none;
+            padding: 14px;
+            box-shadow: 0 4px 15px rgba(0, 135, 81, 0.3);
+        }
+
         .register-btn {
             background: var(--green);
             color: var(--white);
@@ -2351,6 +2431,30 @@
                 display: none;
             }
 
+            .menu-toggle {
+                display: flex;
+            }
+
+            .register-btn {
+                display: none;
+            }
+
+            .logo-img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .brand-name {
+                font-size: 16px;
+                white-space: nowrap;
+            }
+
+            .brand-subline {
+                font-size: 9px;
+                letter-spacing: 0.3px;
+                white-space: nowrap;
+            }
+
             .hero {
                 padding: 0 20px;
             }
@@ -2526,8 +2630,24 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
 
-        <button class="register-btn">Register</button>
+        <button class="register-btn" onclick="document.getElementById('register').scrollIntoView({behavior:'smooth'})">Register</button>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
     </nav>
+
+    <!-- ===== MOBILE MENU ===== -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#home" class="mobile-menu-link">Home</a>
+        <a href="#about" class="mobile-menu-link">About</a>
+        <a href="#events" class="mobile-menu-link">Events</a>
+        <a href="#news" class="mobile-menu-link">News</a>
+        <a href="#states" class="mobile-menu-link">States &amp; LGAs</a>
+        <a href="#gallery" class="mobile-menu-link">Gallery</a>
+        <a href="#contact" class="mobile-menu-link">Contact</a>
+        <a href="#register" class="mobile-menu-link mobile-menu-register">Register With FixNaija</a>
+    </div>
 
     <!-- ===== HERO SECTION ===== -->
     <section class="hero" id="home">
@@ -3115,9 +3235,9 @@
                         A nationwide grassroots network uniting all 774 LGAs across 36 states to build a stronger, more prosperous Nigeria for every citizen.
                     </p>
                     <div class="contact-socials">
-                        <a href="#" class="social-link" title="Twitter">𝕏</a>
-                        <a href="#" class="social-link" title="Facebook">f</a>
-                        <a href="#" class="social-link" title="Instagram">📷</a>
+                        <a href="#" class="social-link" title="X (Twitter)">𝕏</a>
+                        <a href="https://www.facebook.com/profile.php?id=61590354706603" target="_blank" rel="noopener" class="social-link" title="Facebook">f</a>
+                        <a href="https://www.instagram.com/fixnaijamovement/" target="_blank" rel="noopener" class="social-link" title="Instagram">📷</a>
                         <a href="#" class="social-link" title="YouTube">▶</a>
                     </div>
                 </div>
@@ -3147,8 +3267,8 @@
                 <div class="contact-column">
                     <h4>Contact</h4>
                     <ul class="contact-links">
-                        <li><a href="mailto:hello@fixnaija.org">hello@fixnaija.org</a></li>
-                        <li><a href="tel:+2348000000000">+234 800 000 0000</a></li>
+                        <li><a href="mailto:fixnaijamovement@gmail.com">fixnaijamovement@gmail.com</a></li>
+                        <li><a href="tel:+2349165255606">+234 916 525 5606</a></li>
                         <li><a href="#">Abuja, FCT</a></li>
                     </ul>
                 </div>
@@ -3169,6 +3289,24 @@
     </section>
 
 <script>
+// ===== Mobile menu toggle =====
+const menuToggle = document.getElementById('menuToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+menuToggle.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    menuToggle.classList.toggle('open', open);
+    menuToggle.setAttribute('aria-expanded', open);
+});
+mobileMenu.querySelectorAll('.mobile-menu-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        mobileMenu.classList.remove('open');
+        menuToggle.classList.remove('open');
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) target.scrollIntoView({behavior:'smooth'});
+    });
+});
+
 const nigeriaData = {
     "Abia": {
         lgas: ["Aba North", "Aba South", "Arochukwu", "Bende", "Ikwuano", "Isiala Ngwa North", "Isiala Ngwa South", "Isuikwuato", "Obi Ngwa", "Ohafia", "Osisioma Ngwa", "Ugwunagbo", "Ukwa East", "Ukwa West", "Umuahia North", "Umuahia South", "Umu Nneochi"]
