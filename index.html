@@ -3556,28 +3556,71 @@ async function populateWardDropdown(stateName, lgaName, preselectWard = '') {
     renderStates();
 })();
 
-// ===== FORM SUBMISSION =====
-document.getElementById('registrationForm').addEventListener('submit', function (e) {
+// ===== FORM SUBMISSION (Supabase) =====
+const SUPABASE_URL = 'https://bcdscsjqiqnzsthntutb.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_Cpkk6K0Xyt5GNVXTiur2mA_myhkpiti';
+
+document.getElementById('registrationForm').addEventListener('submit', async function (e) {
     e.preventDefault();
 
     const firstName = document.getElementById('regFirstName').value.trim();
+    const lastName  = document.getElementById('regLastName').value.trim();
+    const email     = document.getElementById('regEmail').value.trim();
+    const phone     = document.getElementById('regPhone').value.trim();
     const state     = document.getElementById('regState').value;
     const lga       = document.getElementById('regLGA').value;
     const ward      = document.getElementById('regWard').value;
+    const reason    = document.getElementById('regReason').value.trim();
 
-    // Show success
-    const successDiv   = document.getElementById('formSuccess');
+    const successDiv    = document.getElementById('formSuccess');
     const successDetail = document.getElementById('successDetail');
-    const submitBtn    = this.querySelector('.form-submit');
+    const submitBtn     = this.querySelector('.form-submit');
 
-    let locationStr = state;
-    if (lga)  locationStr = `${lga}, ${locationStr}`;
-    if (ward) locationStr = `${ward}, ${locationStr}`;
+    // Show saving state
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
 
-    successDetail.textContent = `📍 ${locationStr}`;
-    submitBtn.style.display = 'none';
-    successDiv.style.display = 'block';
-    successDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/registrations`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'apikey': SUPABASE_KEY,
+                'Authorization': `Bearer ${SUPABASE_KEY}`,
+                'Prefer': 'return=minimal'
+            },
+            body: JSON.stringify({
+                full_name: `${firstName} ${lastName}`,
+                email: email || null,
+                phone: phone,
+                state: state,
+                lga: lga,
+                ward: ward || null,
+                reason: reason || null
+            })
+        });
+
+        if (!response.ok) {
+            const errText = await response.text();
+            throw new Error(`Registration failed (${response.status}): ${errText}`);
+        }
+
+        // Show success
+        let locationStr = state;
+        if (lga)  locationStr = `${lga}, ${locationStr}`;
+        if (ward) locationStr = `${ward}, ${locationStr}`;
+
+        successDetail.textContent = `📍 ${locationStr}`;
+        submitBtn.style.display = 'none';
+        successDiv.style.display = 'block';
+        successDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    } catch (err) {
+        console.error(err);
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Complete Registration';
+        alert('Something went wrong submitting your registration. Please check your connection and try again.');
+    }
 });
 
 console.log('nigeriaData loaded:', Object.keys(nigeriaData).length, 'states');
