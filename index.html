@@ -26,6 +26,11 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--charcoal);
@@ -413,6 +418,9 @@
         }
 
         .cta-primary {
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
             background: var(--green);
             color: var(--white);
             border: none;
@@ -433,6 +441,9 @@
         }
 
         .cta-secondary {
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
             background: transparent;
             color: var(--white);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -2665,8 +2676,8 @@
                     across 36 states to build a stronger, more prosperous Nigeria for every citizen.
                 </p>
                 <div class="hero-ctas">
-                    <button class="cta-primary">Find My LGA</button>
-                    <button class="cta-secondary">Register Now</button>
+                    <a href="#states" class="cta-primary">Find My LGA</a>
+                    <a href="#register" class="cta-secondary">Register Now</a>
                 </div>
                 <div class="hero-stats">
                     <div class="stat-item">
