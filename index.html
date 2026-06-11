@@ -3050,6 +3050,15 @@
                         </div>
                     </div>
                     <div class="form-group full-width">
+                        <label class="form-label">Polling Unit</label>
+                        <select class="form-select" id="regPollingUnit" disabled>
+                            <option value="">— Select Polling Unit —</option>
+                        </select>
+                        <div class="ward-loading" id="puLoading" style="display:none;">
+                            <span class="ward-loading-spinner"></span> Loading polling units...
+                        </div>
+                    </div>
+                    <div class="form-group full-width">
                         <label class="form-label">Why do you want to join FixNaija?</label>
                         <textarea class="form-textarea" id="regReason" placeholder="Tell us briefly why you want to be part of the movement..."></textarea>
                     </div>
@@ -3294,92 +3303,190 @@ function stateToSlug(stateName) {
         .replace(/[^a-z0-9\-]/g, '');
 }
 
-// ===== WARD CACHE (avoid re-fetching same file) =====
-const wardCache = {};
+// ===== SUPABASE CONFIG =====
+const SUPABASE_URL = 'https://bcdscsjqiqnzsthntutb.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_Cpkk6K0Xyt5GNVXTiur2mA_myhkpiti';
 
-// ===== FETCH WARDS for a given state =====
-async function fetchWards(stateName) {
-    const slug = stateToSlug(stateName);
-    if (wardCache[slug]) return wardCache[slug];
-    try {
-        const res = await fetch(`data/wards/${slug}.json`);
-        if (!res.ok) throw new Error('Not found');
-        const data = await res.json();
-        wardCache[slug] = data;
-        return data;
-    } catch (e) {
-        return null;
-    }
+const SB_HEADERS = {
+    'Content-Type': 'application/json',
+    'apikey': SUPABASE_KEY,
+    'Authorization': `Bearer ${SUPABASE_KEY}`
+};
+
+// Official INEC state names (matching the polling_units database exactly)
+const INEC_STATES = ['ABIA','ADAMAWA','AKWA IBOM','ANAMBRA','BAUCHI','BAYELSA','BENUE','BORNO','CROSS RIVER','DELTA','EBONYI','EDO','EKITI','ENUGU','FEDERAL CAPITAL TERRITORY','GOMBE','IMO','JIGAWA','KADUNA','KANO','KATSINA','KEBBI','KOGI','KWARA','LAGOS','NASARAWA','NIGER','OGUN','ONDO','OSUN','OYO','PLATEAU','RIVERS','SOKOTO','TARABA','YOBE','ZAMFARA'];
+
+// Pretty display: "AKWA IBOM" → "Akwa Ibom"
+function titleCase(str) {
+    return str.toLowerCase().replace(/(^|[\s\/\-\(])\w/g, c => c.toUpperCase());
 }
 
-// ===== STEP C: Populate Ward dropdown in form =====
+// ===== SUPABASE LOOKUPS (with caching) =====
+const lookupCache = {};
+
+async function sbRpc(fn, params) {
+    const key = fn + JSON.stringify(params);
+    if (lookupCache[key]) return lookupCache[key];
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/${fn}`, {
+        method: 'POST',
+        headers: SB_HEADERS,
+        body: JSON.stringify(params)
+    });
+    if (!res.ok) throw new Error(`Lookup failed: ${res.status}`);
+    const data = await res.json();
+    lookupCache[key] = data;
+    return data;
+}
+
+async function fetchLGAs(state) {
+    const rows = await sbRpc('get_lgas', { p_state: state });
+    return rows.map(r => r.lga);
+}
+
+async function fetchWardsDB(state, lga) {
+    const rows = await sbRpc('get_wards', { p_state: state, p_lga: lga });
+    return rows.map(r => r.ward);
+}
+
+async function fetchPollingUnits(state, lga, ward) {
+    const key = 'pu' + state + lga + ward;
+    if (lookupCache[key]) return lookupCache[key];
+    const params = new URLSearchParams({
+        state: `eq.${state}`,
+        lga: `eq.${lga}`,
+        ward: `eq.${ward}`,
+        select: 'polling_unit,delimitation',
+        order: 'delimitation.asc'
+    });
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/polling_units?${params}`, { headers: SB_HEADERS });
+    if (!res.ok) throw new Error(`PU lookup failed: ${res.status}`);
+    const data = await res.json();
+    lookupCache[key] = data;
+    return data;
+}
+
+// ===== Populate Ward dropdown (from Supabase) =====
 async function populateWardDropdown(stateName, lgaName, preselectWard = '') {
-    const wardSelect = document.getElementById('regWard');
+    const wardSelect  = document.getElementById('regWard');
     const wardLoading = document.getElementById('wardLoading');
+    const puSelect    = document.getElementById('regPollingUnit');
 
     wardSelect.disabled = true;
     wardSelect.innerHTML = '<option value="">— Loading wards... —</option>';
     wardLoading.style.display = 'flex';
+    puSelect.innerHTML = '<option value="">— Select Polling Unit —</option>';
+    puSelect.disabled = true;
 
-    const data = await fetchWards(stateName);
-    wardLoading.style.display = 'none';
-
-    wardSelect.innerHTML = '<option value="">— Select Ward —</option>';
-
-    if (data && data[lgaName]) {
-        data[lgaName].forEach(ward => {
+    try {
+        const wards = await fetchWardsDB(stateName, lgaName);
+        wardLoading.style.display = 'none';
+        wardSelect.innerHTML = '<option value="">— Select Ward —</option>';
+        wards.forEach(ward => {
             const opt = document.createElement('option');
             opt.value = ward;
-            opt.textContent = ward;
+            opt.textContent = titleCase(ward);
             wardSelect.appendChild(opt);
         });
         wardSelect.disabled = false;
-        if (preselectWard) wardSelect.value = preselectWard;
-    } else {
-        wardSelect.innerHTML = '<option value="">— No ward data yet —</option>';
-        wardSelect.disabled = true;
+        if (preselectWard) {
+            const match = [...wardSelect.options].find(o => o.value.toUpperCase() === preselectWard.toUpperCase());
+            if (match) {
+                wardSelect.value = match.value;
+                wardSelect.dispatchEvent(new Event('change'));
+            }
+        }
+    } catch (e) {
+        wardLoading.style.display = 'none';
+        wardSelect.innerHTML = '<option value="">— Could not load wards —</option>';
     }
 }
 
-// ===== STEP C: Wire form State → LGA → Ward chain =====
+// ===== Populate Polling Unit dropdown (from Supabase) =====
+async function populatePUDropdown(stateName, lgaName, wardName) {
+    const puSelect  = document.getElementById('regPollingUnit');
+    const puLoading = document.getElementById('puLoading');
+
+    puSelect.disabled = true;
+    puSelect.innerHTML = '<option value="">— Loading... —</option>';
+    puLoading.style.display = 'flex';
+
+    try {
+        const pus = await fetchPollingUnits(stateName, lgaName, wardName);
+        puLoading.style.display = 'none';
+        puSelect.innerHTML = '<option value="">— Select Polling Unit —</option>';
+        pus.forEach(pu => {
+            const opt = document.createElement('option');
+            opt.value = pu.polling_unit;
+            opt.dataset.delimitation = pu.delimitation || '';
+            opt.textContent = titleCase(pu.polling_unit);
+            puSelect.appendChild(opt);
+        });
+        puSelect.disabled = false;
+    } catch (e) {
+        puLoading.style.display = 'none';
+        puSelect.innerHTML = '<option value="">— Could not load polling units —</option>';
+    }
+}
+
+// ===== Wire form State → LGA → Ward → Polling Unit chain =====
 (function initFormDropdowns() {
     const regState = document.getElementById('regState');
     const regLGA   = document.getElementById('regLGA');
     const regWard  = document.getElementById('regWard');
+    const regPU    = document.getElementById('regPollingUnit');
 
-    // Populate state dropdown
-    Object.keys(nigeriaData).sort().forEach(state => {
+    // Populate state dropdown from official INEC list
+    INEC_STATES.forEach(state => {
         const opt = document.createElement('option');
         opt.value = state;
-        opt.textContent = state;
+        opt.textContent = titleCase(state);
         regState.appendChild(opt);
     });
 
-    // State change → populate LGA, reset ward
-    regState.addEventListener('change', function () {
+    // State change → fetch LGAs from Supabase
+    regState.addEventListener('change', async function () {
         const state = this.value;
         regLGA.innerHTML = '<option value="">Select your LGA</option>';
-        regLGA.disabled = !state;
+        regLGA.disabled = true;
         regWard.innerHTML = '<option value="">— Select Ward —</option>';
         regWard.disabled = true;
+        regPU.innerHTML = '<option value="">— Select Polling Unit —</option>';
+        regPU.disabled = true;
 
-        if (state && nigeriaData[state]) {
-            nigeriaData[state].lgas.forEach(lga => {
+        if (!state) return;
+        try {
+            const lgas = await fetchLGAs(state);
+            lgas.forEach(lga => {
                 const opt = document.createElement('option');
                 opt.value = lga;
-                opt.textContent = lga;
+                opt.textContent = titleCase(lga);
                 regLGA.appendChild(opt);
             });
+            regLGA.disabled = false;
+        } catch (e) {
+            regLGA.innerHTML = '<option value="">— Could not load LGAs —</option>';
         }
     });
 
-    // LGA change → fetch & populate ward
+    // LGA change → fetch wards from Supabase
     regLGA.addEventListener('change', function () {
         const lga   = this.value;
         const state = regState.value;
         regWard.innerHTML = '<option value="">— Select Ward —</option>';
         regWard.disabled = true;
+        regPU.innerHTML = '<option value="">— Select Polling Unit —</option>';
+        regPU.disabled = true;
         if (state && lga) populateWardDropdown(state, lga);
+    });
+
+    // Ward change → fetch polling units from Supabase
+    regWard.addEventListener('change', function () {
+        const ward  = this.value;
+        const state = regState.value;
+        const lga   = regLGA.value;
+        regPU.innerHTML = '<option value="">— Select Polling Unit —</option>';
+        regPU.disabled = true;
+        if (state && lga && ward) populatePUDropdown(state, lga, ward);
     });
 })();
 
@@ -3393,22 +3500,35 @@ async function populateWardDropdown(stateName, lgaName, preselectWard = '') {
     const regWard       = document.getElementById('regWard');
 
     // Pre-fill form from directory and scroll to register
-    function prefillAndScroll(state, lga, ward = '') {
-        // Set state
-        regState.value = state;
+    // (Directory uses Title Case names; the form now uses official INEC CAPS names)
+    async function prefillAndScroll(state, lga, ward = '') {
+        const stateAliases = { 'FCT ABUJA': 'FEDERAL CAPITAL TERRITORY', 'FCT': 'FEDERAL CAPITAL TERRITORY' };
+        let s = state.toUpperCase();
+        if (stateAliases[s]) s = stateAliases[s];
+
+        const stateMatch = [...regState.options].find(o => o.value === s);
+        document.getElementById('register').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (!stateMatch) return;
+
+        regState.value = s;
         regState.dispatchEvent(new Event('change'));
 
-        // Set LGA after brief tick
-        setTimeout(async () => {
-            regLGA.value = lga;
-            regLGA.dispatchEvent(new Event('change'));
-
-            // If ward provided, wait for ward dropdown to populate then select
-            if (ward) {
-                await populateWardDropdown(state, lga, ward);
+        // Wait for LGAs to load from the database, then select the matching one
+        const lgaUpper = lga.toUpperCase();
+        for (let i = 0; i < 50; i++) {
+            await new Promise(r => setTimeout(r, 100));
+            if (regLGA.disabled) continue;
+            const match = [...regLGA.options].find(o => o.value.toUpperCase() === lgaUpper);
+            if (match) {
+                regLGA.value = match.value;
+                if (ward) {
+                    await populateWardDropdown(s, match.value, ward);
+                } else {
+                    regLGA.dispatchEvent(new Event('change'));
+                }
             }
-            document.getElementById('register').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 60);
+            break;
+        }
     }
 
     // Render all state cards
@@ -3557,9 +3677,6 @@ async function populateWardDropdown(stateName, lgaName, preselectWard = '') {
 })();
 
 // ===== FORM SUBMISSION (Supabase) =====
-const SUPABASE_URL = 'https://bcdscsjqiqnzsthntutb.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_Cpkk6K0Xyt5GNVXTiur2mA_myhkpiti';
-
 document.getElementById('registrationForm').addEventListener('submit', async function (e) {
     e.preventDefault();
 
@@ -3571,6 +3688,11 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
     const lga       = document.getElementById('regLGA').value;
     const ward      = document.getElementById('regWard').value;
     const reason    = document.getElementById('regReason').value.trim();
+
+    const puSelect  = document.getElementById('regPollingUnit');
+    const pollingUnit  = puSelect.value;
+    const puOption     = puSelect.options[puSelect.selectedIndex];
+    const delimitation = puOption ? (puOption.dataset.delimitation || null) : null;
 
     const successDiv    = document.getElementById('formSuccess');
     const successDetail = document.getElementById('successDetail');
@@ -3596,6 +3718,8 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
                 state: state,
                 lga: lga,
                 ward: ward || null,
+                polling_unit: pollingUnit || null,
+                delimitation: delimitation,
                 reason: reason || null
             })
         });
@@ -3609,6 +3733,7 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
         let locationStr = state;
         if (lga)  locationStr = `${lga}, ${locationStr}`;
         if (ward) locationStr = `${ward}, ${locationStr}`;
+        if (pollingUnit) locationStr = `${pollingUnit} — ${locationStr}`;
 
         successDetail.textContent = `📍 ${locationStr}`;
         submitBtn.style.display = 'none';
