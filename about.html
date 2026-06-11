@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find Your Community — FixNaija Movement</title>
+    <title>About Us — FixNaija Movement</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2615,6 +2615,222 @@
             }
         }
     </style>
+
+    <style>
+        /* ===== About page styles ===== */
+        .ab-hero {
+            background: var(--charcoal);
+            padding: 100px 40px 70px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .ab-hero::before {
+            content: '';
+            position: absolute;
+            top: -150px; right: -150px;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(0,135,81,0.15), transparent 70%);
+            pointer-events: none;
+        }
+        .ab-hero-headline {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 44px;
+            color: var(--white);
+            margin-top: 14px;
+            letter-spacing: -1px;
+        }
+        .ab-hero-sub {
+            max-width: 640px;
+            margin: 18px auto 0;
+            font-size: 17px;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.65);
+        }
+        .ab-story {
+            background: var(--charcoal);
+            padding: 40px 40px 110px;
+        }
+        .ab-story-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .ab-story-text p {
+            font-size: 16.5px;
+            line-height: 1.85;
+            color: rgba(255,255,255,0.72);
+            margin-bottom: 22px;
+        }
+        .ab-story-text p strong { color: var(--white); }
+        .ab-story-img-card {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            height: 460px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .ab-story-img-card img {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+        .ab-structure {
+            background: var(--light-gray);
+            padding: 110px 40px;
+        }
+        .ab-structure-container { max-width: 900px; margin: 0 auto; }
+        .ab-structure-header { text-align: center; margin-bottom: 56px; }
+        .ab-structure-headline {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 36px;
+            color: var(--charcoal);
+            margin-top: 12px;
+        }
+        .ab-ladder { position: relative; padding-left: 34px; }
+        .ab-ladder::before {
+            content: '';
+            position: absolute;
+            left: 10px; top: 14px; bottom: 14px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--green), var(--gold));
+        }
+        .ab-rung {
+            position: relative;
+            background: var(--white);
+            border: 1px solid rgba(26,26,46,0.08);
+            border-radius: 14px;
+            padding: 22px 26px;
+            margin-bottom: 18px;
+            box-shadow: 0 4px 18px rgba(26,26,46,0.05);
+        }
+        .ab-rung::before {
+            content: '';
+            position: absolute;
+            left: -31px; top: 26px;
+            width: 16px; height: 16px;
+            border-radius: 50%;
+            background: var(--green);
+            border: 3px solid var(--light-gray);
+        }
+        .ab-rung-count {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 22px;
+            color: var(--green);
+        }
+        .ab-rung-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 17px;
+            color: var(--charcoal);
+            margin: 2px 0 6px;
+        }
+        .ab-rung-desc { font-size: 14.5px; line-height: 1.65; color: rgba(26,26,46,0.65); }
+        .ab-profile {
+            background: var(--charcoal);
+            padding: 110px 40px;
+        }
+        .ab-profile-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 60px;
+            align-items: start;
+        }
+        .ab-profile-img-card {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            height: 520px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .ab-profile-img-card img {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: top center;
+        }
+        .ab-profile-badge {
+            position: absolute;
+            bottom: 16px; left: 16px; right: 16px;
+            background: rgba(26,26,46,0.88);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 14px 18px;
+            text-align: center;
+        }
+        .ab-profile-badge .name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 17px;
+            color: var(--white);
+        }
+        .ab-profile-badge .slogan {
+            font-size: 12.5px;
+            color: var(--gold);
+            margin-top: 3px;
+            letter-spacing: 0.5px;
+        }
+        .ab-profile-headline {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 34px;
+            color: var(--white);
+            margin: 12px 0 22px;
+        }
+        .ab-profile-text p {
+            font-size: 16px;
+            line-height: 1.85;
+            color: rgba(255,255,255,0.72);
+            margin-bottom: 20px;
+        }
+        .ab-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+        .ab-chip {
+            background: rgba(0,135,81,0.12);
+            border: 1px solid rgba(0,135,81,0.35);
+            color: #6fdcb2;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 30px;
+        }
+        .ab-cta {
+            background: linear-gradient(135deg, #006b3f, var(--green));
+            padding: 90px 40px;
+            text-align: center;
+        }
+        .ab-cta-headline {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 36px;
+            color: var(--white);
+        }
+        .ab-cta-sub {
+            max-width: 560px;
+            margin: 16px auto 34px;
+            font-size: 16.5px;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.85);
+        }
+        .ab-cta .cta-primary { background: var(--white); color: var(--green); box-shadow: none; }
+        .ab-cta .cta-primary:hover { background: var(--light-gray); }
+        .ab-cta .cta-secondary { border-color: rgba(255,255,255,0.5); }
+        .ab-cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        @media (max-width: 900px) {
+            .ab-story-container, .ab-profile-container { grid-template-columns: 1fr; gap: 36px; }
+            .ab-hero-headline { font-size: 32px; }
+            .ab-profile-img-card { height: 440px; max-width: 420px; margin: 0 auto; }
+            .ab-hero, .ab-story, .ab-structure, .ab-profile, .ab-cta { padding-left: 20px; padding-right: 20px; }
+        }
+    </style>
 </head>
 <body>
 
@@ -2634,10 +2850,10 @@
 
         <ul class="nav-links">
             <li><a href="index.html#home">Home</a></li>
-            <li><a href="about.html">About</a></li>
+            <li><a href="about.html" class="active">About</a></li>
             <li><a href="index.html#events">Events</a></li>
             <li><a href="index.html#news">News</a></li>
-            <li><a href="find-lga.html" class="active">States &amp; LGAs</a></li>
+            <li><a href="find-lga.html">States &amp; LGAs</a></li>
             <li><a href="index.html#gallery">Gallery</a></li>
             <li><a href="index.html#contact">Contact</a></li>
         </ul>
@@ -2661,94 +2877,170 @@
         <a href="register.html" class="mobile-menu-link mobile-menu-register">Register With FixNaija</a>
     </div>
 
-    <section class="states-section" id="states">
-        <div class="states-container">
-            <div class="states-header">
-                <span class="section-label">States & LGAs</span>
-                <h2 class="states-headline">Find Your Community</h2>
-                <p class="states-subheadline">Search for your state or Local Government Area to connect with your local FixNaija network and join the movement.</p>
+    <!-- ===== PAGE HERO ===== -->
+    <section class="ab-hero">
+        <span class="section-label">About Us</span>
+        <h1 class="ab-hero-headline">The Story of a People's Movement</h1>
+        <p class="ab-hero-sub">FixNaija is not a political party, a slogan, or a moment. It is a nationwide repair project — built by ordinary Nigerians, organized street by street, ward by ward, until no community is left behind.</p>
+    </section>
+
+    <!-- ===== OUR STORY ===== -->
+    <section class="ab-story">
+        <div class="ab-story-container">
+            <div class="ab-story-text">
+                <span class="section-label">Our Story</span>
+                <h2 class="about-headline" style="margin: 12px 0 24px;">Built From the Ground Up</h2>
+                <p>FixNaija was founded in <strong>2025</strong> on a simple conviction: Nigeria's problems are not a mystery — they are a maintenance failure. Roads, schools, clinics, power, security, trust between citizen and state — all of it can be repaired. But repair work does not begin in the corridors of power. It begins at the polling unit, on the street where you live.</p>
+                <p>The name is deliberate. Not "Save Naija." Not "Dream Naija." <strong>Fix</strong>Naija — because fixing is practical work. It means showing up, counting what was promised, checking what was delivered, and refusing to look away when the two don't match.</p>
+                <p>We are not bound by party lines. Our loyalty is to the Nigerian people — every farmer in Kebbi, every trader in Onitsha, every student in Ibadan. Whatever your background, language, or political history, if you believe Nigeria can work, you already belong here.</p>
+                <p>Today, the movement spans <strong>all 36 states and the FCT</strong>, organized down to the individual polling unit — a structure built so that no Nigerian community, however remote, is ever invisible again.</p>
             </div>
-
-            <div class="search-container">
-                <span class="search-icon">🔍</span>
-                <input type="text" class="search-input" id="stateSearch" placeholder="Search by state or LGA name...">
-            </div>
-
-            <div class="search-results-count" id="searchResults"></div>
-
-            <div class="states-grid" id="statesGrid">
-                <!-- State cards injected by JS -->
+            <div class="ab-story-img-card">
+                <img src="images/about-movement.jpg" alt="Prince Adewole Adebayo greeting supporters at a grassroots rally">
             </div>
         </div>
     </section>
-    <!-- ===== FOOTER ===== -->
-    <section class="contact-section" id="contact">
-        <div class="contact-container">
-            <div class="contact-grid">
-                <div class="contact-brand">
-                    <div class="contact-brand-logo">
-                        <img src="images/logo.png" alt="FixNaija Movement logo" class="logo-img">
-                        <span class="contact-brand-name">FixNaija Movement</span>
-                    </div>
-                    <p class="contact-brand-desc">
-                        A nationwide grassroots network uniting all 774 LGAs across 36 states to build a stronger, more prosperous Nigeria for every citizen.
-                    </p>
-                    <div class="contact-socials">
-                        <a href="#" class="social-link" title="X (Twitter)">&#120143;</a>
-                        <a href="https://www.facebook.com/profile.php?id=61590354706603" target="_blank" rel="noopener" class="social-link" title="Facebook">f</a>
-                        <a href="https://www.instagram.com/fixnaijamovement/" target="_blank" rel="noopener" class="social-link" title="Instagram">&#128247;</a>
-                        <a href="#" class="social-link" title="YouTube">&#9654;</a>
-                    </div>
-                </div>
 
-                <div class="contact-column">
-                    <h4>Quick Links</h4>
-                    <ul class="contact-links">
-                        <li><a href="index.html#home">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="index.html#events">Events</a></li>
-                        <li><a href="index.html#news">News</a></li>
-                        <li><a href="index.html#gallery">Gallery</a></li>
-                    </ul>
-                </div>
-
-                <div class="contact-column">
-                    <h4>Get Involved</h4>
-                    <ul class="contact-links">
-                        <li><a href="register.html">Register</a></li>
-                        <li><a href="find-lga.html">Find Your LGA</a></li>
-                        <li><a href="#">Volunteer</a></li>
-                        <li><a href="#">Donate</a></li>
-                        <li><a href="#">Partner With Us</a></li>
-                    </ul>
-                </div>
-
-                <div class="contact-column">
-                    <h4>Contact</h4>
-                    <ul class="contact-links">
-                        <li><a href="mailto:fixnaijamovement@gmail.com">fixnaijamovement@gmail.com</a></li>
-                        <li><a href="tel:+2349165255606">+234 916 525 5606</a></li>
-                        <li><a href="#">Abuja, FCT</a></li>
-                    </ul>
-                </div>
+    <!-- ===== VISION / MISSION ===== -->
+    <section class="vision-mission-section">
+        <div class="vision-mission-container">
+            <div class="vm-card">
+                <div class="vm-label">Our Vision</div>
+                <h3 class="vm-headline">A Nigeria where every citizen has a voice, leadership is accountable, and no LGA is left behind.</h3>
+                <p class="vm-text">
+                    We envision a country where governance is transparent from the ward council to the federal cabinet, where public money is traceable by the public, and where development reaches every corner of the federation — not just the cities that make the news.
+                </p>
             </div>
+            <div class="vm-card">
+                <div class="vm-label">Our Mission</div>
+                <h3 class="vm-headline">To mobilize, connect, and empower Nigerians through grassroots community networks across all 774 LGAs.</h3>
+                <p class="vm-text">
+                    We build local structures that train, inform, and activate citizens to participate in governance, track public spending, monitor projects in their own communities, and advocate for their rights — with the tools and the network to be heard.
+                </p>
+            </div>
+        </div>
+    </section>
 
-            <div class="contact-divider"></div>
-
-            <div class="contact-bottom">
-                <div class="contact-copyright">
-                    &copy; 2026 <span>FixNaija Movement</span>. All rights reserved. Built for the people.
+    <!-- ===== THE PILLARS ===== -->
+    <section class="stand-for-section">
+        <div class="stand-for-container">
+            <div class="stand-for-header">
+                <span class="section-label">What We Stand For</span>
+                <h2 class="stand-for-headline">The Six Pillars of FixNaija</h2>
+            </div>
+            <div class="stand-for-grid">
+                <div class="stand-card">
+                    <div class="stand-number">01</div>
+                    <h3 class="stand-title">Community Organizing</h3>
+                    <p class="stand-desc">Building ward-level structures that empower citizens to lead change from their own neighborhoods — because nobody knows a community's needs better than the people who live there.</p>
                 </div>
-                <div class="contact-legal">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Use</a>
+                <div class="stand-card">
+                    <div class="stand-number">02</div>
+                    <h3 class="stand-title">Policy Accountability</h3>
+                    <p class="stand-desc">Tracking government promises and public spending to ensure every kobo works for the people — from the federal budget down to the LGA allocation.</p>
+                </div>
+                <div class="stand-card">
+                    <div class="stand-number">03</div>
+                    <h3 class="stand-title">Youth Empowerment</h3>
+                    <p class="stand-desc">Investing in the next generation of leaders through training, mentorship, and civic engagement — turning frustration into organized, constructive power.</p>
+                </div>
+                <div class="stand-card">
+                    <div class="stand-number">04</div>
+                    <h3 class="stand-title">Project Tracking</h3>
+                    <p class="stand-desc">Monitoring public projects from budget line to commissioning, with community members reporting progress — or abandonment — from the project site itself.</p>
+                </div>
+                <div class="stand-card">
+                    <div class="stand-number">05</div>
+                    <h3 class="stand-title">Civic Education</h3>
+                    <p class="stand-desc">Teaching citizens their rights, how governance works, and how to use their voice and their vote — because an informed citizen is impossible to ignore.</p>
+                </div>
+                <div class="stand-card">
+                    <div class="stand-number">06</div>
+                    <h3 class="stand-title">Unity Across Lines</h3>
+                    <p class="stand-desc">Refusing the politics of ethnicity, religion, and division. A pothole does not check your tribe before it damages your car — and neither do we before we welcome you.</p>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- ===== HOW WE'RE ORGANIZED ===== -->
+    <section class="ab-structure">
+        <div class="ab-structure-container">
+            <div class="ab-structure-header">
+                <span class="section-label">How We're Organized</span>
+                <h2 class="ab-structure-headline">From the Nation to Your Street</h2>
+            </div>
+            <div class="ab-ladder">
+                <div class="ab-rung">
+                    <div class="ab-rung-count">1</div>
+                    <div class="ab-rung-title">National Network</div>
+                    <div class="ab-rung-desc">Sets the movement's direction, coordinates campaigns, and connects every state structure into one national voice.</div>
+                </div>
+                <div class="ab-rung">
+                    <div class="ab-rung-count">36 + FCT</div>
+                    <div class="ab-rung-title">State Chapters</div>
+                    <div class="ab-rung-desc">Every state of the federation and the Federal Capital Territory, each with its own coordinators adapting the mission to local realities.</div>
+                </div>
+                <div class="ab-rung">
+                    <div class="ab-rung-count">774</div>
+                    <div class="ab-rung-title">LGA Networks</div>
+                    <div class="ab-rung-desc">The heart of the movement. Every Local Government Area has its own community, where members organize, meet, and act together.</div>
+                </div>
+                <div class="ab-rung">
+                    <div class="ab-rung-count">8,800+</div>
+                    <div class="ab-rung-title">Ward Cells</div>
+                    <div class="ab-rung-desc">Close enough to know every street. Ward cells track local projects, welcome new members, and carry community concerns upward.</div>
+                </div>
+                <div class="ab-rung">
+                    <div class="ab-rung-count">176,000+</div>
+                    <div class="ab-rung-title">Polling Units</div>
+                    <div class="ab-rung-desc">The smallest unit of Nigerian democracy — and the foundation of FixNaija. When you register, you are counted right down to your own polling unit.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== THE CONVENER ===== -->
+    <section class="ab-profile">
+        <div class="ab-profile-container">
+            <div class="ab-profile-img-card">
+                <img src="images/candidate.jpg" alt="Prince Adewole Adebayo">
+                <div class="ab-profile-badge">
+                    <div class="name">Prince Adewole Adebayo</div>
+                    <div class="slogan">No Place Like Nigeria &middot; God Bless Nigeria</div>
+                </div>
+            </div>
+            <div class="ab-profile-text">
+                <span class="section-label">The Convener</span>
+                <h2 class="ab-profile-headline">Prince Adewole Adebayo</h2>
+                <p>Born on 8 January 1972 in Ondo City, Ondo State, Prince Adewole Adebayo is a prince of the Ondo Kingdom, a lawyer, and an entrepreneur whose career has been defined by building institutions rather than chasing office.</p>
+                <p>He studied law at Obafemi Awolowo University and was called to the Nigerian Bar in 2000, later earning additional qualifications abroad, including admission to the New York Bar. In 2002 he founded his own practice, <strong>Adewole Adebayo &amp; Co. (House of Law)</strong>, which grew into one of Nigeria's notable firms — and a training ground where he invested in young lawyers at the start of their careers.</p>
+                <p>In 2016, he returned his businesses home to Ondo City and founded <strong>KAFTAN TV</strong>, an independent 24-hour television channel now operating from Ondo with offices in Lagos and Abuja. Beyond business, he is known for sponsoring the education of young Nigerians in tertiary institutions across the country.</p>
+                <p>He was the <strong>Social Democratic Party's presidential candidate in 2023</strong>, and in May 2026 was again chosen as the SDP's candidate for the 2027 elections. FixNaija is the grassroots expression of his core message: Nigeria is not beyond repair — it is simply waiting for its people to organize.</p>
+                <div class="ab-chips">
+                    <span class="ab-chip">Prince of the Ondo Kingdom</span>
+                    <span class="ab-chip">Founder, House of Law (2002)</span>
+                    <span class="ab-chip">Founder, KAFTAN TV (2016)</span>
+                    <span class="ab-chip">SDP Presidential Candidate</span>
+                    <span class="ab-chip">Education Sponsor</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== JOIN CTA ===== -->
+    <section class="ab-cta">
+        <h2 class="ab-cta-headline">Be Part of the Repair Work</h2>
+        <p class="ab-cta-sub">The movement is only as strong as the communities inside it. Find your LGA, register with FixNaija, and take your seat at the table.</p>
+        <div class="ab-cta-buttons">
+            <a href="find-lga.html" class="cta-primary">Find My LGA</a>
+            <a href="register.html" class="cta-secondary">Register Now</a>
+        </div>
+    </section>
+
 
 <script>
-// ===== Mobile menu toggle (subpage: links navigate normally) =====
+// ===== Mobile menu toggle =====
 const menuToggle = document.getElementById('menuToggle');
 const mobileMenu = document.getElementById('mobileMenu');
 menuToggle.addEventListener('click', () => {
@@ -2756,339 +3048,6 @@ menuToggle.addEventListener('click', () => {
     menuToggle.classList.toggle('open', open);
     menuToggle.setAttribute('aria-expanded', open);
 });
-
-const nigeriaData = {
-    "Abia": {
-        lgas: ["Aba North", "Aba South", "Arochukwu", "Bende", "Ikwuano", "Isiala Ngwa North", "Isiala Ngwa South", "Isuikwuato", "Obi Ngwa", "Ohafia", "Osisioma Ngwa", "Ugwunagbo", "Ukwa East", "Ukwa West", "Umuahia North", "Umuahia South", "Umu Nneochi"]
-    },
-    "Adamawa": {
-        lgas: ["Demsa", "Fufure", "Ganye", "Gayuk", "Gombi", "Grie", "Hong", "Jada", "Lamurde", "Madagali", "Maiha", "Mayo Belwa", "Michika", "Mubi North", "Mubi South", "Numan", "Shelleng", "Song", "Toungo", "Yola North", "Yola South"]
-    },
-    "Akwa Ibom": {
-        lgas: ["Abak", "Eastern Obolo", "Eket", "Esit Eket", "Essien Udim", "Etim Ekpo", "Etinan", "Ibeno", "Ibesikpo Asutan", "Ibiono-Ibom", "Ika", "Ikono", "Ikot Abasi", "Ikot Ekpene", "Ini", "Itu", "Mbo", "Mkpat-Enin", "Nsit-Atai", "Nsit-Ibom", "Nsit-Ubium", "Obot Akara", "Okobo", "Onna", "Oron", "Oruk Anam", "Udung-Uko", "Ukanafun", "Uruan", "Urue-Offong/Oruko", "Uyo"]
-    },
-    "Anambra": {
-        lgas: ["Aguata", "Anambra East", "Anambra West", "Anaocha", "Awka North", "Awka South", "Ayamelum", "Dunukofia", "Ekwusigo", "Idemili North", "Idemili South", "Ihiala", "Njikoka", "Nnewi North", "Nnewi South", "Ogbaru", "Onitsha North", "Onitsha South", "Orumba North", "Orumba South", "Oyi"]
-    },
-    "Bauchi": {
-        lgas: ["Alkaleri", "Bauchi", "Bogoro", "Damban", "Darazo", "Dass", "Gamawa", "Ganjuwa", "Giade", "Itas/Gadau", "Jama'are", "Katagum", "Kirfi", "Misau", "Ningi", "Shira", "Tafawa Balewa", "Toro", "Warji", "Zaki"]
-    },
-    "Bayelsa": {
-        lgas: ["Brass", "Ekeremor", "Kolokuma/Opokuma", "Nembe", "Ogbia", "Sagbama", "Southern Ijaw", "Yenagoa"]
-    },
-    "Benue": {
-        lgas: ["Ado", "Agatu", "Apa", "Buruku", "Gboko", "Guma", "Gwer East", "Gwer West", "Katsina-Ala", "Konshisha", "Kwande", "Logo", "Makurdi", "Obi", "Ogbadibo", "Ohimini", "Oju", "Okpokwu", "Otukpo", "Tarka", "Ukum", "Ushongo", "Vandeikya"]
-    },
-    "Borno": {
-        lgas: ["Abadam", "Askira/Uba", "Bama", "Bayo", "Biu", "Chibok", "Damboa", "Dikwa", "Gubio", "Guzamala", "Gwoza", "Hawul", "Jere", "Kaga", "Kala/Balge", "Konduga", "Kukawa", "Kwaya Kusar", "Mafa", "Magumeri", "Maiduguri", "Marte", "Mobbar", "Monguno", "Ngala", "Nganzai", "Shani"]
-    },
-    "Cross River": {
-        lgas: ["Abi", "Akamkpa", "Akpabuyo", "Bakassi", "Bekwarra", "Biase", "Boki", "Calabar Municipal", "Calabar South", "Etung", "Ikom", "Obanliku", "Obubra", "Obudu", "Odukpani", "Ogoja", "Yakuur", "Yala"]
-    },
-    "Delta": {
-        lgas: ["Aniocha North", "Aniocha South", "Bomadi", "Burutu", "Ethiope East", "Ethiope West", "Ika North East", "Ika South", "Isoko North", "Isoko South", "Ndokwa East", "Ndokwa West", "Okpe", "Oshimili North", "Oshimili South", "Patani", "Sapele", "Udu", "Ughelli North", "Ughelli South", "Ukwuani", "Uvwie", "Warri North", "Warri South", "Warri South West"]
-    },
-    "Ebonyi": {
-        lgas: ["Abakaliki", "Afikpo North", "Afikpo South", "Ebonyi", "Ezza North", "Ezza South", "Ikwo", "Ishielu", "Ivo", "Izzi", "Ohaozara", "Ohaukwu", "Onicha"]
-    },
-    "Edo": {
-        lgas: ["Akoko-Edo", "Egor", "Esan Central", "Esan North-East", "Esan South-East", "Esan West", "Etsako Central", "Etsako East", "Etsako West", "Igueben", "Ikpoba-Okha", "Oredo", "Orhionmwon", "Ovia North-East", "Ovia South-West", "Owan East", "Owan West", "Uhunmwonde"]
-    },
-    "Ekiti": {
-        lgas: ["Ado Ekiti", "Efon", "Ekiti East", "Ekiti South-West", "Ekiti West", "Emure", "Gbonyin", "Ido/Osi", "Ijero", "Ikere", "Ikole", "Ilejemeje", "Irepodun/Ifelodun", "Ise/Orun", "Moba", "Oye"]
-    },
-    "Enugu": {
-        lgas: ["Aninri", "Awgu", "Enugu East", "Enugu North", "Enugu South", "Ezeagu", "Igbo Etiti", "Igbo Eze North", "Igbo Eze South", "Isi Uzo", "Nkanu East", "Nkanu West", "Nsukka", "Oji River", "Udenu", "Udi", "Uzo Uwani"]
-    },
-    "FCT Abuja": {
-        lgas: ["Abaji", "Abuja Municipal", "Bwari", "Gwagwalada", "Kuje", "Kwali"]
-    },
-    "Gombe": {
-        lgas: ["Akko", "Balanga", "Billiri", "Dukku", "Funakaye", "Gombe", "Kaltungo", "Kwami", "Nafada", "Shomgom", "Yamaltu/Deba"]
-    },
-    "Imo": {
-        lgas: ["Aboh Mbaise", "Ahiazu Mbaise", "Ehime Mbano", "Ezinihitte", "Ideato North", "Ideato South", "Ihitte/Uboma", "Ikeduru", "Isiala Mbano", "Isu", "Mbaitoli", "Ngor Okpala", "Njaba", "Nkwerre", "Nwangele", "Obowo", "Oguta", "Ohaji/Egbema", "Okigwe", "Onuimo", "Orlu", "Orsu", "Oru East", "Oru West", "Owerri Municipal", "Owerri North", "Owerri West"]
-    },
-    "Jigawa": {
-        lgas: ["Auyo", "Babura", "Biriniwa", "Birnin Kudu", "Buji", "Dutse", "Gagarawa", "Garki", "Gumel", "Guri", "Gwaram", "Gwiwa", "Hadejia", "Jahun", "Kafin Hausa", "Kaugama", "Kazaure", "Kiri Kasama", "Maigatari", "Malam Madori", "Miga", "Ringim", "Roni", "Sule Tankarkar", "Taura", "Yankwashi"]
-    },
-    "Kaduna": {
-        lgas: ["Birnin Gwari", "Chikun", "Giwa", "Igabi", "Ikara", "Jaba", "Jema'a", "Kachia", "Kaduna North", "Kaduna South", "Kagarko", "Kajuru", "Kaura", "Kauru", "Kubau", "Kudan", "Lere", "Makarfi", "Sabon Gari", "Sanga", "Soba", "Zangon Kataf", "Zaria"]
-    },
-    "Kano": {
-        lgas: ["Albasu", "Bagwai", "Bebeji", "Bichi", "Bunkure", "Dala", "Dambatta", "Dawakin Kudu", "Dawakin Tofa", "Doguwa", "Fagge", "Gabasawa", "Garko", "Garum Mallam", "Gaya", "Gezawa", "Gwale", "Gwarzo", "Kabo", "Kano Municipal", "Karaye", "Kibiya", "Kiru", "Kumbotso", "Kunchi", "Kura", "Madobi", "Makoda", "Minjibir", "Nasarawa", "Rano", "Rimin Gado", "Rogo", "Shanono", "Sumaila", "Takai", "Tarauni", "Tofa", "Tsanyawa", "Tudun Wada", "Ungogo", "Warawa", "Wudil"]
-    },
-    "Katsina": {
-        lgas: ["Bakori", "Batagarawa", "Batsari", "Baure", "Bindawa", "Charanchi", "Dan Musa", "Dandume", "Danja", "Daura", "Dutsi", "Dutsin-Ma", "Faskari", "Funtua", "Ingawa", "Jibia", "Kafur", "Kaita", "Kankara", "Kankia", "Katsina", "Kurfi", "Kusada", "Mai'adua", "Malumfashi", "Mani", "Mashi", "Matazu", "Musawa", "Rimi", "Sabuwa", "Safana", "Sandamu", "Zango"]
-    },
-    "Kebbi": {
-        lgas: ["Aleiro", "Arewa", "Argungu", "Augie", "Bagudo", "Birnin Kebbi", "Bunza", "Dandi", "Fakai", "Gwandu", "Jega", "Kalgo", "Koko/Besse", "Maiyama", "Ngaski", "Shanga", "Suru", "Wasagu/Danko", "Yauri", "Zuru", "Kamba"]
-    },
-    "Kogi": {
-        lgas: ["Adavi", "Ajaokuta", "Ankpa", "Bassa", "Dekina", "Ibaji", "Idah", "Igalamela-Odolu", "Ijumu", "Kabba/Bunu", "Kogi", "Lokoja", "Mopa-Muro", "Ofu", "Ogori/Magongo", "Okehi", "Okene", "Olamaboro", "Omala", "Yagba East", "Yagba West"]
-    },
-    "Kwara": {
-        lgas: ["Asa", "Baruten", "Edu", "Ekiti", "Ifelodun", "Ilorin East", "Ilorin South", "Ilorin West", "Irepodun", "Isin", "Kaiama", "Moro", "Offa", "Oke Ero", "Oyun", "Pategi"]
-    },
-    "Lagos": {
-        lgas: ["Agege", "Ajeromi-Ifelodun", "Alimosho", "Amuwo-Odofin", "Apapa", "Badagry", "Epe", "Eti-Osa", "Ibeju-Lekki", "Ifako-Ijaiye", "Ikeja", "Ikorodu", "Kosofe", "Lagos Island", "Lagos Mainland", "Mushin", "Ojo", "Oshodi-Isolo", "Shomolu", "Surulere"]
-    },
-    "Nasarawa": {
-        lgas: ["Akwanga", "Awe", "Doma", "Karu", "Keana", "Keffi", "Kokona", "Lafia", "Nasarawa", "Nasarawa Egon", "Obi", "Toto", "Wamba"]
-    },
-    "Niger": {
-        lgas: ["Agaie", "Agwara", "Bida", "Borgu", "Bosso", "Chanchaga", "Edati", "Gbako", "Gurara", "Katcha", "Kontagora", "Lapai", "Lavun", "Magama", "Mariga", "Mashegu", "Mokwa", "Moya", "Paikoro", "Rafi", "Rijau", "Shiroro", "Suleja", "Tafa", "Wushishi"]
-    },
-    "Ogun": {
-        lgas: ["Abeokuta North", "Abeokuta South", "Ado-Odo/Ota", "Egbado North", "Egbado South", "Ewekoro", "Ifo", "Ijebu East", "Ijebu North", "Ijebu North East", "Ijebu Ode", "Ikenne", "Imeko Afon", "Ipokia", "Obafemi Owode", "Odeda", "Odogbolu", "Ogun Waterside", "Remo North", "Shagamu"]
-    },
-    "Ondo": {
-        lgas: ["Akoko North-East", "Akoko North-West", "Akoko South-East", "Akoko South-West", "Akure North", "Akure South", "Ese Odo", "Idanre", "Ifedore", "Ilaje", "Ile Oluji/Okeigbo", "Irele", "Odigbo", "Okitipupa", "Ondo East", "Ondo West", "Ose", "Owo"]
-    },
-    "Osun": {
-        lgas: ["Aiyedaade", "Aiyedire", "Atakumosa East", "Atakumosa West", "Boluwaduro", "Boripe", "Ede North", "Ede South", "Egbedore", "Ejigbo", "Ife Central", "Ife East", "Ife North", "Ife South", "Ifedayo", "Ifelodun", "Ila", "Ilesa East", "Ilesa West", "Irepodun", "Irewole", "Isokan", "Iwo", "Obokun", "Odo Otin", "Ola Oluwa", "Olorunda", "Oriade", "Orolu", "Osogbo"]
-    },
-    "Oyo": {
-        lgas: ["Afijio", "Akinyele", "Atiba", "Atisbo", "Egbeda", "Ibadan North", "Ibadan North-East", "Ibadan North-West", "Ibadan South-East", "Ibadan South-West", "Ibarapa Central", "Ibarapa East", "Ibarapa North", "Ido", "Irepo", "Iseyin", "Itesiwaju", "Iwajowa", "Kajola", "Lagelu", "Ogbomosho North", "Ogbomosho South", "Ogo Oluwa", "Olorunsogo", "Oluyole", "Ona Ara", "Orelope", "Ori Ire", "Oyo East", "Oyo West", "Saki East", "Saki West", "Surulere"]
-    },
-    "Plateau": {
-        lgas: ["Barkin Ladi", "Bassa", "Bokkos", "Jos East", "Jos North", "Jos South", "Kanam", "Kanke", "Langtang North", "Langtang South", "Mangu", "Mikang", "Pankshin", "Qua'an Pan", "Riyom", "Shendam", "Wase"]
-    },
-    "Rivers": {
-        lgas: ["Abua/Odual", "Ahoada East", "Ahoada West", "Akuku-Toru", "Andoni", "Asari-Toru", "Bonny", "Degema", "Eleme", "Emuoha", "Etche", "Gokana", "Ikwerre", "Khana", "Obio/Akpor", "Ogba/Egbema/Ndoni", "Ogu/Bolo", "Okrika", "Omuma", "Opobo/Nkoro", "Oyigbo", "Port Harcourt", "Tai"]
-    },
-    "Sokoto": {
-        lgas: ["Binji", "Bodinga", "Dange Shuni", "Gada", "Goronyo", "Gudu", "Gwadabawa", "Illela", "Isa", "Kebbe", "Kware", "Rabah", "Sabon Birni", "Shagari", "Silame", "Sokoto North", "Sokoto South", "Tambuwal", "Tangaza", "Tureta", "Wamako", "Wurno", "Yabo"]
-    },
-    "Taraba": {
-        lgas: ["Ardo Kola", "Bali", "Donga", "Gashaka", "Gassol", "Ibi", "Jalingo", "Karim Lamido", "Kumi", "Lau", "Sardauna", "Takum", "Ussa", "Wukari", "Yorro", "Zing"]
-    },
-    "Yobe": {
-        lgas: ["Bade", "Bursari", "Damaturu", "Fika", "Fune", "Geidam", "Gujba", "Gulani", "Jakusko", "Karasuwa", "Machina", "Nangere", "Nguru", "Potiskum", "Tarmuwa", "Yunusari", "Yusufari"]
-    },
-    "Zamfara": {
-        lgas: ["Anka", "Bakura", "Birnin Magaji/Kiyaw", "Bukkuyum", "Bungudu", "Gummi", "Gusau", "Kaura Namoda", "Maradun", "Maru", "Shinkafi", "Talata Mafara", "Tsafe", "Zurmi"]
-    }
-};
-
-// ===== SUPABASE CONFIG =====
-const SUPABASE_URL = 'https://bcdscsjqiqnzsthntutb.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_Cpkk6K0Xyt5GNVXTiur2mA_myhkpiti';
-
-const SB_HEADERS = {
-    'Content-Type': 'application/json',
-    'apikey': SUPABASE_KEY,
-    'Authorization': `Bearer ${SUPABASE_KEY}`
-};
-
-// Official INEC state names (matching the polling_units database exactly)
-const INEC_STATES = ['ABIA','ADAMAWA','AKWA IBOM','ANAMBRA','BAUCHI','BAYELSA','BENUE','BORNO','CROSS RIVER','DELTA','EBONYI','EDO','EKITI','ENUGU','FEDERAL CAPITAL TERRITORY','GOMBE','IMO','JIGAWA','KADUNA','KANO','KATSINA','KEBBI','KOGI','KWARA','LAGOS','NASARAWA','NIGER','OGUN','ONDO','OSUN','OYO','PLATEAU','RIVERS','SOKOTO','TARABA','YOBE','ZAMFARA'];
-
-// Pretty display: "AKWA IBOM" → "Akwa Ibom"
-function titleCase(str) {
-    return str.toLowerCase().replace(/(^|[\s\/\-\(])\w/g, c => c.toUpperCase());
-}
-
-// ===== SUPABASE LOOKUPS (with caching) =====
-const lookupCache = {};
-
-async function sbRpc(fn, params) {
-    const key = fn + JSON.stringify(params);
-    if (lookupCache[key]) return lookupCache[key];
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/${fn}`, {
-        method: 'POST',
-        headers: SB_HEADERS,
-        body: JSON.stringify(params)
-    });
-    if (!res.ok) throw new Error(`Lookup failed: ${res.status}`);
-    const data = await res.json();
-    lookupCache[key] = data;
-    return data;
-}
-
-async function fetchLGAs(state) {
-    const rows = await sbRpc('get_lgas', { p_state: state });
-    return rows.map(r => r.lga);
-}
-
-async function fetchWardsDB(state, lga) {
-    const rows = await sbRpc('get_wards', { p_state: state, p_lga: lga });
-    return rows.map(r => r.ward);
-}
-
-async function fetchPollingUnits(state, lga, ward) {
-    const key = 'pu' + state + lga + ward;
-    if (lookupCache[key]) return lookupCache[key];
-    const params = new URLSearchParams({
-        state: `eq.${state}`,
-        lga: `eq.${lga}`,
-        ward: `eq.${ward}`,
-        select: 'polling_unit,delimitation',
-        order: 'delimitation.asc'
-    });
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/polling_units?${params}`, { headers: SB_HEADERS });
-    if (!res.ok) throw new Error(`PU lookup failed: ${res.status}`);
-    const data = await res.json();
-    lookupCache[key] = data;
-    return data;
-}
-
-// ===== STEP B: Render State Cards with Ward drill-down =====
-(function() {
-    const statesGrid    = document.getElementById('statesGrid');
-    const searchInput   = document.getElementById('stateSearch');
-    const searchResults = document.getElementById('searchResults');
-
-    // Render all state cards
-    function renderStates(filter = '') {
-        const filterLower = filter.toLowerCase().trim();
-        statesGrid.innerHTML = '';
-        let visibleCount = 0;
-
-        const states = Object.keys(nigeriaData).sort();
-
-        states.forEach(state => {
-            const lgas = nigeriaData[state].lgas;
-            const stateMatch = state.toLowerCase().includes(filterLower);
-            const matchedLGAs = filterLower ? lgas.filter(lga => lga.toLowerCase().includes(filterLower)) : [];
-            const hasMatch = stateMatch || matchedLGAs.length > 0;
-
-            if (!filterLower || hasMatch) {
-                visibleCount++;
-                const card = document.createElement('div');
-                card.className = 'state-card';
-                if (filterLower && hasMatch) card.classList.add('open');
-
-                const displayLGAs = filterLower && matchedLGAs.length > 0 && !stateMatch ? matchedLGAs : lgas;
-
-                card.innerHTML = `
-                    <div class="state-card-header">
-                        <div class="state-info">
-                            <div class="state-name">${state}</div>
-                            <div class="state-meta"><span>${lgas.length}</span> Local Government Areas</div>
-                        </div>
-                        <div class="chevron">
-                            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                        </div>
-                    </div>
-                    <div class="lga-list">
-                        <div class="lga-list-inner">
-                            ${displayLGAs.map(lga => `
-                                <div class="lga-item-wrap">
-                                    <div class="lga-item">
-                                        <span class="lga-name">${lga}</span>
-                                        <div class="lga-actions">
-                                            <a href="https://chat.whatsapp.com/PLACEHOLDER" class="lga-btn lga-btn-whatsapp" target="_blank">Join WhatsApp</a>
-                                            <button class="lga-btn lga-btn-wards" data-state="${state}" data-lga="${lga}">View Wards ▾</button>
-                                        </div>
-                                    </div>
-                                    <div class="ward-sublist" id="wards-${state.replace(/\s+/g,'-')}-${lga.replace(/[\s\/]+/g,'-')}">
-                                        <div class="ward-sublist-inner">
-                                            <div class="ward-loading-inline">
-                                                <span class="ward-loading-spinner"></span> Loading wards...
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                `;
-
-                statesGrid.appendChild(card);
-            }
-        });
-
-        if (visibleCount === 0) {
-            statesGrid.innerHTML = `
-                <div class="no-results">
-                    <div class="no-results-icon">🔍</div>
-                    <div>No states or LGAs found matching "<strong>${filter}</strong>"</div>
-                </div>`;
-            searchResults.textContent = '';
-        } else {
-            searchResults.textContent = filterLower
-                ? `Showing ${visibleCount} state${visibleCount !== 1 ? 's' : ''} matching "${filter}"`
-                : `Showing all ${visibleCount} states + FCT`;
-        }
-
-        // Accordion toggle
-        document.querySelectorAll('.state-card-header').forEach(header => {
-            header.addEventListener('click', function () {
-                this.closest('.state-card').classList.toggle('open');
-            });
-        });
-
-        // ===== STEP B: View Wards toggle =====
-        document.querySelectorAll('.lga-btn-wards').forEach(btn => {
-            btn.addEventListener('click', async function (e) {
-                e.stopPropagation();
-                const state    = this.dataset.state;
-                const lga      = this.dataset.lga;
-                const wardId   = `wards-${state.replace(/\s+/g,'-')}-${lga.replace(/[\s\/]+/g,'-')}`;
-                const sublist  = document.getElementById(wardId);
-                const isOpen   = sublist.classList.contains('open');
-
-                if (isOpen) {
-                    sublist.classList.remove('open');
-                    this.textContent = 'View Wards ▾';
-                    this.classList.remove('active');
-                    return;
-                }
-
-                // Open and load
-                sublist.classList.add('open');
-                this.textContent = 'Hide Wards ▴';
-                this.classList.add('active');
-
-                // Only fetch if not already populated
-                if (sublist.querySelector('.ward-loading-inline')) {
-                    const stateAliases = { 'FCT ABUJA': 'FEDERAL CAPITAL TERRITORY', 'FCT': 'FEDERAL CAPITAL TERRITORY' };
-                    let dbState = state.toUpperCase();
-                    if (stateAliases[dbState]) dbState = stateAliases[dbState];
-                    let wardRows = [];
-                    try { wardRows = await fetchWardsDB(dbState, lga.toUpperCase()); } catch (err) { wardRows = []; }
-                    const inner = sublist.querySelector('.ward-sublist-inner');
-
-                    if (wardRows.length > 0) {
-                        inner.innerHTML = wardRows.map(ward => `
-                            <div class="ward-item">
-                                <span class="ward-name">${titleCase(ward)}</span>
-                                <button class="ward-register-btn"
-                                    data-state="${state}"
-                                    data-lga="${lga}"
-                                    data-ward="${ward}">Register</button>
-                            </div>
-                        `).join('');
-
-                        // Wire ward register buttons
-                        inner.querySelectorAll('.ward-register-btn').forEach(wBtn => {
-                            wBtn.addEventListener('click', function () {
-                                const q = new URLSearchParams({
-                                    state: this.dataset.state,
-                                    lga: this.dataset.lga,
-                                    ward: this.dataset.ward
-                                });
-                                window.location.href = 'register.html?' + q.toString();
-                            });
-                        });
-                    } else {
-                        inner.innerHTML = `<div class="ward-loading-inline" style="color:rgba(255,255,255,0.3);">No ward data available yet for this LGA.</div>`;
-                    }
-                }
-            });
-        });
-    }
-
-    // Search
-    searchInput.addEventListener('input', function () {
-        renderStates(this.value);
-    });
-
-    // Initial render
-    renderStates();
-})();
-
 </script>
 
 </body>
