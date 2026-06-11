@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>FixNaija — Admin Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --green: #008751;
+    --green-dark: #006B40;
+    --charcoal: #1A1A2E;
+    --charcoal-soft: #23233B;
+    --gold: #D4A017;
+    --white: #FFFFFF;
+    --light-gray: #F5F5F5;
+    --border: #E6E6EC;
+    --muted: #6B6B80;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--light-gray);
+    color: var(--charcoal);
+    min-height: 100vh;
+}
+h1, h2, h3, .stat-value, .brand { font-family: 'Space Grotesk', sans-serif; }
+
+/* ===== LOGIN ===== */
+.login-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--charcoal);
+    background-image: radial-gradient(circle at 80% 10%, rgba(0,135,81,0.25), transparent 50%),
+                      radial-gradient(circle at 10% 90%, rgba(212,160,23,0.12), transparent 50%);
+    padding: 24px;
+}
+.login-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 40px 36px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+}
+.login-card .brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+.login-card .brand span { color: var(--green); }
+.login-sub { color: var(--muted); font-size: 0.88rem; margin-bottom: 28px; }
+.field { margin-bottom: 16px; }
+.field label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin-bottom: 6px;
+}
+.field input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font: inherit;
+    font-size: 0.95rem;
+}
+.field input:focus { outline: none; border-color: var(--green); }
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font: inherit;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+.btn-primary { background: var(--green); color: var(--white); width: 100%; }
+.btn-primary:hover { background: var(--green-dark); }
+.btn-primary:disabled { opacity: 0.6; cursor: wait; }
+.btn-ghost {
+    background: transparent;
+    color: var(--muted);
+    border: 1.5px solid var(--border);
+    padding: 8px 14px;
+    font-size: 0.85rem;
+}
+.btn-ghost:hover { border-color: var(--charcoal); color: var(--charcoal); }
+.btn-gold { background: var(--gold); color: var(--charcoal); padding: 8px 14px; font-size: 0.85rem; }
+.btn-gold:hover { filter: brightness(1.08); }
+.login-error {
+    display: none;
+    background: #FDECEC;
+    color: #B3261E;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+}
+
+/* ===== DASHBOARD ===== */
+.dash { display: none; }
+.topbar {
+    background: var(--charcoal);
+    color: var(--white);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+.topbar .brand { font-size: 1.1rem; font-weight: 700; }
+.topbar .brand span { color: var(--gold); }
+.topbar-right { display: flex; align-items: center; gap: 12px; }
+.topbar .who { font-size: 0.8rem; color: rgba(255,255,255,0.65); }
+.topbar .btn-ghost { color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.25); }
+.topbar .btn-ghost:hover { color: var(--white); border-color: var(--white); }
+
+.wrap { max-width: 1200px; margin: 0 auto; padding: 28px 24px 64px; }
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+}
+.stat-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 20px 22px;
+    border: 1px solid var(--border);
+}
+.stat-card.hero { background: var(--green); color: var(--white); border: none; }
+.stat-label {
+    font-size: 0.74rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.75;
+    margin-bottom: 8px;
+}
+.stat-value { font-size: 2.1rem; font-weight: 700; line-height: 1; }
+.stat-note { font-size: 0.78rem; opacity: 0.65; margin-top: 8px; }
+
+.panel {
+    background: var(--white);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+}
+.panel-head {
+    padding: 18px 22px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.panel-head h2 { font-size: 1.05rem; }
+.panel-body { padding: 0; }
+
+/* Drill-down breadcrumb */
+.crumbs {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    flex-wrap: wrap;
+}
+.crumb {
+    background: var(--light-gray);
+    border: none;
+    border-radius: 6px;
+    padding: 5px 10px;
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--green-dark);
+}
+.crumb.current { background: var(--charcoal); color: var(--white); cursor: default; }
+.crumb-sep { color: var(--muted); }
+
+.break-list { list-style: none; }
+.break-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 22px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.12s ease;
+}
+.break-row:last-child { border-bottom: none; }
+.break-row:hover { background: #F0F7F4; }
+.break-row.leaf { cursor: default; }
+.break-row.leaf:hover { background: transparent; }
+.break-name { flex: 1; font-weight: 500; font-size: 0.92rem; }
+.break-count {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    min-width: 52px;
+    text-align: right;
+}
+.break-bar-track {
+    flex: 0 0 32%;
+    height: 8px;
+    background: var(--light-gray);
+    border-radius: 4px;
+    overflow: hidden;
+}
+.break-bar { height: 100%; background: var(--green); border-radius: 4px; }
+.break-row:nth-child(1) .break-bar { background: var(--gold); }
+
+/* Registrations table */
+.table-tools { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.search-input {
+    padding: 9px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font: inherit;
+    font-size: 0.88rem;
+    width: 240px;
+    max-width: 100%;
+}
+.search-input:focus { outline: none; border-color: var(--green); }
+.table-scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+th {
+    text-align: left;
+    padding: 10px 14px;
+    background: var(--light-gray);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    white-space: nowrap;
+}
+td { padding: 11px 14px; border-top: 1px solid var(--border); vertical-align: top; }
+td.mono { font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; white-space: nowrap; }
+.empty-note { padding: 40px 22px; text-align: center; color: var(--muted); font-size: 0.9rem; }
+.loading-note { padding: 40px 22px; text-align: center; color: var(--muted); font-size: 0.9rem; }
+.pager {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 22px;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.pager .info { font-size: 0.82rem; color: var(--muted); }
+.footnote { font-size: 0.78rem; color: var(--muted); text-align: center; }
+
+@media (max-width: 640px) {
+    .break-bar-track { display: none; }
+    .stat-value { font-size: 1.7rem; }
+    .wrap { padding: 20px 14px 48px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== LOGIN SCREEN ===== -->
+<div class="login-screen" id="loginScreen">
+    <div class="login-card">
+        <div class="brand">Fix<span>Naija</span> Admin</div>
+        <p class="login-sub">Sign in to view registration data</p>
+        <div class="login-error" id="loginError"></div>
+        <div class="field">
+            <label for="loginEmail">Email</label>
+            <input type="email" id="loginEmail" autocomplete="username">
+        </div>
+        <div class="field">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" autocomplete="current-password">
+        </div>
+        <button class="btn btn-primary" id="loginBtn">Sign in</button>
+    </div>
+</div>
+
+<!-- ===== DASHBOARD ===== -->
+<div class="dash" id="dash">
+    <div class="topbar">
+        <div class="brand">Fix<span>Naija</span> · Command Room</div>
+        <div class="topbar-right">
+            <span class="who" id="whoAmI"></span>
+            <button class="btn btn-ghost" id="logoutBtn">Sign out</button>
+        </div>
+    </div>
+
+    <div class="wrap">
+        <div class="stats-grid">
+            <div class="stat-card hero">
+                <div class="stat-label">Total registrations</div>
+                <div class="stat-value" id="statTotal">—</div>
+                <div class="stat-note" id="statTotalNote"></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Today</div>
+                <div class="stat-value" id="statToday">—</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Last 7 days</div>
+                <div class="stat-value" id="statWeek">—</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">States reached</div>
+                <div class="stat-value" id="statStates">—</div>
+                <div class="stat-note">of 37</div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-head">
+                <h2>Where the movement is growing</h2>
+                <div class="crumbs" id="crumbs"></div>
+            </div>
+            <div class="panel-body">
+                <ul class="break-list" id="breakList">
+                    <li class="loading-note">Loading…</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-head">
+                <h2>Registrations</h2>
+                <div class="table-tools">
+                    <input type="search" class="search-input" id="searchInput" placeholder="Search name, phone, email…">
+                    <button class="btn btn-gold" id="exportBtn">Export CSV</button>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="table-scroll">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>State</th>
+                                <th>LGA</th>
+                                <th>Ward</th>
+                                <th>Polling unit</th>
+                                <th>Code</th>
+                            </tr>
+                        </thead>
+                        <tbody id="regTableBody">
+                            <tr><td colspan="9" class="loading-note">Loading…</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pager">
+                    <span class="info" id="pageInfo"></span>
+                    <div style="display:flex; gap:8px;">
+                        <button class="btn btn-ghost" id="prevBtn">Previous</button>
+                        <button class="btn btn-ghost" id="nextBtn">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p class="footnote">FixNaija Movement · Data refreshes on each sign-in · <a href="#" id="refreshLink" style="color:var(--green-dark);">Refresh now</a></p>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = 'https://bcdscsjqiqnzsthntutb.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_Cpkk6K0Xyt5GNVXTiur2mA_myhkpiti';
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const $ = id => document.getElementById(id);
+let allRows = [];        // every registration loaded
+let filteredRows = [];   // after search filter
+let page = 0;
+const PAGE_SIZE = 25;
+let drill = { state: null, lga: null };
+
+// ===== AUTH =====
+async function init() {
+    const { data: { session } } = await sb.auth.getSession();
+    if (session) showDash(session.user.email);
+}
+init();
+
+$('loginBtn').addEventListener('click', doLogin);
+$('loginPassword').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+
+async function doLogin() {
+    const email = $('loginEmail').value.trim();
+    const password = $('loginPassword').value;
+    const errBox = $('loginError');
+    errBox.style.display = 'none';
+    if (!email || !password) {
+        errBox.textContent = 'Enter your email and password.';
+        errBox.style.display = 'block';
+        return;
+    }
+    $('loginBtn').disabled = true;
+    $('loginBtn').textContent = 'Signing in…';
+    const { data, error } = await sb.auth.signInWithPassword({ email, password });
+    $('loginBtn').disabled = false;
+    $('loginBtn').textContent = 'Sign in';
+    if (error) {
+        errBox.textContent = 'Sign-in failed. Check your email and password.';
+        errBox.style.display = 'block';
+        return;
+    }
+    showDash(data.user.email);
+}
+
+$('logoutBtn').addEventListener('click', async () => {
+    await sb.auth.signOut();
+    location.reload();
+});
+
+function showDash(email) {
+    $('loginScreen').style.display = 'none';
+    $('dash').style.display = 'block';
+    $('whoAmI').textContent = email;
+    loadData();
+}
+
+// ===== DATA LOADING (pages of 1000) =====
+async function loadData() {
+    allRows = [];
+    let from = 0;
+    const STEP = 1000;
+    const HARD_CAP = 100000; // safety cap
+    while (from < HARD_CAP) {
+        const { data, error } = await sb
+            .from('registrations')
+            .select('*')
+            .order('created_at', { ascending: false })
+            .range(from, from + STEP - 1);
+        if (error) {
+            $('regTableBody').innerHTML = `<tr><td colspan="9" class="empty-note">Could not load data: ${error.message}</td></tr>`;
+            $('breakList').innerHTML = '<li class="empty-note">Could not load data.</li>';
+            return;
+        }
+        allRows = allRows.concat(data);
+        if (data.length < STEP) break;
+        from += STEP;
+    }
+    renderStats();
+    renderBreakdown();
+    applySearch();
+}
+
+$('refreshLink').addEventListener('click', e => { e.preventDefault(); loadData(); });
+
+// ===== STATS =====
+function renderStats() {
+    const now = new Date();
+    const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const weekStart = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+
+    const total = allRows.length;
+    const today = allRows.filter(r => new Date(r.created_at) >= todayStart).length;
+    const week  = allRows.filter(r => new Date(r.created_at) >= weekStart).length;
+    const states = new Set(allRows.map(r => r.state).filter(Boolean)).size;
+
+    $('statTotal').textContent = total.toLocaleString();
+    $('statToday').textContent = today.toLocaleString();
+    $('statWeek').textContent = week.toLocaleString();
+    $('statStates').textContent = states;
+    if (total > 0) {
+        const latest = new Date(allRows[0].created_at);
+        $('statTotalNote').textContent = 'Latest: ' + latest.toLocaleString('en-NG', { dateStyle: 'medium', timeStyle: 'short' });
+    }
+}
+
+// ===== BREAKDOWN DRILL-DOWN =====
+function renderBreakdown() {
+    const list = $('breakList');
+    const crumbs = $('crumbs');
+
+    // Determine level
+    let level, rows;
+    if (!drill.state) {
+        level = 'state';
+        rows = groupCount(allRows, r => r.state);
+    } else if (!drill.lga) {
+        level = 'lga';
+        rows = groupCount(allRows.filter(r => r.state === drill.state), r => r.lga);
+    } else {
+        level = 'ward';
+        rows = groupCount(allRows.filter(r => r.state === drill.state && r.lga === drill.lga), r => r.ward || '(No ward)');
+    }
+
+    // Breadcrumbs
+    crumbs.innerHTML = '';
+    addCrumb(crumbs, 'All states', !drill.state, () => { drill = { state: null, lga: null }; renderBreakdown(); });
+    if (drill.state) {
+        addSep(crumbs);
+        addCrumb(crumbs, pretty(drill.state), !drill.lga, () => { drill.lga = null; renderBreakdown(); });
+    }
+    if (drill.lga) {
+        addSep(crumbs);
+        addCrumb(crumbs, pretty(drill.lga), true, null);
+    }
+
+    // Rows
+    if (rows.length === 0) {
+        list.innerHTML = '<li class="empty-note">No registrations here yet — this is where the work begins.</li>';
+        return;
+    }
+    const max = rows[0][1];
+    list.innerHTML = '';
+    rows.forEach(([name, count]) => {
+        const li = document.createElement('li');
+        li.className = 'break-row' + (level === 'ward' ? ' leaf' : '');
+        li.innerHTML = `
+            <span class="break-name">${escapeHtml(pretty(name))}</span>
+            <span class="break-bar-track"><span class="break-bar" style="width:${Math.max(4, Math.round(count / max * 100))}%"></span></span>
+            <span class="break-count">${count.toLocaleString()}</span>`;
+        if (level !== 'ward') {
+            li.addEventListener('click', () => {
+                if (level === 'state') drill.state = name;
+                else drill.lga = name;
+                renderBreakdown();
+            });
+        }
+        list.appendChild(li);
+    });
+}
+
+function groupCount(rows, keyFn) {
+    const m = new Map();
+    rows.forEach(r => {
+        const k = keyFn(r);
+        if (!k) return;
+        m.set(k, (m.get(k) || 0) + 1);
+    });
+    return [...m.entries()].sort((a, b) => b[1] - a[1]);
+}
+
+function addCrumb(parent, label, current, onClick) {
+    const b = document.createElement('button');
+    b.className = 'crumb' + (current ? ' current' : '');
+    b.textContent = label;
+    if (onClick && !current) b.addEventListener('click', onClick);
+    parent.appendChild(b);
+}
+function addSep(parent) {
+    const s = document.createElement('span');
+    s.className = 'crumb-sep';
+    s.textContent = '›';
+    parent.appendChild(s);
+}
+
+// ===== TABLE + SEARCH + PAGING =====
+$('searchInput').addEventListener('input', () => { page = 0; applySearch(); });
+
+function applySearch() {
+    const q = $('searchInput').value.trim().toLowerCase();
+    filteredRows = !q ? allRows : allRows.filter(r =>
+        (r.full_name || '').toLowerCase().includes(q) ||
+        (r.phone || '').toLowerCase().includes(q) ||
+        (r.email || '').toLowerCase().includes(q) ||
+        (r.state || '').toLowerCase().includes(q) ||
+        (r.lga || '').toLowerCase().includes(q) ||
+        (r.ward || '').toLowerCase().includes(q) ||
+        (r.polling_unit || '').toLowerCase().includes(q)
+    );
+    renderTable();
+}
+
+function renderTable() {
+    const body = $('regTableBody');
+    const start = page * PAGE_SIZE;
+    const rows = filteredRows.slice(start, start + PAGE_SIZE);
+
+    if (filteredRows.length === 0) {
+        body.innerHTML = '<tr><td colspan="9" class="empty-note">No registrations match.</td></tr>';
+    } else {
+        body.innerHTML = rows.map(r => `
+            <tr>
+                <td class="mono">${new Date(r.created_at).toLocaleDateString('en-NG', { day: '2-digit', month: 'short', year: 'numeric' })}</td>
+                <td>${escapeHtml(r.full_name || '')}</td>
+                <td class="mono">${escapeHtml(r.phone || '')}</td>
+                <td>${escapeHtml(r.email || '')}</td>
+                <td>${escapeHtml(pretty(r.state || ''))}</td>
+                <td>${escapeHtml(pretty(r.lga || ''))}</td>
+                <td>${escapeHtml(pretty(r.ward || ''))}</td>
+                <td>${escapeHtml(pretty(r.polling_unit || ''))}</td>
+                <td class="mono">${escapeHtml(r.delimitation || '')}</td>
+            </tr>`).join('');
+    }
+
+    const totalPages = Math.max(1, Math.ceil(filteredRows.length / PAGE_SIZE));
+    $('pageInfo').textContent = `${filteredRows.length.toLocaleString()} registration${filteredRows.length === 1 ? '' : 's'} · Page ${page + 1} of ${totalPages}`;
+    $('prevBtn').disabled = page === 0;
+    $('nextBtn').disabled = page >= totalPages - 1;
+}
+
+$('prevBtn').addEventListener('click', () => { if (page > 0) { page--; renderTable(); } });
+$('nextBtn').addEventListener('click', () => {
+    const totalPages = Math.ceil(filteredRows.length / PAGE_SIZE);
+    if (page < totalPages - 1) { page++; renderTable(); }
+});
+
+// ===== CSV EXPORT =====
+$('exportBtn').addEventListener('click', () => {
+    const cols = ['created_at', 'full_name', 'phone', 'email', 'state', 'lga', 'ward', 'polling_unit', 'delimitation', 'reason'];
+    const head = cols.join(',');
+    const lines = filteredRows.map(r => cols.map(c => csvCell(r[c])).join(','));
+    const blob = new Blob([head + '\n' + lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `fixnaija-registrations-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(a.href);
+});
+
+function csvCell(v) {
+    if (v === null || v === undefined) return '';
+    const s = String(v);
+    return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+}
+
+// ===== HELPERS =====
+function pretty(str) {
+    return String(str).toLowerCase().replace(/(^|[\s\/\-\(])\w/g, c => c.toUpperCase());
+}
+function escapeHtml(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+</script>
+</body>
+</html>
