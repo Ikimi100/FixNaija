@@ -81,6 +81,33 @@
             box-shadow: 0 0 20px rgba(0, 135, 81, 0.3);
         }
 
+        .logo-img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 10px rgba(0, 135, 81, 0.3));
+        }
+
+        .contact-brand-logo .logo-img {
+            width: 44px;
+            height: 44px;
+        }
+
+        .candidate-photo {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            object-position: top center;
+            display: block;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
         .brand-info {
             display: flex;
             flex-direction: column;
@@ -2227,7 +2254,8 @@
                 width: 320px;
             }
 
-            .candidate-photo-placeholder {
+            .candidate-photo-placeholder,
+            .candidate-photo {
                 height: 360px;
             }
 
@@ -2462,7 +2490,7 @@
     <nav class="navbar">
         <div class="nav-left">
             <div class="logo-container">
-                <div class="logo-circle">FN</div>
+                <img src="images/logo.png" alt="FixNaija Movement logo" class="logo-img">
                 <div class="brand-info">
                     <span class="brand-name">FixNaija Movement</span>
                     <span class="brand-subline">People's Grassroots Network</span>
@@ -2519,9 +2547,7 @@
             </div>
             <div class="hero-right">
                 <div class="candidate-card">
-                    <div class="candidate-photo-placeholder">
-                        <div class="photo-icon">👤</div>
-                    </div>
+                    <img src="images/candidate.jpg" alt="Prince Adewole Adebayo" class="candidate-photo">
                     <div class="candidate-badge">
                         <div class="candidate-name">Prince Adewole Adebayo</div>
                         <div class="candidate-title">Presidential Candidate · FixNaija Movement</div>
@@ -2872,129 +2898,113 @@
             <div class="gallery-grid">
                 <!-- Gallery Item 1 -->
                 <div class="gallery-item wide">
-                    <div class="gallery-placeholder">
-                        <span class="gallery-icon">📷</span>
-                    </div>
+                    <img src="images/gallery-1.jpg" alt="Supporters in No Place Like Nigeria shirts with Prince Adewole Adebayo" class="gallery-img" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-zoom-icon">
                             <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
                         </div>
                     </div>
                     <div class="gallery-caption">
-                        <div class="gallery-caption-text">National Youth Summit</div>
-                        <div class="gallery-caption-sub">Abuja, FCT · July 2026</div>
+                        <div class="gallery-caption-text">Grassroots Mobilization</div>
+                        <div class="gallery-caption-sub">No Place Like Nigeria · God Bless Nigeria</div>
                     </div>
                 </div>
 
                 <!-- Gallery Item 2 -->
                 <div class="gallery-item tall">
-                    <div class="gallery-placeholder">
-                        <span class="gallery-icon">📷</span>
-                    </div>
+                    <img src="images/gallery-2.jpg" alt="Prince Adewole Adebayo waving during a community procession" class="gallery-img" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-zoom-icon">
                             <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
                         </div>
                     </div>
                     <div class="gallery-caption">
-                        <div class="gallery-caption-text">Community Organizing</div>
-                        <div class="gallery-caption-sub">Lagos State</div>
+                        <div class="gallery-caption-text">With the People</div>
+                        <div class="gallery-caption-sub">Community Procession</div>
                     </div>
                 </div>
 
                 <!-- Gallery Item 3 -->
                 <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        <span class="gallery-icon">📷</span>
-                    </div>
+                    <img src="images/gallery-3.jpg" alt="Prince Adewole Adebayo at a national convention" class="gallery-img" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-zoom-icon">
                             <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
                         </div>
                     </div>
                     <div class="gallery-caption">
-                        <div class="gallery-caption-text">Town Hall Meeting</div>
-                        <div class="gallery-caption-sub">Kano State</div>
+                        <div class="gallery-caption-text">National Convention</div>
+                        <div class="gallery-caption-sub">Meeting Nigerians Everywhere</div>
                     </div>
                 </div>
 
                 <!-- Gallery Item 4 -->
                 <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        <span class="gallery-icon">📷</span>
-                    </div>
+                    <img src="images/gallery-4.jpg" alt="Young women at a Queen Lillian Adebayo Foundation outreach" class="gallery-img" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-zoom-icon">
                             <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
                         </div>
                     </div>
                     <div class="gallery-caption">
-                        <div class="gallery-caption-text">Youth Training</div>
-                        <div class="gallery-caption-sub">Enugu State</div>
+                        <div class="gallery-caption-text">Youth Empowerment</div>
+                        <div class="gallery-caption-sub">Queen Lillian Adebayo Foundation</div>
                     </div>
                 </div>
 
                 <!-- Gallery Item 5 -->
                 <div class="gallery-item wide">
-                    <div class="gallery-placeholder">
-                        <span class="gallery-icon">📷</span>
-                    </div>
+                    <img src="images/gallery-5.jpg" alt="Prize presentation at the Christmas Marathon, Ondo City" class="gallery-img" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-zoom-icon">
                             <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
                         </div>
                     </div>
                     <div class="gallery-caption">
-                        <div class="gallery-caption-text">Northern Region Rally</div>
-                        <div class="gallery-caption-sub">Kano · August 2026</div>
+                        <div class="gallery-caption-text">Rewarding Excellence</div>
+                        <div class="gallery-caption-sub">Christmas Marathon · Ondo City</div>
                     </div>
                 </div>
 
                 <!-- Gallery Item 6 -->
                 <div class="gallery-item tall">
-                    <div class="gallery-placeholder">
-                        <span class="gallery-icon">📷</span>
-                    </div>
+                    <img src="images/gallery-6.jpg" alt="Prince Adewole Adebayo at the national reforms summit" class="gallery-img" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-zoom-icon">
                             <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
                         </div>
                     </div>
                     <div class="gallery-caption">
-                        <div class="gallery-caption-text">Market Mobilization</div>
-                        <div class="gallery-caption-sub">Onitsha, Anambra</div>
+                        <div class="gallery-caption-text">Reforms Summit</div>
+                        <div class="gallery-caption-sub">National Leadership Engagement</div>
                     </div>
                 </div>
 
                 <!-- Gallery Item 7 -->
                 <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        <span class="gallery-icon">📷</span>
-                    </div>
+                    <img src="images/gallery-7.jpg" alt="Celebrating winners at the Christmas Marathon" class="gallery-img" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-zoom-icon">
                             <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
                         </div>
                     </div>
                     <div class="gallery-caption">
-                        <div class="gallery-caption-text">Project Monitoring</div>
-                        <div class="gallery-caption-sub">Oyo State</div>
+                        <div class="gallery-caption-text">Celebrating Champions</div>
+                        <div class="gallery-caption-sub">Christmas Marathon Winners</div>
                     </div>
                 </div>
 
                 <!-- Gallery Item 8 -->
                 <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        <span class="gallery-icon">📷</span>
-                    </div>
+                    <img src="images/gallery-8.jpg" alt="Crowd at the Christmas Marathon and Health Walk" class="gallery-img" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-zoom-icon">
                             <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
                         </div>
                     </div>
                     <div class="gallery-caption">
-                        <div class="gallery-caption-text">Women's Forum</div>
-                        <div class="gallery-caption-sub">Port Harcourt, Rivers</div>
+                        <div class="gallery-caption-text">Marathon &amp; Health Walk</div>
+                        <div class="gallery-caption-sub">Ondo City</div>
                     </div>
                 </div>
             </div>
@@ -3080,7 +3090,7 @@
             <div class="contact-grid">
                 <div class="contact-brand">
                     <div class="contact-brand-logo">
-                        <div class="logo-circle">FN</div>
+                        <img src="images/logo.png" alt="FixNaija Movement logo" class="logo-img">
                         <span class="contact-brand-name">FixNaija Movement</span>
                     </div>
                     <p class="contact-brand-desc">
