@@ -1,0 +1,56 @@
+{
+  "Akko": [
+    "Akko Ward I", "Akko Ward II", "Akko Ward III", "Akko Ward IV",
+    "Akko Ward V", "Akko Ward VI", "Akko Ward VII", "Akko Ward VIII",
+    "Akko Ward IX", "Akko Ward X", "Akko Ward XI", "Akko Ward XII"
+  ],
+  "Balanga": [
+    "Balanga Ward I", "Balanga Ward II", "Balanga Ward III", "Balanga Ward IV",
+    "Balanga Ward V", "Balanga Ward VI", "Balanga Ward VII", "Balanga Ward VIII",
+    "Balanga Ward IX", "Balanga Ward X"
+  ],
+  "Billiri": [
+    "Billiri Ward I", "Billiri Ward II", "Billiri Ward III", "Billiri Ward IV",
+    "Billiri Ward V", "Billiri Ward VI", "Billiri Ward VII", "Billiri Ward VIII",
+    "Billiri Ward IX", "Billiri Ward X"
+  ],
+  "Dukku": [
+    "Dukku Ward I", "Dukku Ward II", "Dukku Ward III", "Dukku Ward IV",
+    "Dukku Ward V", "Dukku Ward VI", "Dukku Ward VII", "Dukku Ward VIII",
+    "Dukku Ward IX", "Dukku Ward X"
+  ],
+  "Funakaye": [
+    "Funakaye Ward I", "Funakaye Ward II", "Funakaye Ward III", "Funakaye Ward IV",
+    "Funakaye Ward V", "Funakaye Ward VI", "Funakaye Ward VII", "Funakaye Ward VIII",
+    "Funakaye Ward IX", "Funakaye Ward X"
+  ],
+  "Gombe": [
+    "Gombe Ward I", "Gombe Ward II", "Gombe Ward III", "Gombe Ward IV",
+    "Gombe Ward V", "Gombe Ward VI", "Gombe Ward VII", "Gombe Ward VIII",
+    "Gombe Ward IX", "Gombe Ward X", "Gombe Ward XI", "Gombe Ward XII"
+  ],
+  "Kaltungo": [
+    "Kaltungo Ward I", "Kaltungo Ward II", "Kaltungo Ward III", "Kaltungo Ward IV",
+    "Kaltungo Ward V", "Kaltungo Ward VI", "Kaltungo Ward VII", "Kaltungo Ward VIII",
+    "Kaltungo Ward IX", "Kaltungo Ward X"
+  ],
+  "Kwami": [
+    "Kwami Ward I", "Kwami Ward II", "Kwami Ward III", "Kwami Ward IV",
+    "Kwami Ward V", "Kwami Ward VI", "Kwami Ward VII", "Kwami Ward VIII",
+    "Kwami Ward IX", "Kwami Ward X"
+  ],
+  "Nafada": [
+    "Nafada Ward I", "Nafada Ward II", "Nafada Ward III", "Nafada Ward IV",
+    "Nafada Ward V", "Nafada Ward VI", "Nafada Ward VII", "Nafada Ward VIII",
+    "Nafada Ward IX", "Nafada Ward X"
+  ],
+  "Shomgom": [
+    "Shomgom Ward I", "Shomgom Ward II", "Shomgom Ward III", "Shomgom Ward IV",
+    "Shomgom Ward V", "Shomgom Ward VI", "Shomgom Ward VII", "Shomgom Ward VIII"
+  ],
+  "Yamaltu/Deba": [
+    "Yamaltu Ward I", "Yamaltu Ward II", "Yamaltu Ward III", "Yamaltu Ward IV",
+    "Yamaltu Ward V", "Deba Ward I", "Deba Ward II", "Deba Ward III",
+    "Deba Ward IV", "Deba Ward V", "Deba Ward VI", "Deba Ward VII"
+  ]
+}

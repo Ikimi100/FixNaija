@@ -1,0 +1,80 @@
+{
+  "Abaji": [
+    "Abaji Central Ward",
+    "Abaji North Ward",
+    "Abaji South Ward",
+    "Abaji East Ward",
+    "Abaji West Ward",
+    "Rimba Ward",
+    "Yaba Ward",
+    "Pandagi Ward"
+  ],
+  "Abuja Municipal": [
+    "Garki Area 1 Ward",
+    "Garki Area 2 Ward",
+    "Garki Area 3 Ward",
+    "Wuse Zone 1 Ward",
+    "Wuse Zone 2 Ward",
+    "Wuse Zone 3 Ward",
+    "Wuse Zone 4 Ward",
+    "Wuse Zone 5 Ward",
+    "Wuse Zone 6 Ward",
+    "Wuse Zone 7 Ward",
+    "Maitama Ward",
+    "Asokoro Ward",
+    "Guzape Ward",
+    "Durumi Ward",
+    "Gudu Ward",
+    "Utako Ward",
+    "Jabi Ward",
+    "Cadastral Zone A0 Ward"
+  ],
+  "Bwari": [
+    "Bwari Central Ward",
+    "Bwari North Ward",
+    "Bwari South Ward",
+    "Bwari East Ward",
+    "Bwari West Ward",
+    "Ushafa Ward",
+    "Dutse Alhaji Ward",
+    "Garam Ward",
+    "Kawu Ward",
+    "Igu Ward"
+  ],
+  "Gwagwalada": [
+    "Gwagwalada Central Ward",
+    "Gwagwalada North Ward",
+    "Gwagwalada South Ward",
+    "Gwagwalada East Ward",
+    "Gwagwalada West Ward",
+    "Dobi Ward",
+    "Ikwa Ward",
+    "Kutunku Ward",
+    "Paikon-Kore Ward",
+    "Zuba Ward"
+  ],
+  "Kuje": [
+    "Kuje Central Ward",
+    "Kuje North Ward",
+    "Kuje South Ward",
+    "Kuje East Ward",
+    "Kuje West Ward",
+    "Chibiri Ward",
+    "Gudun Karya Ward",
+    "Kabi Ward",
+    "Kilankwa Ward",
+    "Rubochi Ward"
+  ],
+  "Kwali": [
+    "Kwali Central Ward",
+    "Kwali North Ward",
+    "Kwali South Ward",
+    "Kwali East Ward",
+    "Kwali West Ward",
+    "Dafa Ward",
+    "Gwagwa Ward",
+    "Pai Ward",
+    "Yangoji Ward",
+    "Wako Ward"
+  ]
+}

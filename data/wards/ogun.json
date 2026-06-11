@@ -1,0 +1,210 @@
+{
+  "Abeokuta North": [
+    "Abeokuta North Ward I",
+    "Abeokuta North Ward II",
+    "Abeokuta North Ward III",
+    "Abeokuta North Ward IV",
+    "Abeokuta North Ward V",
+    "Abeokuta North Ward VI",
+    "Abeokuta North Ward VII",
+    "Abeokuta North Ward VIII",
+    "Abeokuta North Ward IX",
+    "Abeokuta North Ward X"
+  ],
+  "Abeokuta South": [
+    "Abeokuta South Ward I",
+    "Abeokuta South Ward II",
+    "Abeokuta South Ward III",
+    "Abeokuta South Ward IV",
+    "Abeokuta South Ward V",
+    "Abeokuta South Ward VI",
+    "Abeokuta South Ward VII",
+    "Abeokuta South Ward VIII",
+    "Abeokuta South Ward IX",
+    "Abeokuta South Ward X"
+  ],
+  "Ado-Odo/Ota": [
+    "Ado-Odo Ward I",
+    "Ado-Odo Ward II",
+    "Ado-Odo Ward III",
+    "Ota Ward I",
+    "Ota Ward II",
+    "Ota Ward III",
+    "Ota Ward IV",
+    "Ota Ward V",
+    "Ado-Odo/Ota Ward I",
+    "Ado-Odo/Ota Ward II"
+  ],
+  "Egbado North": [
+    "Egbado North Ward I",
+    "Egbado North Ward II",
+    "Egbado North Ward III",
+    "Egbado North Ward IV",
+    "Egbado North Ward V",
+    "Egbado North Ward VI",
+    "Egbado North Ward VII",
+    "Egbado North Ward VIII"
+  ],
+  "Egbado South": [
+    "Egbado South Ward I",
+    "Egbado South Ward II",
+    "Egbado South Ward III",
+    "Egbado South Ward IV",
+    "Egbado South Ward V",
+    "Egbado South Ward VI",
+    "Egbado South Ward VII",
+    "Egbado South Ward VIII"
+  ],
+  "Ewekoro": [
+    "Ewekoro Ward I",
+    "Ewekoro Ward II",
+    "Ewekoro Ward III",
+    "Ewekoro Ward IV",
+    "Ewekoro Ward V",
+    "Ewekoro Ward VI",
+    "Ewekoro Ward VII"
+  ],
+  "Ifo": [
+    "Ifo Ward I",
+    "Ifo Ward II",
+    "Ifo Ward III",
+    "Ifo Ward IV",
+    "Ifo Ward V",
+    "Ifo Ward VI",
+    "Ifo Ward VII",
+    "Ifo Ward VIII",
+    "Ifo Ward IX",
+    "Ifo Ward X"
+  ],
+  "Ijebu East": [
+    "Ijebu East Ward I",
+    "Ijebu East Ward II",
+    "Ijebu East Ward III",
+    "Ijebu East Ward IV",
+    "Ijebu East Ward V",
+    "Ijebu East Ward VI",
+    "Ijebu East Ward VII",
+    "Ijebu East Ward VIII"
+  ],
+  "Ijebu North": [
+    "Ijebu North Ward I",
+    "Ijebu North Ward II",
+    "Ijebu North Ward III",
+    "Ijebu North Ward IV",
+    "Ijebu North Ward V",
+    "Ijebu North Ward VI",
+    "Ijebu North Ward VII",
+    "Ijebu North Ward VIII",
+    "Ijebu North Ward IX",
+    "Ijebu North Ward X"
+  ],
+  "Ijebu North East": [
+    "Ijebu North East Ward I",
+    "Ijebu North East Ward II",
+    "Ijebu North East Ward III",
+    "Ijebu North East Ward IV",
+    "Ijebu North East Ward V",
+    "Ijebu North East Ward VI",
+    "Ijebu North East Ward VII"
+  ],
+  "Ijebu Ode": [
+    "Ijebu Ode Ward I",
+    "Ijebu Ode Ward II",
+    "Ijebu Ode Ward III",
+    "Ijebu Ode Ward IV",
+    "Ijebu Ode Ward V",
+    "Ijebu Ode Ward VI",
+    "Ijebu Ode Ward VII",
+    "Ijebu Ode Ward VIII"
+  ],
+  "Ikenne": [
+    "Ikenne Ward I",
+    "Ikenne Ward II",
+    "Ikenne Ward III",
+    "Ikenne Ward IV",
+    "Ikenne Ward V",
+    "Ikenne Ward VI",
+    "Ikenne Ward VII"
+  ],
+  "Imeko Afon": [
+    "Imeko Afon Ward I",
+    "Imeko Afon Ward II",
+    "Imeko Afon Ward III",
+    "Imeko Afon Ward IV",
+    "Imeko Afon Ward V",
+    "Imeko Afon Ward VI",
+    "Imeko Afon Ward VII"
+  ],
+  "Ipokia": [
+    "Ipokia Ward I",
+    "Ipokia Ward II",
+    "Ipokia Ward III",
+    "Ipokia Ward IV",
+    "Ipokia Ward V",
+    "Ipokia Ward VI",
+    "Ipokia Ward VII",
+    "Ipokia Ward VIII"
+  ],
+  "Obafemi Owode": [
+    "Obafemi Ward I",
+    "Obafemi Ward II",
+    "Obafemi Ward III",
+    "Owode Ward I",
+    "Owode Ward II",
+    "Owode Ward III",
+    "Obafemi Owode Ward I",
+    "Obafemi Owode Ward II",
+    "Obafemi Owode Ward III",
+    "Obafemi Owode Ward IV"
+  ],
+  "Odeda": [
+    "Odeda Ward I",
+    "Odeda Ward II",
+    "Odeda Ward III",
+    "Odeda Ward IV",
+    "Odeda Ward V",
+    "Odeda Ward VI",
+    "Odeda Ward VII",
+    "Odeda Ward VIII"
+  ],
+  "Odogbolu": [
+    "Odogbolu Ward I",
+    "Odogbolu Ward II",
+    "Odogbolu Ward III",
+    "Odogbolu Ward IV",
+    "Odogbolu Ward V",
+    "Odogbolu Ward VI",
+    "Odogbolu Ward VII",
+    "Odogbolu Ward VIII"
+  ],
+  "Ogun Waterside": [
+    "Ogun Waterside Ward I",
+    "Ogun Waterside Ward II",
+    "Ogun Waterside Ward III",
+    "Ogun Waterside Ward IV",
+    "Ogun Waterside Ward V",
+    "Ogun Waterside Ward VI",
+    "Ogun Waterside Ward VII"
+  ],
+  "Remo North": [
+    "Remo North Ward I",
+    "Remo North Ward II",
+    "Remo North Ward III",
+    "Remo North Ward IV",
+    "Remo North Ward V",
+    "Remo North Ward VI",
+    "Remo North Ward VII"
+  ],
+  "Shagamu": [
+    "Shagamu Ward I",
+    "Shagamu Ward II",
+    "Shagamu Ward III",
+    "Shagamu Ward IV",
+    "Shagamu Ward V",
+    "Shagamu Ward VI",
+    "Shagamu Ward VII",
+    "Shagamu Ward VIII",
+    "Shagamu Ward IX",
+    "Shagamu Ward X"
+  ]
+}

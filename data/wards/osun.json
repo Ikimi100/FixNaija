@@ -1,0 +1,290 @@
+{
+  "Aiyedaade": [
+    "Aiyedaade Ward I",
+    "Aiyedaade Ward II",
+    "Aiyedaade Ward III",
+    "Aiyedaade Ward IV",
+    "Aiyedaade Ward V",
+    "Aiyedaade Ward VI",
+    "Aiyedaade Ward VII"
+  ],
+  "Aiyedire": [
+    "Aiyedire Ward I",
+    "Aiyedire Ward II",
+    "Aiyedire Ward III",
+    "Aiyedire Ward IV",
+    "Aiyedire Ward V",
+    "Aiyedire Ward VI",
+    "Aiyedire Ward VII"
+  ],
+  "Atakumosa East": [
+    "Atakumosa East Ward I",
+    "Atakumosa East Ward II",
+    "Atakumosa East Ward III",
+    "Atakumosa East Ward IV",
+    "Atakumosa East Ward V",
+    "Atakumosa East Ward VI"
+  ],
+  "Atakumosa West": [
+    "Atakumosa West Ward I",
+    "Atakumosa West Ward II",
+    "Atakumosa West Ward III",
+    "Atakumosa West Ward IV",
+    "Atakumosa West Ward V",
+    "Atakumosa West Ward VI"
+  ],
+  "Boluwaduro": [
+    "Boluwaduro Ward I",
+    "Boluwaduro Ward II",
+    "Boluwaduro Ward III",
+    "Boluwaduro Ward IV",
+    "Boluwaduro Ward V",
+    "Boluwaduro Ward VI"
+  ],
+  "Boripe": [
+    "Boripe Ward I",
+    "Boripe Ward II",
+    "Boripe Ward III",
+    "Boripe Ward IV",
+    "Boripe Ward V",
+    "Boripe Ward VI",
+    "Boripe Ward VII"
+  ],
+  "Ede North": [
+    "Ede North Ward I",
+    "Ede North Ward II",
+    "Ede North Ward III",
+    "Ede North Ward IV",
+    "Ede North Ward V",
+    "Ede North Ward VI",
+    "Ede North Ward VII",
+    "Ede North Ward VIII"
+  ],
+  "Ede South": [
+    "Ede South Ward I",
+    "Ede South Ward II",
+    "Ede South Ward III",
+    "Ede South Ward IV",
+    "Ede South Ward V",
+    "Ede South Ward VI",
+    "Ede South Ward VII"
+  ],
+  "Egbedore": [
+    "Egbedore Ward I",
+    "Egbedore Ward II",
+    "Egbedore Ward III",
+    "Egbedore Ward IV",
+    "Egbedore Ward V",
+    "Egbedore Ward VI"
+  ],
+  "Ejigbo": [
+    "Ejigbo Ward I",
+    "Ejigbo Ward II",
+    "Ejigbo Ward III",
+    "Ejigbo Ward IV",
+    "Ejigbo Ward V",
+    "Ejigbo Ward VI",
+    "Ejigbo Ward VII",
+    "Ejigbo Ward VIII"
+  ],
+  "Ife Central": [
+    "Ife Central Ward I",
+    "Ife Central Ward II",
+    "Ife Central Ward III",
+    "Ife Central Ward IV",
+    "Ife Central Ward V",
+    "Ife Central Ward VI",
+    "Ife Central Ward VII",
+    "Ife Central Ward VIII",
+    "Ife Central Ward IX",
+    "Ife Central Ward X"
+  ],
+  "Ife East": [
+    "Ife East Ward I",
+    "Ife East Ward II",
+    "Ife East Ward III",
+    "Ife East Ward IV",
+    "Ife East Ward V",
+    "Ife East Ward VI",
+    "Ife East Ward VII",
+    "Ife East Ward VIII"
+  ],
+  "Ife North": [
+    "Ife North Ward I",
+    "Ife North Ward II",
+    "Ife North Ward III",
+    "Ife North Ward IV",
+    "Ife North Ward V",
+    "Ife North Ward VI",
+    "Ife North Ward VII"
+  ],
+  "Ife South": [
+    "Ife South Ward I",
+    "Ife South Ward II",
+    "Ife South Ward III",
+    "Ife South Ward IV",
+    "Ife South Ward V",
+    "Ife South Ward VI",
+    "Ife South Ward VII"
+  ],
+  "Ifedayo": [
+    "Ifedayo Ward I",
+    "Ifedayo Ward II",
+    "Ifedayo Ward III",
+    "Ifedayo Ward IV",
+    "Ifedayo Ward V",
+    "Ifedayo Ward VI"
+  ],
+  "Ifelodun": [
+    "Ifelodun Ward I",
+    "Ifelodun Ward II",
+    "Ifelodun Ward III",
+    "Ifelodun Ward IV",
+    "Ifelodun Ward V",
+    "Ifelodun Ward VI",
+    "Ifelodun Ward VII",
+    "Ifelodun Ward VIII"
+  ],
+  "Ila": [
+    "Ila Ward I",
+    "Ila Ward II",
+    "Ila Ward III",
+    "Ila Ward IV",
+    "Ila Ward V",
+    "Ila Ward VI",
+    "Ila Ward VII",
+    "Ila Ward VIII"
+  ],
+  "Ilesa East": [
+    "Ilesa East Ward I",
+    "Ilesa East Ward II",
+    "Ilesa East Ward III",
+    "Ilesa East Ward IV",
+    "Ilesa East Ward V",
+    "Ilesa East Ward VI",
+    "Ilesa East Ward VII",
+    "Ilesa East Ward VIII",
+    "Ilesa East Ward IX",
+    "Ilesa East Ward X"
+  ],
+  "Ilesa West": [
+    "Ilesa West Ward I",
+    "Ilesa West Ward II",
+    "Ilesa West Ward III",
+    "Ilesa West Ward IV",
+    "Ilesa West Ward V",
+    "Ilesa West Ward VI",
+    "Ilesa West Ward VII",
+    "Ilesa West Ward VIII",
+    "Ilesa West Ward IX",
+    "Ilesa West Ward X"
+  ],
+  "Irepodun": [
+    "Irepodun Ward I",
+    "Irepodun Ward II",
+    "Irepodun Ward III",
+    "Irepodun Ward IV",
+    "Irepodun Ward V",
+    "Irepodun Ward VI",
+    "Irepodun Ward VII",
+    "Irepodun Ward VIII"
+  ],
+  "Irewole": [
+    "Irewole Ward I",
+    "Irewole Ward II",
+    "Irewole Ward III",
+    "Irewole Ward IV",
+    "Irewole Ward V",
+    "Irewole Ward VI",
+    "Irewole Ward VII"
+  ],
+  "Isokan": [
+    "Isokan Ward I",
+    "Isokan Ward II",
+    "Isokan Ward III",
+    "Isokan Ward IV",
+    "Isokan Ward V",
+    "Isokan Ward VI",
+    "Isokan Ward VII"
+  ],
+  "Iwo": [
+    "Iwo Ward I",
+    "Iwo Ward II",
+    "Iwo Ward III",
+    "Iwo Ward IV",
+    "Iwo Ward V",
+    "Iwo Ward VI",
+    "Iwo Ward VII",
+    "Iwo Ward VIII",
+    "Iwo Ward IX",
+    "Iwo Ward X"
+  ],
+  "Obokun": [
+    "Obokun Ward I",
+    "Obokun Ward II",
+    "Obokun Ward III",
+    "Obokun Ward IV",
+    "Obokun Ward V",
+    "Obokun Ward VI",
+    "Obokun Ward VII"
+  ],
+  "Odo Otin": [
+    "Odo Otin Ward I",
+    "Odo Otin Ward II",
+    "Odo Otin Ward III",
+    "Odo Otin Ward IV",
+    "Odo Otin Ward V",
+    "Odo Otin Ward VI",
+    "Odo Otin Ward VII",
+    "Odo Otin Ward VIII"
+  ],
+  "Ola Oluwa": [
+    "Ola Oluwa Ward I",
+    "Ola Oluwa Ward II",
+    "Ola Oluwa Ward III",
+    "Ola Oluwa Ward IV",
+    "Ola Oluwa Ward V",
+    "Ola Oluwa Ward VI"
+  ],
+  "Olorunda": [
+    "Olorunda Ward I",
+    "Olorunda Ward II",
+    "Olorunda Ward III",
+    "Olorunda Ward IV",
+    "Olorunda Ward V",
+    "Olorunda Ward VI",
+    "Olorunda Ward VII",
+    "Olorunda Ward VIII"
+  ],
+  "Oriade": [
+    "Oriade Ward I",
+    "Oriade Ward II",
+    "Oriade Ward III",
+    "Oriade Ward IV",
+    "Oriade Ward V",
+    "Oriade Ward VI",
+    "Oriade Ward VII",
+    "Oriade Ward VIII"
+  ],
+  "Orolu": [
+    "Orolu Ward I",
+    "Orolu Ward II",
+    "Orolu Ward III",
+    "Orolu Ward IV",
+    "Orolu Ward V",
+    "Orolu Ward VI",
+    "Orolu Ward VII"
+  ],
+  "Osogbo": [
+    "Osogbo Ward I",
+    "Osogbo Ward II",
+    "Osogbo Ward III",
+    "Osogbo Ward IV",
+    "Osogbo Ward V",
+    "Osogbo Ward VI",
+    "Osogbo Ward VII",
+    "Osogbo Ward VIII",
+    "Osogbo Ward IX",
+    "Osogbo Ward X"
+  ]
+}

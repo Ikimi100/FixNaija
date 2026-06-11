@@ -1,0 +1,233 @@
+{
+  "Aguata": [
+    "Aguata Ward I",
+    "Aguata Ward II",
+    "Aguata Ward III",
+    "Aguata Ward IV",
+    "Aguata Ward V",
+    "Aguata Ward VI",
+    "Aguata Ward VII",
+    "Aguata Ward VIII",
+    "Aguata Ward IX",
+    "Aguata Ward X"
+  ],
+  "Anambra East": [
+    "Anambra East Ward I",
+    "Anambra East Ward II",
+    "Anambra East Ward III",
+    "Anambra East Ward IV",
+    "Anambra East Ward V",
+    "Anambra East Ward VI",
+    "Anambra East Ward VII",
+    "Anambra East Ward VIII"
+  ],
+  "Anambra West": [
+    "Anambra West Ward I",
+    "Anambra West Ward II",
+    "Anambra West Ward III",
+    "Anambra West Ward IV",
+    "Anambra West Ward V",
+    "Anambra West Ward VI",
+    "Anambra West Ward VII",
+    "Anambra West Ward VIII"
+  ],
+  "Anaocha": [
+    "Anaocha Ward I",
+    "Anaocha Ward II",
+    "Anaocha Ward III",
+    "Anaocha Ward IV",
+    "Anaocha Ward V",
+    "Anaocha Ward VI",
+    "Anaocha Ward VII",
+    "Anaocha Ward VIII",
+    "Anaocha Ward IX",
+    "Anaocha Ward X"
+  ],
+  "Awka North": [
+    "Awka North Ward I",
+    "Awka North Ward II",
+    "Awka North Ward III",
+    "Awka North Ward IV",
+    "Awka North Ward V",
+    "Awka North Ward VI",
+    "Awka North Ward VII",
+    "Awka North Ward VIII"
+  ],
+  "Awka South": [
+    "Awka South Ward I",
+    "Awka South Ward II",
+    "Awka South Ward III",
+    "Awka South Ward IV",
+    "Awka South Ward V",
+    "Awka South Ward VI",
+    "Awka South Ward VII",
+    "Awka South Ward VIII",
+    "Awka South Ward IX",
+    "Awka South Ward X",
+    "Awka South Ward XI",
+    "Awka South Ward XII"
+  ],
+  "Ayamelum": [
+    "Ayamelum Ward I",
+    "Ayamelum Ward II",
+    "Ayamelum Ward III",
+    "Ayamelum Ward IV",
+    "Ayamelum Ward V",
+    "Ayamelum Ward VI",
+    "Ayamelum Ward VII",
+    "Ayamelum Ward VIII"
+  ],
+  "Dunukofia": [
+    "Dunukofia Ward I",
+    "Dunukofia Ward II",
+    "Dunukofia Ward III",
+    "Dunukofia Ward IV",
+    "Dunukofia Ward V",
+    "Dunukofia Ward VI",
+    "Dunukofia Ward VII"
+  ],
+  "Ekwusigo": [
+    "Ekwusigo Ward I",
+    "Ekwusigo Ward II",
+    "Ekwusigo Ward III",
+    "Ekwusigo Ward IV",
+    "Ekwusigo Ward V",
+    "Ekwusigo Ward VI",
+    "Ekwusigo Ward VII",
+    "Ekwusigo Ward VIII"
+  ],
+  "Idemili North": [
+    "Idemili North Ward I",
+    "Idemili North Ward II",
+    "Idemili North Ward III",
+    "Idemili North Ward IV",
+    "Idemili North Ward V",
+    "Idemili North Ward VI",
+    "Idemili North Ward VII",
+    "Idemili North Ward VIII",
+    "Idemili North Ward IX",
+    "Idemili North Ward X"
+  ],
+  "Idemili South": [
+    "Idemili South Ward I",
+    "Idemili South Ward II",
+    "Idemili South Ward III",
+    "Idemili South Ward IV",
+    "Idemili South Ward V",
+    "Idemili South Ward VI",
+    "Idemili South Ward VII",
+    "Idemili South Ward VIII",
+    "Idemili South Ward IX",
+    "Idemili South Ward X"
+  ],
+  "Ihiala": [
+    "Ihiala Ward I",
+    "Ihiala Ward II",
+    "Ihiala Ward III",
+    "Ihiala Ward IV",
+    "Ihiala Ward V",
+    "Ihiala Ward VI",
+    "Ihiala Ward VII",
+    "Ihiala Ward VIII",
+    "Ihiala Ward IX",
+    "Ihiala Ward X"
+  ],
+  "Njikoka": [
+    "Njikoka Ward I",
+    "Njikoka Ward II",
+    "Njikoka Ward III",
+    "Njikoka Ward IV",
+    "Njikoka Ward V",
+    "Njikoka Ward VI",
+    "Njikoka Ward VII",
+    "Njikoka Ward VIII"
+  ],
+  "Nnewi North": [
+    "Nnewi North Ward I",
+    "Nnewi North Ward II",
+    "Nnewi North Ward III",
+    "Nnewi North Ward IV",
+    "Nnewi North Ward V",
+    "Nnewi North Ward VI",
+    "Nnewi North Ward VII",
+    "Nnewi North Ward VIII",
+    "Nnewi North Ward IX",
+    "Nnewi North Ward X"
+  ],
+  "Nnewi South": [
+    "Nnewi South Ward I",
+    "Nnewi South Ward II",
+    "Nnewi South Ward III",
+    "Nnewi South Ward IV",
+    "Nnewi South Ward V",
+    "Nnewi South Ward VI",
+    "Nnewi South Ward VII",
+    "Nnewi South Ward VIII"
+  ],
+  "Ogbaru": [
+    "Ogbaru Ward I",
+    "Ogbaru Ward II",
+    "Ogbaru Ward III",
+    "Ogbaru Ward IV",
+    "Ogbaru Ward V",
+    "Ogbaru Ward VI",
+    "Ogbaru Ward VII",
+    "Ogbaru Ward VIII",
+    "Ogbaru Ward IX",
+    "Ogbaru Ward X"
+  ],
+  "Onitsha North": [
+    "Onitsha North Ward I",
+    "Onitsha North Ward II",
+    "Onitsha North Ward III",
+    "Onitsha North Ward IV",
+    "Onitsha North Ward V",
+    "Onitsha North Ward VI",
+    "Onitsha North Ward VII",
+    "Onitsha North Ward VIII",
+    "Onitsha North Ward IX",
+    "Onitsha North Ward X"
+  ],
+  "Onitsha South": [
+    "Onitsha South Ward I",
+    "Onitsha South Ward II",
+    "Onitsha South Ward III",
+    "Onitsha South Ward IV",
+    "Onitsha South Ward V",
+    "Onitsha South Ward VI",
+    "Onitsha South Ward VII",
+    "Onitsha South Ward VIII",
+    "Onitsha South Ward IX",
+    "Onitsha South Ward X"
+  ],
+  "Orumba North": [
+    "Orumba North Ward I",
+    "Orumba North Ward II",
+    "Orumba North Ward III",
+    "Orumba North Ward IV",
+    "Orumba North Ward V",
+    "Orumba North Ward VI",
+    "Orumba North Ward VII",
+    "Orumba North Ward VIII"
+  ],
+  "Orumba South": [
+    "Orumba South Ward I",
+    "Orumba South Ward II",
+    "Orumba South Ward III",
+    "Orumba South Ward IV",
+    "Orumba South Ward V",
+    "Orumba South Ward VI",
+    "Orumba South Ward VII",
+    "Orumba South Ward VIII"
+  ],
+  "Oyi": [
+    "Oyi Ward I",
+    "Oyi Ward II",
+    "Oyi Ward III",
+    "Oyi Ward IV",
+    "Oyi Ward V",
+    "Oyi Ward VI",
+    "Oyi Ward VII",
+    "Oyi Ward VIII"
+  ]
+}

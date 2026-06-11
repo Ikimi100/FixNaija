@@ -1,0 +1,206 @@
+{
+  "Albasu": [
+    "Albasu Ward I", "Albasu Ward II", "Albasu Ward III", "Albasu Ward IV",
+    "Albasu Ward V", "Albasu Ward VI", "Albasu Ward VII", "Albasu Ward VIII"
+  ],
+  "Bagwai": [
+    "Bagwai Ward I", "Bagwai Ward II", "Bagwai Ward III", "Bagwai Ward IV",
+    "Bagwai Ward V", "Bagwai Ward VI", "Bagwai Ward VII", "Bagwai Ward VIII"
+  ],
+  "Bebeji": [
+    "Bebeji Ward I", "Bebeji Ward II", "Bebeji Ward III", "Bebeji Ward IV",
+    "Bebeji Ward V", "Bebeji Ward VI", "Bebeji Ward VII", "Bebeji Ward VIII",
+    "Bebeji Ward IX", "Bebeji Ward X"
+  ],
+  "Bichi": [
+    "Bichi Ward I", "Bichi Ward II", "Bichi Ward III", "Bichi Ward IV",
+    "Bichi Ward V", "Bichi Ward VI", "Bichi Ward VII", "Bichi Ward VIII",
+    "Bichi Ward IX", "Bichi Ward X"
+  ],
+  "Bunkure": [
+    "Bunkure Ward I", "Bunkure Ward II", "Bunkure Ward III", "Bunkure Ward IV",
+    "Bunkure Ward V", "Bunkure Ward VI", "Bunkure Ward VII", "Bunkure Ward VIII"
+  ],
+  "Dala": [
+    "Dala Ward I", "Dala Ward II", "Dala Ward III", "Dala Ward IV",
+    "Dala Ward V", "Dala Ward VI", "Dala Ward VII", "Dala Ward VIII",
+    "Dala Ward IX", "Dala Ward X"
+  ],
+  "Dambatta": [
+    "Dambatta Ward I", "Dambatta Ward II", "Dambatta Ward III", "Dambatta Ward IV",
+    "Dambatta Ward V", "Dambatta Ward VI", "Dambatta Ward VII", "Dambatta Ward VIII",
+    "Dambatta Ward IX", "Dambatta Ward X"
+  ],
+  "Dawakin Kudu": [
+    "Dawakin Kudu Ward I", "Dawakin Kudu Ward II", "Dawakin Kudu Ward III",
+    "Dawakin Kudu Ward IV", "Dawakin Kudu Ward V", "Dawakin Kudu Ward VI",
+    "Dawakin Kudu Ward VII", "Dawakin Kudu Ward VIII", "Dawakin Kudu Ward IX",
+    "Dawakin Kudu Ward X"
+  ],
+  "Dawakin Tofa": [
+    "Dawakin Tofa Ward I", "Dawakin Tofa Ward II", "Dawakin Tofa Ward III",
+    "Dawakin Tofa Ward IV", "Dawakin Tofa Ward V", "Dawakin Tofa Ward VI",
+    "Dawakin Tofa Ward VII", "Dawakin Tofa Ward VIII", "Dawakin Tofa Ward IX",
+    "Dawakin Tofa Ward X"
+  ],
+  "Doguwa": [
+    "Doguwa Ward I", "Doguwa Ward II", "Doguwa Ward III", "Doguwa Ward IV",
+    "Doguwa Ward V", "Doguwa Ward VI", "Doguwa Ward VII", "Doguwa Ward VIII"
+  ],
+  "Fagge": [
+    "Fagge Ward I", "Fagge Ward II", "Fagge Ward III", "Fagge Ward IV",
+    "Fagge Ward V", "Fagge Ward VI", "Fagge Ward VII", "Fagge Ward VIII",
+    "Fagge Ward IX", "Fagge Ward X"
+  ],
+  "Gabasawa": [
+    "Gabasawa Ward I", "Gabasawa Ward II", "Gabasawa Ward III", "Gabasawa Ward IV",
+    "Gabasawa Ward V", "Gabasawa Ward VI", "Gabasawa Ward VII", "Gabasawa Ward VIII"
+  ],
+  "Garko": [
+    "Garko Ward I", "Garko Ward II", "Garko Ward III", "Garko Ward IV",
+    "Garko Ward V", "Garko Ward VI", "Garko Ward VII", "Garko Ward VIII",
+    "Garko Ward IX", "Garko Ward X"
+  ],
+  "Garum Mallam": [
+    "Garum Mallam Ward I", "Garum Mallam Ward II", "Garum Mallam Ward III",
+    "Garum Mallam Ward IV", "Garum Mallam Ward V", "Garum Mallam Ward VI",
+    "Garum Mallam Ward VII", "Garum Mallam Ward VIII"
+  ],
+  "Gaya": [
+    "Gaya Ward I", "Gaya Ward II", "Gaya Ward III", "Gaya Ward IV",
+    "Gaya Ward V", "Gaya Ward VI", "Gaya Ward VII", "Gaya Ward VIII",
+    "Gaya Ward IX", "Gaya Ward X"
+  ],
+  "Gezawa": [
+    "Gezawa Ward I", "Gezawa Ward II", "Gezawa Ward III", "Gezawa Ward IV",
+    "Gezawa Ward V", "Gezawa Ward VI", "Gezawa Ward VII", "Gezawa Ward VIII",
+    "Gezawa Ward IX", "Gezawa Ward X"
+  ],
+  "Gwale": [
+    "Gwale Ward I", "Gwale Ward II", "Gwale Ward III", "Gwale Ward IV",
+    "Gwale Ward V", "Gwale Ward VI", "Gwale Ward VII", "Gwale Ward VIII",
+    "Gwale Ward IX", "Gwale Ward X"
+  ],
+  "Gwarzo": [
+    "Gwarzo Ward I", "Gwarzo Ward II", "Gwarzo Ward III", "Gwarzo Ward IV",
+    "Gwarzo Ward V", "Gwarzo Ward VI", "Gwarzo Ward VII", "Gwarzo Ward VIII",
+    "Gwarzo Ward IX", "Gwarzo Ward X"
+  ],
+  "Kabo": [
+    "Kabo Ward I", "Kabo Ward II", "Kabo Ward III", "Kabo Ward IV",
+    "Kabo Ward V", "Kabo Ward VI", "Kabo Ward VII", "Kabo Ward VIII"
+  ],
+  "Kano Municipal": [
+    "Kano Municipal Ward I", "Kano Municipal Ward II", "Kano Municipal Ward III",
+    "Kano Municipal Ward IV", "Kano Municipal Ward V", "Kano Municipal Ward VI",
+    "Kano Municipal Ward VII", "Kano Municipal Ward VIII", "Kano Municipal Ward IX",
+    "Kano Municipal Ward X", "Kano Municipal Ward XI", "Kano Municipal Ward XII"
+  ],
+  "Karaye": [
+    "Karaye Ward I", "Karaye Ward II", "Karaye Ward III", "Karaye Ward IV",
+    "Karaye Ward V", "Karaye Ward VI", "Karaye Ward VII", "Karaye Ward VIII",
+    "Karaye Ward IX", "Karaye Ward X"
+  ],
+  "Kibiya": [
+    "Kibiya Ward I", "Kibiya Ward II", "Kibiya Ward III", "Kibiya Ward IV",
+    "Kibiya Ward V", "Kibiya Ward VI", "Kibiya Ward VII", "Kibiya Ward VIII"
+  ],
+  "Kiru": [
+    "Kiru Ward I", "Kiru Ward II", "Kiru Ward III", "Kiru Ward IV",
+    "Kiru Ward V", "Kiru Ward VI", "Kiru Ward VII", "Kiru Ward VIII",
+    "Kiru Ward IX", "Kiru Ward X"
+  ],
+  "Kumbotso": [
+    "Kumbotso Ward I", "Kumbotso Ward II", "Kumbotso Ward III", "Kumbotso Ward IV",
+    "Kumbotso Ward V", "Kumbotso Ward VI", "Kumbotso Ward VII", "Kumbotso Ward VIII",
+    "Kumbotso Ward IX", "Kumbotso Ward X"
+  ],
+  "Kunchi": [
+    "Kunchi Ward I", "Kunchi Ward II", "Kunchi Ward III", "Kunchi Ward IV",
+    "Kunchi Ward V", "Kunchi Ward VI", "Kunchi Ward VII", "Kunchi Ward VIII"
+  ],
+  "Kura": [
+    "Kura Ward I", "Kura Ward II", "Kura Ward III", "Kura Ward IV",
+    "Kura Ward V", "Kura Ward VI", "Kura Ward VII", "Kura Ward VIII",
+    "Kura Ward IX", "Kura Ward X"
+  ],
+  "Madobi": [
+    "Madobi Ward I", "Madobi Ward II", "Madobi Ward III", "Madobi Ward IV",
+    "Madobi Ward V", "Madobi Ward VI", "Madobi Ward VII", "Madobi Ward VIII"
+  ],
+  "Makoda": [
+    "Makoda Ward I", "Makoda Ward II", "Makoda Ward III", "Makoda Ward IV",
+    "Makoda Ward V", "Makoda Ward VI", "Makoda Ward VII", "Makoda Ward VIII"
+  ],
+  "Minjibir": [
+    "Minjibir Ward I", "Minjibir Ward II", "Minjibir Ward III", "Minjibir Ward IV",
+    "Minjibir Ward V", "Minjibir Ward VI", "Minjibir Ward VII", "Minjibir Ward VIII",
+    "Minjibir Ward IX", "Minjibir Ward X"
+  ],
+  "Nasarawa": [
+    "Nasarawa Ward I", "Nasarawa Ward II", "Nasarawa Ward III", "Nasarawa Ward IV",
+    "Nasarawa Ward V", "Nasarawa Ward VI", "Nasarawa Ward VII", "Nasarawa Ward VIII",
+    "Nasarawa Ward IX", "Nasarawa Ward X"
+  ],
+  "Rano": [
+    "Rano Ward I", "Rano Ward II", "Rano Ward III", "Rano Ward IV",
+    "Rano Ward V", "Rano Ward VI", "Rano Ward VII", "Rano Ward VIII",
+    "Rano Ward IX", "Rano Ward X"
+  ],
+  "Rimin Gado": [
+    "Rimin Gado Ward I", "Rimin Gado Ward II", "Rimin Gado Ward III",
+    "Rimin Gado Ward IV", "Rimin Gado Ward V", "Rimin Gado Ward VI",
+    "Rimin Gado Ward VII", "Rimin Gado Ward VIII"
+  ],
+  "Rogo": [
+    "Rogo Ward I", "Rogo Ward II", "Rogo Ward III", "Rogo Ward IV",
+    "Rogo Ward V", "Rogo Ward VI", "Rogo Ward VII", "Rogo Ward VIII"
+  ],
+  "Shanono": [
+    "Shanono Ward I", "Shanono Ward II", "Shanono Ward III", "Shanono Ward IV",
+    "Shanono Ward V", "Shanono Ward VI", "Shanono Ward VII", "Shanono Ward VIII"
+  ],
+  "Sumaila": [
+    "Sumaila Ward I", "Sumaila Ward II", "Sumaila Ward III", "Sumaila Ward IV",
+    "Sumaila Ward V", "Sumaila Ward VI", "Sumaila Ward VII", "Sumaila Ward VIII",
+    "Sumaila Ward IX", "Sumaila Ward X"
+  ],
+  "Takai": [
+    "Takai Ward I", "Takai Ward II", "Takai Ward III", "Takai Ward IV",
+    "Takai Ward V", "Takai Ward VI", "Takai Ward VII", "Takai Ward VIII",
+    "Takai Ward IX", "Takai Ward X"
+  ],
+  "Tarauni": [
+    "Tarauni Ward I", "Tarauni Ward II", "Tarauni Ward III", "Tarauni Ward IV",
+    "Tarauni Ward V", "Tarauni Ward VI", "Tarauni Ward VII", "Tarauni Ward VIII",
+    "Tarauni Ward IX", "Tarauni Ward X"
+  ],
+  "Tofa": [
+    "Tofa Ward I", "Tofa Ward II", "Tofa Ward III", "Tofa Ward IV",
+    "Tofa Ward V", "Tofa Ward VI", "Tofa Ward VII", "Tofa Ward VIII"
+  ],
+  "Tsanyawa": [
+    "Tsanyawa Ward I", "Tsanyawa Ward II", "Tsanyawa Ward III", "Tsanyawa Ward IV",
+    "Tsanyawa Ward V", "Tsanyawa Ward VI", "Tsanyawa Ward VII", "Tsanyawa Ward VIII"
+  ],
+  "Tudun Wada": [
+    "Tudun Wada Ward I", "Tudun Wada Ward II", "Tudun Wada Ward III",
+    "Tudun Wada Ward IV", "Tudun Wada Ward V", "Tudun Wada Ward VI",
+    "Tudun Wada Ward VII", "Tudun Wada Ward VIII", "Tudun Wada Ward IX",
+    "Tudun Wada Ward X"
+  ],
+  "Ungogo": [
+    "Ungogo Ward I", "Ungogo Ward II", "Ungogo Ward III", "Ungogo Ward IV",
+    "Ungogo Ward V", "Ungogo Ward VI", "Ungogo Ward VII", "Ungogo Ward VIII",
+    "Ungogo Ward IX", "Ungogo Ward X"
+  ],
+  "Warawa": [
+    "Warawa Ward I", "Warawa Ward II", "Warawa Ward III", "Warawa Ward IV",
+    "Warawa Ward V", "Warawa Ward VI", "Warawa Ward VII", "Warawa Ward VIII"
+  ],
+  "Wudil": [
+    "Wudil Ward I", "Wudil Ward II", "Wudil Ward III", "Wudil Ward IV",
+    "Wudil Ward V", "Wudil Ward VI", "Wudil Ward VII", "Wudil Ward VIII",
+    "Wudil Ward IX", "Wudil Ward X"
+  ]
+}

@@ -1,0 +1,345 @@
+{
+  "Afijio": [
+    "Afijio Ward I",
+    "Afijio Ward II",
+    "Afijio Ward III",
+    "Afijio Ward IV",
+    "Afijio Ward V",
+    "Afijio Ward VI",
+    "Afijio Ward VII",
+    "Afijio Ward VIII"
+  ],
+  "Akinyele": [
+    "Akinyele Ward I",
+    "Akinyele Ward II",
+    "Akinyele Ward III",
+    "Akinyele Ward IV",
+    "Akinyele Ward V",
+    "Akinyele Ward VI",
+    "Akinyele Ward VII",
+    "Akinyele Ward VIII",
+    "Akinyele Ward IX",
+    "Akinyele Ward X"
+  ],
+  "Atiba": [
+    "Atiba Ward I",
+    "Atiba Ward II",
+    "Atiba Ward III",
+    "Atiba Ward IV",
+    "Atiba Ward V",
+    "Atiba Ward VI",
+    "Atiba Ward VII",
+    "Atiba Ward VIII"
+  ],
+  "Atisbo": [
+    "Atisbo Ward I",
+    "Atisbo Ward II",
+    "Atisbo Ward III",
+    "Atisbo Ward IV",
+    "Atisbo Ward V",
+    "Atisbo Ward VI",
+    "Atisbo Ward VII"
+  ],
+  "Egbeda": [
+    "Egbeda Ward I",
+    "Egbeda Ward II",
+    "Egbeda Ward III",
+    "Egbeda Ward IV",
+    "Egbeda Ward V",
+    "Egbeda Ward VI",
+    "Egbeda Ward VII",
+    "Egbeda Ward VIII",
+    "Egbeda Ward IX",
+    "Egbeda Ward X"
+  ],
+  "Ibadan North": [
+    "Agodi Ward",
+    "Bashorun Ward",
+    "Bodija Ward I",
+    "Bodija Ward II",
+    "Challenge Ward",
+    "Ibadan North Ward I",
+    "Ibadan North Ward II",
+    "Ibadan North Ward III",
+    "Ibadan North Ward IV",
+    "Ibadan North Ward V",
+    "Ibadan North Ward VI"
+  ],
+  "Ibadan North-East": [
+    "Ibadan North-East Ward I",
+    "Ibadan North-East Ward II",
+    "Ibadan North-East Ward III",
+    "Ibadan North-East Ward IV",
+    "Ibadan North-East Ward V",
+    "Ibadan North-East Ward VI",
+    "Ibadan North-East Ward VII",
+    "Ibadan North-East Ward VIII",
+    "Ibadan North-East Ward IX",
+    "Ibadan North-East Ward X"
+  ],
+  "Ibadan North-West": [
+    "Ibadan North-West Ward I",
+    "Ibadan North-West Ward II",
+    "Ibadan North-West Ward III",
+    "Ibadan North-West Ward IV",
+    "Ibadan North-West Ward V",
+    "Ibadan North-West Ward VI",
+    "Ibadan North-West Ward VII",
+    "Ibadan North-West Ward VIII"
+  ],
+  "Ibadan South-East": [
+    "Ibadan South-East Ward I",
+    "Ibadan South-East Ward II",
+    "Ibadan South-East Ward III",
+    "Ibadan South-East Ward IV",
+    "Ibadan South-East Ward V",
+    "Ibadan South-East Ward VI",
+    "Ibadan South-East Ward VII",
+    "Ibadan South-East Ward VIII",
+    "Ibadan South-East Ward IX",
+    "Ibadan South-East Ward X"
+  ],
+  "Ibadan South-West": [
+    "Ibadan South-West Ward I",
+    "Ibadan South-West Ward II",
+    "Ibadan South-West Ward III",
+    "Ibadan South-West Ward IV",
+    "Ibadan South-West Ward V",
+    "Ibadan South-West Ward VI",
+    "Ibadan South-West Ward VII",
+    "Ibadan South-West Ward VIII",
+    "Ibadan South-West Ward IX",
+    "Ibadan South-West Ward X"
+  ],
+  "Ibarapa Central": [
+    "Ibarapa Central Ward I",
+    "Ibarapa Central Ward II",
+    "Ibarapa Central Ward III",
+    "Ibarapa Central Ward IV",
+    "Ibarapa Central Ward V",
+    "Ibarapa Central Ward VI",
+    "Ibarapa Central Ward VII"
+  ],
+  "Ibarapa East": [
+    "Ibarapa East Ward I",
+    "Ibarapa East Ward II",
+    "Ibarapa East Ward III",
+    "Ibarapa East Ward IV",
+    "Ibarapa East Ward V",
+    "Ibarapa East Ward VI",
+    "Ibarapa East Ward VII"
+  ],
+  "Ibarapa North": [
+    "Ibarapa North Ward I",
+    "Ibarapa North Ward II",
+    "Ibarapa North Ward III",
+    "Ibarapa North Ward IV",
+    "Ibarapa North Ward V",
+    "Ibarapa North Ward VI",
+    "Ibarapa North Ward VII"
+  ],
+  "Ido": [
+    "Ido Ward I",
+    "Ido Ward II",
+    "Ido Ward III",
+    "Ido Ward IV",
+    "Ido Ward V",
+    "Ido Ward VI",
+    "Ido Ward VII",
+    "Ido Ward VIII"
+  ],
+  "Irepo": [
+    "Irepo Ward I",
+    "Irepo Ward II",
+    "Irepo Ward III",
+    "Irepo Ward IV",
+    "Irepo Ward V",
+    "Irepo Ward VI",
+    "Irepo Ward VII"
+  ],
+  "Iseyin": [
+    "Iseyin Ward I",
+    "Iseyin Ward II",
+    "Iseyin Ward III",
+    "Iseyin Ward IV",
+    "Iseyin Ward V",
+    "Iseyin Ward VI",
+    "Iseyin Ward VII",
+    "Iseyin Ward VIII",
+    "Iseyin Ward IX",
+    "Iseyin Ward X"
+  ],
+  "Itesiwaju": [
+    "Itesiwaju Ward I",
+    "Itesiwaju Ward II",
+    "Itesiwaju Ward III",
+    "Itesiwaju Ward IV",
+    "Itesiwaju Ward V",
+    "Itesiwaju Ward VI",
+    "Itesiwaju Ward VII"
+  ],
+  "Iwajowa": [
+    "Iwajowa Ward I",
+    "Iwajowa Ward II",
+    "Iwajowa Ward III",
+    "Iwajowa Ward IV",
+    "Iwajowa Ward V",
+    "Iwajowa Ward VI",
+    "Iwajowa Ward VII"
+  ],
+  "Kajola": [
+    "Kajola Ward I",
+    "Kajola Ward II",
+    "Kajola Ward III",
+    "Kajola Ward IV",
+    "Kajola Ward V",
+    "Kajola Ward VI",
+    "Kajola Ward VII",
+    "Kajola Ward VIII"
+  ],
+  "Lagelu": [
+    "Lagelu Ward I",
+    "Lagelu Ward II",
+    "Lagelu Ward III",
+    "Lagelu Ward IV",
+    "Lagelu Ward V",
+    "Lagelu Ward VI",
+    "Lagelu Ward VII",
+    "Lagelu Ward VIII"
+  ],
+  "Ogbomosho North": [
+    "Ogbomosho North Ward I",
+    "Ogbomosho North Ward II",
+    "Ogbomosho North Ward III",
+    "Ogbomosho North Ward IV",
+    "Ogbomosho North Ward V",
+    "Ogbomosho North Ward VI",
+    "Ogbomosho North Ward VII",
+    "Ogbomosho North Ward VIII",
+    "Ogbomosho North Ward IX",
+    "Ogbomosho North Ward X"
+  ],
+  "Ogbomosho South": [
+    "Ogbomosho South Ward I",
+    "Ogbomosho South Ward II",
+    "Ogbomosho South Ward III",
+    "Ogbomosho South Ward IV",
+    "Ogbomosho South Ward V",
+    "Ogbomosho South Ward VI",
+    "Ogbomosho South Ward VII",
+    "Ogbomosho South Ward VIII"
+  ],
+  "Ogo Oluwa": [
+    "Ogo Oluwa Ward I",
+    "Ogo Oluwa Ward II",
+    "Ogo Oluwa Ward III",
+    "Ogo Oluwa Ward IV",
+    "Ogo Oluwa Ward V",
+    "Ogo Oluwa Ward VI",
+    "Ogo Oluwa Ward VII"
+  ],
+  "Olorunsogo": [
+    "Olorunsogo Ward I",
+    "Olorunsogo Ward II",
+    "Olorunsogo Ward III",
+    "Olorunsogo Ward IV",
+    "Olorunsogo Ward V",
+    "Olorunsogo Ward VI",
+    "Olorunsogo Ward VII"
+  ],
+  "Oluyole": [
+    "Oluyole Ward I",
+    "Oluyole Ward II",
+    "Oluyole Ward III",
+    "Oluyole Ward IV",
+    "Oluyole Ward V",
+    "Oluyole Ward VI",
+    "Oluyole Ward VII",
+    "Oluyole Ward VIII",
+    "Oluyole Ward IX",
+    "Oluyole Ward X"
+  ],
+  "Ona Ara": [
+    "Ona Ara Ward I",
+    "Ona Ara Ward II",
+    "Ona Ara Ward III",
+    "Ona Ara Ward IV",
+    "Ona Ara Ward V",
+    "Ona Ara Ward VI",
+    "Ona Ara Ward VII",
+    "Ona Ara Ward VIII",
+    "Ona Ara Ward IX",
+    "Ona Ara Ward X"
+  ],
+  "Orelope": [
+    "Orelope Ward I",
+    "Orelope Ward II",
+    "Orelope Ward III",
+    "Orelope Ward IV",
+    "Orelope Ward V",
+    "Orelope Ward VI",
+    "Orelope Ward VII"
+  ],
+  "Ori Ire": [
+    "Ori Ire Ward I",
+    "Ori Ire Ward II",
+    "Ori Ire Ward III",
+    "Ori Ire Ward IV",
+    "Ori Ire Ward V",
+    "Ori Ire Ward VI",
+    "Ori Ire Ward VII"
+  ],
+  "Oyo East": [
+    "Oyo East Ward I",
+    "Oyo East Ward II",
+    "Oyo East Ward III",
+    "Oyo East Ward IV",
+    "Oyo East Ward V",
+    "Oyo East Ward VI",
+    "Oyo East Ward VII",
+    "Oyo East Ward VIII"
+  ],
+  "Oyo West": [
+    "Oyo West Ward I",
+    "Oyo West Ward II",
+    "Oyo West Ward III",
+    "Oyo West Ward IV",
+    "Oyo West Ward V",
+    "Oyo West Ward VI",
+    "Oyo West Ward VII",
+    "Oyo West Ward VIII",
+    "Oyo West Ward IX",
+    "Oyo West Ward X"
+  ],
+  "Saki East": [
+    "Saki East Ward I",
+    "Saki East Ward II",
+    "Saki East Ward III",
+    "Saki East Ward IV",
+    "Saki East Ward V",
+    "Saki East Ward VI",
+    "Saki East Ward VII"
+  ],
+  "Saki West": [
+    "Saki West Ward I",
+    "Saki West Ward II",
+    "Saki West Ward III",
+    "Saki West Ward IV",
+    "Saki West Ward V",
+    "Saki West Ward VI",
+    "Saki West Ward VII",
+    "Saki West Ward VIII",
+    "Saki West Ward IX",
+    "Saki West Ward X"
+  ],
+  "Surulere": [
+    "Surulere Ward I",
+    "Surulere Ward II",
+    "Surulere Ward III",
+    "Surulere Ward IV",
+    "Surulere Ward V",
+    "Surulere Ward VI",
+    "Surulere Ward VII",
+    "Surulere Ward VIII"
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "Alkaleri": [
+    "Alkaleri Ward I", "Alkaleri Ward II", "Alkaleri Ward III", "Alkaleri Ward IV",
+    "Alkaleri Ward V", "Alkaleri Ward VI", "Alkaleri Ward VII", "Alkaleri Ward VIII",
+    "Alkaleri Ward IX", "Alkaleri Ward X"
+  ],
+  "Bauchi": [
+    "Bauchi Ward I", "Bauchi Ward II", "Bauchi Ward III", "Bauchi Ward IV",
+    "Bauchi Ward V", "Bauchi Ward VI", "Bauchi Ward VII", "Bauchi Ward VIII",
+    "Bauchi Ward IX", "Bauchi Ward X", "Bauchi Ward XI", "Bauchi Ward XII"
+  ],
+  "Bogoro": [
+    "Bogoro Ward I", "Bogoro Ward II", "Bogoro Ward III", "Bogoro Ward IV",
+    "Bogoro Ward V", "Bogoro Ward VI", "Bogoro Ward VII", "Bogoro Ward VIII",
+    "Bogoro Ward IX", "Bogoro Ward X"
+  ],
+  "Damban": [
+    "Damban Ward I", "Damban Ward II", "Damban Ward III", "Damban Ward IV",
+    "Damban Ward V", "Damban Ward VI", "Damban Ward VII", "Damban Ward VIII",
+    "Damban Ward IX", "Damban Ward X"
+  ],
+  "Darazo": [
+    "Darazo Ward I", "Darazo Ward II", "Darazo Ward III", "Darazo Ward IV",
+    "Darazo Ward V", "Darazo Ward VI", "Darazo Ward VII", "Darazo Ward VIII",
+    "Darazo Ward IX", "Darazo Ward X"
+  ],
+  "Dass": [
+    "Dass Ward I", "Dass Ward II", "Dass Ward III", "Dass Ward IV",
+    "Dass Ward V", "Dass Ward VI", "Dass Ward VII", "Dass Ward VIII",
+    "Dass Ward IX", "Dass Ward X"
+  ],
+  "Gamawa": [
+    "Gamawa Ward I", "Gamawa Ward II", "Gamawa Ward III", "Gamawa Ward IV",
+    "Gamawa Ward V", "Gamawa Ward VI", "Gamawa Ward VII", "Gamawa Ward VIII",
+    "Gamawa Ward IX", "Gamawa Ward X"
+  ],
+  "Ganjuwa": [
+    "Ganjuwa Ward I", "Ganjuwa Ward II", "Ganjuwa Ward III", "Ganjuwa Ward IV",
+    "Ganjuwa Ward V", "Ganjuwa Ward VI", "Ganjuwa Ward VII", "Ganjuwa Ward VIII",
+    "Ganjuwa Ward IX", "Ganjuwa Ward X"
+  ],
+  "Giade": [
+    "Giade Ward I", "Giade Ward II", "Giade Ward III", "Giade Ward IV",
+    "Giade Ward V", "Giade Ward VI", "Giade Ward VII", "Giade Ward VIII"
+  ],
+  "Itas/Gadau": [
+    "Itas Ward I", "Itas Ward II", "Itas Ward III", "Itas Ward IV",
+    "Itas Ward V", "Gadau Ward I", "Gadau Ward II", "Gadau Ward III",
+    "Gadau Ward IV", "Gadau Ward V"
+  ],
+  "Jama'are": [
+    "Jama'are Ward I", "Jama'are Ward II", "Jama'are Ward III", "Jama'are Ward IV",
+    "Jama'are Ward V", "Jama'are Ward VI", "Jama'are Ward VII", "Jama'are Ward VIII",
+    "Jama'are Ward IX", "Jama'are Ward X"
+  ],
+  "Katagum": [
+    "Katagum Ward I", "Katagum Ward II", "Katagum Ward III", "Katagum Ward IV",
+    "Katagum Ward V", "Katagum Ward VI", "Katagum Ward VII", "Katagum Ward VIII",
+    "Katagum Ward IX", "Katagum Ward X"
+  ],
+  "Kirfi": [
+    "Kirfi Ward I", "Kirfi Ward II", "Kirfi Ward III", "Kirfi Ward IV",
+    "Kirfi Ward V", "Kirfi Ward VI", "Kirfi Ward VII", "Kirfi Ward VIII",
+    "Kirfi Ward IX", "Kirfi Ward X"
+  ],
+  "Misau": [
+    "Misau Ward I", "Misau Ward II", "Misau Ward III", "Misau Ward IV",
+    "Misau Ward V", "Misau Ward VI", "Misau Ward VII", "Misau Ward VIII",
+    "Misau Ward IX", "Misau Ward X"
+  ],
+  "Ningi": [
+    "Ningi Ward I", "Ningi Ward II", "Ningi Ward III", "Ningi Ward IV",
+    "Ningi Ward V", "Ningi Ward VI", "Ningi Ward VII", "Ningi Ward VIII",
+    "Ningi Ward IX", "Ningi Ward X"
+  ],
+  "Shira": [
+    "Shira Ward I", "Shira Ward II", "Shira Ward III", "Shira Ward IV",
+    "Shira Ward V", "Shira Ward VI", "Shira Ward VII", "Shira Ward VIII",
+    "Shira Ward IX", "Shira Ward X"
+  ],
+  "Tafawa Balewa": [
+    "Tafawa Balewa Ward I", "Tafawa Balewa Ward II", "Tafawa Balewa Ward III",
+    "Tafawa Balewa Ward IV", "Tafawa Balewa Ward V", "Tafawa Balewa Ward VI",
+    "Tafawa Balewa Ward VII", "Tafawa Balewa Ward VIII", "Tafawa Balewa Ward IX",
+    "Tafawa Balewa Ward X"
+  ],
+  "Toro": [
+    "Toro Ward I", "Toro Ward II", "Toro Ward III", "Toro Ward IV",
+    "Toro Ward V", "Toro Ward VI", "Toro Ward VII", "Toro Ward VIII",
+    "Toro Ward IX", "Toro Ward X"
+  ],
+  "Warji": [
+    "Warji Ward I", "Warji Ward II", "Warji Ward III", "Warji Ward IV",
+    "Warji Ward V", "Warji Ward VI", "Warji Ward VII", "Warji Ward VIII",
+    "Warji Ward IX", "Warji Ward X"
+  ],
+  "Zaki": [
+    "Zaki Ward I", "Zaki Ward II", "Zaki Ward III", "Zaki Ward IV",
+    "Zaki Ward V", "Zaki Ward VI", "Zaki Ward VII", "Zaki Ward VIII",
+    "Zaki Ward IX", "Zaki Ward X"
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "Anka": [
+    "Anka Ward I", "Anka Ward II", "Anka Ward III", "Anka Ward IV",
+    "Anka Ward V", "Anka Ward VI", "Anka Ward VII", "Anka Ward VIII",
+    "Anka Ward IX", "Anka Ward X"
+  ],
+  "Bakura": [
+    "Bakura Ward I", "Bakura Ward II", "Bakura Ward III", "Bakura Ward IV",
+    "Bakura Ward V", "Bakura Ward VI", "Bakura Ward VII", "Bakura Ward VIII",
+    "Bakura Ward IX", "Bakura Ward X"
+  ],
+  "Birnin Magaji/Kiyaw": [
+    "Birnin Magaji Ward I", "Birnin Magaji Ward II", "Birnin Magaji Ward III",
+    "Birnin Magaji Ward IV", "Birnin Magaji Ward V", "Kiyaw Ward I",
+    "Kiyaw Ward II", "Kiyaw Ward III", "Kiyaw Ward IV", "Kiyaw Ward V"
+  ],
+  "Bukkuyum": [
+    "Bukkuyum Ward I", "Bukkuyum Ward II", "Bukkuyum Ward III", "Bukkuyum Ward IV",
+    "Bukkuyum Ward V", "Bukkuyum Ward VI", "Bukkuyum Ward VII", "Bukkuyum Ward VIII",
+    "Bukkuyum Ward IX", "Bukkuyum Ward X"
+  ],
+  "Bungudu": [
+    "Bungudu Ward I", "Bungudu Ward II", "Bungudu Ward III", "Bungudu Ward IV",
+    "Bungudu Ward V", "Bungudu Ward VI", "Bungudu Ward VII", "Bungudu Ward VIII",
+    "Bungudu Ward IX", "Bungudu Ward X"
+  ],
+  "Gummi": [
+    "Gummi Ward I", "Gummi Ward II", "Gummi Ward III", "Gummi Ward IV",
+    "Gummi Ward V", "Gummi Ward VI", "Gummi Ward VII", "Gummi Ward VIII",
+    "Gummi Ward IX", "Gummi Ward X"
+  ],
+  "Gusau": [
+    "Gusau Ward I", "Gusau Ward II", "Gusau Ward III", "Gusau Ward IV",
+    "Gusau Ward V", "Gusau Ward VI", "Gusau Ward VII", "Gusau Ward VIII",
+    "Gusau Ward IX", "Gusau Ward X", "Gusau Ward XI", "Gusau Ward XII"
+  ],
+  "Kaura Namoda": [
+    "Kaura Namoda Ward I", "Kaura Namoda Ward II", "Kaura Namoda Ward III",
+    "Kaura Namoda Ward IV", "Kaura Namoda Ward V", "Kaura Namoda Ward VI",
+    "Kaura Namoda Ward VII", "Kaura Namoda Ward VIII", "Kaura Namoda Ward IX",
+    "Kaura Namoda Ward X"
+  ],
+  "Maradun": [
+    "Maradun Ward I", "Maradun Ward II", "Maradun Ward III", "Maradun Ward IV",
+    "Maradun Ward V", "Maradun Ward VI", "Maradun Ward VII", "Maradun Ward VIII",
+    "Maradun Ward IX", "Maradun Ward X"
+  ],
+  "Maru": [
+    "Maru Ward I", "Maru Ward II", "Maru Ward III", "Maru Ward IV",
+    "Maru Ward V", "Maru Ward VI", "Maru Ward VII", "Maru Ward VIII",
+    "Maru Ward IX", "Maru Ward X"
+  ],
+  "Shinkafi": [
+    "Shinkafi Ward I", "Shinkafi Ward II", "Shinkafi Ward III", "Shinkafi Ward IV",
+    "Shinkafi Ward V", "Shinkafi Ward VI", "Shinkafi Ward VII", "Shinkafi Ward VIII",
+    "Shinkafi Ward IX", "Shinkafi Ward X"
+  ],
+  "Talata Mafara": [
+    "Talata Mafara Ward I", "Talata Mafara Ward II", "Talata Mafara Ward III",
+    "Talata Mafara Ward IV", "Talata Mafara Ward V", "Talata Mafara Ward VI",
+    "Talata Mafara Ward VII", "Talata Mafara Ward VIII", "Talata Mafara Ward IX",
+    "Talata Mafara Ward X"
+  ],
+  "Tsafe": [
+    "Tsafe Ward I", "Tsafe Ward II", "Tsafe Ward III", "Tsafe Ward IV",
+    "Tsafe Ward V", "Tsafe Ward VI", "Tsafe Ward VII", "Tsafe Ward VIII",
+    "Tsafe Ward IX", "Tsafe Ward X"
+  ],
+  "Zurmi": [
+    "Zurmi Ward I", "Zurmi Ward II", "Zurmi Ward III", "Zurmi Ward IV",
+    "Zurmi Ward V", "Zurmi Ward VI", "Zurmi Ward VII", "Zurmi Ward VIII",
+    "Zurmi Ward IX", "Zurmi Ward X"
+  ]
+}

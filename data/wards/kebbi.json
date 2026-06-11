@@ -1,0 +1,101 @@
+{
+  "Aleiro": [
+    "Aleiro Ward I", "Aleiro Ward II", "Aleiro Ward III", "Aleiro Ward IV",
+    "Aleiro Ward V", "Aleiro Ward VI", "Aleiro Ward VII", "Aleiro Ward VIII"
+  ],
+  "Arewa": [
+    "Arewa Ward I", "Arewa Ward II", "Arewa Ward III", "Arewa Ward IV",
+    "Arewa Ward V", "Arewa Ward VI", "Arewa Ward VII", "Arewa Ward VIII",
+    "Arewa Ward IX", "Arewa Ward X"
+  ],
+  "Argungu": [
+    "Argungu Ward I", "Argungu Ward II", "Argungu Ward III", "Argungu Ward IV",
+    "Argungu Ward V", "Argungu Ward VI", "Argungu Ward VII", "Argungu Ward VIII",
+    "Argungu Ward IX", "Argungu Ward X"
+  ],
+  "Augie": [
+    "Augie Ward I", "Augie Ward II", "Augie Ward III", "Augie Ward IV",
+    "Augie Ward V", "Augie Ward VI", "Augie Ward VII", "Augie Ward VIII"
+  ],
+  "Bagudo": [
+    "Bagudo Ward I", "Bagudo Ward II", "Bagudo Ward III", "Bagudo Ward IV",
+    "Bagudo Ward V", "Bagudo Ward VI", "Bagudo Ward VII", "Bagudo Ward VIII",
+    "Bagudo Ward IX", "Bagudo Ward X"
+  ],
+  "Birnin Kebbi": [
+    "Birnin Kebbi Ward I", "Birnin Kebbi Ward II", "Birnin Kebbi Ward III",
+    "Birnin Kebbi Ward IV", "Birnin Kebbi Ward V", "Birnin Kebbi Ward VI",
+    "Birnin Kebbi Ward VII", "Birnin Kebbi Ward VIII", "Birnin Kebbi Ward IX",
+    "Birnin Kebbi Ward X", "Birnin Kebbi Ward XI", "Birnin Kebbi Ward XII"
+  ],
+  "Bunza": [
+    "Bunza Ward I", "Bunza Ward II", "Bunza Ward III", "Bunza Ward IV",
+    "Bunza Ward V", "Bunza Ward VI", "Bunza Ward VII", "Bunza Ward VIII",
+    "Bunza Ward IX", "Bunza Ward X"
+  ],
+  "Dandi": [
+    "Dandi Ward I", "Dandi Ward II", "Dandi Ward III", "Dandi Ward IV",
+    "Dandi Ward V", "Dandi Ward VI", "Dandi Ward VII", "Dandi Ward VIII",
+    "Dandi Ward IX", "Dandi Ward X"
+  ],
+  "Fakai": [
+    "Fakai Ward I", "Fakai Ward II", "Fakai Ward III", "Fakai Ward IV",
+    "Fakai Ward V", "Fakai Ward VI", "Fakai Ward VII", "Fakai Ward VIII"
+  ],
+  "Gwandu": [
+    "Gwandu Ward I", "Gwandu Ward II", "Gwandu Ward III", "Gwandu Ward IV",
+    "Gwandu Ward V", "Gwandu Ward VI", "Gwandu Ward VII", "Gwandu Ward VIII",
+    "Gwandu Ward IX", "Gwandu Ward X"
+  ],
+  "Jega": [
+    "Jega Ward I", "Jega Ward II", "Jega Ward III", "Jega Ward IV",
+    "Jega Ward V", "Jega Ward VI", "Jega Ward VII", "Jega Ward VIII",
+    "Jega Ward IX", "Jega Ward X"
+  ],
+  "Kalgo": [
+    "Kalgo Ward I", "Kalgo Ward II", "Kalgo Ward III", "Kalgo Ward IV",
+    "Kalgo Ward V", "Kalgo Ward VI", "Kalgo Ward VII", "Kalgo Ward VIII"
+  ],
+  "Koko/Besse": [
+    "Koko Ward I", "Koko Ward II", "Koko Ward III", "Koko Ward IV",
+    "Koko Ward V", "Besse Ward I", "Besse Ward II", "Besse Ward III",
+    "Besse Ward IV", "Besse Ward V"
+  ],
+  "Maiyama": [
+    "Maiyama Ward I", "Maiyama Ward II", "Maiyama Ward III", "Maiyama Ward IV",
+    "Maiyama Ward V", "Maiyama Ward VI", "Maiyama Ward VII", "Maiyama Ward VIII",
+    "Maiyama Ward IX", "Maiyama Ward X"
+  ],
+  "Ngaski": [
+    "Ngaski Ward I", "Ngaski Ward II", "Ngaski Ward III", "Ngaski Ward IV",
+    "Ngaski Ward V", "Ngaski Ward VI", "Ngaski Ward VII", "Ngaski Ward VIII"
+  ],
+  "Shanga": [
+    "Shanga Ward I", "Shanga Ward II", "Shanga Ward III", "Shanga Ward IV",
+    "Shanga Ward V", "Shanga Ward VI", "Shanga Ward VII", "Shanga Ward VIII",
+    "Shanga Ward IX", "Shanga Ward X"
+  ],
+  "Suru": [
+    "Suru Ward I", "Suru Ward II", "Suru Ward III", "Suru Ward IV",
+    "Suru Ward V", "Suru Ward VI", "Suru Ward VII", "Suru Ward VIII"
+  ],
+  "Wasagu/Danko": [
+    "Wasagu Ward I", "Wasagu Ward II", "Wasagu Ward III", "Wasagu Ward IV",
+    "Wasagu Ward V", "Danko Ward I", "Danko Ward II", "Danko Ward III",
+    "Danko Ward IV", "Danko Ward V"
+  ],
+  "Yauri": [
+    "Yauri Ward I", "Yauri Ward II", "Yauri Ward III", "Yauri Ward IV",
+    "Yauri Ward V", "Yauri Ward VI", "Yauri Ward VII", "Yauri Ward VIII",
+    "Yauri Ward IX", "Yauri Ward X"
+  ],
+  "Zuru": [
+    "Zuru Ward I", "Zuru Ward II", "Zuru Ward III", "Zuru Ward IV",
+    "Zuru Ward V", "Zuru Ward VI", "Zuru Ward VII", "Zuru Ward VIII",
+    "Zuru Ward IX", "Zuru Ward X"
+  ],
+  "Kamba": [
+    "Kamba Ward I", "Kamba Ward II", "Kamba Ward III", "Kamba Ward IV",
+    "Kamba Ward V", "Kamba Ward VI", "Kamba Ward VII", "Kamba Ward VIII"
+  ]
+}
