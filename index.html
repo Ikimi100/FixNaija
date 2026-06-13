@@ -2614,6 +2614,116 @@
                 grid-row: span 1;
             }
         }
+        /* ===== OUR DRIVING FORCE SECTION ===== */
+        .df-section {
+            background: var(--white);
+            padding: 90px 24px 70px;
+        }
+        .df-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .df-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+        .df-headline {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 42px;
+            line-height: 1.15;
+            color: var(--charcoal);
+            margin-bottom: 16px;
+        }
+        .df-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 17px;
+            color: #6B7280;
+            max-width: 620px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .df-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .df-card {
+            background: #FBF8F1;
+            border: 1px solid #EFE7D6;
+            border-radius: 16px;
+            padding: 38px 28px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .df-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 34px rgba(26, 26, 46, 0.08);
+        }
+        .df-icon {
+            font-size: 40px;
+            line-height: 1;
+            margin-bottom: 18px;
+        }
+        .df-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 21px;
+            color: var(--charcoal);
+            margin-bottom: 12px;
+        }
+        .df-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            color: #6B7280;
+            line-height: 1.65;
+        }
+        .df-stats-band {
+            background: #E8DCC4;
+            padding: 46px 24px;
+        }
+        .df-stats-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            text-align: center;
+        }
+        .df-stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 44px;
+            color: var(--charcoal);
+            line-height: 1;
+        }
+        .df-stat-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            color: #5A5440;
+            margin-top: 8px;
+            display: block;
+        }
+        @media (max-width: 768px) {
+            .df-headline { font-size: 32px; }
+            .df-grid { grid-template-columns: 1fr; }
+            .df-stats-inner { grid-template-columns: repeat(2, 1fr); gap: 32px 16px; }
+            .df-stat-number { font-size: 36px; }
+        }
+
+        /* ===== BLINKING REGISTER CTA ===== */
+        @keyframes ctaBlink {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 160, 23, 0.45); border-color: var(--gold); }
+            50%      { box-shadow: 0 0 22px 5px rgba(212, 160, 23, 0.55); border-color: #F0C44A; }
+        }
+        .cta-blink {
+            animation: ctaBlink 1.3s ease-in-out infinite;
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .cta-blink { animation: none; }
+        }
     </style>
 </head>
 <body>
@@ -2675,8 +2785,8 @@
                     across 36 states to build a stronger, more prosperous Nigeria for every citizen.
                 </p>
                 <div class="hero-ctas">
-                    <a href="find-lga.html" class="cta-primary">Find My LGA</a>
-                    <a href="register.html" class="cta-secondary">Register Now</a>
+                    <a href="find-lga.html" class="cta-primary">Join WhatsApp Group near my LGA</a>
+                    <a href="register.html" class="cta-secondary cta-blink">Register Now</a>
                 </div>
                 <div class="hero-stats">
                     <div class="stat-item">
@@ -2779,6 +2889,58 @@
             </div>
         </div>
     </section>
+
+    <!-- ===== OUR DRIVING FORCE ===== -->
+    <section class="df-section">
+        <div class="df-container">
+            <div class="df-header">
+                <h2 class="df-headline">Our Driving Force</h2>
+                <p class="df-subtitle">Guided by integrity, collective action, and the determination to reshape our nation.</p>
+            </div>
+            <div class="df-grid">
+                <div class="df-card">
+                    <div class="df-icon">⚡</div>
+                    <h3 class="df-title">Accountability</h3>
+                    <p class="df-desc">Demanding transparency from leaders and building a culture of civic responsibility.</p>
+                </div>
+                <div class="df-card">
+                    <div class="df-icon">🤝</div>
+                    <h3 class="df-title">Grassroots Power</h3>
+                    <p class="df-desc">Mobilising every ward, LGA and state to rewrite Nigeria's story from the ground up.</p>
+                </div>
+                <div class="df-card">
+                    <div class="df-icon">💡</div>
+                    <h3 class="df-title">Youth &amp; Women</h3>
+                    <p class="df-desc">Amplifying voices that have been sidelined — creating real economic and political space.</p>
+                </div>
+                <div class="df-card">
+                    <div class="df-icon">🌍</div>
+                    <h3 class="df-title">National Rebirth</h3>
+                    <p class="df-desc">Driving policy reform, anti-corruption, and inclusive prosperity for all Nigerians.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="df-stats-band">
+        <div class="df-stats-inner">
+            <div>
+                <span class="df-stat-number">36+</span>
+                <span class="df-stat-label">States Engaged</span>
+            </div>
+            <div>
+                <span class="df-stat-number">8</span>
+                <span class="df-stat-label">Operational Groups</span>
+            </div>
+            <div>
+                <span class="df-stat-number">10K+</span>
+                <span class="df-stat-label">Active Volunteers</span>
+            </div>
+            <div>
+                <span class="df-stat-number">100+</span>
+                <span class="df-stat-label">Community Actions</span>
+            </div>
+        </div>
+    </div>
 
     <!-- ===== UPCOMING EVENTS SECTION ===== -->
     <section class="events-section" id="events">
