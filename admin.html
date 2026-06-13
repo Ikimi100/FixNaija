@@ -275,6 +275,103 @@ td.mono { font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; white-spa
     .stat-value { font-size: 1.7rem; }
     .wrap { padding: 20px 14px 48px; }
 }
+/* ===== ADVANCED FILTER ===== */
+.filter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+    padding: 20px 22px;
+}
+.filter-field { display: flex; flex-direction: column; gap: 6px; }
+.filter-field label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+}
+.filter-field input,
+.filter-field select {
+    padding: 9px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font: inherit;
+    font-size: 0.88rem;
+    background: var(--white);
+    color: var(--charcoal);
+    width: 100%;
+}
+.filter-field input:focus,
+.filter-field select:focus { outline: none; border-color: var(--green); }
+.filter-actions {
+    display: flex;
+    gap: 10px;
+    padding: 0 22px 20px;
+    flex-wrap: wrap;
+}
+.filter-status { font-size: 0.82rem; color: var(--muted); font-weight: 600; }
+.filter-status.active { color: var(--green-dark); }
+
+/* ===== DUAL GRID (leaderboard + trend) ===== */
+.dual-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-bottom: 28px;
+}
+.dual-grid .panel { margin-bottom: 0; }
+@media (max-width: 860px) {
+    .dual-grid { grid-template-columns: 1fr; gap: 0; }
+    .dual-grid .panel { margin-bottom: 28px; }
+}
+
+/* ===== TREND CHART ===== */
+.trend-wrap { padding: 22px; }
+.trend-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 160px;
+}
+.trend-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    position: relative;
+}
+.trend-bar {
+    width: 100%;
+    max-width: 16px;
+    background: var(--green);
+    border-radius: 3px 3px 0 0;
+    min-height: 2px;
+}
+.trend-col:hover .trend-bar { background: var(--gold); }
+.trend-tip {
+    display: none;
+    position: absolute;
+    bottom: 100%;
+    margin-bottom: 6px;
+    background: var(--charcoal);
+    color: #fff;
+    font-size: 0.72rem;
+    padding: 4px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+    z-index: 5;
+}
+.trend-col:hover .trend-tip { display: block; }
+.trend-axis {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 0.7rem;
+    color: var(--muted);
+}
+.trend-empty { padding: 36px 0; text-align: center; color: var(--muted); font-size: 0.9rem; }
 </style>
 </head>
 <body>
@@ -329,6 +426,66 @@ td.mono { font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; white-spa
             </div>
         </div>
 
+        <!-- ===== ADVANCED FILTER ===== -->
+        <div class="panel">
+            <div class="panel-head">
+                <h2>Advanced filter</h2>
+                <span class="filter-status" id="filterStatus"></span>
+            </div>
+            <div class="panel-body">
+                <div class="filter-grid">
+                    <div class="filter-field">
+                        <label>From date</label>
+                        <input type="date" id="fltFrom">
+                    </div>
+                    <div class="filter-field">
+                        <label>To date</label>
+                        <input type="date" id="fltTo">
+                    </div>
+                    <div class="filter-field">
+                        <label>Group</label>
+                        <select id="fltGroup"><option value="">All groups</option></select>
+                    </div>
+                    <div class="filter-field">
+                        <label>State</label>
+                        <select id="fltState"><option value="">All states</option></select>
+                    </div>
+                    <div class="filter-field">
+                        <label>LGA</label>
+                        <select id="fltLGA"><option value="">All LGAs</option></select>
+                    </div>
+                    <div class="filter-field">
+                        <label>Ward / polling unit</label>
+                        <input type="text" id="fltWard" placeholder="e.g. Iku South">
+                    </div>
+                </div>
+                <div class="filter-actions">
+                    <button class="btn btn-gold" id="applyFilterBtn">Apply filters</button>
+                    <button class="btn btn-ghost" id="clearFilterBtn">Clear all</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== GROUP LEADERBOARD + TREND ===== -->
+        <div class="dual-grid">
+            <div class="panel">
+                <div class="panel-head"><h2>Registrations by group</h2></div>
+                <div class="panel-body">
+                    <ul class="break-list" id="groupList">
+                        <li class="loading-note">Loading…</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-head"><h2>Last 30 days</h2></div>
+                <div class="panel-body">
+                    <div class="trend-wrap" id="trendWrap">
+                        <div class="loading-note">Loading…</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="panel">
             <div class="panel-head">
                 <h2>Where the movement is growing</h2>
@@ -358,6 +515,7 @@ td.mono { font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; white-spa
                                 <th>Name</th>
                                 <th>Phone</th>
                                 <th>Email</th>
+                                <th>Group</th>
                                 <th>State</th>
                                 <th>LGA</th>
                                 <th>Ward</th>
@@ -366,7 +524,7 @@ td.mono { font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; white-spa
                             </tr>
                         </thead>
                         <tbody id="regTableBody">
-                            <tr><td colspan="9" class="loading-note">Loading…</td></tr>
+                            <tr><td colspan="10" class="loading-note">Loading…</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -455,7 +613,7 @@ async function loadData() {
             .order('created_at', { ascending: false })
             .range(from, from + STEP - 1);
         if (error) {
-            $('regTableBody').innerHTML = `<tr><td colspan="9" class="empty-note">Could not load data: ${error.message}</td></tr>`;
+            $('regTableBody').innerHTML = `<tr><td colspan="10" class="empty-note">Could not load data: ${error.message}</td></tr>`;
             $('breakList').innerHTML = '<li class="empty-note">Could not load data.</li>';
             return;
         }
@@ -463,9 +621,8 @@ async function loadData() {
         if (data.length < STEP) break;
         from += STEP;
     }
-    renderStats();
-    renderBreakdown();
-    applySearch();
+    populateFilterOptions();
+    applyFilters();
 }
 
 $('refreshLink').addEventListener('click', e => { e.preventDefault(); loadData(); });
@@ -476,18 +633,21 @@ function renderStats() {
     const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     const weekStart = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
 
-    const total = allRows.length;
-    const today = allRows.filter(r => new Date(r.created_at) >= todayStart).length;
-    const week  = allRows.filter(r => new Date(r.created_at) >= weekStart).length;
-    const states = new Set(allRows.map(r => r.state).filter(Boolean)).size;
+    const rows = filteredRows;
+    const total = rows.length;
+    const today = rows.filter(r => new Date(r.created_at) >= todayStart).length;
+    const week  = rows.filter(r => new Date(r.created_at) >= weekStart).length;
+    const states = new Set(rows.map(r => r.state).filter(Boolean)).size;
 
     $('statTotal').textContent = total.toLocaleString();
     $('statToday').textContent = today.toLocaleString();
     $('statWeek').textContent = week.toLocaleString();
     $('statStates').textContent = states;
     if (total > 0) {
-        const latest = new Date(allRows[0].created_at);
+        const latest = new Date(rows[0].created_at);
         $('statTotalNote').textContent = 'Latest: ' + latest.toLocaleString('en-NG', { dateStyle: 'medium', timeStyle: 'short' });
+    } else {
+        $('statTotalNote').textContent = '';
     }
 }
 
@@ -500,13 +660,13 @@ function renderBreakdown() {
     let level, rows;
     if (!drill.state) {
         level = 'state';
-        rows = groupCount(allRows, r => r.state);
+        rows = groupCount(filteredRows, r => r.state);
     } else if (!drill.lga) {
         level = 'lga';
-        rows = groupCount(allRows.filter(r => r.state === drill.state), r => r.lga);
+        rows = groupCount(filteredRows.filter(r => r.state === drill.state), r => r.lga);
     } else {
         level = 'ward';
-        rows = groupCount(allRows.filter(r => r.state === drill.state && r.lga === drill.lga), r => r.ward || '(No ward)');
+        rows = groupCount(filteredRows.filter(r => r.state === drill.state && r.lga === drill.lga), r => r.ward || '(No ward)');
     }
 
     // Breadcrumbs
@@ -571,20 +731,152 @@ function addSep(parent) {
 }
 
 // ===== TABLE + SEARCH + PAGING =====
-$('searchInput').addEventListener('input', () => { page = 0; applySearch(); });
+// ===== ADVANCED FILTER + SEARCH =====
+function populateFilterOptions() {
+    const groups = new Set();
+    let hasUnassigned = false;
+    allRows.forEach(r => { if (r.group_name) groups.add(r.group_name); else hasUnassigned = true; });
+    const gSel = $('fltGroup');
+    gSel.innerHTML = '<option value="">All groups</option>';
+    [...groups].sort().forEach(g => gSel.add(new Option(g, g)));
+    if (hasUnassigned) gSel.add(new Option('(Unassigned)', '__UNASSIGNED__'));
 
-function applySearch() {
-    const q = $('searchInput').value.trim().toLowerCase();
-    filteredRows = !q ? allRows : allRows.filter(r =>
-        (r.full_name || '').toLowerCase().includes(q) ||
-        (r.phone || '').toLowerCase().includes(q) ||
-        (r.email || '').toLowerCase().includes(q) ||
-        (r.state || '').toLowerCase().includes(q) ||
-        (r.lga || '').toLowerCase().includes(q) ||
-        (r.ward || '').toLowerCase().includes(q) ||
-        (r.polling_unit || '').toLowerCase().includes(q)
-    );
+    const states = [...new Set(allRows.map(r => r.state).filter(Boolean))].sort();
+    const sSel = $('fltState');
+    sSel.innerHTML = '<option value="">All states</option>';
+    states.forEach(s => sSel.add(new Option(pretty(s), s)));
+
+    populateLGAOptions();
+}
+
+function populateLGAOptions() {
+    const stateVal = $('fltState').value;
+    const lgaSel = $('fltLGA');
+    const prev = lgaSel.value;
+    const pool = stateVal ? allRows.filter(r => r.state === stateVal) : allRows;
+    const lgas = [...new Set(pool.map(r => r.lga).filter(Boolean))].sort();
+    lgaSel.innerHTML = '<option value="">All LGAs</option>';
+    lgas.forEach(l => lgaSel.add(new Option(pretty(l), l)));
+    if ([...lgaSel.options].some(o => o.value === prev)) lgaSel.value = prev;
+}
+
+function applyFilters() {
+    const q    = $('searchInput').value.trim().toLowerCase();
+    const from = $('fltFrom').value ? new Date($('fltFrom').value + 'T00:00:00') : null;
+    const to   = $('fltTo').value ? new Date($('fltTo').value + 'T23:59:59') : null;
+    const grp  = $('fltGroup').value;
+    const st   = $('fltState').value;
+    const lg   = $('fltLGA').value;
+    const wd   = $('fltWard').value.trim().toLowerCase();
+
+    filteredRows = allRows.filter(r => {
+        if (from && new Date(r.created_at) < from) return false;
+        if (to   && new Date(r.created_at) > to) return false;
+        if (st && r.state !== st) return false;
+        if (lg && r.lga !== lg) return false;
+        if (grp === '__UNASSIGNED__') { if (r.group_name) return false; }
+        else if (grp && r.group_name !== grp) return false;
+        if (wd && !((r.ward || '').toLowerCase().includes(wd) || (r.polling_unit || '').toLowerCase().includes(wd))) return false;
+        if (q) {
+            const hay = [r.full_name, r.phone, r.email, r.state, r.lga, r.ward, r.polling_unit, r.group_name, r.whatsapp];
+            if (!hay.some(x => (x || '').toLowerCase().includes(q))) return false;
+        }
+        return true;
+    });
+
+    page = 0;
+    renderStats();
+    renderLeaderboard();
+    renderTrend();
+    renderBreakdown();
     renderTable();
+    updateFilterStatus();
+}
+
+function onStructuralFilterChange() {
+    drill = { state: null, lga: null };
+    applyFilters();
+}
+
+function clearFilters() {
+    ['fltFrom', 'fltTo', 'fltWard', 'searchInput'].forEach(id => $(id).value = '');
+    ['fltGroup', 'fltState', 'fltLGA'].forEach(id => $(id).value = '');
+    populateLGAOptions();
+    drill = { state: null, lga: null };
+    applyFilters();
+}
+
+function updateFilterStatus() {
+    const active = $('fltFrom').value || $('fltTo').value || $('fltGroup').value ||
+                   $('fltState').value || $('fltLGA').value || $('fltWard').value || $('searchInput').value.trim();
+    const el = $('filterStatus');
+    if (active) {
+        el.textContent = `Showing ${filteredRows.length.toLocaleString()} of ${allRows.length.toLocaleString()}`;
+        el.classList.add('active');
+    } else {
+        el.textContent = `${allRows.length.toLocaleString()} total`;
+        el.classList.remove('active');
+    }
+}
+
+$('searchInput').addEventListener('input', applyFilters);
+$('fltWard').addEventListener('input', applyFilters);
+['fltFrom', 'fltTo', 'fltGroup', 'fltLGA'].forEach(id => $(id).addEventListener('change', onStructuralFilterChange));
+$('fltState').addEventListener('change', () => { populateLGAOptions(); onStructuralFilterChange(); });
+$('applyFilterBtn').addEventListener('click', onStructuralFilterChange);
+$('clearFilterBtn').addEventListener('click', clearFilters);
+
+// ===== GROUP LEADERBOARD =====
+function renderLeaderboard() {
+    const list = $('groupList');
+    const rows = groupCount(filteredRows, r => r.group_name || '(Unassigned)');
+    if (rows.length === 0) {
+        list.innerHTML = '<li class="empty-note">No registrations in this view.</li>';
+        return;
+    }
+    const max = rows[0][1];
+    list.innerHTML = '';
+    rows.forEach(([name, count]) => {
+        const li = document.createElement('li');
+        li.className = 'break-row leaf';
+        li.innerHTML = `
+            <span class="break-name">${escapeHtml(name)}</span>
+            <span class="break-bar-track"><span class="break-bar" style="width:${Math.max(4, Math.round(count / max * 100))}%"></span></span>
+            <span class="break-count">${count.toLocaleString()}</span>`;
+        list.appendChild(li);
+    });
+}
+
+// ===== 30-DAY TREND =====
+function renderTrend() {
+    const wrap = $('trendWrap');
+    const days = 30;
+    const now = new Date();
+    const buckets = [];
+    for (let i = days - 1; i >= 0; i--) {
+        buckets.push({ date: new Date(now.getFullYear(), now.getMonth(), now.getDate() - i), count: 0 });
+    }
+    const startMs = buckets[0].date.getTime();
+    filteredRows.forEach(r => {
+        const t = new Date(r.created_at);
+        const dayMs = new Date(t.getFullYear(), t.getMonth(), t.getDate()).getTime();
+        const idx = Math.round((dayMs - startMs) / 86400000);
+        if (idx >= 0 && idx < days) buckets[idx].count++;
+    });
+    const totalInWindow = buckets.reduce((s, b) => s + b.count, 0);
+    if (totalInWindow === 0) {
+        wrap.innerHTML = '<div class="trend-empty">No registrations in the last 30 days for this view.</div>';
+        return;
+    }
+    const max = Math.max(1, ...buckets.map(b => b.count));
+    const cols = buckets.map(b => {
+        const h = Math.round(b.count / max * 100);
+        const label = b.date.toLocaleDateString('en-NG', { day: '2-digit', month: 'short' });
+        return `<div class="trend-col"><div class="trend-tip">${label}: ${b.count}</div><div class="trend-bar" style="height:${h}%"></div></div>`;
+    }).join('');
+    const first = buckets[0].date.toLocaleDateString('en-NG', { day: '2-digit', month: 'short' });
+    const last  = buckets[days - 1].date.toLocaleDateString('en-NG', { day: '2-digit', month: 'short' });
+    wrap.innerHTML = `<div class="trend-chart">${cols}</div><div class="trend-axis"><span>${first}</span><span>${totalInWindow.toLocaleString()} in 30 days</span><span>${last}</span></div>`;
 }
 
 function renderTable() {
@@ -593,7 +885,7 @@ function renderTable() {
     const rows = filteredRows.slice(start, start + PAGE_SIZE);
 
     if (filteredRows.length === 0) {
-        body.innerHTML = '<tr><td colspan="9" class="empty-note">No registrations match.</td></tr>';
+        body.innerHTML = '<tr><td colspan="10" class="empty-note">No registrations match.</td></tr>';
     } else {
         body.innerHTML = rows.map(r => `
             <tr>
@@ -601,6 +893,7 @@ function renderTable() {
                 <td>${escapeHtml(r.full_name || '')}</td>
                 <td class="mono">${escapeHtml(r.phone || '')}</td>
                 <td>${escapeHtml(r.email || '')}</td>
+                <td>${escapeHtml(r.group_name || '')}</td>
                 <td>${escapeHtml(pretty(r.state || ''))}</td>
                 <td>${escapeHtml(pretty(r.lga || ''))}</td>
                 <td>${escapeHtml(pretty(r.ward || ''))}</td>
@@ -623,7 +916,7 @@ $('nextBtn').addEventListener('click', () => {
 
 // ===== CSV EXPORT =====
 $('exportBtn').addEventListener('click', () => {
-    const cols = ['created_at', 'full_name', 'phone', 'email', 'state', 'lga', 'ward', 'polling_unit', 'delimitation', 'reason'];
+    const cols = ['created_at', 'full_name', 'phone', 'whatsapp', 'email', 'group_name', 'state', 'lga', 'ward', 'polling_unit', 'delimitation', 'reason'];
     const head = cols.join(',');
     const lines = filteredRows.map(r => cols.map(c => csvCell(r[c])).join(','));
     const blob = new Blob([head + '\n' + lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
