@@ -2614,6 +2614,29 @@
                 grid-row: span 1;
             }
         }
+        .form-section-label {
+            grid-column: 1 / -1;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        .form-grid > .form-section-label:first-child {
+            margin-top: 0;
+        }
+        .form-optional {
+            font-weight: 400;
+            color: rgba(26, 26, 46, 0.45);
+            font-size: 12px;
+        }
     </style>
 </head>
 <body>
@@ -2671,6 +2694,7 @@
 
             <form class="registration-form" id="registrationForm">
                 <div class="form-grid">
+                    <div class="form-section-label">👤 Personal Information</div>
                     <div class="form-group">
                         <label class="form-label">First Name</label>
                         <input type="text" class="form-input" id="regFirstName" placeholder="Enter your first name" required>
@@ -2686,6 +2710,25 @@
                     <div class="form-group">
                         <label class="form-label">Phone Number</label>
                         <input type="tel" class="form-input" id="regPhone" placeholder="+234 800 000 0000" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">WhatsApp Number <span class="form-optional">(optional)</span></label>
+                        <input type="tel" class="form-input" id="regWhatsApp" placeholder="+234 80X XXX XXXX">
+                    </div>
+
+                    <div class="form-section-label">👥 Membership Details</div>
+                    <div class="form-group full-width">
+                        <label class="form-label">Select Your Group</label>
+                        <select class="form-select" id="regGroup" required>
+                            <option value="">Select your group</option>
+                            <option value="New Registration">New Registration — I'm registering myself</option>
+                            <option value="PAA FIX NAIJA">PAA FIX NAIJA</option>
+                            <option value="IBBN – EL BUBA">IBBN – EL BUBA</option>
+                            <option value="New Green Congress (NGC)">New Green Congress (NGC)</option>
+                            <option value="United for Adewole Progress 2027">United for Adewole Progress 2027</option>
+                            <option value="Prince Adewole Adebayo Grassroots Movement (PAAGM)">Prince Adewole Adebayo Grassroots Movement (PAAGM)</option>
+                            <option value="Dominion Force Association of Nigeria">Dominion Force Association of Nigeria</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label class="form-label">State</label>
@@ -3003,6 +3046,8 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
     const lastName  = document.getElementById('regLastName').value.trim();
     const email     = document.getElementById('regEmail').value.trim();
     const phone     = document.getElementById('regPhone').value.trim();
+    const whatsapp  = document.getElementById('regWhatsApp').value.trim();
+    const group     = document.getElementById('regGroup').value;
     const state     = document.getElementById('regState').value;
     const lga       = document.getElementById('regLGA').value;
     const ward      = document.getElementById('regWard').value;
@@ -3034,6 +3079,8 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
                 full_name: `${firstName} ${lastName}`,
                 email: email || null,
                 phone: phone,
+                whatsapp: whatsapp || null,
+                group_name: group || null,
                 state: state,
                 lga: lga,
                 ward: ward || null,
