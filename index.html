@@ -767,103 +767,6 @@
             color: rgba(26, 26, 46, 0.7);
         }
 
-        /* ===== WHAT WE STAND FOR ===== */
-        .stand-for-section {
-            background: var(--light-gray);
-            padding: 120px 40px;
-            position: relative;
-        }
-
-        .stand-for-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .stand-for-header {
-            text-align: center;
-            margin-bottom: 64px;
-        }
-
-        .stand-for-header .section-label {
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .stand-for-header .section-label::before {
-            display: none;
-        }
-
-        .stand-for-headline {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 42px;
-            color: var(--charcoal);
-            letter-spacing: -1px;
-        }
-
-        .stand-for-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-        }
-
-        .stand-card {
-            background: var(--white);
-            border-radius: 16px;
-            padding: 48px 36px;
-            position: relative;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.06);
-        }
-
-        .stand-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
-            border-color: rgba(0, 135, 81, 0.2);
-        }
-
-        .stand-number {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 56px;
-            line-height: 1;
-            color: var(--green);
-            margin-bottom: 20px;
-            opacity: 0.9;
-        }
-
-        .stand-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 22px;
-            color: var(--charcoal);
-            margin-bottom: 12px;
-            letter-spacing: -0.3px;
-        }
-
-        .stand-desc {
-            font-size: 15px;
-            line-height: 1.7;
-            color: rgba(26, 26, 46, 0.65);
-        }
-
-        .stand-card::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 36px;
-            right: 36px;
-            height: 3px;
-            background: var(--green);
-            border-radius: 3px 3px 0 0;
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-            transform-origin: left;
-        }
-
-        .stand-card:hover::after {
-            transform: scaleX(1);
-        }
 
         /* ===== UPCOMING EVENTS SECTION ===== */
         .events-section {
@@ -1488,7 +1391,7 @@
         }
 
         .state-card.open .lga-list {
-            max-height: 2000px;
+            max-height: 8000px; /* no-JS fallback; JS sets exact height below */
             opacity: 1;
         }
 
@@ -2391,10 +2294,6 @@
                 grid-template-columns: 1fr;
             }
 
-            .stand-for-grid {
-                grid-template-columns: 1fr;
-            }
-
             .events-grid {
                 grid-template-columns: 1fr;
             }
@@ -2490,7 +2389,6 @@
 
             .about-section,
             .vision-mission-section,
-            .stand-for-section,
             .events-section,
             .news-section,
             .states-section,
@@ -2502,7 +2400,6 @@
             }
 
             .about-headline,
-            .stand-for-headline,
             .events-headline,
             .news-headline,
             .states-headline,
@@ -2513,10 +2410,6 @@
             }
 
             .vm-card {
-                padding: 36px 28px;
-            }
-
-            .stand-card {
                 padding: 36px 28px;
             }
 
@@ -2711,18 +2604,49 @@
             .df-stat-number { font-size: 36px; }
         }
 
-        /* ===== BLINKING REGISTER CTA ===== */
+        /* ===== BLINKING REGISTER CTA (GREEN) ===== */
         @keyframes ctaBlink {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 160, 23, 0.45); border-color: var(--gold); }
-            50%      { box-shadow: 0 0 22px 5px rgba(212, 160, 23, 0.55); border-color: #F0C44A; }
+            0%, 100% { box-shadow: 0 0 0 0 rgba(0, 135, 81, 0.45); border-color: var(--green); }
+            50%      { box-shadow: 0 0 22px 5px rgba(0, 135, 81, 0.65); border-color: #00a862; }
         }
         .cta-blink {
             animation: ctaBlink 1.3s ease-in-out infinite;
-            border-color: var(--gold);
-            color: var(--gold);
+            background: var(--green);
+            border-color: var(--green);
+            color: var(--white);
+        }
+        .cta-blink:hover {
+            background: #006b3f;
+            border-color: #006b3f;
+            color: var(--white);
         }
         @media (prefers-reduced-motion: reduce) {
             .cta-blink { animation: none; }
+        }
+
+        /* ===== FORM SECTION LABELS (parity with register page) ===== */
+        .form-section-label {
+            grid-column: 1 / -1;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        .form-grid > .form-section-label:first-child {
+            margin-top: 0;
+        }
+        .form-optional {
+            font-weight: 400;
+            color: rgba(26, 26, 46, 0.45);
+            font-size: 12px;
         }
     </style>
 </head>
@@ -2859,33 +2783,6 @@
                 <p class="vm-text">
                     We build local structures that train, inform, and activate citizens to participate in governance, track public spending, and advocate for their rights.
                 </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== WHAT WE STAND FOR ===== -->
-    <section class="stand-for-section">
-        <div class="stand-for-container">
-            <div class="stand-for-header">
-                <span class="section-label">What We Stand For</span>
-                <h2 class="stand-for-headline">The Pillars of FixNaija</h2>
-            </div>
-            <div class="stand-for-grid">
-                <div class="stand-card">
-                    <div class="stand-number">01</div>
-                    <h3 class="stand-title">Community Organizing</h3>
-                    <p class="stand-desc">Building ward-level structures that empower citizens to lead change from their own neighborhoods.</p>
-                </div>
-                <div class="stand-card">
-                    <div class="stand-number">02</div>
-                    <h3 class="stand-title">Policy Accountability</h3>
-                    <p class="stand-desc">Tracking government promises and public spending to ensure every kobo works for the people.</p>
-                </div>
-                <div class="stand-card">
-                    <div class="stand-number">03</div>
-                    <h3 class="stand-title">Youth Empowerment</h3>
-                    <p class="stand-desc">Investing in the next generation of leaders through training, mentorship, and civic engagement.</p>
-                </div>
             </div>
         </div>
     </section>
@@ -3333,6 +3230,7 @@
 
             <form class="registration-form" id="registrationForm">
                 <div class="form-grid">
+                    <div class="form-section-label">👤 Personal Information</div>
                     <div class="form-group">
                         <label class="form-label">First Name</label>
                         <input type="text" class="form-input" id="regFirstName" placeholder="Enter your first name" required>
@@ -3348,6 +3246,25 @@
                     <div class="form-group">
                         <label class="form-label">Phone Number</label>
                         <input type="tel" class="form-input" id="regPhone" placeholder="+234 800 000 0000" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">WhatsApp Number <span class="form-optional">(optional)</span></label>
+                        <input type="tel" class="form-input" id="regWhatsApp" placeholder="+234 80X XXX XXXX">
+                    </div>
+
+                    <div class="form-section-label">👥 Membership Details</div>
+                    <div class="form-group full-width">
+                        <label class="form-label">Select Your Group</label>
+                        <select class="form-select" id="regGroup" required>
+                            <option value="">Select your group</option>
+                            <option value="New Registration">New Registration — I'm registering myself</option>
+                            <option value="PAA FIX NAIJA">PAA FIX NAIJA</option>
+                            <option value="IBBN – EL BUBA">IBBN – EL BUBA</option>
+                            <option value="New Green Congress (NGC)">New Green Congress (NGC)</option>
+                            <option value="United for Adewole Progress 2027">United for Adewole Progress 2027</option>
+                            <option value="Prince Adewole Adebayo Grassroots Movement (PAAGM)">Prince Adewole Adebayo Grassroots Movement (PAAGM)</option>
+                            <option value="Dominion Force Association of Nigeria">Dominion Force Association of Nigeria</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label class="form-label">State</label>
@@ -3704,6 +3621,32 @@ async function fetchPollingUnits(state, lga, ward) {
     return data;
 }
 
+// ===== Resolve a display LGA name to the exact name stored in Supabase =====
+// Fixes cases like "Abuja Municipal" (directory) vs "ABUJA MUNICIPAL AREA COUNCIL" (database).
+async function resolveLgaName(dbState, displayLga) {
+    let dbLgas = [];
+    try { dbLgas = await fetchLGAs(dbState); } catch (e) { dbLgas = []; }
+    const target = displayLga.toUpperCase().trim();
+    if (!dbLgas.length) return target;
+    // 1) exact match
+    let hit = dbLgas.find(l => l.toUpperCase().trim() === target);
+    if (hit) return hit;
+    // 2) one name starts with / contains the other
+    hit = dbLgas.find(l => {
+        const u = l.toUpperCase().trim();
+        return u.startsWith(target) || target.startsWith(u) || u.includes(target) || target.includes(u);
+    });
+    if (hit) return hit;
+    // 3) best shared-word overlap (e.g. "MUNICIPAL")
+    const targetTokens = new Set(target.split(/\s+/));
+    let best = null, bestScore = 0;
+    dbLgas.forEach(l => {
+        const score = l.toUpperCase().trim().split(/\s+/).filter(t => targetTokens.has(t)).length;
+        if (score > bestScore) { bestScore = score; best = l; }
+    });
+    return bestScore > 0 ? best : target;
+}
+
 // ===== Populate Ward dropdown (from Supabase) =====
 async function populateWardDropdown(stateName, lgaName, preselectWard = '') {
     const wardSelect  = document.getElementById('regWard');
@@ -3838,6 +3781,14 @@ async function populatePUDropdown(stateName, lgaName, wardName) {
     const regLGA        = document.getElementById('regLGA');
     const regWard       = document.getElementById('regWard');
 
+    // Keep an open LGA list sized to its full content so long states never clip
+    function syncListHeight(node) {
+        const list = node.closest('.lga-list');
+        if (list && list.closest('.state-card').classList.contains('open')) {
+            list.style.maxHeight = list.scrollHeight + 'px';
+        }
+    }
+
     // Pre-fill form from directory and scroll to register
     // (Directory uses Title Case names; the form now uses official INEC CAPS names)
     async function prefillAndScroll(state, lga, ward = '') {
@@ -3857,7 +3808,10 @@ async function populatePUDropdown(stateName, lgaName, wardName) {
         for (let i = 0; i < 50; i++) {
             await new Promise(r => setTimeout(r, 100));
             if (regLGA.disabled) continue;
-            const match = [...regLGA.options].find(o => o.value.toUpperCase() === lgaUpper);
+            const match = [...regLGA.options].find(o => {
+                const v = o.value.toUpperCase();
+                return v === lgaUpper || v.startsWith(lgaUpper) || lgaUpper.startsWith(v) || v.includes(lgaUpper);
+            });
             if (match) {
                 regLGA.value = match.value;
                 if (ward) {
@@ -3943,10 +3897,18 @@ async function populatePUDropdown(stateName, lgaName, wardName) {
                 : `Showing all ${visibleCount} states + FCT`;
         }
 
-        // Accordion toggle
+        // Accordion toggle (JS-driven height so long LGA lists are never clipped)
         document.querySelectorAll('.state-card-header').forEach(header => {
             header.addEventListener('click', function () {
-                this.closest('.state-card').classList.toggle('open');
+                const card = this.closest('.state-card');
+                const list = card.querySelector('.lga-list');
+                const willOpen = !card.classList.contains('open');
+                card.classList.toggle('open');
+                if (willOpen) {
+                    list.style.maxHeight = list.scrollHeight + 'px';
+                } else {
+                    list.style.maxHeight = '';
+                }
             });
         });
 
@@ -3964,6 +3926,7 @@ async function populatePUDropdown(stateName, lgaName, wardName) {
                     sublist.classList.remove('open');
                     this.textContent = 'View Wards ▾';
                     this.classList.remove('active');
+                    syncListHeight(sublist);
                     return;
                 }
 
@@ -3977,8 +3940,9 @@ async function populatePUDropdown(stateName, lgaName, wardName) {
                     const stateAliases = { 'FCT ABUJA': 'FEDERAL CAPITAL TERRITORY', 'FCT': 'FEDERAL CAPITAL TERRITORY' };
                     let dbState = state.toUpperCase();
                     if (stateAliases[dbState]) dbState = stateAliases[dbState];
+                    const dbLga = await resolveLgaName(dbState, lga);
                     let wardRows = [];
-                    try { wardRows = await fetchWardsDB(dbState, lga.toUpperCase()); } catch (err) { wardRows = []; }
+                    try { wardRows = await fetchWardsDB(dbState, dbLga); } catch (err) { wardRows = []; }
                     const inner = sublist.querySelector('.ward-sublist-inner');
 
                     if (wardRows.length > 0) {
@@ -4006,7 +3970,12 @@ async function populatePUDropdown(stateName, lgaName, wardName) {
                         inner.innerHTML = `<div class="ward-loading-inline" style="color:rgba(255,255,255,0.3);">No ward data available yet for this LGA.</div>`;
                     }
                 }
+                syncListHeight(sublist);
             });
+        });
+        // Size any auto-opened (search-filtered) cards to their full height
+        document.querySelectorAll('.state-card.open .lga-list').forEach(list => {
+            list.style.maxHeight = list.scrollHeight + 'px';
         });
     }
 
@@ -4027,6 +3996,8 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
     const lastName  = document.getElementById('regLastName').value.trim();
     const email     = document.getElementById('regEmail').value.trim();
     const phone     = document.getElementById('regPhone').value.trim();
+    const whatsapp  = document.getElementById('regWhatsApp').value.trim();
+    const group     = document.getElementById('regGroup').value;
     const state     = document.getElementById('regState').value;
     const lga       = document.getElementById('regLGA').value;
     const ward      = document.getElementById('regWard').value;
@@ -4058,6 +4029,8 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
                 full_name: `${firstName} ${lastName}`,
                 email: email || null,
                 phone: phone,
+                whatsapp: whatsapp || null,
+                group_name: group || null,
                 state: state,
                 lga: lga,
                 ward: ward || null,
