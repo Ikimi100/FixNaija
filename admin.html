@@ -538,6 +538,39 @@ td.mono { font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; white-spa
             </div>
         </div>
 
+        <!-- ===== COMMUNITY REPORTS ===== -->
+        <div class="panel">
+            <div class="panel-head">
+                <h2>Community reports <span class="filter-status" id="reportsCount"></span></h2>
+                <div class="table-tools">
+                    <input type="search" class="search-input" id="reportSearch" placeholder="Search name, state, category, issue…">
+                    <button class="btn btn-gold" id="reportExportBtn">Export CSV</button>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="table-scroll">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>State</th>
+                                <th>LGA</th>
+                                <th>Ward</th>
+                                <th>Category</th>
+                                <th>Issue</th>
+                                <th>Video</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reportTableBody">
+                            <tr><td colspan="9" class="loading-note">Loading…</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
         <p class="footnote">FixNaija Movement · Data refreshes on each sign-in · <a href="#" id="refreshLink" style="color:var(--green-dark);">Refresh now</a></p>
     </div>
 </div>
@@ -598,7 +631,93 @@ function showDash(email) {
     $('dash').style.display = 'block';
     $('whoAmI').textContent = email;
     loadData();
+    loadReports();
 }
+
+// ===== COMMUNITY REPORTS =====
+let allReports = [];
+
+function escRep(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+async function loadReports() {
+    const tbody = $('reportTableBody');
+    let rows = [];
+    let from = 0;
+    const STEP = 1000;
+    while (from < 100000) {
+        const { data, error } = await sb
+            .from('community_reports')
+            .select('*')
+            .order('created_at', { ascending: false })
+            .range(from, from + STEP - 1);
+        if (error) {
+            tbody.innerHTML = `<tr><td colspan="9" class="empty-note">Could not load reports: ${error.message}</td></tr>`;
+            return;
+        }
+        rows = rows.concat(data);
+        if (data.length < STEP) break;
+        from += STEP;
+    }
+    allReports = rows;
+    renderReports();
+}
+
+function filterReports() {
+    const q = ($('reportSearch').value || '').toLowerCase().trim();
+    if (!q) return allReports;
+    return allReports.filter(r =>
+        [r.reporter_name, r.phone, r.state, r.lga, r.ward, r.category, r.issue_title]
+            .some(v => String(v || '').toLowerCase().includes(q))
+    );
+}
+
+function renderReports() {
+    const tbody = $('reportTableBody');
+    const rows = filterReports();
+    $('reportsCount').textContent = `${rows.length} total`;
+    if (!rows.length) {
+        tbody.innerHTML = '<tr><td colspan="9" class="empty-note">No reports yet.</td></tr>';
+        return;
+    }
+    tbody.innerHTML = rows.map(r => {
+        const d = r.submitted_at || r.created_at;
+        const date = d ? new Date(d).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : '—';
+        const video = (r.has_video && r.video_url)
+            ? `<a href="${escRep(r.video_url)}" target="_blank" rel="noopener" style="color:var(--green-dark); font-weight:600;">▶ Play</a>`
+            : '—';
+        return `<tr>
+            <td>${date}</td>
+            <td>${escRep(r.reporter_name)}</td>
+            <td>${escRep(r.phone)}</td>
+            <td>${escRep(r.state)}</td>
+            <td>${escRep(r.lga)}</td>
+            <td>${escRep(r.ward)}</td>
+            <td>${escRep(r.category)}</td>
+            <td title="${escRep(r.issue_description)}">${escRep(r.issue_title)}</td>
+            <td>${video}</td>
+        </tr>`;
+    }).join('');
+}
+
+function exportReportsCSV() {
+    const rows = filterReports();
+    if (!rows.length) return;
+    const cols = ['submitted_at','reporter_name','phone','email','whatsapp','state','lga','ward','landmark','category','issue_title','issue_description','has_video','video_url'];
+    const esc = v => {
+        v = v == null ? '' : String(v);
+        return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v;
+    };
+    const csv = [cols.join(',')].concat(rows.map(r => cols.map(c => esc(r[c])).join(','))).join('\n');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+    a.download = `fixnaija-reports-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+}
+
+$('reportSearch').addEventListener('input', renderReports);
+$('reportExportBtn').addEventListener('click', exportReportsCSV);
 
 // ===== DATA LOADING (pages of 1000) =====
 async function loadData() {
