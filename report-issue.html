@@ -1,0 +1,2573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report a Community Issue — FixNaija Movement</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --green: #008751;
+            --charcoal: #1A1A2E;
+            --gold: #D4A017;
+            --white: #FFFFFF;
+            --light-gray: #F5F5F5;
+            --dark-overlay: rgba(26, 26, 46, 0.95);
+            --error: #E74C3C;
+            --success: #27AE60;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--charcoal);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* ===== STICKY NAVBAR ===== */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 0 40px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-circle {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--green), #006b3f);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--white);
+            border: 2px solid rgba(212, 160, 23, 0.3);
+            box-shadow: 0 0 20px rgba(0, 135, 81, 0.3);
+        }
+
+        .logo-img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 10px rgba(0, 135, 81, 0.3));
+        }
+
+        .brand-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--white);
+            letter-spacing: -0.5px;
+        }
+
+        .brand-subline {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--green);
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 44px;
+            height: 44px;
+            background: rgba(0, 135, 81, 0.15);
+            border: 1px solid rgba(0, 135, 81, 0.4);
+            border-radius: 8px;
+            cursor: pointer;
+            padding: 0 10px;
+            flex-shrink: 0;
+        }
+
+        .menu-toggle span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background: var(--white);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .menu-toggle.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: rgba(26, 26, 46, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            flex-direction: column;
+            padding: 12px 20px 20px;
+        }
+
+        .mobile-menu.open {
+            display: flex;
+        }
+
+        .mobile-menu-link {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 14px 4px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .mobile-menu-link:active {
+            color: var(--green);
+        }
+
+        .mobile-menu-register {
+            margin-top: 14px;
+            background: var(--green);
+            color: var(--white);
+            text-align: center;
+            border-radius: 10px;
+            border-bottom: none;
+            padding: 14px;
+            box-shadow: 0 4px 15px rgba(0, 135, 81, 0.3);
+        }
+
+        .register-btn {
+            background: var(--green);
+            color: var(--white);
+            border: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 135, 81, 0.3);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .register-btn:hover {
+            background: #006b3f;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 135, 81, 0.4);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 50vh;
+            background: var(--charcoal);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            padding: 0 40px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: -10%;
+            width: 60%;
+            height: 80%;
+            background: radial-gradient(ellipse, rgba(0, 135, 81, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -10%;
+            right: -5%;
+            width: 50%;
+            height: 70%;
+            background: radial-gradient(ellipse, rgba(212, 160, 23, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            padding: 100px 0 60px;
+        }
+
+        .eyebrow-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0, 135, 81, 0.1);
+            border: 1px solid rgba(0, 135, 81, 0.3);
+            padding: 8px 20px;
+            border-radius: 50px;
+            width: fit-content;
+            margin-bottom: 24px;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { 
+                transform: scale(1); 
+                opacity: 1; 
+                box-shadow: 0 0 0 0 rgba(0, 135, 81, 0.7);
+            }
+            50% { 
+                transform: scale(1.2); 
+                opacity: 0.8;
+                box-shadow: 0 0 0 8px rgba(0, 135, 81, 0);
+            }
+        }
+
+        .eyebrow-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--green);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-headline {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 52px;
+            line-height: 1.1;
+            color: var(--white);
+            letter-spacing: -1px;
+            max-width: 800px;
+            margin-bottom: 20px;
+        }
+
+        .hero-headline .highlight-green {
+            color: var(--green);
+        }
+
+        .hero-headline .highlight-gold {
+            color: var(--gold);
+        }
+
+        .hero-description {
+            font-size: 18px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 640px;
+        }
+
+        /* ===== SAMPLE REPORTS CAROUSEL ===== */
+        .carousel-section {
+            background: var(--charcoal);
+            padding: 0 40px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                linear-gradient(45deg, transparent 48%, rgba(0, 135, 81, 0.02) 49%, rgba(0, 135, 81, 0.02) 51%, transparent 52%),
+                linear-gradient(-45deg, transparent 48%, rgba(212, 160, 23, 0.01) 49%, rgba(212, 160, 23, 0.01) 51%, transparent 52%);
+            background-size: 30px 30px;
+            pointer-events: none;
+        }
+
+        .carousel-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .carousel-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .carousel-header .section-label {
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .carousel-header .section-label::before,
+        .carousel-header .section-label::after {
+            display: none;
+        }
+
+        .carousel-headline {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 36px;
+            color: var(--white);
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+
+        .carousel-subheadline {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Carousel Wrapper */
+        .carousel-wrapper {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .carousel-slide-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 60px 40px 40px;
+            background: linear-gradient(to top, rgba(26, 26, 46, 0.95) 0%, rgba(26, 26, 46, 0.7) 50%, transparent 100%);
+        }
+
+        .carousel-slide-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--green);
+            color: var(--white);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .carousel-slide-tag .status-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--white);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .carousel-slide-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 28px;
+            color: var(--white);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+            max-width: 700px;
+        }
+
+        .carousel-slide-desc {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            max-width: 600px;
+        }
+
+        .carousel-slide-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 16px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .carousel-slide-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Navigation Arrows */
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            background: rgba(26, 26, 46, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--white);
+            font-size: 20px;
+            z-index: 10;
+            user-select: none;
+        }
+
+        .carousel-nav:hover {
+            background: var(--green);
+            border-color: var(--green);
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 4px 20px rgba(0, 135, 81, 0.4);
+        }
+
+        .carousel-nav.prev {
+            left: 20px;
+        }
+
+        .carousel-nav.next {
+            right: 20px;
+        }
+
+        /* Dots */
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        .carousel-dot:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .carousel-dot.active {
+            background: var(--green);
+            width: 28px;
+            border-radius: 5px;
+            box-shadow: 0 0 12px rgba(0, 135, 81, 0.5);
+        }
+
+        /* Progress Bar */
+        .carousel-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background: var(--green);
+            transition: width 0.1s linear;
+            z-index: 10;
+            border-radius: 0 2px 2px 0;
+        }
+
+        /* ===== REPORT FORM SECTION ===== */
+        .report-section {
+            background: var(--light-gray);
+            padding: 80px 40px 120px;
+            position: relative;
+        }
+
+        .report-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .report-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            color: var(--green);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .section-label::before {
+            content: '';
+            width: 40px;
+            height: 2px;
+            background: var(--green);
+        }
+
+        .section-label::after {
+            content: '';
+            width: 40px;
+            height: 2px;
+            background: var(--green);
+        }
+
+        .report-headline {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 42px;
+            color: var(--charcoal);
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .report-subheadline {
+            font-size: 17px;
+            color: rgba(26, 26, 46, 0.6);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .report-form {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 48px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-section-label {
+            grid-column: 1 / -1;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .form-grid > .form-section-label:first-child {
+            margin-top: 0;
+        }
+
+        .form-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--charcoal);
+            letter-spacing: 0.3px;
+        }
+
+        .form-label .required {
+            color: var(--error);
+            margin-left: 2px;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            padding: 14px 18px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            background: var(--white);
+            color: var(--charcoal);
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            border-color: var(--green);
+            box-shadow: 0 0 0 4px rgba(0, 135, 81, 0.1);
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: rgba(26, 26, 46, 0.4);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 40px;
+        }
+
+        .form-select:disabled {
+            background-color: rgba(0, 0, 0, 0.03);
+            color: rgba(26, 26, 46, 0.4);
+            cursor: not-allowed;
+        }
+
+        .form-hint {
+            font-size: 12px;
+            color: rgba(26, 26, 46, 0.5);
+            margin-top: 4px;
+        }
+
+        .form-error {
+            font-size: 12px;
+            color: var(--error);
+            margin-top: 4px;
+            display: none;
+        }
+
+        .form-group.has-error .form-input,
+        .form-group.has-error .form-select,
+        .form-group.has-error .form-textarea {
+            border-color: var(--error);
+            box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.1);
+        }
+
+        .form-group.has-error .form-error {
+            display: block;
+        }
+
+        /* ===== VIDEO UPLOAD AREA ===== */
+        .video-upload-area {
+            grid-column: 1 / -1;
+            border: 2px dashed rgba(0, 135, 81, 0.3);
+            border-radius: 16px;
+            padding: 40px 24px;
+            text-align: center;
+            background: rgba(0, 135, 81, 0.02);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-upload-area:hover {
+            border-color: var(--green);
+            background: rgba(0, 135, 81, 0.04);
+        }
+
+        .video-upload-area.drag-over {
+            border-color: var(--green);
+            background: rgba(0, 135, 81, 0.08);
+            transform: scale(1.01);
+        }
+
+        .video-upload-area.has-file {
+            border-color: var(--success);
+            background: rgba(39, 174, 96, 0.04);
+        }
+
+        .video-upload-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(0, 135, 81, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 28px;
+            transition: all 0.3s ease;
+        }
+
+        .video-upload-area:hover .video-upload-icon {
+            background: rgba(0, 135, 81, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .video-upload-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--charcoal);
+            margin-bottom: 8px;
+        }
+
+        .video-upload-desc {
+            font-size: 14px;
+            color: rgba(26, 26, 46, 0.6);
+            margin-bottom: 16px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .video-upload-btn {
+            display: inline-block;
+            padding: 10px 24px;
+            background: var(--green);
+            color: var(--white);
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .video-upload-btn:hover {
+            background: #006b3f;
+            transform: translateY(-2px);
+        }
+
+        .video-file-input {
+            display: none;
+        }
+
+        .video-preview {
+            display: none;
+            margin-top: 20px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--charcoal);
+            position: relative;
+        }
+
+        .video-preview.active {
+            display: block;
+        }
+
+        .video-preview video {
+            width: 100%;
+            max-height: 300px;
+            display: block;
+            border-radius: 12px;
+        }
+
+        .video-file-info {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 16px;
+            padding: 12px 16px;
+            background: rgba(0, 135, 81, 0.08);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 135, 81, 0.15);
+        }
+
+        .video-file-info.active {
+            display: flex;
+        }
+
+        .video-file-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--charcoal);
+            max-width: 300px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .video-file-meta {
+            font-size: 12px;
+            color: rgba(26, 26, 46, 0.5);
+        }
+
+        .video-remove-btn {
+            background: none;
+            border: none;
+            color: var(--error);
+            font-size: 20px;
+            cursor: pointer;
+            padding: 4px;
+            line-height: 1;
+            transition: transform 0.2s ease;
+        }
+
+        .video-remove-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .video-error {
+            display: none;
+            margin-top: 12px;
+            padding: 10px 16px;
+            background: rgba(231, 76, 60, 0.08);
+            border: 1px solid rgba(231, 76, 60, 0.2);
+            border-radius: 8px;
+            color: var(--error);
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .video-error.active {
+            display: block;
+        }
+
+        /* ===== SUBMIT BUTTON ===== */
+        .form-submit {
+            width: 100%;
+            padding: 18px;
+            background: var(--green);
+            color: var(--white);
+            border: none;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 135, 81, 0.3);
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .form-submit:hover {
+            background: #006b3f;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 135, 81, 0.4);
+        }
+
+        .form-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-submit .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: var(--white);
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            display: none;
+        }
+
+        .form-submit.loading .spinner {
+            display: block;
+        }
+
+        .form-submit.loading .btn-text {
+            display: none;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ===== SUCCESS MESSAGE ===== */
+        .form-success {
+            display: none;
+            background: rgba(0, 135, 81, 0.08);
+            border: 1px solid rgba(0, 135, 81, 0.2);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 24px;
+        }
+
+        .form-success.active {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-success-icon {
+            width: 72px;
+            height: 72px;
+            background: var(--green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: var(--white);
+            margin: 0 auto 20px;
+            box-shadow: 0 8px 24px rgba(0, 135, 81, 0.3);
+        }
+
+        .form-success h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            color: var(--charcoal);
+            margin-bottom: 10px;
+        }
+
+        .form-success p {
+            font-size: 15px;
+            color: rgba(26, 26, 46, 0.65);
+            line-height: 1.6;
+            max-width: 500px;
+            margin: 0 auto 20px;
+        }
+
+        .success-detail {
+            display: inline-block;
+            background: rgba(0, 135, 81, 0.1);
+            border: 1px solid rgba(0, 135, 81, 0.2);
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 14px;
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .success-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 24px;
+        }
+
+        .success-btn {
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .success-btn-primary {
+            background: var(--green);
+            color: var(--white);
+            border: none;
+            box-shadow: 0 4px 15px rgba(0, 135, 81, 0.3);
+        }
+
+        .success-btn-primary:hover {
+            background: #006b3f;
+            transform: translateY(-2px);
+        }
+
+        .success-btn-secondary {
+            background: transparent;
+            color: var(--charcoal);
+            border: 1px solid rgba(0, 0, 0, 0.15);
+        }
+
+        .success-btn-secondary:hover {
+            border-color: var(--green);
+            color: var(--green);
+            transform: translateY(-2px);
+        }
+
+        /* ===== HOW IT WORKS SECTION ===== */
+        .how-it-works {
+            background: var(--charcoal);
+            padding: 100px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .how-it-works::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+                background:
+                linear-gradient(45deg, transparent 48%, rgba(0, 135, 81, 0.02) 49%, rgba(0, 135, 81, 0.02) 51%, transparent 52%),
+                linear-gradient(-45deg, transparent 48%, rgba(212, 160, 23, 0.01) 49%, rgba(212, 160, 23, 0.01) 51%, transparent 52%);
+            background-size: 30px 30px;
+            pointer-events: none;
+        }
+
+        .how-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .how-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .how-header .section-label {
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .how-header .section-label::before,
+        .how-header .section-label::after {
+            display: none;
+        }
+
+        .how-headline {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 42px;
+            color: var(--white);
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .how-subheadline {
+            font-size: 17px;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .how-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .how-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 40px 32px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .how-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 135, 81, 0.3);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .how-step {
+            width: 48px;
+            height: 48px;
+            background: var(--green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--white);
+            margin: 0 auto 20px;
+            box-shadow: 0 8px 24px rgba(0, 135, 81, 0.3);
+        }
+
+        .how-card-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .how-card-desc {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.7;
+        }
+
+        /* ===== FOOTER ===== */
+        .contact-section {
+            background: var(--charcoal);
+            padding: 100px 40px 60px;
+            position: relative;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .contact-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .contact-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .contact-brand-logo .logo-circle {
+            width: 44px;
+            height: 44px;
+            font-size: 16px;
+        }
+
+        .contact-brand-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--white);
+        }
+
+        .contact-brand-desc {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.7;
+            max-width: 320px;
+        }
+
+        .contact-socials {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+
+        .social-link:hover {
+            background: var(--green);
+            border-color: var(--green);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .contact-column h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 24px;
+        }
+
+        .contact-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .contact-links a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-links a:hover {
+            color: var(--green);
+            transform: translateX(4px);
+        }
+
+        .contact-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.06);
+            margin-bottom: 32px;
+        }
+
+        .contact-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .contact-copyright {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.35);
+        }
+
+        .contact-copyright span {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .contact-legal {
+            display: flex;
+            gap: 24px;
+        }
+
+        .contact-legal a {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.35);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-legal a:hover {
+            color: var(--white);
+        }
+
+        /* ===== WARD LOADING ===== */
+        .ward-loading {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: rgba(26, 26, 46, 0.5);
+            margin-top: 8px;
+        }
+
+        .ward-loading.active {
+            display: flex;
+        }
+
+        .ward-loading-spinner {
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(0, 135, 81, 0.3);
+            border-top-color: var(--green);
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            flex-shrink: 0;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .carousel-slide img {
+                height: 400px;
+            }
+            .carousel-slide-title {
+                font-size: 22px;
+            }
+            .how-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 20px;
+                height: 70px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            .register-btn {
+                display: none;
+            }
+            .hero {
+                padding: 0 20px;
+            }
+            .hero-headline {
+                font-size: 36px;
+            }
+            .carousel-section,
+            .report-section,
+            .how-it-works,
+            .contact-section {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            .carousel-slide img {
+                height: 300px;
+            }
+            .carousel-slide-overlay {
+                padding: 40px 20px 24px;
+            }
+            .carousel-slide-title {
+                font-size: 20px;
+            }
+            .carousel-slide-desc {
+                font-size: 13px;
+            }
+            .carousel-nav {
+                width: 36px;
+                height: 36px;
+                font-size: 16px;
+            }
+            .carousel-nav.prev { left: 10px; }
+            .carousel-nav.next { right: 10px; }
+            .report-headline,
+            .how-headline,
+            .carousel-headline {
+                font-size: 32px;
+            }
+            .report-form {
+                padding: 32px 24px;
+            }
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .how-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .contact-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            .success-actions {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-headline {
+                font-size: 28px;
+            }
+            .carousel-slide img {
+                height: 250px;
+            }
+            .carousel-slide-title {
+                font-size: 18px;
+            }
+            .video-upload-area {
+                padding: 24px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== STICKY NAVBAR ===== -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="index.html" class="logo-container" style="text-decoration:none;">
+                <div class="logo-circle">FN</div>
+                <div class="brand-info">
+                    <span class="brand-name">FixNaija Movement</span>
+                    <span class="brand-subline">People's Grassroots Network</span>
+                </div>
+            </a>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#events">Events</a></li>
+            <li><a href="index.html#news">News</a></li>
+            <li><a href="index.html#states">States & LGAs</a></li>
+            <li><a href="index.html#gallery">Gallery</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+
+        <a href="index.html#register" class="register-btn">Register</a>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- ===== MOBILE MENU ===== -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html" class="mobile-menu-link">Home</a>
+        <a href="index.html#about" class="mobile-menu-link">About</a>
+        <a href="index.html#events" class="mobile-menu-link">Events</a>
+        <a href="index.html#news" class="mobile-menu-link">News</a>
+        <a href="index.html#states" class="mobile-menu-link">States &amp; LGAs</a>
+        <a href="index.html#gallery" class="mobile-menu-link">Gallery</a>
+        <a href="index.html#contact" class="mobile-menu-link">Contact</a>
+        <a href="index.html#register" class="mobile-menu-link mobile-menu-register">Register With FixNaija</a>
+    </div>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="eyebrow-badge">
+                <span class="pulse-dot"></span>
+                <span class="eyebrow-text">Community Reporting</span>
+            </div>
+            <h1 class="hero-headline">
+                Report What Needs <span class="highlight-green">Fixing</span> in Your <span class="highlight-gold">Community</span>
+            </h1>
+            <p class="hero-description">
+                Is there a bad road, failed project, or public service that needs government attention? 
+                Tell us about it. Upload a video, share the details, and we'll push it to the right channels.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===== SAMPLE REPORTS CAROUSEL ===== -->
+    <section class="carousel-section" id="samples">
+        <div class="carousel-container">
+            <div class="carousel-header">
+                <span class="section-label">Sample Reports</span>
+                <h2 class="carousel-headline">See What Others Are Reporting</h2>
+                <p class="carousel-subheadline">
+                    Real issues from real communities across Nigeria. These reports are being tracked and escalated by our team.
+                </p>
+            </div>
+
+            <div class="carousel-wrapper">
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- Real Report 1: Electricity & Power -->
+                    <div class="carousel-slide">
+                        <img src="images/report-power.jpg" alt="Traders repairing generators at an open-air market">
+                        <div class="carousel-slide-overlay">
+                            <div class="carousel-slide-tag">
+                                <span class="status-dot"></span>
+                                Electricity & Power
+                            </div>
+                            <h3 class="carousel-slide-title">Whole Markets Run on Generators as the Grid Stays Dark</h3>
+                            <p class="carousel-slide-desc">
+                                Traders and repairers at this market depend entirely on petrol generators. With the national grid down for days at a time, the cost of fuel is crushing small businesses.
+                            </p>
+                            <div class="carousel-slide-meta">
+                                <span>📍 Lagos State</span>
+                                <span>🕒 Reported 1 day ago</span>
+                                <span>👁 1,520 views</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Real Report 2: Water & Sanitation -->
+                    <div class="carousel-slide">
+                        <img src="images/report-water.jpg" alt="Woman scooping water from an open pond">
+                        <div class="carousel-slide-overlay">
+                            <div class="carousel-slide-tag">
+                                <span class="status-dot"></span>
+                                Water & Sanitation
+                            </div>
+                            <h3 class="carousel-slide-title">Families Forced to Drink from Open, Contaminated Ponds</h3>
+                            <p class="carousel-slide-desc">
+                                With no functional borehole nearby, residents scoop muddy surface water for drinking and cooking — a daily health risk, especially during the rainy season.
+                            </p>
+                            <div class="carousel-slide-meta">
+                                <span>📍 Rural North-West</span>
+                                <span>🕒 Reported 2 days ago</span>
+                                <span>👁 2,140 views</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Real Report 3: Roads & Infrastructure -->
+                    <div class="carousel-slide">
+                        <img src="images/report-road.jpg" alt="Truck stuck where a road has collapsed">
+                        <div class="carousel-slide-overlay">
+                            <div class="carousel-slide-tag">
+                                <span class="status-dot"></span>
+                                Roads & Infrastructure
+                            </div>
+                            <h3 class="carousel-slide-title">Collapsed Road Swallows Trucks and Cuts Off Traffic</h3>
+                            <p class="carousel-slide-desc">
+                                A heavy-duty truck sank where the road completely failed. Deep, water-filled potholes have made this route dangerous and nearly impassable for months.
+                            </p>
+                            <div class="carousel-slide-meta">
+                                <span>📍 Ogun State</span>
+                                <span>🕒 Reported 4 days ago</span>
+                                <span>👁 1,980 views</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 1 -->
+                    <div class="carousel-slide">
+                        <img src="images/report-sample-1.jpg" alt="Bad road in rural community">
+                        <div class="carousel-slide-overlay">
+                            <div class="carousel-slide-tag">
+                                <span class="status-dot"></span>
+                                Roads & Infrastructure
+                            </div>
+                            <h3 class="carousel-slide-title">Collapsed Bridge Cuts Off Three Villages in Ondo</h3>
+                            <p class="carousel-slide-desc">
+                                The main bridge connecting Oke-Aro, Ilara, and Igbara-Oke has been impassable for 8 months. Residents now trek 5km to access the market and hospital.
+                            </p>
+                            <div class="carousel-slide-meta">
+                                <span>📍 Ondo West, Ondo State</span>
+                                <span>🕒 Reported 3 days ago</span>
+                                <span>👁 1,240 views</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="carousel-slide">
+                        <img src="images/report-sample-2.jpg" alt="Dilapidated school building">
+                        <div class="carousel-slide-overlay">
+                            <div class="carousel-slide-tag">
+                                <span class="status-dot"></span>
+                                Education
+                            </div>
+                            <h3 class="carousel-slide-title">Primary School in Kano Operates Under Leaking Roofs</h3>
+                            <p class="carousel-slide-desc">
+                                Over 300 pupils at LGEA Primary School study in classrooms with no windows and leaking roofs. Classes are cancelled every rainy season.
+                            </p>
+                            <div class="carousel-slide-meta">
+                                <span>📍 Kano Municipal, Kano State</span>
+                                <span>🕒 Reported 1 week ago</span>
+                                <span>👁 2,890 views</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="carousel-slide">
+                        <img src="images/report-sample-3.jpg" alt="Contaminated water source">
+                        <div class="carousel-slide-overlay">
+                            <div class="carousel-slide-tag">
+                                <span class="status-dot"></span>
+                                Water & Sanitation
+                            </div>
+                            <h3 class="carousel-slide-title">Community Water Project Abandoned After 2 Years</h3>
+                            <p class="carousel-slide-desc">
+                                A N45 million borehole project in Umuahia North was commissioned but never functional. Pipes were left exposed and the pump house is now a goat pen.
+                            </p>
+                            <div class="carousel-slide-meta">
+                                <span>📍 Umuahia North, Abia State</span>
+                                <span>🕒 Reported 5 days ago</span>
+                                <span>👁 3,450 views</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 4 -->
+                    <div class="carousel-slide">
+                        <img src="images/report-sample-4.jpg" alt="Failed healthcare facility">
+                        <div class="carousel-slide-overlay">
+                            <div class="carousel-slide-tag">
+                                <span class="status-dot"></span>
+                                Healthcare
+                            </div>
+                            <h3 class="carousel-slide-title">PHC in Niger State Has No Doctor for 18 Months</h3>
+                            <p class="carousel-slide-desc">
+                                The only Primary Health Centre serving 5 wards in Lapai LGA has been without a doctor or midwife since January 2025. Pregnant women travel 40km for delivery.
+                            </p>
+                            <div class="carousel-slide-meta">
+                                <span>📍 Lapai, Niger State</span>
+                                <span>🕒 Reported 2 days ago</span>
+                                <span>👁 980 views</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 5 -->
+                    <div class="carousel-slide">
+                        <img src="images/report-sample-5.jpg" alt="Power outage infrastructure">
+                        <div class="carousel-slide-overlay">
+                            <div class="carousel-slide-tag">
+                                <span class="status-dot"></span>
+                                Electricity & Power
+                            </div>
+                            <h3 class="carousel-slide-title">Transformer Blowout Leaves 12 Communities in Darkness</h3>
+                            <p class="carousel-slide-desc">
+                                A 500KVA transformer in Ikorodu exploded during a rainstorm three months ago. Despite repeated petitions to IKEDC, no replacement has been provided.
+                            </p>
+                            <div class="carousel-slide-meta">
+                                <span>📍 Ikorodu, Lagos State</span>
+                                <span>🕒 Reported 4 days ago</span>
+                                <span>👁 1,670 views</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <button class="carousel-nav prev" id="carouselPrev" aria-label="Previous slide">‹</button>
+                <button class="carousel-nav next" id="carouselNext" aria-label="Next slide">›</button>
+
+                <!-- Progress Bar -->
+                <div class="carousel-progress" id="carouselProgress"></div>
+            </div>
+
+            <!-- Dots -->
+            <div class="carousel-dots" id="carouselDots"></div>
+        </div>
+    </section>
+
+    <!-- ===== REPORT FORM SECTION ===== -->
+    <section class="report-section" id="report">
+        <div class="report-container">
+            <div class="report-header">
+                <span class="section-label">Submit a Report</span>
+                <h2 class="report-headline">Tell Us What Needs Fixing</h2>
+                <p class="report-subheadline">
+                    Fill out the form below with your details and a description of the issue. 
+                    You can also upload a short video (max 5 minutes) to support your report.
+                </p>
+            </div>
+
+            <form class="report-form" id="reportForm">
+                <div class="form-grid">
+                    <!-- Reporter Information -->
+                    <div class="form-section-label">👤 Reporter Information</div>
+
+                    <div class="form-group">
+                        <label class="form-label">Full Name <span class="required">*</span></label>
+                        <input type="text" class="form-input" id="repName" placeholder="Enter your full name" required>
+                        <span class="form-error">Please enter your full name</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Phone Number <span class="required">*</span></label>
+                        <input type="tel" class="form-input" id="repPhone" placeholder="+234 800 000 0000" required>
+                        <span class="form-error">Please enter a valid phone number</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Email Address <span class="form-hint" style="display:inline; color:rgba(26,26,46,0.45); font-weight:400;">(optional)</span></label>
+                        <input type="email" class="form-input" id="repEmail" placeholder="your@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">WhatsApp Number <span class="form-hint" style="display:inline; color:rgba(26,26,46,0.45); font-weight:400;">(optional)</span></label>
+                        <input type="tel" class="form-input" id="repWhatsApp" placeholder="+234 80X XXX XXXX">
+                    </div>
+
+                    <!-- Location -->
+                    <div class="form-section-label">📍 Location of the Issue</div>
+
+                    <div class="form-group">
+                        <label class="form-label">State <span class="required">*</span></label>
+                        <select class="form-select" id="repState" required>
+                            <option value="">Select your state</option>
+                        </select>
+                        <span class="form-error">Please select a state</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">LGA <span class="required">*</span></label>
+                        <select class="form-select" id="repLGA" required disabled>
+                            <option value="">Select your LGA</option>
+                        </select>
+                        <span class="form-error">Please select an LGA</span>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label class="form-label">Ward <span class="required">*</span></label>
+                        <select class="form-select" id="repWard" required disabled>
+                            <option value="">— Select Ward —</option>
+                        </select>
+                        <div class="ward-loading" id="wardLoading">
+                            <span class="ward-loading-spinner"></span> Loading wards...
+                        </div>
+                        <span class="form-error">Please select a ward</span>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label class="form-label">Specific Location / Landmark <span class="form-hint" style="display:inline; color:rgba(26,26,46,0.45); font-weight:400;">(optional)</span></label>
+                        <input type="text" class="form-input" id="repLandmark" placeholder="e.g. Near the market, opposite the school, along Express Road...">
+                    </div>
+
+                    <!-- Issue Details -->
+                    <div class="form-section-label">📝 Issue Details</div>
+
+                    <div class="form-group full-width">
+                        <label class="form-label">Category <span class="required">*</span></label>
+                        <select class="form-select" id="repCategory" required>
+                            <option value="">Select issue category</option>
+                            <option value="Roads & Infrastructure">Roads & Infrastructure</option>
+                            <option value="Healthcare">Healthcare</option>
+                            <option value="Education">Education</option>
+                            <option value="Water & Sanitation">Water & Sanitation</option>
+                            <option value="Electricity & Power">Electricity & Power</option>
+                            <option value="Security">Security</option>
+                            <option value="Corruption / Mismanagement">Corruption / Mismanagement</option>
+                            <option value="Environment">Environment</option>
+                            <option value="Agriculture">Agriculture</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <span class="form-error">Please select a category</span>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label class="form-label">Title of the Issue <span class="required">*</span></label>
+                        <input type="text" class="form-input" id="repTitle" placeholder="e.g. Broken Bridge on Owo Road, Ondo State" required>
+                        <span class="form-error">Please provide a title for the issue</span>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label class="form-label">Detailed Description <span class="required">*</span></label>
+                        <textarea class="form-textarea" id="repDescription" placeholder="Describe the issue in detail. How long has it been there? Who is affected? What have you done so far?" required></textarea>
+                        <span class="form-error">Please describe the issue</span>
+                    </div>
+
+                    <!-- Video Upload -->
+                    <div class="form-section-label">🎥 Video Evidence</div>
+
+                    <div class="video-upload-area" id="videoUploadArea">
+                        <div class="video-upload-icon">📹</div>
+                        <div class="video-upload-title">Upload a Video</div>
+                        <div class="video-upload-desc">
+                            Drag and drop a video here, or click to browse.<br>
+                            Max file size: 100MB. Max duration: 5 minutes. Formats: MP4, MOV, AVI, WEBM.
+                        </div>
+                        <button type="button" class="video-upload-btn" id="videoUploadBtn">Choose Video</button>
+                        <input type="file" class="video-file-input" id="videoFileInput" accept="video/mp4,video/quicktime,video/avi,video/webm">
+
+                        <div class="video-preview" id="videoPreview">
+                            <video id="previewVideo" controls></video>
+                        </div>
+
+                        <div class="video-file-info" id="videoFileInfo">
+                            <span class="video-file-name" id="videoFileName"></span>
+                            <span class="video-file-meta" id="videoFileMeta"></span>
+                            <button type="button" class="video-remove-btn" id="videoRemoveBtn" title="Remove video">×</button>
+                        </div>
+
+                        <div class="video-error" id="videoError"></div>
+                    </div>
+                </div>
+
+                <button type="submit" class="form-submit" id="submitBtn">
+                    <span class="spinner"></span>
+                    <span class="btn-text">Submit Report</span>
+                </button>
+            </form>
+
+            <!-- Success Message -->
+            <div class="form-success" id="formSuccess">
+                <div class="form-success-icon">✓</div>
+                <h3>Report Submitted Successfully!</h3>
+                <p>
+                    Thank you for speaking up. Your report has been received and will be reviewed by our team. 
+                    We will follow up via the contact details you provided.
+                </p>
+                <div class="success-detail" id="successDetail"></div>
+                <div class="success-actions">
+                    <a href="report-issue.html" class="success-btn success-btn-primary">Submit Another Report</a>
+                    <a href="index.html" class="success-btn success-btn-secondary">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== HOW IT WORKS ===== -->
+    <section class="how-it-works">
+        <div class="how-container">
+            <div class="how-header">
+                <span class="section-label">How It Works</span>
+                <h2 class="how-headline">Three Simple Steps</h2>
+                <p class="how-subheadline">
+                    From your community to the corridors of power. Here's how your report makes an impact.
+                </p>
+            </div>
+
+            <div class="how-grid">
+                <div class="how-card">
+                    <div class="how-step">1</div>
+                    <h3 class="how-card-title">Report the Issue</h3>
+                    <p class="how-card-desc">
+                        Fill the form with your details, location, and a description of what needs fixing. Upload a video if you have one.
+                    </p>
+                </div>
+                <div class="how-card">
+                    <div class="how-step">2</div>
+                    <h3 class="how-card-title">We Verify & Escalate</h3>
+                    <p class="how-card-desc">
+                        Our team reviews your report, verifies the details, and escalates it to the relevant government agency and your elected representatives.
+                    </p>
+                </div>
+                <div class="how-card">
+                    <div class="how-step">3</div>
+                    <h3 class="how-card-title">Track the Fix</h3>
+                    <p class="how-card-desc">
+                        We follow up on the status of your report and update you on progress. No report is forgotten — every voice counts.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <div class="contact-grid">
+                <div class="contact-brand">
+                    <div class="contact-brand-logo">
+                        <div class="logo-circle">FN</div>
+                        <span class="contact-brand-name">FixNaija Movement</span>
+                    </div>
+                    <p class="contact-brand-desc">
+                        A nationwide grassroots network uniting all 774 LGAs across 36 states to build a stronger, more prosperous Nigeria for every citizen.
+                    </p>
+                    <div class="contact-socials">
+                        <a href="#" class="social-link" title="X (Twitter)">𝕏</a>
+                        <a href="https://www.facebook.com/profile.php?id=61590354706603" target="_blank" rel="noopener" class="social-link" title="Facebook">f</a>
+                        <a href="https://www.instagram.com/fixnaijamovement/" target="_blank" rel="noopener" class="social-link" title="Instagram">📷</a>
+                        <a href="#" class="social-link" title="YouTube">▶</a>
+                    </div>
+                </div>
+
+                <div class="contact-column">
+                    <h4>Quick Links</h4>
+                    <ul class="contact-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#events">Events</a></li>
+                        <li><a href="index.html#news">News</a></li>
+                        <li><a href="index.html#gallery">Gallery</a></li>
+                    </ul>
+                </div>
+
+                <div class="contact-column">
+                    <h4>Get Involved</h4>
+                    <ul class="contact-links">
+                        <li><a href="index.html#register">Register</a></li>
+                        <li><a href="index.html#states">Find Your LGA</a></li>
+                        <li><a href="#">Volunteer</a></li>
+                        <li><a href="#">Donate</a></li>
+                        <li><a href="#">Partner With Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="contact-column">
+                    <h4>Contact</h4>
+                    <ul class="contact-links">
+                        <li><a href="mailto:fixnaijamovement@gmail.com">fixnaijamovement@gmail.com</a></li>
+                        <li><a href="tel:+2349165255606">+234 916 525 5606</a></li>
+                        <li><a href="#">Abuja, FCT</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="contact-divider"></div>
+
+            <div class="contact-bottom">
+                <div class="contact-copyright">
+                    © 2026 <span>FixNaija Movement</span>. All rights reserved. Built for the people.
+                </div>
+                <div class="contact-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<script>
+// ===== Mobile menu toggle =====
+const menuToggle = document.getElementById('menuToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+menuToggle.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    menuToggle.classList.toggle('open', open);
+    menuToggle.setAttribute('aria-expanded', open);
+});
+mobileMenu.querySelectorAll('.mobile-menu-link').forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        menuToggle.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+    });
+});
+
+// ===== CAROUSEL LOGIC =====
+(function initCarousel() {
+    const track = document.getElementById('carouselTrack');
+    const slides = track.querySelectorAll('.carousel-slide');
+    const prevBtn = document.getElementById('carouselPrev');
+    const nextBtn = document.getElementById('carouselNext');
+    const dotsContainer = document.getElementById('carouselDots');
+    const progressBar = document.getElementById('carouselProgress');
+
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+    const autoPlayDelay = 5000; // 5 seconds
+    let autoPlayTimer;
+    let progressTimer;
+    let progressStartTime;
+
+    // Create dots
+    slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+        dot.addEventListener('click', () => goToSlide(i));
+        dotsContainer.appendChild(dot);
+    });
+
+    const dots = dotsContainer.querySelectorAll('.carousel-dot');
+
+    function updateCarousel() {
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentIndex);
+        });
+        resetProgress();
+    }
+
+    function goToSlide(index) {
+        currentIndex = index;
+        if (currentIndex < 0) currentIndex = totalSlides - 1;
+        if (currentIndex >= totalSlides) currentIndex = 0;
+        updateCarousel();
+        resetAutoPlay();
+    }
+
+    function nextSlide() {
+        goToSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+        goToSlide(currentIndex - 1);
+    }
+
+    function resetProgress() {
+        progressBar.style.width = '0%';
+        progressBar.style.transition = 'none';
+        clearTimeout(progressTimer);
+        progressStartTime = Date.now();
+
+        // Small delay to allow transition reset
+        requestAnimationFrame(() => {
+            progressBar.style.transition = `width ${autoPlayDelay}ms linear`;
+            progressBar.style.width = '100%';
+        });
+    }
+
+    function startAutoPlay() {
+        resetProgress();
+        autoPlayTimer = setInterval(nextSlide, autoPlayDelay);
+    }
+
+    function resetAutoPlay() {
+        clearInterval(autoPlayTimer);
+        startAutoPlay();
+    }
+
+    // Event listeners
+    prevBtn.addEventListener('click', () => {
+        prevSlide();
+        resetAutoPlay();
+    });
+
+    nextBtn.addEventListener('click', () => {
+        nextSlide();
+        resetAutoPlay();
+    });
+
+    // Touch/swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    track.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    track.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+            resetAutoPlay();
+        }
+    }
+
+    // Pause on hover
+    const wrapper = document.querySelector('.carousel-wrapper');
+    wrapper.addEventListener('mouseenter', () => {
+        clearInterval(autoPlayTimer);
+        const elapsed = Date.now() - progressStartTime;
+        const remaining = autoPlayDelay - elapsed;
+        progressBar.style.transition = 'none';
+        progressBar.style.width = `${(elapsed / autoPlayDelay) * 100}%`;
+    });
+
+    wrapper.addEventListener('mouseleave', () => {
+        const elapsed = Date.now() - progressStartTime;
+        const remaining = autoPlayDelay - elapsed;
+        progressBar.style.transition = `width ${remaining}ms linear`;
+        progressBar.style.width = '100%';
+        autoPlayTimer = setTimeout(() => {
+            nextSlide();
+            startAutoPlay();
+        }, remaining);
+    });
+
+    // Start autoplay
+    startAutoPlay();
+})();
+
+// ===== SUPABASE CONFIG =====
+const SUPABASE_URL = 'https://bcdscsjqiqnzsthntutb.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_Cpkk6K0Xyt5GNVXTiur2mA_myhkpiti';
+const VIDEO_BUCKET = 'report-videos';
+
+const SB_HEADERS = {
+    'Content-Type': 'application/json',
+    'apikey': SUPABASE_KEY,
+    'Authorization': `Bearer ${SUPABASE_KEY}`
+};
+
+const INEC_STATES = ['ABIA','ADAMAWA','AKWA IBOM','ANAMBRA','BAUCHI','BAYELSA','BENUE','BORNO','CROSS RIVER','DELTA','EBONYI','EDO','EKITI','ENUGU','FEDERAL CAPITAL TERRITORY','GOMBE','IMO','JIGAWA','KADUNA','KANO','KATSINA','KEBBI','KOGI','KWARA','LAGOS','NASARAWA','NIGER','OGUN','ONDO','OSUN','OYO','PLATEAU','RIVERS','SOKOTO','TARABA','YOBE','ZAMFARA'];
+
+function titleCase(str) {
+    return str.toLowerCase().replace(/(^|[\s\/\-\(])\w/g, c => c.toUpperCase());
+}
+
+const lookupCache = {};
+
+async function sbRpc(fn, params) {
+    const key = fn + JSON.stringify(params);
+    if (lookupCache[key]) return lookupCache[key];
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/${fn}`, {
+        method: 'POST',
+        headers: SB_HEADERS,
+        body: JSON.stringify(params)
+    });
+    if (!res.ok) throw new Error(`Lookup failed: ${res.status}`);
+    const data = await res.json();
+    lookupCache[key] = data;
+    return data;
+}
+
+async function fetchLGAs(state) {
+    const rows = await sbRpc('get_lgas', { p_state: state });
+    return rows.map(r => r.lga);
+}
+
+async function fetchWardsDB(state, lga) {
+    const rows = await sbRpc('get_wards', { p_state: state, p_lga: lga });
+    return rows.map(r => r.ward);
+}
+
+// ===== Populate State → LGA → Ward dropdowns =====
+(function initLocationDropdowns() {
+    const repState = document.getElementById('repState');
+    const repLGA   = document.getElementById('repLGA');
+    const repWard  = document.getElementById('repWard');
+    const wardLoading = document.getElementById('wardLoading');
+
+    // Populate states
+    INEC_STATES.forEach(state => {
+        const opt = document.createElement('option');
+        opt.value = state;
+        opt.textContent = titleCase(state);
+        repState.appendChild(opt);
+    });
+
+    // State → LGA
+    repState.addEventListener('change', async function () {
+        const state = this.value;
+        repLGA.innerHTML = '<option value="">Select your LGA</option>';
+        repLGA.disabled = true;
+        repWard.innerHTML = '<option value="">— Select Ward —</option>';
+        repWard.disabled = true;
+
+        if (!state) return;
+        try {
+            const lgas = await fetchLGAs(state);
+            lgas.forEach(lga => {
+                const opt = document.createElement('option');
+                opt.value = lga;
+                opt.textContent = titleCase(lga);
+                repLGA.appendChild(opt);
+            });
+            repLGA.disabled = false;
+        } catch (e) {
+            repLGA.innerHTML = '<option value="">— Could not load LGAs —</option>';
+        }
+    });
+
+    // LGA → Ward
+    repLGA.addEventListener('change', async function () {
+        const lga = this.value;
+        const state = repState.value;
+        repWard.innerHTML = '<option value="">— Loading wards... —</option>';
+        repWard.disabled = true;
+        wardLoading.classList.add('active');
+
+        if (!state || !lga) {
+            wardLoading.classList.remove('active');
+            return;
+        }
+        try {
+            const wards = await fetchWardsDB(state, lga);
+            wardLoading.classList.remove('active');
+            repWard.innerHTML = '<option value="">— Select Ward —</option>';
+            wards.forEach(ward => {
+                const opt = document.createElement('option');
+                opt.value = ward;
+                opt.textContent = titleCase(ward);
+                repWard.appendChild(opt);
+            });
+            repWard.disabled = false;
+        } catch (e) {
+            wardLoading.classList.remove('active');
+            repWard.innerHTML = '<option value="">— Could not load wards —</option>';
+        }
+    });
+})();
+
+// ===== VIDEO UPLOAD LOGIC =====
+(function initVideoUpload() {
+    const uploadArea   = document.getElementById('videoUploadArea');
+    const uploadBtn    = document.getElementById('videoUploadBtn');
+    const fileInput    = document.getElementById('videoFileInput');
+    const preview      = document.getElementById('videoPreview');
+    const previewVideo = document.getElementById('previewVideo');
+    const fileInfo     = document.getElementById('videoFileInfo');
+    const fileName     = document.getElementById('videoFileName');
+    const fileMeta     = document.getElementById('videoFileMeta');
+    const removeBtn    = document.getElementById('videoRemoveBtn');
+    const errorDiv     = document.getElementById('videoError');
+
+    const MAX_SIZE_MB = 100;
+    const MAX_DURATION_SEC = 300; // 5 minutes
+    const ALLOWED_TYPES = ['video/mp4', 'video/quicktime', 'video/avi', 'video/x-msvideo', 'video/webm'];
+
+    let currentFile = null;
+
+    function formatSize(bytes) {
+        if (bytes < 1024) return bytes + ' B';
+        if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+        return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+    }
+
+    function showError(msg) {
+        errorDiv.textContent = msg;
+        errorDiv.classList.add('active');
+        uploadArea.classList.remove('has-file');
+    }
+
+    function clearError() {
+        errorDiv.classList.remove('active');
+        errorDiv.textContent = '';
+    }
+
+    function validateFile(file) {
+        clearError();
+        if (!ALLOWED_TYPES.includes(file.type)) {
+            showError('Invalid file format. Please upload MP4, MOV, AVI, or WEBM.');
+            return false;
+        }
+        if (file.size > MAX_SIZE_MB * 1024 * 1024) {
+            showError(`File too large. Maximum size is ${MAX_SIZE_MB}MB.`);
+            return false;
+        }
+        return true;
+    }
+
+    function handleFile(file) {
+        if (!file) return;
+        if (!validateFile(file)) return;
+
+        currentFile = file;
+        const url = URL.createObjectURL(file);
+        previewVideo.src = url;
+        preview.classList.add('active');
+
+        fileName.textContent = file.name;
+        fileMeta.textContent = formatSize(file.size);
+        fileInfo.classList.add('active');
+        uploadArea.classList.add('has-file');
+
+        // Check duration once metadata loads
+        previewVideo.onloadedmetadata = function () {
+            if (previewVideo.duration > MAX_DURATION_SEC) {
+                showError(`Video is too long. Maximum duration is 5 minutes (${MAX_DURATION_SEC}s). Your video is ${Math.round(previewVideo.duration)}s.`);
+                removeVideo();
+            } else {
+                fileMeta.textContent = `${formatSize(file.size)} · ${Math.round(previewVideo.duration)}s`;
+            }
+        };
+    }
+
+    function removeVideo() {
+        currentFile = null;
+        previewVideo.src = '';
+        preview.classList.remove('active');
+        fileInfo.classList.remove('active');
+        uploadArea.classList.remove('has-file');
+        fileInput.value = '';
+        clearError();
+    }
+
+    uploadBtn.addEventListener('click', () => fileInput.click());
+    fileInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
+    removeBtn.addEventListener('click', removeVideo);
+
+    // Drag and drop
+    uploadArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        uploadArea.classList.add('drag-over');
+    });
+    uploadArea.addEventListener('dragleave', () => {
+        uploadArea.classList.remove('drag-over');
+    });
+    uploadArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        uploadArea.classList.remove('drag-over');
+        const file = e.dataTransfer.files[0];
+        if (file && file.type.startsWith('video/')) {
+            handleFile(file);
+        } else {
+            showError('Please drop a video file.');
+        }
+    });
+
+    // Make entire area clickable
+    uploadArea.addEventListener('click', (e) => {
+        if (e.target === uploadArea || e.target.closest('.video-upload-icon') || e.target.closest('.video-upload-title') || e.target.closest('.video-upload-desc')) {
+            fileInput.click();
+        }
+    });
+})();
+
+// ===== FORM VALIDATION & SUBMISSION =====
+(function initForm() {
+    const form = document.getElementById('reportForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const successDiv = document.getElementById('formSuccess');
+    const successDetail = document.getElementById('successDetail');
+
+    function validateField(input) {
+        const group = input.closest('.form-group');
+        if (!group) return true;
+        if (input.required && !input.value.trim()) {
+            group.classList.add('has-error');
+            return false;
+        }
+        if (input.type === 'email' && input.value.trim()) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(input.value.trim())) {
+                group.classList.add('has-error');
+                return false;
+            }
+        }
+        group.classList.remove('has-error');
+        return true;
+    }
+
+    // Clear errors on input
+    form.querySelectorAll('.form-input, .form-select, .form-textarea').forEach(input => {
+        input.addEventListener('input', function () {
+            this.closest('.form-group')?.classList.remove('has-error');
+        });
+        input.addEventListener('change', function () {
+            this.closest('.form-group')?.classList.remove('has-error');
+        });
+    });
+
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        // Validate all required fields
+        const requiredFields = form.querySelectorAll('[required]');
+        let allValid = true;
+        requiredFields.forEach(field => {
+            if (!validateField(field)) allValid = false;
+        });
+
+        if (!allValid) {
+            // Scroll to first error
+            const firstError = form.querySelector('.has-error');
+            if (firstError) {
+                firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            return;
+        }
+
+        // Collect data
+        const name        = document.getElementById('repName').value.trim();
+        const phone       = document.getElementById('repPhone').value.trim();
+        const email       = document.getElementById('repEmail').value.trim();
+        const whatsapp    = document.getElementById('repWhatsApp').value.trim();
+        const state       = document.getElementById('repState').value;
+        const lga         = document.getElementById('repLGA').value;
+        const ward        = document.getElementById('repWard').value;
+        const landmark    = document.getElementById('repLandmark').value.trim();
+        const category    = document.getElementById('repCategory').value;
+        const title       = document.getElementById('repTitle').value.trim();
+        const description = document.getElementById('repDescription').value.trim();
+        const videoFile   = document.getElementById('videoFileInput').files[0];
+
+        // Show loading state
+        submitBtn.disabled = true;
+        submitBtn.classList.add('loading');
+
+        try {
+            // Build payload
+            const payload = {
+                reporter_name: name,
+                phone: phone,
+                email: email || null,
+                whatsapp: whatsapp || null,
+                state: state,
+                lga: lga,
+                ward: ward,
+                landmark: landmark || null,
+                category: category,
+                issue_title: title,
+                issue_description: description,
+                status: 'submitted',
+                submitted_at: new Date().toISOString()
+            };
+
+            // Upload the video (if any) to a Supabase Storage bucket, then save its public URL.
+            if (videoFile) {
+                const ext = (videoFile.name.split('.').pop() || 'mp4').toLowerCase();
+                const objectPath = `${Date.now()}_${Math.random().toString(36).slice(2, 8)}.${ext}`;
+                const uploadRes = await fetch(`${SUPABASE_URL}/storage/v1/object/${VIDEO_BUCKET}/${objectPath}`, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': SUPABASE_KEY,
+                        'Authorization': `Bearer ${SUPABASE_KEY}`,
+                        'Content-Type': videoFile.type || 'application/octet-stream',
+                        'x-upsert': 'true'
+                    },
+                    body: videoFile
+                });
+                if (!uploadRes.ok) {
+                    const t = await uploadRes.text();
+                    throw new Error(`Video upload failed (${uploadRes.status}): ${t}`);
+                }
+                payload.has_video = true;
+                payload.video_filename = videoFile.name;
+                payload.video_size = videoFile.size;
+                payload.video_url = `${SUPABASE_URL}/storage/v1/object/public/${VIDEO_BUCKET}/${objectPath}`;
+            } else {
+                payload.has_video = false;
+            }
+
+            const response = await fetch(`${SUPABASE_URL}/rest/v1/community_reports`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'apikey': SUPABASE_KEY,
+                    'Authorization': `Bearer ${SUPABASE_KEY}`,
+                    'Prefer': 'return=minimal'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                const errText = await response.text();
+                throw new Error(`Submission failed (${response.status}): ${errText}`);
+            }
+
+            // Success
+            let locationStr = titleCase(state);
+            if (lga) locationStr = `${titleCase(lga)}, ${locationStr}`;
+            if (ward) locationStr = `${titleCase(ward)}, ${locationStr}`;
+
+            successDetail.textContent = `📍 ${locationStr} · ${category}`;
+            form.style.display = 'none';
+            successDiv.classList.add('active');
+            successDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        } catch (err) {
+            console.error(err);
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('loading');
+            alert('Something went wrong submitting your report. Please check your connection and try again.
+
+Error: ' + err.message);
+        }
+    });
+})();
+</script>
+
+</body>
+</html>
