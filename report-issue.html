@@ -2561,9 +2561,7 @@ async function fetchWardsDB(state, lga) {
             console.error(err);
             submitBtn.disabled = false;
             submitBtn.classList.remove('loading');
-            alert('Something went wrong submitting your report. Please check your connection and try again.
-
-Error: ' + err.message);
+            alert('Something went wrong submitting your report. Please check your connection and try again.\n\nError: ' + err.message);
         }
     });
 })();
