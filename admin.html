@@ -372,6 +372,47 @@ td.mono { font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; white-spa
     color: var(--muted);
 }
 .trend-empty { padding: 36px 0; text-align: center; color: var(--muted); font-size: 0.9rem; }
+
+/* ===== REPORTS CONSOLE ===== */
+.th-sort { cursor: pointer; user-select: none; }
+.th-sort:hover { color: var(--green-dark); }
+.th-sort .arrow { font-size: 0.7rem; }
+.rep-row td { vertical-align: middle; }
+.rep-secondary { font-size: 0.76rem; color: var(--muted); margin-top: 2px; }
+.rep-expand {
+    background: var(--light-gray);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    width: 26px; height: 26px;
+    cursor: pointer;
+    font-size: 0.72rem;
+    color: var(--muted);
+    line-height: 1;
+}
+.rep-expand:hover { border-color: var(--green); color: var(--green-dark); }
+.rep-row.open .rep-expand { background: var(--green); color: #fff; border-color: var(--green); }
+.status-select {
+    font: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 5px 8px;
+    border-radius: 6px;
+    border: 1.5px solid var(--border);
+    background: var(--white);
+    cursor: pointer;
+}
+.status-select:focus { outline: none; border-color: var(--green); }
+.status-select[data-v="submitted"] { color: var(--muted); border-left: 4px solid var(--muted); }
+.status-select[data-v="in_review"] { color: #9A6B00; border-left: 4px solid var(--gold); }
+.status-select[data-v="resolved"] { color: var(--green-dark); border-left: 4px solid var(--green); }
+.status-select[data-v="rejected"] { color: #B3261E; border-left: 4px solid #B3261E; }
+.rep-detail td { background: #FAFBFC; }
+.rep-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 24px; padding: 4px 0; }
+.rep-detail-grid .full { grid-column: 1 / -1; }
+.rep-detail dt { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 700; margin-bottom: 3px; }
+.rep-detail dd { font-size: 0.9rem; margin-bottom: 12px; line-height: 1.5; }
+.rep-detail video { width: 100%; max-width: 440px; border-radius: 8px; background: #000; margin-top: 4px; }
+@media (max-width: 640px) { .rep-detail-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -538,12 +579,74 @@ td.mono { font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; white-spa
             </div>
         </div>
 
-        <!-- ===== COMMUNITY REPORTS ===== -->
+        <!-- ===== COMMUNITY REPORTS CONSOLE ===== -->
+        <div class="stats-grid">
+            <div class="stat-card hero">
+                <div class="stat-label">Reports (filtered)</div>
+                <div class="stat-value" id="repStatTotal">—</div>
+                <div class="stat-note">community submissions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Last 7 days</div>
+                <div class="stat-value" id="repStatWeek">—</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">With video</div>
+                <div class="stat-value" id="repStatVideo">—</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Still open</div>
+                <div class="stat-value" id="repStatOpen">—</div>
+                <div class="stat-note">not resolved / rejected</div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-head">
+                <h2>Reports · advanced filter <span class="filter-status" id="repFilterStatus"></span></h2>
+            </div>
+            <div class="panel-body">
+                <div class="filter-grid">
+                    <div class="filter-field"><label>From date</label><input type="date" id="repFltFrom"></div>
+                    <div class="filter-field"><label>To date</label><input type="date" id="repFltTo"></div>
+                    <div class="filter-field"><label>State</label><select id="repFltState"><option value="">All states</option></select></div>
+                    <div class="filter-field"><label>LGA</label><select id="repFltLGA"><option value="">All LGAs</option></select></div>
+                    <div class="filter-field"><label>Category</label><select id="repFltCategory"><option value="">All categories</option></select></div>
+                    <div class="filter-field"><label>Status</label><select id="repFltStatus">
+                        <option value="">All statuses</option>
+                        <option value="submitted">Submitted</option>
+                        <option value="in_review">In review</option>
+                        <option value="resolved">Resolved</option>
+                        <option value="rejected">Rejected</option>
+                    </select></div>
+                    <div class="filter-field"><label>Video</label><select id="repFltVideo">
+                        <option value="">Any</option>
+                        <option value="yes">Has video</option>
+                        <option value="no">No video</option>
+                    </select></div>
+                </div>
+                <div class="filter-actions">
+                    <button class="btn btn-ghost" id="repClearBtn">Clear all</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="dual-grid">
+            <div class="panel">
+                <div class="panel-head"><h2>Reports by category</h2></div>
+                <div class="panel-body"><ul class="break-list" id="repCatList"><li class="loading-note">Loading…</li></ul></div>
+            </div>
+            <div class="panel">
+                <div class="panel-head"><h2>Last 30 days</h2></div>
+                <div class="panel-body"><div class="trend-wrap" id="repTrendWrap"><div class="loading-note">Loading…</div></div></div>
+            </div>
+        </div>
+
         <div class="panel">
             <div class="panel-head">
                 <h2>Community reports <span class="filter-status" id="reportsCount"></span></h2>
                 <div class="table-tools">
-                    <input type="search" class="search-input" id="reportSearch" placeholder="Search name, state, category, issue…">
+                    <input type="search" class="search-input" id="reportSearch" placeholder="Search anything…">
                     <button class="btn btn-gold" id="reportExportBtn">Export CSV</button>
                 </div>
             </div>
@@ -552,19 +655,18 @@ td.mono { font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; white-spa
                     <table>
                         <thead>
                             <tr>
-                                <th>Date</th>
-                                <th>Name</th>
-                                <th>Phone</th>
-                                <th>State</th>
-                                <th>LGA</th>
-                                <th>Ward</th>
+                                <th></th>
+                                <th class="th-sort" id="repSortDate">Date <span class="arrow" id="repSortArrow">▾</span></th>
+                                <th>Reporter</th>
+                                <th>Location</th>
                                 <th>Category</th>
+                                <th>Status</th>
                                 <th>Issue</th>
                                 <th>Video</th>
                             </tr>
                         </thead>
                         <tbody id="reportTableBody">
-                            <tr><td colspan="9" class="loading-note">Loading…</td></tr>
+                            <tr><td colspan="8" class="loading-note">Loading…</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -634,12 +736,22 @@ function showDash(email) {
     loadReports();
 }
 
-// ===== COMMUNITY REPORTS =====
+// ===== COMMUNITY REPORTS CONSOLE =====
 let allReports = [];
+let reportSortDir = 'desc';
+const reportFilter = { from: '', to: '', state: '', lga: '', category: '', status: '', video: '', q: '' };
+const expandedReports = new Set();
+const STATUS_OPTIONS = [
+    ['submitted', 'Submitted'],
+    ['in_review', 'In review'],
+    ['resolved', 'Resolved'],
+    ['rejected', 'Rejected']
+];
 
 function escRep(s) {
     return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
+function repDate(r) { return new Date(r.submitted_at || r.created_at || Date.now()); }
 
 async function loadReports() {
     const tbody = $('reportTableBody');
@@ -653,7 +765,7 @@ async function loadReports() {
             .order('created_at', { ascending: false })
             .range(from, from + STEP - 1);
         if (error) {
-            tbody.innerHTML = `<tr><td colspan="9" class="empty-note">Could not load reports: ${error.message}</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="8" class="empty-note">Could not load reports: ${error.message}</td></tr>`;
             return;
         }
         rows = rows.concat(data);
@@ -661,54 +773,175 @@ async function loadReports() {
         from += STEP;
     }
     allReports = rows;
+    buildReportFilterOptions();
     renderReports();
 }
 
+function buildReportFilterOptions() {
+    const states = [...new Set(allReports.map(r => r.state).filter(Boolean))].sort();
+    const cats = [...new Set(allReports.map(r => r.category).filter(Boolean))].sort();
+    const fill = (sel, items, allLabel) => {
+        const cur = sel.value;
+        sel.innerHTML = `<option value="">${allLabel}</option>` + items.map(i => `<option value="${escRep(i)}">${escRep(i)}</option>`).join('');
+        if (items.includes(cur)) sel.value = cur;
+    };
+    fill($('repFltState'), states, 'All states');
+    fill($('repFltCategory'), cats, 'All categories');
+    buildReportLGAOptions();
+}
+
+function buildReportLGAOptions() {
+    const st = $('repFltState').value;
+    const lgas = [...new Set(allReports.filter(r => !st || r.state === st).map(r => r.lga).filter(Boolean))].sort();
+    const sel = $('repFltLGA');
+    const cur = sel.value;
+    sel.innerHTML = '<option value="">All LGAs</option>' + lgas.map(l => `<option value="${escRep(l)}">${escRep(l)}</option>`).join('');
+    if (lgas.includes(cur)) sel.value = cur;
+}
+
 function filterReports() {
-    const q = ($('reportSearch').value || '').toLowerCase().trim();
-    if (!q) return allReports;
-    return allReports.filter(r =>
-        [r.reporter_name, r.phone, r.state, r.lga, r.ward, r.category, r.issue_title]
-            .some(v => String(v || '').toLowerCase().includes(q))
-    );
+    const f = reportFilter;
+    const fromT = f.from ? new Date(f.from + 'T00:00:00') : null;
+    const toT = f.to ? new Date(f.to + 'T23:59:59') : null;
+    const rows = allReports.filter(r => {
+        const d = repDate(r);
+        if (fromT && d < fromT) return false;
+        if (toT && d > toT) return false;
+        if (f.state && r.state !== f.state) return false;
+        if (f.lga && r.lga !== f.lga) return false;
+        if (f.category && r.category !== f.category) return false;
+        if (f.status && (r.status || 'submitted') !== f.status) return false;
+        if (f.video === 'yes' && !(r.has_video && r.video_url)) return false;
+        if (f.video === 'no' && (r.has_video && r.video_url)) return false;
+        if (f.q) {
+            const hay = [r.reporter_name, r.phone, r.email, r.state, r.lga, r.ward, r.landmark, r.category, r.issue_title, r.issue_description]
+                .map(v => String(v || '').toLowerCase()).join(' ');
+            if (!hay.includes(f.q)) return false;
+        }
+        return true;
+    });
+    rows.sort((a, b) => reportSortDir === 'asc' ? repDate(a) - repDate(b) : repDate(b) - repDate(a));
+    return rows;
 }
 
 function renderReports() {
-    const tbody = $('reportTableBody');
     const rows = filterReports();
-    $('reportsCount').textContent = `${rows.length} total`;
-    if (!rows.length) {
-        tbody.innerHTML = '<tr><td colspan="9" class="empty-note">No reports yet.</td></tr>';
-        return;
-    }
+    $('reportsCount').textContent = `${rows.length} shown`;
+    renderReportStats(rows);
+    renderReportCategories(rows);
+    renderReportTrend(rows);
+    renderReportTable(rows);
+}
+
+function renderReportStats(rows) {
+    const now = Date.now();
+    $('repStatTotal').textContent = rows.length;
+    $('repStatWeek').textContent = rows.filter(r => repDate(r).getTime() >= now - 7 * 864e5).length;
+    $('repStatVideo').textContent = rows.filter(r => r.has_video && r.video_url).length;
+    $('repStatOpen').textContent = rows.filter(r => !['resolved', 'rejected'].includes(r.status || 'submitted')).length;
+}
+
+function renderReportCategories(rows) {
+    const counts = {};
+    rows.forEach(r => { const c = r.category || 'Uncategorised'; counts[c] = (counts[c] || 0) + 1; });
+    const entries = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+    const max = entries.length ? entries[0][1] : 0;
+    const ul = $('repCatList');
+    if (!entries.length) { ul.innerHTML = '<li class="empty-note">No data in this view.</li>'; return; }
+    ul.innerHTML = entries.map(([cat, n]) => `
+        <li class="break-row" data-cat="${escRep(cat)}">
+            <span class="break-name">${escRep(cat)}</span>
+            <div class="break-bar-track"><div class="break-bar" style="width:${max ? (n / max * 100) : 0}%"></div></div>
+            <span class="break-count">${n}</span>
+        </li>`).join('');
+}
+
+function renderReportTrend(rows) {
+    const days = 30;
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    const buckets = [];
+    for (let i = days - 1; i >= 0; i--) { const d = new Date(today); d.setDate(d.getDate() - i); buckets.push({ d, n: 0 }); }
+    const idx = {};
+    buckets.forEach((b, i) => { idx[b.d.toDateString()] = i; });
+    rows.forEach(r => { const k = repDate(r); k.setHours(0, 0, 0, 0); const i = idx[k.toDateString()]; if (i != null) buckets[i].n++; });
+    const total = buckets.reduce((s, b) => s + b.n, 0);
+    const wrap = $('repTrendWrap');
+    if (!total) { wrap.innerHTML = '<div class="trend-empty">No reports in the last 30 days for this view.</div>'; return; }
+    const max = Math.max(1, ...buckets.map(b => b.n));
+    const fmt = d => d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+    wrap.innerHTML = `<div class="trend-chart">${buckets.map(b => `
+        <div class="trend-col">
+            <div class="trend-tip">${b.n} on ${fmt(b.d)}</div>
+            <div class="trend-bar" style="height:${b.n / max * 100}%"></div>
+        </div>`).join('')}</div>
+        <div class="trend-axis"><span>${fmt(buckets[0].d)}</span><span>${fmt(buckets[buckets.length - 1].d)}</span></div>`;
+}
+
+function statusSelectHtml(r) {
+    const cur = r.status || 'submitted';
+    const opts = STATUS_OPTIONS.map(([v, l]) => `<option value="${v}"${v === cur ? ' selected' : ''}>${l}</option>`).join('');
+    return `<select class="status-select" data-v="${cur}" data-id="${escRep(r.id)}">${opts}</select>`;
+}
+
+function renderReportTable(rows) {
+    const tbody = $('reportTableBody');
+    if (!rows.length) { tbody.innerHTML = '<tr><td colspan="8" class="empty-note">No reports match your filters.</td></tr>'; return; }
     tbody.innerHTML = rows.map(r => {
-        const d = r.submitted_at || r.created_at;
-        const date = d ? new Date(d).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : '—';
+        const open = expandedReports.has(r.id);
+        const date = repDate(r).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
         const video = (r.has_video && r.video_url)
             ? `<a href="${escRep(r.video_url)}" target="_blank" rel="noopener" style="color:var(--green-dark); font-weight:600;">▶ Play</a>`
             : '—';
-        return `<tr>
-            <td>${date}</td>
-            <td>${escRep(r.reporter_name)}</td>
-            <td>${escRep(r.phone)}</td>
-            <td>${escRep(r.state)}</td>
-            <td>${escRep(r.lga)}</td>
-            <td>${escRep(r.ward)}</td>
+        let detail = '';
+        if (open) {
+            const vid = (r.has_video && r.video_url)
+                ? `<div class="full"><dt>Video</dt><dd><video controls preload="metadata" src="${escRep(r.video_url)}"></video></dd></div>`
+                : '';
+            detail = `<tr class="rep-detail"><td colspan="8"><div class="rep-detail-grid">
+                <div class="full"><dt>Issue</dt><dd>${escRep(r.issue_title)}</dd></div>
+                <div class="full"><dt>Description</dt><dd>${escRep(r.issue_description)}</dd></div>
+                <div><dt>Landmark</dt><dd>${escRep(r.landmark) || '—'}</dd></div>
+                <div><dt>Ward</dt><dd>${escRep(r.ward) || '—'}</dd></div>
+                <div><dt>Email</dt><dd>${escRep(r.email) || '—'}</dd></div>
+                <div><dt>WhatsApp</dt><dd>${escRep(r.whatsapp) || '—'}</dd></div>
+                <div><dt>Submitted</dt><dd>${repDate(r).toLocaleString('en-GB')}</dd></div>
+                ${vid}
+            </div></td></tr>`;
+        }
+        return `<tr class="rep-row${open ? ' open' : ''}">
+            <td><button class="rep-expand" data-id="${escRep(r.id)}" title="Show details">${open ? '▾' : '▸'}</button></td>
+            <td class="mono">${date}</td>
+            <td>${escRep(r.reporter_name)}<div class="rep-secondary">${escRep(r.phone)}</div></td>
+            <td>${escRep(r.lga)}<div class="rep-secondary">${escRep(r.state)}</div></td>
             <td>${escRep(r.category)}</td>
-            <td title="${escRep(r.issue_description)}">${escRep(r.issue_title)}</td>
+            <td>${statusSelectHtml(r)}</td>
+            <td>${escRep(r.issue_title)}</td>
             <td>${video}</td>
-        </tr>`;
+        </tr>${detail}`;
     }).join('');
+}
+
+async function updateReportStatus(id, value, sel) {
+    const prev = sel.dataset.v;
+    sel.disabled = true;
+    const { error } = await sb.from('community_reports').update({ status: value }).eq('id', id);
+    sel.disabled = false;
+    if (error) {
+        alert('Could not update status: ' + error.message + '\n\nMake sure the UPDATE policy is added in Supabase.');
+        sel.value = prev;
+        return;
+    }
+    sel.dataset.v = value;
+    const row = allReports.find(r => r.id === id);
+    if (row) row.status = value;
+    renderReportStats(filterReports());
 }
 
 function exportReportsCSV() {
     const rows = filterReports();
     if (!rows.length) return;
-    const cols = ['submitted_at','reporter_name','phone','email','whatsapp','state','lga','ward','landmark','category','issue_title','issue_description','has_video','video_url'];
-    const esc = v => {
-        v = v == null ? '' : String(v);
-        return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v;
-    };
+    const cols = ['submitted_at','status','reporter_name','phone','email','whatsapp','state','lga','ward','landmark','category','issue_title','issue_description','has_video','video_url'];
+    const esc = v => { v = v == null ? '' : String(v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
     const csv = [cols.join(',')].concat(rows.map(r => cols.map(c => esc(r[c])).join(','))).join('\n');
     const a = document.createElement('a');
     a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
@@ -716,8 +949,53 @@ function exportReportsCSV() {
     a.click();
 }
 
-$('reportSearch').addEventListener('input', renderReports);
+function syncReportFilterFromInputs() {
+    reportFilter.from = $('repFltFrom').value;
+    reportFilter.to = $('repFltTo').value;
+    reportFilter.state = $('repFltState').value;
+    reportFilter.lga = $('repFltLGA').value;
+    reportFilter.category = $('repFltCategory').value;
+    reportFilter.status = $('repFltStatus').value;
+    reportFilter.video = $('repFltVideo').value;
+    reportFilter.q = ($('reportSearch').value || '').toLowerCase().trim();
+    const active = ['from','to','state','lga','category','status','video','q'].filter(k => reportFilter[k]).length;
+    const chip = $('repFilterStatus');
+    chip.textContent = active ? `${active} filter${active > 1 ? 's' : ''} active` : '';
+    chip.classList.toggle('active', active > 0);
+    renderReports();
+}
+
+['repFltFrom','repFltTo','repFltCategory','repFltStatus','repFltVideo'].forEach(id => $(id).addEventListener('change', syncReportFilterFromInputs));
+$('repFltState').addEventListener('change', () => { buildReportLGAOptions(); syncReportFilterFromInputs(); });
+$('repFltLGA').addEventListener('change', syncReportFilterFromInputs);
+$('reportSearch').addEventListener('input', syncReportFilterFromInputs);
 $('reportExportBtn').addEventListener('click', exportReportsCSV);
+$('repClearBtn').addEventListener('click', () => {
+    ['repFltFrom','repFltTo','repFltState','repFltLGA','repFltCategory','repFltStatus','repFltVideo'].forEach(id => $(id).value = '');
+    $('reportSearch').value = '';
+    buildReportLGAOptions();
+    syncReportFilterFromInputs();
+});
+$('repSortDate').addEventListener('click', () => {
+    reportSortDir = reportSortDir === 'desc' ? 'asc' : 'desc';
+    $('repSortArrow').textContent = reportSortDir === 'desc' ? '▾' : '▴';
+    renderReports();
+});
+$('repCatList').addEventListener('click', e => {
+    const li = e.target.closest('.break-row'); if (!li) return;
+    $('repFltCategory').value = li.dataset.cat || '';
+    syncReportFilterFromInputs();
+});
+$('reportTableBody').addEventListener('click', e => {
+    const btn = e.target.closest('.rep-expand'); if (!btn) return;
+    const id = btn.dataset.id;
+    if (expandedReports.has(id)) expandedReports.delete(id); else expandedReports.add(id);
+    renderReportTable(filterReports());
+});
+$('reportTableBody').addEventListener('change', e => {
+    const sel = e.target.closest('.status-select'); if (!sel) return;
+    updateReportStatus(sel.dataset.id, sel.value, sel);
+});
 
 // ===== DATA LOADING (pages of 1000) =====
 async function loadData() {
