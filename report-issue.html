@@ -966,6 +966,42 @@
             display: block;
         }
 
+        /* ===== VIDEO UPLOAD PROGRESS ===== */
+        .video-progress {
+            display: none;
+            margin-top: 16px;
+        }
+        .video-progress.active {
+            display: block;
+        }
+        .video-progress-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 6px;
+        }
+        .video-progress.done .video-progress-head { color: var(--success); }
+        .video-progress.error .video-progress-head { color: var(--error); }
+        .video-progress-track {
+            width: 100%;
+            height: 10px;
+            background: rgba(0, 0, 0, 0.08);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .video-progress-fill {
+            width: 0%;
+            height: 100%;
+            background: var(--green);
+            border-radius: 6px;
+            transition: width 0.2s ease;
+        }
+        .video-progress.done .video-progress-fill { background: var(--success); }
+        .video-progress.error .video-progress-fill { background: var(--error); }
+
         /* ===== SUBMIT BUTTON ===== */
         .form-submit {
             width: 100%;
@@ -1906,6 +1942,16 @@
                             <button type="button" class="video-remove-btn" id="videoRemoveBtn" title="Remove video">×</button>
                         </div>
 
+                        <div class="video-progress" id="videoProgress">
+                            <div class="video-progress-head">
+                                <span id="videoProgressLabel">Uploading video…</span>
+                                <span id="videoProgressPct">0%</span>
+                            </div>
+                            <div class="video-progress-track">
+                                <div class="video-progress-fill" id="videoProgressFill"></div>
+                            </div>
+                        </div>
+
                         <div class="video-error" id="videoError"></div>
                     </div>
                 </div>
@@ -2301,6 +2347,9 @@ async function fetchWardsDB(state, lga) {
 })();
 
 // ===== VIDEO UPLOAD LOGIC =====
+// Shared state: set by the uploader when a video is selected, read by the form on submit.
+let videoUpload = { status: 'idle', url: null, filename: null, size: 0 };
+
 (function initVideoUpload() {
     const uploadArea   = document.getElementById('videoUploadArea');
     const uploadBtn    = document.getElementById('videoUploadBtn');
@@ -2312,6 +2361,14 @@ async function fetchWardsDB(state, lga) {
     const fileMeta     = document.getElementById('videoFileMeta');
     const removeBtn    = document.getElementById('videoRemoveBtn');
     const errorDiv     = document.getElementById('videoError');
+
+    const progress      = document.getElementById('videoProgress');
+    const progressFill  = document.getElementById('videoProgressFill');
+    const progressPct   = document.getElementById('videoProgressPct');
+    const progressLabel = document.getElementById('videoProgressLabel');
+    const submitBtn     = document.getElementById('submitBtn');
+    const submitText    = submitBtn.querySelector('.btn-text');
+    let   uploadXhr     = null;
 
     const MAX_SIZE_MB = 100;
     const MAX_DURATION_SEC = 300; // 5 minutes
@@ -2349,6 +2406,67 @@ async function fetchWardsDB(state, lga) {
         return true;
     }
 
+    function setProgress(pct) {
+        progressFill.style.width = pct + '%';
+        progressPct.textContent = pct + '%';
+    }
+    function lockSubmit(label) {
+        submitBtn.disabled = true;
+        if (label) submitText.textContent = label;
+    }
+    function unlockSubmit() {
+        submitBtn.disabled = false;
+        submitText.textContent = 'Submit Report';
+    }
+
+    // Upload the chosen video to Supabase Storage immediately, with a live progress bar.
+    function uploadVideo(file) {
+        const ext = (file.name.split('.').pop() || 'mp4').toLowerCase();
+        const objectPath = `${Date.now()}_${Math.random().toString(36).slice(2, 8)}.${ext}`;
+        videoUpload = { status: 'uploading', url: null, filename: file.name, size: file.size };
+
+        progress.classList.remove('done', 'error');
+        progress.classList.add('active');
+        progressLabel.textContent = 'Uploading video…';
+        setProgress(0);
+        lockSubmit('Uploading video…');
+
+        uploadXhr = new XMLHttpRequest();
+        uploadXhr.open('POST', `${SUPABASE_URL}/storage/v1/object/${VIDEO_BUCKET}/${objectPath}`);
+        uploadXhr.setRequestHeader('apikey', SUPABASE_KEY);
+        uploadXhr.setRequestHeader('Authorization', `Bearer ${SUPABASE_KEY}`);
+        uploadXhr.setRequestHeader('Content-Type', file.type || 'application/octet-stream');
+        uploadXhr.setRequestHeader('x-upsert', 'true');
+
+        uploadXhr.upload.onprogress = function (e) {
+            if (e.lengthComputable) setProgress(Math.round((e.loaded / e.total) * 100));
+        };
+        uploadXhr.onload = function () {
+            if (uploadXhr.status >= 200 && uploadXhr.status < 300) {
+                videoUpload.status = 'done';
+                videoUpload.url = `${SUPABASE_URL}/storage/v1/object/public/${VIDEO_BUCKET}/${objectPath}`;
+                setProgress(100);
+                progress.classList.add('done');
+                progressLabel.textContent = '✓ Video uploaded — ready to submit';
+                unlockSubmit();
+            } else {
+                videoUpload.status = 'error';
+                progress.classList.add('error');
+                progressLabel.textContent = 'Upload failed';
+                showError(`Video upload failed (${uploadXhr.status}): ${uploadXhr.responseText || 'check your Supabase storage policy'}`);
+                unlockSubmit();
+            }
+        };
+        uploadXhr.onerror = function () {
+            videoUpload.status = 'error';
+            progress.classList.add('error');
+            progressLabel.textContent = 'Upload failed';
+            showError('Network error during video upload. Please try again.');
+            unlockSubmit();
+        };
+        uploadXhr.send(file);
+    }
+
     function handleFile(file) {
         if (!file) return;
         if (!validateFile(file)) return;
@@ -2370,18 +2488,24 @@ async function fetchWardsDB(state, lga) {
                 removeVideo();
             } else {
                 fileMeta.textContent = `${formatSize(file.size)} · ${Math.round(previewVideo.duration)}s`;
+                uploadVideo(file);
             }
         };
     }
 
     function removeVideo() {
+        if (uploadXhr && videoUpload.status === 'uploading') { try { uploadXhr.abort(); } catch (e) {} }
+        videoUpload = { status: 'idle', url: null, filename: null, size: 0 };
         currentFile = null;
         previewVideo.src = '';
         preview.classList.remove('active');
         fileInfo.classList.remove('active');
         uploadArea.classList.remove('has-file');
+        progress.classList.remove('active', 'done', 'error');
+        setProgress(0);
         fileInput.value = '';
         clearError();
+        unlockSubmit();
     }
 
     uploadBtn.addEventListener('click', () => fileInput.click());
@@ -2505,28 +2629,25 @@ async function fetchWardsDB(state, lga) {
                 submitted_at: new Date().toISOString()
             };
 
-            // Upload the video (if any) to a Supabase Storage bucket, then save its public URL.
+            // The video is uploaded the moment it is selected (see initVideoUpload),
+            // so here we just attach the result — or block submission if it isn't ready.
             if (videoFile) {
-                const ext = (videoFile.name.split('.').pop() || 'mp4').toLowerCase();
-                const objectPath = `${Date.now()}_${Math.random().toString(36).slice(2, 8)}.${ext}`;
-                const uploadRes = await fetch(`${SUPABASE_URL}/storage/v1/object/${VIDEO_BUCKET}/${objectPath}`, {
-                    method: 'POST',
-                    headers: {
-                        'apikey': SUPABASE_KEY,
-                        'Authorization': `Bearer ${SUPABASE_KEY}`,
-                        'Content-Type': videoFile.type || 'application/octet-stream',
-                        'x-upsert': 'true'
-                    },
-                    body: videoFile
-                });
-                if (!uploadRes.ok) {
-                    const t = await uploadRes.text();
-                    throw new Error(`Video upload failed (${uploadRes.status}): ${t}`);
+                if (videoUpload.status === 'uploading') {
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('loading');
+                    alert('Your video is still uploading. Please wait for the progress bar to reach 100%, then submit.');
+                    return;
+                }
+                if (videoUpload.status !== 'done' || !videoUpload.url) {
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('loading');
+                    alert('The video did not finish uploading. Please remove it and try again, or submit without a video.');
+                    return;
                 }
                 payload.has_video = true;
-                payload.video_filename = videoFile.name;
-                payload.video_size = videoFile.size;
-                payload.video_url = `${SUPABASE_URL}/storage/v1/object/public/${VIDEO_BUCKET}/${objectPath}`;
+                payload.video_filename = videoUpload.filename || videoFile.name;
+                payload.video_size = videoUpload.size || videoFile.size;
+                payload.video_url = videoUpload.url;
             } else {
                 payload.has_video = false;
             }
