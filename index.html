@@ -1462,6 +1462,72 @@
             transform: translateY(-1px);
         }
 
+        .lga-btn-soon {
+            background: rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.45);
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .lga-btn-soon:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: none;
+        }
+
+        .groups-active-banner {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            max-width: 560px;
+            margin: 0 auto 22px;
+            padding: 12px 18px;
+            background: rgba(0, 135, 81, 0.12);
+            border: 1px solid rgba(0, 135, 81, 0.35);
+            border-radius: 999px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .groups-active-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 0 0 rgba(0, 135, 81, 0.6);
+            animation: groupsPulse 2s infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes groupsPulse {
+            0%   { box-shadow: 0 0 0 0 rgba(0, 135, 81, 0.55); }
+            70%  { box-shadow: 0 0 0 8px rgba(0, 135, 81, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 135, 81, 0); }
+        }
+
+        .groups-active-text strong {
+            color: var(--white);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .groups-active-bar {
+            flex: 1 1 120px;
+            min-width: 100px;
+            height: 6px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.12);
+            overflow: hidden;
+        }
+
+        .groups-active-fill {
+            display: block;
+            height: 100%;
+            width: 0;
+            border-radius: 999px;
+            background: var(--green);
+            transition: width 1s ease;
+        }
+
         .lga-btn-register {
             background: transparent;
             color: rgba(255, 255, 255, 0.7);
@@ -3071,6 +3137,14 @@
                 <p class="states-subheadline">Search for your state or Local Government Area to connect with your local FixNaija network and join the movement.</p>
             </div>
 
+            <div class="groups-active-banner" id="groupsActiveBanner" aria-live="polite">
+                <span class="groups-active-dot"></span>
+                <span class="groups-active-text">
+                    <strong id="groupsActiveCount">0</strong> of <strong>774</strong> LGA WhatsApp groups active
+                </span>
+                <span class="groups-active-bar"><span class="groups-active-fill" id="groupsActiveFill"></span></span>
+            </div>
+
             <div class="search-container">
                 <span class="search-icon">🔍</span>
                 <input type="text" class="search-input" id="stateSearch" placeholder="Search by state or LGA name...">
@@ -3525,6 +3599,161 @@ const nigeriaData = {
     }
 };
 
+// ===== WhatsApp group links by State -> LGA (injected from 774-LGA master list) =====
+// More links will be added over time; LGAs without a link show a "Coming Soon" state.
+const lgaLinks = {
+    "Benue": {
+        "Ado": "https://chat.whatsapp.com/LhS6GSHECnE8if9dIA7cBz",
+        "Agatu": "https://chat.whatsapp.com/Hc9ozOBeWDZEIfB3FMm0qr",
+        "Apa": "https://chat.whatsapp.com/LGv2Lek3Tf54WRcz5hOcCX",
+        "Buruku": "https://chat.whatsapp.com/FSn4UnO5nDk2lJ99ZpsYt8",
+        "Gboko": "https://chat.whatsapp.com/JGJLK8qZsQN49fwGeuax0P",
+        "Guma": "https://chat.whatsapp.com/L91uTM2fL54LqDF3WnVQSA",
+        "Gwer East": "https://chat.whatsapp.com/LFbOszo8xTr2SlqgWZdLuX",
+        "Gwer West": "https://chat.whatsapp.com/Cv6gTpJBUGC12xVT0ocgqg",
+        "Katsina-Ala": "https://chat.whatsapp.com/LodZ6u9mMBDDsezCGRKffd",
+        "Konshisha": "https://chat.whatsapp.com/HEOOnJvR66D490Gx6sZXr1",
+        "Kwande": "https://chat.whatsapp.com/L263tz9aBs4CA4Ve35aIfj",
+        "Logo": "https://chat.whatsapp.com/JEv6kiseXtKEUQnL27dyt8",
+        "Makurdi": "https://chat.whatsapp.com/F6iwouu1FQv2SFhLCFOtOI",
+        "Obi": "https://chat.whatsapp.com/H1ek7hkhBH1FhAX7EyUC7E",
+        "Ogbadibo": "https://chat.whatsapp.com/J7uwdsvHqtY2s5tMgMxHDJ",
+        "Ohimini": "https://chat.whatsapp.com/EXuioHZLjrmARliDVHulyt",
+        "Oju": "https://chat.whatsapp.com/HDNeVhjoeXP7MleKgAls9d",
+        "Okpokwu": "https://chat.whatsapp.com/KKP9vPAtUjg5V26HZSDvs2",
+        "Otukpo": "https://chat.whatsapp.com/EPYDbVEaJ3TEKSzeV2NYeF",
+        "Tarka": "https://chat.whatsapp.com/HAZQcAmHCqD8vjPUR9uINp",
+        "Ukum": "https://chat.whatsapp.com/GVutvSLqkMJFO1bAWl5zOe",
+        "Ushongo": "https://chat.whatsapp.com/LALYiVH2xd5LBG0N7HEJn4",
+        "Vandeikya": "https://chat.whatsapp.com/DeQJAlhCDay0DUlO0LudQM"
+    },
+    "Kogi": {
+        "Adavi": "https://chat.whatsapp.com/HBTvMcaTptPHqjHJP5evHM",
+        "Ajaokuta": "https://chat.whatsapp.com/KEg06krmVZZ9EPcLRpVwbF",
+        "Ankpa": "https://chat.whatsapp.com/JUNx3ODGGUPKD8if0deIGS",
+        "Bassa": "https://chat.whatsapp.com/J0WfGpJYq8AKkR6prZbMO0"
+    },
+    "Ebonyi": {
+        "Abakaliki": "https://chat.whatsapp.com/J3FFwEyWEOIH1DCYJyvfh5?s=cl&p=a&mlu=2",
+        "Afikpo North": "https://chat.whatsapp.com/GUgToO23qgb4NG59D3dj3W?s=cl&p=a&mlu=2",
+        "Afikpo South": "https://chat.whatsapp.com/EoLHLxF61an2rKUzu7toXa?s=cl&p=a&mlu=2",
+        "Ebonyi": "https://chat.whatsapp.com/GtNZzYRWZxvJ718FtPt3aD?s=cl&p=a&mlu=2",
+        "Ezza North": "https://chat.whatsapp.com/DZ7ONpZqGmtDtpb31JBYyP?s=cl&p=a&mlu=2",
+        "Ezza South": "https://chat.whatsapp.com/Lksqunux1l63XNZq78RnvL?s=cl&p=a&mlu=2",
+        "Ikwo": "https://chat.whatsapp.com/BeIY1SR6TIqFhjGlsxOH0V?s=cl&p=a&mlu=2",
+        "Ishielu": "https://chat.whatsapp.com/KeBm7iDVob2KwOkyNBETHM?s=cl&p=a&mlu=2",
+        "Ivo": "https://chat.whatsapp.com/H7H3NpSl7HY6hkDi2EkuB3?s=cl&p=a&mlu=2",
+        "Izzi": "https://chat.whatsapp.com/JalCz7EEEV453V4f42HUso?s=cl&p=a&mlu=2",
+        "Ohaozara": "https://chat.whatsapp.com/JzWgmk2sQ0DFnNTY4fIhXb?s=cl&p=a&mlu=2",
+        "Ohaukwu": "https://chat.whatsapp.com/HDDh3B5n4inD6yQuO3CZol?s=cl&p=a&mlu=2",
+        "Onicha": "https://chat.whatsapp.com/FJdTUjc39z8KaogJGszn5f?s=cl&p=a&mlu=2"
+    },
+    "Enugu": {
+        "Aninri": "https://chat.whatsapp.com/GSO8USHBvks1wBY7tBswO8?s=cl&p=a&mlu=2",
+        "Awgu": "https://chat.whatsapp.com/BAXjbCrgS0BC2ySo0QMzUN?s=cl&p=a&mlu=2",
+        "Enugu East": "https://chat.whatsapp.com/HkmtFsNHAJh5hJXY0ePDx2?s=cl&p=a&mlu=2",
+        "Enugu North": "https://chat.whatsapp.com/FSGDYkpQu1681h6ikfCsFp?s=cl&p=a&mlu=2",
+        "Enugu South": "https://chat.whatsapp.com/BNYhqkLswMwJBljTJpios4?s=cl&p=a&mlu=2",
+        "Ezeagu": "https://chat.whatsapp.com/JY3NStSVd6GKiMtnRLSsoe?s=cl&p=a&mlu=2",
+        "Igbo Etiti": "https://chat.whatsapp.com/D3GCCrMJEw254HjJet2kzD?s=cl&p=a&mlu=2",
+        "Igbo Eze North": "https://chat.whatsapp.com/KvLZt4UzVLE3idkuY887I0?s=cl&p=a&mlu=2",
+        "Igbo Eze South": "https://chat.whatsapp.com/Cs6WXe2Mzmo44l6yaOfr5m?s=cl&p=a&mlu=2",
+        "Isi Uzo": "https://chat.whatsapp.com/HrKSbbn6qSj92TV9OGDKOx?s=cl&p=a&mlu=2",
+        "Nkanu East": "https://chat.whatsapp.com/Fa2yBFKhPrYBjdareme782?s=cl&p=a&mlu=2",
+        "Nkanu West": "https://chat.whatsapp.com/JNoSEvyHU1SI78Now7WnL0?s=cl&p=a&mlu=2",
+        "Nsukka": "https://chat.whatsapp.com/F3gfHVhQH5uGI7QjebLwxG?s=cl&p=a&mlu=2"
+    },
+    "Akwa Ibom": {
+        "Abak": "https://chat.whatsapp.com/JRDighFCZrg2YOsZrWxWT8",
+        "Eastern Obolo": "https://chat.whatsapp.com/CYmwvdJDGIh39W7y8o6714",
+        "Eket": "https://chat.whatsapp.com/GK2YamG5IsEHbI9lF47fFm",
+        "Esit Eket": "https://chat.whatsapp.com/EmiNEI9l4QN1oGlncEpNCr",
+        "Essien Udim": "https://chat.whatsapp.com/IVE5xvOmGaN5AgykV0ibEw",
+        "Etim Ekpo": "https://chat.whatsapp.com/ELx0p0pMrTfBQ5OlLqZLBi",
+        "Etinan": "https://chat.whatsapp.com/GSZ2s5gNXGQ6pX3Hg4jLmt",
+        "Ibeno": "https://chat.whatsapp.com/EltsVFTAwbi8oJoi4BJY24",
+        "Ibesikpo Asutan": "https://chat.whatsapp.com/H2KnRX055eoAvZuuKeS5Yz",
+        "Ibiono-Ibom": "https://chat.whatsapp.com/GolTS5eWerLF7b1115Q3C7",
+        "Ika": "https://chat.whatsapp.com/FVpqQTTrOvf9zsIO0SoKVo",
+        "Ikono": "https://chat.whatsapp.com/BsnBvtvWJ27LdAAmQhscSo",
+        "Ikot Abasi": "https://chat.whatsapp.com/LpFZ3cPf1oIDniIV3aLRIO",
+        "Ikot Ekpene": "https://chat.whatsapp.com/Ga4JpIvrLOiKBRLNlMUnOi",
+        "Ini": "https://chat.whatsapp.com/H0iIon0PJd73FFw7eIUEw6",
+        "Itu": "https://chat.whatsapp.com/LCLlr2T2avF97vWMIdUgKQ",
+        "Mbo": "https://chat.whatsapp.com/DEELsRkvG2jF6cYWDQ9bZI",
+        "Mkpat-Enin": "https://chat.whatsapp.com/HZMBqiWZlVz9XjV2BBXMln",
+        "Nsit-Atai": "https://chat.whatsapp.com/FC6ei9Tgu2zBY4uEnq1jDE",
+        "Nsit-Ibom": "https://chat.whatsapp.com/LVLY8jAmOv5IHoOPspj1Ky",
+        "Nsit-Ubium": "https://chat.whatsapp.com/IL8beO8P38n1nDVRqFpy4d",
+        "Obot Akara": "https://chat.whatsapp.com/HAzR1LScc4y6BwKuvSVFpm",
+        "Okobo": "https://chat.whatsapp.com/LC6bnlGymfV7ka0u7JZsqP",
+        "Onna": "https://chat.whatsapp.com/HE9uK0dV1aO3l4fv9NErCe",
+        "Oron": "https://chat.whatsapp.com/DbXRgYtxmB5KDFF2tVaKe9",
+        "Oruk Anam": "https://chat.whatsapp.com/FJ5ff7iiSSa91B7qicjVGA",
+        "Udung-Uko": "https://chat.whatsapp.com/EUWI4fusZz4D3AfxquS1ai",
+        "Ukanafun": "https://chat.whatsapp.com/KcnxcMs6I9j3ElTRuk84AY",
+        "Uruan": "https://chat.whatsapp.com/HT4BhJucIF72N9AsjI7CSX",
+        "Urue-Offong/Oruko": "https://chat.whatsapp.com/FeAEQEG836VKPt8yWeJBDL",
+        "Uyo": "https://chat.whatsapp.com/KQxlgBVeE8XDDZLLYkIOY9"
+    },
+    "Bayelsa": {
+        "Brass": "https://chat.whatsapp.com/JGmWW8s5xw2JrcahBhkOkq",
+        "Ekeremor": "https://chat.whatsapp.com/BaDWl73BMmbKiUefaIpEWT",
+        "Kolokuma/Opokuma": "https://chat.whatsapp.com/Kpgohhw2RrZCH6ONnZMZrM",
+        "Nembe": "https://chat.whatsapp.com/LDiBwkn5gT7GCV0ALvaiGp",
+        "Ogbia": "https://chat.whatsapp.com/B62w1JNIkiH2yUeTaMIfc2",
+        "Sagbama": "https://chat.whatsapp.com/Jb9YWRKOLeQ1nWkhsYH2JZ",
+        "Southern Ijaw": "https://chat.whatsapp.com/EOeF2KXscnzAwWH5hoP9TC",
+        "Yenagoa": "https://chat.whatsapp.com/KvNoyuU78gYEqJ6qdwIU9L"
+    },
+    "Cross River": {
+        "Abi": "https://chat.whatsapp.com/HxNvt05II47FkujxUcGFPc",
+        "Akamkpa": "https://chat.whatsapp.com/I3fyeYJZLUP5QCHipk2Usm",
+        "Akpabuyo": "https://chat.whatsapp.com/DHm1DjW1YD0Ev3knVO6lPI",
+        "Bakassi": "https://chat.whatsapp.com/D8LfHjssJ8gBOc6gFkTQrr",
+        "Bekwarra": "https://chat.whatsapp.com/ENij4qnDtByB9aALpN2mFV",
+        "Biase": "https://chat.whatsapp.com/FEri0asXZwGBWJMNgSrgfb",
+        "Boki": "https://chat.whatsapp.com/LfBPB4yxGVj4v2VFbP8fEf",
+        "Calabar Municipal": "https://chat.whatsapp.com/HRTjl3jCXAdAqGvQZgW4dx",
+        "Calabar South": "https://chat.whatsapp.com/L8aq2Yh5o6x8vOnq7ohPWy",
+        "Etung": "https://chat.whatsapp.com/EIRc1qaAYOq3VmouvxBgEM",
+        "Ikom": "https://chat.whatsapp.com/ERyf15D7BtyBpqI5XVSy9o",
+        "Obanliku": "https://chat.whatsapp.com/GyXpAaB2eJpEtW9VnbeWvb",
+        "Obubra": "https://chat.whatsapp.com/Bu9ypiW4rRe3Xti0wJBrau",
+        "Obudu": "https://chat.whatsapp.com/IzfOXoi4UH294hjDTI5sSI",
+        "Odukpani": "https://chat.whatsapp.com/HRtzN0X5cNT0AlKGFZwHfW",
+        "Ogoja": "https://chat.whatsapp.com/F4r3qgp8JJG9hhMWF53oUS",
+        "Yakuur": "https://chat.whatsapp.com/Ba5GDdHJFJz3ibjN1hxdjK",
+        "Yala": "https://chat.whatsapp.com/E5zosHz4UOQ2E7u8ldnwA0"
+    }
+};
+
+// ===== Live "X of 774 groups active" counter =====
+(function renderGroupsActive() {
+    const TOTAL_LGAS = 774;
+    let active = 0;
+    for (const state in lgaLinks) {
+        active += Object.keys(lgaLinks[state]).length;
+    }
+    const countEl = document.getElementById('groupsActiveCount');
+    const fillEl  = document.getElementById('groupsActiveFill');
+    if (!countEl) return;
+
+    const pct = Math.min(100, (active / TOTAL_LGAS) * 100);
+
+    // Count-up animation
+    const duration = 900;
+    const start = performance.now();
+    function step(now) {
+        const t = Math.min(1, (now - start) / duration);
+        countEl.textContent = Math.round(t * active);
+        if (t < 1) requestAnimationFrame(step);
+        else countEl.textContent = active;
+    }
+    requestAnimationFrame(step);
+    requestAnimationFrame(() => { if (fillEl) fillEl.style.width = pct.toFixed(1) + '%'; });
+})();
+
 // ===== COUNTDOWN TIMER LOGIC =====
 (function() {
     const eventCards = document.querySelectorAll('.event-card[data-event-date]');
@@ -3872,12 +4101,17 @@ async function populatePUDropdown(stateName, lgaName, wardName) {
                     </div>
                     <div class="lga-list">
                         <div class="lga-list-inner">
-                            ${displayLGAs.map(lga => `
+                            ${displayLGAs.map(lga => {
+                                const waLink = (lgaLinks[state] && lgaLinks[state][lga]) || null;
+                                const waBtn = waLink
+                                    ? `<a href="${waLink}" class="lga-btn lga-btn-whatsapp" target="_blank" rel="noopener">Join WhatsApp</a>`
+                                    : `<span class="lga-btn lga-btn-whatsapp lga-btn-soon" title="WhatsApp group coming soon">Coming Soon</span>`;
+                                return `
                                 <div class="lga-item-wrap">
                                     <div class="lga-item">
                                         <span class="lga-name">${lga}</span>
                                         <div class="lga-actions">
-                                            <a href="https://chat.whatsapp.com/PLACEHOLDER" class="lga-btn lga-btn-whatsapp" target="_blank">Join WhatsApp</a>
+                                            ${waBtn}
                                             <button class="lga-btn lga-btn-wards" data-state="${state}" data-lga="${lga}">View Wards ▾</button>
                                         </div>
                                     </div>
@@ -3889,7 +4123,8 @@ async function populatePUDropdown(stateName, lgaName, wardName) {
                                         </div>
                                     </div>
                                 </div>
-                            `).join('')}
+                            `;
+                            }).join('')}
                         </div>
                     </div>
                 `;
