@@ -490,6 +490,60 @@
             letter-spacing: 1px;
         }
 
+        .groups-active-banner {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            max-width: 560px;
+            margin: 0 auto 22px;
+            padding: 12px 18px;
+            background: rgba(0, 135, 81, 0.12);
+            border: 1px solid rgba(0, 135, 81, 0.35);
+            border-radius: 999px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .groups-active-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 0 0 rgba(0, 135, 81, 0.6);
+            animation: groupsPulse 2s infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes groupsPulse {
+            0%   { box-shadow: 0 0 0 0 rgba(0, 135, 81, 0.55); }
+            70%  { box-shadow: 0 0 0 8px rgba(0, 135, 81, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 135, 81, 0); }
+        }
+
+        .groups-active-text strong {
+            color: var(--white);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .groups-active-bar {
+            flex: 1 1 120px;
+            min-width: 100px;
+            height: 6px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.12);
+            overflow: hidden;
+        }
+
+        .groups-active-fill {
+            display: block;
+            height: 100%;
+            width: 0;
+            border-radius: 999px;
+            background: var(--green);
+            transition: width 1s ease;
+        }
+
         .hero-right {
             display: flex;
             justify-content: center;
@@ -2681,6 +2735,14 @@
                 <p class="states-subheadline">Search for your state or Local Government Area to connect with your local FixNaija network and join the movement.</p>
             </div>
 
+            <div class="groups-active-banner" id="groupsActiveBanner" aria-live="polite">
+                <span class="groups-active-dot"></span>
+                <span class="groups-active-text">
+                    <strong id="groupsActiveCount">0</strong> of <strong>774</strong> LGA WhatsApp groups active
+                </span>
+                <span class="groups-active-bar"><span class="groups-active-fill" id="groupsActiveFill"></span></span>
+            </div>
+
             <div class="search-container">
                 <span class="search-icon">🔍</span>
                 <input type="text" class="search-input" id="stateSearch" placeholder="Search by state or LGA name...">
@@ -3011,6 +3073,32 @@ const lgaLinks = {
         "Yala": "https://chat.whatsapp.com/E5zosHz4UOQ2E7u8ldnwA0"
     }
 };
+
+// ===== Live "X of 774 groups active" counter =====
+(function renderGroupsActive() {
+    const TOTAL_LGAS = 774;
+    let active = 0;
+    for (const state in lgaLinks) {
+        active += Object.keys(lgaLinks[state]).length;
+    }
+    const countEl = document.getElementById('groupsActiveCount');
+    const fillEl  = document.getElementById('groupsActiveFill');
+    if (!countEl) return;
+
+    const pct = Math.min(100, (active / TOTAL_LGAS) * 100);
+
+    // Count-up animation
+    const duration = 900;
+    const start = performance.now();
+    function step(now) {
+        const t = Math.min(1, (now - start) / duration);
+        countEl.textContent = Math.round(t * active);
+        if (t < 1) requestAnimationFrame(step);
+        else countEl.textContent = active;
+    }
+    requestAnimationFrame(step);
+    requestAnimationFrame(() => { if (fillEl) fillEl.style.width = pct.toFixed(1) + '%'; });
+})();
 
 // ===== SUPABASE CONFIG =====
 const SUPABASE_URL = 'https://bcdscsjqiqnzsthntutb.supabase.co';
