@@ -552,6 +552,7 @@ td.mono { font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; white-spa
                     <table>
                         <thead>
                             <tr>
+                                <th></th>
                                 <th>Date</th>
                                 <th>Name</th>
                                 <th>Phone</th>
@@ -565,7 +566,7 @@ td.mono { font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; white-spa
                             </tr>
                         </thead>
                         <tbody id="regTableBody">
-                            <tr><td colspan="10" class="loading-note">Loading…</td></tr>
+                            <tr><td colspan="11" class="loading-note">Loading…</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -741,6 +742,7 @@ let allReports = [];
 let reportSortDir = 'desc';
 const reportFilter = { from: '', to: '', state: '', lga: '', category: '', status: '', video: '', q: '' };
 const expandedReports = new Set();
+const expandedRegs = new Set();
 const STATUS_OPTIONS = [
     ['submitted', 'Submitted'],
     ['in_review', 'In review'],
@@ -1010,7 +1012,7 @@ async function loadData() {
             .order('created_at', { ascending: false })
             .range(from, from + STEP - 1);
         if (error) {
-            $('regTableBody').innerHTML = `<tr><td colspan="10" class="empty-note">Could not load data: ${error.message}</td></tr>`;
+            $('regTableBody').innerHTML = `<tr><td colspan="11" class="empty-note">Could not load data: ${error.message}</td></tr>`;
             $('breakList').innerHTML = '<li class="empty-note">Could not load data.</li>';
             return;
         }
@@ -1282,10 +1284,30 @@ function renderTable() {
     const rows = filteredRows.slice(start, start + PAGE_SIZE);
 
     if (filteredRows.length === 0) {
-        body.innerHTML = '<tr><td colspan="10" class="empty-note">No registrations match.</td></tr>';
+        body.innerHTML = '<tr><td colspan="11" class="empty-note">No registrations match.</td></tr>';
     } else {
-        body.innerHTML = rows.map(r => `
-            <tr>
+        body.innerHTML = rows.map((r, i) => {
+            const key = String(r.id != null ? r.id : `idx-${start + i}`);
+            const open = expandedRegs.has(key);
+            const dash = v => (v == null || v === '') ? '—' : escapeHtml(String(v));
+            let detail = '';
+            if (open) {
+                detail = `<tr class="rep-detail reg-detail"><td colspan="11"><div class="rep-detail-grid">
+                    <div><dt>Membership status</dt><dd>${dash(r.membership_status)}</dd></div>
+                    <div><dt>Gender</dt><dd>${dash(r.gender)}</dd></div>
+                    <div><dt>Marital status</dt><dd>${dash(r.marital_status)}</dd></div>
+                    <div><dt>Age group</dt><dd>${dash(r.age_group)}</dd></div>
+                    <div><dt>Religion</dt><dd>${dash(r.religion)}</dd></div>
+                    <div><dt>Occupation / Status</dt><dd>${dash(r.occupation)}</dd></div>
+                    <div><dt>Ethnic group</dt><dd>${dash(r.ethnic_group)}</dd></div>
+                    <div><dt>Digital skills</dt><dd>${dash(r.digital_skills)}</dd></div>
+                    <div><dt>Mobilization skills</dt><dd>${dash(r.mobilization_skills)}</dd></div>
+                    <div><dt>WhatsApp</dt><dd>${dash(r.whatsapp)}</dd></div>
+                    <div class="full"><dt>Reason for joining</dt><dd>${dash(r.reason)}</dd></div>
+                </div></td></tr>`;
+            }
+            return `<tr class="rep-row${open ? ' open' : ''}">
+                <td><button class="rep-expand" data-key="${escapeHtml(key)}" title="Show details">${open ? '▾' : '▸'}</button></td>
                 <td class="mono">${new Date(r.created_at).toLocaleDateString('en-NG', { day: '2-digit', month: 'short', year: 'numeric' })}</td>
                 <td>${escapeHtml(r.full_name || '')}</td>
                 <td class="mono">${escapeHtml(r.phone || '')}</td>
@@ -1296,7 +1318,8 @@ function renderTable() {
                 <td>${escapeHtml(pretty(r.ward || ''))}</td>
                 <td>${escapeHtml(pretty(r.polling_unit || ''))}</td>
                 <td class="mono">${escapeHtml(r.delimitation || '')}</td>
-            </tr>`).join('');
+            </tr>${detail}`;
+        }).join('');
     }
 
     const totalPages = Math.max(1, Math.ceil(filteredRows.length / PAGE_SIZE));
@@ -1305,6 +1328,12 @@ function renderTable() {
     $('nextBtn').disabled = page >= totalPages - 1;
 }
 
+$('regTableBody').addEventListener('click', e => {
+    const btn = e.target.closest('.rep-expand'); if (!btn) return;
+    const key = btn.dataset.key;
+    if (expandedRegs.has(key)) expandedRegs.delete(key); else expandedRegs.add(key);
+    renderTable();
+});
 $('prevBtn').addEventListener('click', () => { if (page > 0) { page--; renderTable(); } });
 $('nextBtn').addEventListener('click', () => {
     const totalPages = Math.ceil(filteredRows.length / PAGE_SIZE);
