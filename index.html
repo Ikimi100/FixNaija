@@ -3384,6 +3384,94 @@
                             <span class="ward-loading-spinner"></span> Loading polling units...
                         </div>
                     </div>
+                    <div class="form-section-label">📋 Demographics & Skills</div>
+                    <div class="form-group">
+                        <label class="form-label">Membership Status</label>
+                        <select class="form-select" id="regMembershipStatus" required>
+                            <option value="">Select membership status</option>
+                            <option value="Volunteer">Volunteer</option>
+                            <option value="Active Member">Active Member</option>
+                            <option value="Financial Contributor">Financial Contributor</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Gender</label>
+                        <select class="form-select" id="regGender" required>
+                            <option value="">Select gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Marital Status</label>
+                        <select class="form-select" id="regMaritalStatus" required>
+                            <option value="">Select marital status</option>
+                            <option value="Single">Single</option>
+                            <option value="Married">Married</option>
+                            <option value="Divorced">Divorced</option>
+                            <option value="Widowed">Widowed</option>
+                            <option value="Separated">Separated</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Age Group</label>
+                        <select class="form-select" id="regAgeGroup" required>
+                            <option value="">Select age group</option>
+                            <option value="18-25">18–25</option>
+                            <option value="26-35">26–35</option>
+                            <option value="36-45">36–45</option>
+                            <option value="46-55">46–55</option>
+                            <option value="56-70">56–70</option>
+                            <option value="Above 70">Above 70</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Religion</label>
+                        <select class="form-select" id="regReligion" required>
+                            <option value="">Select religion</option>
+                            <option value="Christian">Christian</option>
+                            <option value="Muslim">Muslim</option>
+                            <option value="Traditional">Traditional</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label class="form-label">Occupation / Status</label>
+                        <select class="form-select" id="regOccupation" required>
+                            <option value="">Select your status</option>
+                            <option value="Civil Servant">Civil Servant</option>
+                            <option value="Business/Professional">Business/Professional</option>
+                            <option value="Artisan">Artisan</option>
+                            <option value="Farmer">Farmer</option>
+                            <option value="Small Scale Business/Self-Employed">Small Scale Business / Self-Employed</option>
+                            <option value="Market Woman">Market Woman</option>
+                            <option value="Road Transport Worker">Road Transport Worker</option>
+                            <option value="Unemployed">Unemployed</option>
+                            <option value="Student">Student</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label class="form-label">Ethnic Group</label>
+                        <input type="text" class="form-input" id="regEthnicGroup" placeholder="e.g. Yoruba, Igbo, Hausa, Ijaw..." required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Digital Skills</label>
+                        <select class="form-select" id="regDigitalSkills" required>
+                            <option value="">Select level</option>
+                            <option value="High">High</option>
+                            <option value="Average">Average</option>
+                            <option value="None">None</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Mobilization Skills</label>
+                        <select class="form-select" id="regMobilizationSkills" required>
+                            <option value="">Select level</option>
+                            <option value="High">High</option>
+                            <option value="Average">Average</option>
+                            <option value="None">None</option>
+                        </select>
+                    </div>
                     <div class="form-group full-width">
                         <label class="form-label">Why do you want to join FixNaija?</label>
                         <textarea class="form-textarea" id="regReason" placeholder="Tell us briefly why you want to be part of the movement..."></textarea>
@@ -4488,6 +4576,16 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
     const ward      = document.getElementById('regWard').value;
     const reason    = document.getElementById('regReason').value.trim();
 
+    const membershipStatus  = document.getElementById('regMembershipStatus').value;
+    const gender            = document.getElementById('regGender').value;
+    const maritalStatus     = document.getElementById('regMaritalStatus').value;
+    const ageGroup          = document.getElementById('regAgeGroup').value;
+    const religion          = document.getElementById('regReligion').value;
+    const occupation        = document.getElementById('regOccupation').value;
+    const ethnicGroup       = document.getElementById('regEthnicGroup').value.trim();
+    const digitalSkills     = document.getElementById('regDigitalSkills').value;
+    const mobilizationSkills = document.getElementById('regMobilizationSkills').value;
+
     const puSelect  = document.getElementById('regPollingUnit');
     const pollingUnit  = puSelect.value;
     const puOption     = puSelect.options[puSelect.selectedIndex];
@@ -4521,6 +4619,15 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
                 ward: ward || null,
                 polling_unit: pollingUnit || null,
                 delimitation: delimitation,
+                membership_status: membershipStatus || null,
+                gender: gender || null,
+                marital_status: maritalStatus || null,
+                age_group: ageGroup || null,
+                religion: religion || null,
+                occupation: occupation || null,
+                ethnic_group: ethnicGroup || null,
+                digital_skills: digitalSkills || null,
+                mobilization_skills: mobilizationSkills || null,
                 reason: reason || null
             })
         });
