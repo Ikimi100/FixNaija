@@ -499,6 +499,42 @@ td.mono { font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; white-spa
                         <label>Ward / polling unit</label>
                         <input type="text" id="fltWard" placeholder="e.g. Iku South">
                     </div>
+                    <div class="filter-field">
+                        <label>Membership status</label>
+                        <select id="fltMembership"><option value="">All</option></select>
+                    </div>
+                    <div class="filter-field">
+                        <label>Gender</label>
+                        <select id="fltGender"><option value="">All</option></select>
+                    </div>
+                    <div class="filter-field">
+                        <label>Marital status</label>
+                        <select id="fltMarital"><option value="">All</option></select>
+                    </div>
+                    <div class="filter-field">
+                        <label>Age group</label>
+                        <select id="fltAge"><option value="">All</option></select>
+                    </div>
+                    <div class="filter-field">
+                        <label>Religion</label>
+                        <select id="fltReligion"><option value="">All</option></select>
+                    </div>
+                    <div class="filter-field">
+                        <label>Occupation</label>
+                        <select id="fltOccupation"><option value="">All</option></select>
+                    </div>
+                    <div class="filter-field">
+                        <label>Digital skills</label>
+                        <select id="fltDigital"><option value="">All</option></select>
+                    </div>
+                    <div class="filter-field">
+                        <label>Mobilization skills</label>
+                        <select id="fltMobilization"><option value="">All</option></select>
+                    </div>
+                    <div class="filter-field">
+                        <label>Ethnic group</label>
+                        <input type="text" id="fltEthnic" placeholder="e.g. Yoruba">
+                    </div>
                 </div>
                 <div class="filter-actions">
                     <button class="btn btn-gold" id="applyFilterBtn">Apply filters</button>
@@ -1154,7 +1190,26 @@ function populateFilterOptions() {
     sSel.innerHTML = '<option value="">All states</option>';
     states.forEach(s => sSel.add(new Option(pretty(s), s)));
 
+    fillDemoSelect('fltMembership', 'membership_status');
+    fillDemoSelect('fltGender', 'gender');
+    fillDemoSelect('fltMarital', 'marital_status');
+    fillDemoSelect('fltAge', 'age_group');
+    fillDemoSelect('fltReligion', 'religion');
+    fillDemoSelect('fltOccupation', 'occupation');
+    fillDemoSelect('fltDigital', 'digital_skills');
+    fillDemoSelect('fltMobilization', 'mobilization_skills');
+
     populateLGAOptions();
+}
+
+function fillDemoSelect(id, field) {
+    const sel = $(id);
+    if (!sel) return;
+    const prev = sel.value;
+    const vals = [...new Set(allRows.map(r => r[field]).filter(Boolean))].sort();
+    sel.innerHTML = '<option value="">All</option>';
+    vals.forEach(v => sel.add(new Option(v, v)));
+    if ([...sel.options].some(o => o.value === prev)) sel.value = prev;
 }
 
 function populateLGAOptions() {
@@ -1176,6 +1231,15 @@ function applyFilters() {
     const st   = $('fltState').value;
     const lg   = $('fltLGA').value;
     const wd   = $('fltWard').value.trim().toLowerCase();
+    const mem  = $('fltMembership').value;
+    const gen  = $('fltGender').value;
+    const mar  = $('fltMarital').value;
+    const age  = $('fltAge').value;
+    const rel  = $('fltReligion').value;
+    const occ  = $('fltOccupation').value;
+    const dig  = $('fltDigital').value;
+    const mob  = $('fltMobilization').value;
+    const eth  = $('fltEthnic').value.trim().toLowerCase();
 
     filteredRows = allRows.filter(r => {
         if (from && new Date(r.created_at) < from) return false;
@@ -1185,8 +1249,18 @@ function applyFilters() {
         if (grp === '__UNASSIGNED__') { if (r.group_name) return false; }
         else if (grp && r.group_name !== grp) return false;
         if (wd && !((r.ward || '').toLowerCase().includes(wd) || (r.polling_unit || '').toLowerCase().includes(wd))) return false;
+        if (mem && r.membership_status !== mem) return false;
+        if (gen && r.gender !== gen) return false;
+        if (mar && r.marital_status !== mar) return false;
+        if (age && r.age_group !== age) return false;
+        if (rel && r.religion !== rel) return false;
+        if (occ && r.occupation !== occ) return false;
+        if (dig && r.digital_skills !== dig) return false;
+        if (mob && r.mobilization_skills !== mob) return false;
+        if (eth && !(r.ethnic_group || '').toLowerCase().includes(eth)) return false;
         if (q) {
-            const hay = [r.full_name, r.phone, r.email, r.state, r.lga, r.ward, r.polling_unit, r.group_name, r.whatsapp];
+            const hay = [r.full_name, r.phone, r.email, r.state, r.lga, r.ward, r.polling_unit, r.group_name, r.whatsapp,
+                         r.membership_status, r.gender, r.marital_status, r.age_group, r.religion, r.occupation, r.ethnic_group, r.digital_skills, r.mobilization_skills];
             if (!hay.some(x => (x || '').toLowerCase().includes(q))) return false;
         }
         return true;
@@ -1207,8 +1281,8 @@ function onStructuralFilterChange() {
 }
 
 function clearFilters() {
-    ['fltFrom', 'fltTo', 'fltWard', 'searchInput'].forEach(id => $(id).value = '');
-    ['fltGroup', 'fltState', 'fltLGA'].forEach(id => $(id).value = '');
+    ['fltFrom', 'fltTo', 'fltWard', 'fltEthnic', 'searchInput'].forEach(id => $(id).value = '');
+    ['fltGroup', 'fltState', 'fltLGA', 'fltMembership', 'fltGender', 'fltMarital', 'fltAge', 'fltReligion', 'fltOccupation', 'fltDigital', 'fltMobilization'].forEach(id => $(id).value = '');
     populateLGAOptions();
     drill = { state: null, lga: null };
     applyFilters();
@@ -1216,7 +1290,10 @@ function clearFilters() {
 
 function updateFilterStatus() {
     const active = $('fltFrom').value || $('fltTo').value || $('fltGroup').value ||
-                   $('fltState').value || $('fltLGA').value || $('fltWard').value || $('searchInput').value.trim();
+                   $('fltState').value || $('fltLGA').value || $('fltWard').value || $('searchInput').value.trim() ||
+                   $('fltMembership').value || $('fltGender').value || $('fltMarital').value || $('fltAge').value ||
+                   $('fltReligion').value || $('fltOccupation').value || $('fltDigital').value ||
+                   $('fltMobilization').value || $('fltEthnic').value.trim();
     const el = $('filterStatus');
     if (active) {
         el.textContent = `Showing ${filteredRows.length.toLocaleString()} of ${allRows.length.toLocaleString()}`;
@@ -1229,7 +1306,8 @@ function updateFilterStatus() {
 
 $('searchInput').addEventListener('input', applyFilters);
 $('fltWard').addEventListener('input', applyFilters);
-['fltFrom', 'fltTo', 'fltGroup', 'fltLGA'].forEach(id => $(id).addEventListener('change', onStructuralFilterChange));
+$('fltEthnic').addEventListener('input', applyFilters);
+['fltFrom', 'fltTo', 'fltGroup', 'fltLGA', 'fltMembership', 'fltGender', 'fltMarital', 'fltAge', 'fltReligion', 'fltOccupation', 'fltDigital', 'fltMobilization'].forEach(id => $(id).addEventListener('change', onStructuralFilterChange));
 $('fltState').addEventListener('change', () => { populateLGAOptions(); onStructuralFilterChange(); });
 $('applyFilterBtn').addEventListener('click', onStructuralFilterChange);
 $('clearFilterBtn').addEventListener('click', clearFilters);
