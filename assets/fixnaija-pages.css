@@ -167,5 +167,13 @@ section.light .qa .a{color:#54546a}
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
 .reveal.in{opacity:1;transform:none}
 
+/* mobile navbar brand — prevent the subline from wrapping */
+@media(max-width:560px){
+  .navbar{height:66px}
+  .navbar .brand img{width:38px;height:38px}
+  .navbar .brand-name{font-size:1rem;line-height:1.12}
+  .navbar .brand-subline{font-size:.55rem;letter-spacing:.05em;white-space:nowrap}
+}
+
 /* concept ribbon */
 .concept-note{position:fixed;left:14px;bottom:14px;z-index:1500;background:var(--gold);color:var(--charcoal);font-family:'Space Grotesk';font-weight:700;font-size:.72rem;padding:7px 13px;border-radius:999px;box-shadow:var(--shadow)}
