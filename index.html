@@ -2729,6 +2729,36 @@
             color: rgba(26, 26, 46, 0.45);
             font-size: 12px;
         }
+    /* ===== MOBILE DRAWER (card menu) ===== */
+    .mm-scrim{position:fixed;inset:0;background:rgba(8,8,16,.5);opacity:0;visibility:hidden;transition:opacity .3s;z-index:1100}
+    .mm-scrim.open{opacity:1;visibility:visible}
+    .mobile-menu{position:fixed;top:0;right:0;bottom:0;left:auto;height:100%;width:min(90%,400px);background:#f6f8f5;color:#1A1A2E;transform:translateX(105%);transition:transform .38s cubic-bezier(.4,0,.2,1);z-index:1200;overflow-y:auto;box-shadow:-22px 0 60px rgba(0,0,0,.45);display:flex;flex-direction:column;padding:0}
+    .mobile-menu.open{transform:translateX(0)}
+    .mm-head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid rgba(26,26,46,.08);position:sticky;top:0;background:#f6f8f5;z-index:2}
+    .mm-brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .mm-brand img{width:42px;height:42px;object-fit:contain}
+    .mm-bn{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.05rem;color:#1A1A2E;display:block;line-height:1.1}
+    .mm-bs{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#D4A017;font-weight:600}
+    .mm-close{width:42px;height:42px;border-radius:50%;border:none;background:rgba(26,26,46,.06);color:#1A1A2E;font-size:1.6rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+    .mm-body{padding:18px 18px 30px}
+    .mm-label{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#008751;margin:8px 4px 14px}
+    .mm-label::before{content:"";width:20px;height:3px;border-radius:2px;background:#008751}
+    .mm-item{display:flex;align-items:center;gap:14px;padding:13px 15px;background:#fff;border:1px solid rgba(26,26,46,.07);border-radius:14px;margin-bottom:10px;text-decoration:none;color:#1A1A2E;box-shadow:0 2px 10px rgba(26,26,46,.04);transition:transform .15s,border-color .15s}
+    .mm-item:active,.mm-item:hover{border-color:#008751;transform:translateX(2px)}
+    .mm-ico{width:46px;height:46px;flex:0 0 46px;border-radius:12px;background:linear-gradient(135deg,rgba(0,168,98,.16),rgba(212,160,23,.12));display:flex;align-items:center;justify-content:center;font-size:1.3rem}
+    .mm-text{flex:1;display:flex;flex-direction:column;line-height:1.3}
+    .mm-text b{font-family:'Space Grotesk',sans-serif;font-size:1rem}
+    .mm-text small{color:#6a6a7a;font-size:.8rem;margin-top:2px}
+    .mm-arrow{color:#b6b6c2;font-size:1.4rem;font-weight:300}
+    .mm-cta{background:linear-gradient(135deg,#008751,#006b3f);border-radius:18px;padding:24px;margin:18px 4px;color:#fff}
+    .mm-cta .badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.16);padding:6px 13px;border-radius:999px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+    .mm-cta h4{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;margin-bottom:8px;color:#fff}
+    .mm-cta p{font-size:.9rem;color:rgba(255,255,255,.85);margin-bottom:16px}
+    .mm-cta-btn{display:block;text-align:center;background:#fff;color:#006b3f;font-family:'Space Grotesk',sans-serif;font-weight:700;padding:14px;border-radius:999px;text-decoration:none}
+    .mm-social{display:flex;gap:10px;padding:0 4px}
+    .mm-social a{flex:1;height:54px;border-radius:12px;background:#fff;border:1px solid rgba(26,26,46,.08);display:flex;align-items:center;justify-content:center;text-decoration:none;color:#1A1A2E;font-family:'Space Grotesk',sans-serif;font-weight:700}
+    .mm-social a:hover{border-color:#008751;color:#008751}
+    .mm-copy{text-align:center;color:#9a9aa8;font-size:.76rem;margin-top:20px;padding:0 4px}
     </style>
 </head>
 <body>
@@ -2766,17 +2796,35 @@
 
     <!-- ===== MOBILE MENU ===== -->
     <div class="mobile-menu" id="mobileMenu">
-        <a href="#home" class="mobile-menu-link">Home</a>
-        <a href="about.html" class="mobile-menu-link">About</a>
-        <a href="civic-resource.html" class="mobile-menu-link">Civic Hub</a>
-        <a href="volunteer.html" class="mobile-menu-link">Volunteer</a>
-        <a href="leadership.html" class="mobile-menu-link">Leadership</a>
-        <a href="events.html" class="mobile-menu-link">Events</a>
-        <a href="gallery.html" class="mobile-menu-link">Gallery</a>
-        <a href="find-lga.html" class="mobile-menu-link">States &amp; LGAs</a>
-        <a href="#contact" class="mobile-menu-link">Contact</a>
-        <a href="ask-fixnaija.html" class="mobile-menu-link" style="color:#D4A017;font-weight:600">✨ Ask FixNaija (AI)</a>
-        <a href="register.html" class="mobile-menu-link mobile-menu-register">Register With FixNaija</a>
+        <div class="mm-head">
+            <a class="mm-brand" href="index.html"><img src="images/logo.png" alt="FixNaija logo"><span><span class="mm-bn">FixNaija Movement</span><span class="mm-bs">People's Grassroots Network</span></span></a>
+            <button class="mm-close" id="menuClose" aria-label="Close menu">&times;</button>
+        </div>
+        <div class="mm-body">
+            <div class="mm-label">Navigate</div>
+            <a class="mm-item" href="#home"><span class="mm-ico">🏠</span><span class="mm-text"><b>Home</b><small>Welcome to FixNaija</small></span><span class="mm-arrow">›</span></a>
+            <a class="mm-item" href="about.html"><span class="mm-ico">📖</span><span class="mm-text"><b>About</b><small>Our story &amp; the six pillars</small></span><span class="mm-arrow">›</span></a>
+            <a class="mm-item" href="civic-resource.html"><span class="mm-ico">⚖️</span><span class="mm-text"><b>Civic Hub</b><small>Rights, PVC &amp; accountability</small></span><span class="mm-arrow">›</span></a>
+            <a class="mm-item" href="volunteer.html"><span class="mm-ico">🤝</span><span class="mm-text"><b>Volunteer</b><small>Lend your skills</small></span><span class="mm-arrow">›</span></a>
+            <a class="mm-item" href="leadership.html"><span class="mm-ico">👤</span><span class="mm-text"><b>Leadership</b><small>Meet the Convener</small></span><span class="mm-arrow">›</span></a>
+            <a class="mm-item" href="events.html"><span class="mm-ico">📅</span><span class="mm-text"><b>Upcoming Events</b><small>Town halls &amp; trainings</small></span><span class="mm-arrow">›</span></a>
+            <a class="mm-item" href="gallery.html"><span class="mm-ico">🖼️</span><span class="mm-text"><b>Media Gallery</b><small>Moments from the movement</small></span><span class="mm-arrow">›</span></a>
+            <a class="mm-item" href="find-lga.html"><span class="mm-ico">📍</span><span class="mm-text"><b>States &amp; LGAs</b><small>Find your community</small></span><span class="mm-arrow">›</span></a>
+            <a class="mm-item" href="ask-fixnaija.html"><span class="mm-ico">💬</span><span class="mm-text"><b>Ask FixNaija</b><small>Civic AI assistant</small></span><span class="mm-arrow">›</span></a>
+            <a class="mm-item" href="report-issue.html"><span class="mm-ico">📢</span><span class="mm-text"><b>Report an Issue</b><small>Flag a community problem</small></span><span class="mm-arrow">›</span></a>
+            <div class="mm-cta">
+                <span class="badge">✨ Join the movement</span>
+                <h4>Be part of the repair work.</h4>
+                <p>Find your LGA and take your seat at the table.</p>
+                <a class="mm-cta-btn" href="register.html">Register With FixNaija →</a>
+            </div>
+            <div class="mm-label">Follow FixNaija</div>
+            <div class="mm-social">
+                <a href="https://www.facebook.com/profile.php?id=61590354706603" target="_blank" rel="noopener" title="Facebook">f</a>
+                <a href="https://www.instagram.com/fixnaijamovement/" target="_blank" rel="noopener" title="Instagram">ig</a>
+            </div>
+            <div class="mm-copy">© 2026 FixNaija Movement · One Nigeria. 774 Communities.</div>
+        </div>
     </div>
 
     <!-- ===== HERO SECTION ===== -->
@@ -3562,20 +3610,14 @@
 // ===== Mobile menu toggle =====
 const menuToggle = document.getElementById('menuToggle');
 const mobileMenu = document.getElementById('mobileMenu');
-menuToggle.addEventListener('click', () => {
-    const open = mobileMenu.classList.toggle('open');
-    menuToggle.classList.toggle('open', open);
-    menuToggle.setAttribute('aria-expanded', open);
-});
-mobileMenu.querySelectorAll('.mobile-menu-link').forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        mobileMenu.classList.remove('open');
-        menuToggle.classList.remove('open');
-        const target = document.querySelector(link.getAttribute('href'));
-        if (target) target.scrollIntoView({behavior:'smooth'});
-    });
-});
+const mmScrim = document.createElement('div'); mmScrim.className = 'mm-scrim'; document.body.appendChild(mmScrim);
+function mmOpen(){ mobileMenu.classList.add('open'); mmScrim.classList.add('open'); menuToggle.classList.add('open'); menuToggle.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; }
+function mmClose(){ mobileMenu.classList.remove('open'); mmScrim.classList.remove('open'); menuToggle.classList.remove('open'); menuToggle.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
+menuToggle.addEventListener('click', () => mobileMenu.classList.contains('open') ? mmClose() : mmOpen());
+mmScrim.addEventListener('click', mmClose);
+const mmCloseBtn = document.getElementById('menuClose'); if (mmCloseBtn) mmCloseBtn.addEventListener('click', mmClose);
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', mmClose));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') mmClose(); });
 
 const nigeriaData = {
     "Abia": {

@@ -1,14 +1,17 @@
 /* FixNaija shared page behavior: mobile menu, scroll reveal, count-up */
 (function(){
-  // Mobile menu toggle
+  // Mobile drawer menu (scrim + close button)
   var t = document.getElementById('menuToggle');
   var m = document.getElementById('mobileMenu');
-  if(t && m){ t.addEventListener('click', function(){
-    m.classList.toggle('open');
-    var open = m.classList.contains('open');
-    t.setAttribute('aria-expanded', open);
-  });
-  m.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ m.classList.remove('open'); }); });
+  if(t && m){
+    var scrim = document.createElement('div'); scrim.className = 'mm-scrim'; document.body.appendChild(scrim);
+    function openM(){ m.classList.add('open'); scrim.classList.add('open'); t.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; }
+    function closeM(){ m.classList.remove('open'); scrim.classList.remove('open'); t.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
+    t.addEventListener('click', function(){ m.classList.contains('open') ? closeM() : openM(); });
+    scrim.addEventListener('click', closeM);
+    var x = document.getElementById('menuClose'); if(x) x.addEventListener('click', closeM);
+    m.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeM); });
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeM(); });
   }
 
   // Scroll reveal
