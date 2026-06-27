@@ -113,4 +113,74 @@
 
       <div class="ev" data-cat="monitor"><div class="date"><div class="d">26</div><div class="m">Jul</div></div>
         <div><span class="type">Project Walkabout</span><h3>Track the LGA Road Projects</h3><p class="meta">📍 Your LGA · Morning · Bring a smartphone</p></div>
-        <a class
+        <a class="btn btn-gold cta" href="report-issue.html">Sign up</a></div>
+
+      <div class="ev" data-cat="ward"><div class="date"><div class="d">02</div><div class="m">Aug</div></div>
+        <div><span class="type">Ward Meeting</span><h3>Ward Organisers' Monthly Meet</h3><p class="meta">📍 All active wards · Evening · Members only</p></div>
+        <a class="btn btn-gold cta" href="find-lga.html">Find mine</a></div>
+
+      <div class="ev" data-cat="training"><div class="date"><div class="d">09</div><div class="m">Aug</div></div>
+        <div><span class="type">Training</span><h3>Know Your Rights &amp; FOI Clinic</h3><p class="meta">📍 Online (Zoom) · 4:00 PM · Open to all</p></div>
+        <a class="btn btn-gold cta" href="register.html">Register</a></div>
+
+      <div class="ev" data-cat="townhall"><div class="date"><div class="d">16</div><div class="m">Aug</div></div>
+        <div><span class="type">Town Hall</span><h3>North-Central Citizens' Forum</h3><p class="meta">📍 Jos, Plateau State · 10:00 AM · Open to all</p></div>
+        <a class="btn btn-gold cta" href="register.html">RSVP</a></div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOST -->
+<section class="block light" id="host">
+  <div class="wrap reveal">
+    <div class="sec-head"><span class="eyebrow">Lead from your community</span><h2>Want to host a FixNaija event?</h2></div>
+    <div class="host-card" style="background:#fff;color:var(--charcoal);box-shadow:var(--shadow-soft);border:1px solid rgba(26,26,46,.08)">
+      <p style="color:#54546a;font-size:1.05rem;line-height:1.8;margin-bottom:22px">Town halls, civic clinics and ward meetings don't need a big budget — they need a committed organiser. If you can gather your neighbours, we'll support you with materials, speakers, and a coordinator to guide you.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a class="btn btn-primary" href="volunteer.html">Become an organiser</a>
+        <a class="btn btn-ghost" style="color:var(--charcoal);border-color:rgba(26,26,46,.25)" href="mailto:fixnaijamovement@gmail.com">Email the events team</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap reveal">
+    <div class="cta-band">
+      <span class="eyebrow" style="color:#fff">Never miss an event</span>
+      <h2 style="margin-top:12px">Get alerts for events in your LGA</h2>
+      <p>Register with FixNaija and we'll notify you whenever something is happening near you.</p>
+      <a class="btn btn-gold" href="register.html">Register for alerts</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand"><a class="brand" href="index.html"><img src="images/logo.png" alt="FixNaija logo"><span class="brand-name">FixNaija Movement</span></a>
+        <p>One Nigeria. 774 Communities. One Voice. A non-partisan grassroots network repairing Nigeria from the ground up.</p>
+        <div class="foot-soc"><a href="https://www.facebook.com/share/1dUGvvT1ph/" target="_blank" rel="noopener" title="Facebook">f</a><a href="https://www.instagram.com/fixnaijamovement?igsh=MWJlNHVycDh4cDJiMw==" target="_blank" rel="noopener" title="Instagram">ig</a></div>
+      </div>
+      <div><h4>Explore</h4><a class="fl" href="about.html">About</a><a class="fl" href="civic-resource.html">Civic Hub</a><a class="fl" href="volunteer.html">Volunteer</a><a class="fl" href="leadership.html">Leadership</a><a class="fl" href="gallery.html">Gallery</a></div>
+      <div><h4>Get Involved</h4><a class="fl" href="register.html">Register</a><a class="fl" href="report-issue.html">Report an Issue</a><a class="fl" href="ask-fixnaija.html">Ask FixNaija</a><a class="fl" href="mailto:fixnaijamovement@gmail.com">fixnaijamovement@gmail.com</a><a class="fl" href="tel:+2349165255606">+234 916 525 5606</a></div>
+    </div>
+    <div class="foot-bar"><span>© 2026 FixNaija Movement. All rights reserved.</span><span>Show up. Speak up. Fix Naija.</span></div>
+  </div>
+</footer>
+
+<div class="concept-note">New page · FixNaija</div>
+<script src="assets/fixnaija-pages.js"></script>
+<script>
+  document.querySelectorAll('.filterbar button').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('.filterbar button').forEach(function(x){x.classList.remove('active');});
+      b.classList.add('active');
+      var cat=b.dataset.cat;
+      document.querySelectorAll('#evList .ev').forEach(function(ev){ ev.style.display=(cat==='all'||ev.dataset.cat===cat)?'':'none'; });
+    });
+  });
+</script>
+</body>
+</html>

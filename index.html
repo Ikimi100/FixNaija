@@ -4768,4 +4768,216 @@ async function populatePUDropdown(stateName, lgaName, wardName) {
         if (visibleCount === 0) {
             statesGrid.innerHTML = `
                 <div class="no-results">
-                    <div class="no-results-icon">�
+                    <div class="no-results-icon">🔍</div>
+                    <div>No states or LGAs found matching "<strong>${filter}</strong>"</div>
+                </div>`;
+            searchResults.textContent = '';
+        } else {
+            searchResults.textContent = filterLower
+                ? `Showing ${visibleCount} state${visibleCount !== 1 ? 's' : ''} matching "${filter}"`
+                : `Showing all ${visibleCount} states + FCT`;
+        }
+
+        // Accordion toggle (JS-driven height so long LGA lists are never clipped)
+        document.querySelectorAll('.state-card-header').forEach(header => {
+            header.addEventListener('click', function () {
+                const card = this.closest('.state-card');
+                const list = card.querySelector('.lga-list');
+                const willOpen = !card.classList.contains('open');
+                card.classList.toggle('open');
+                if (willOpen) {
+                    list.style.maxHeight = list.scrollHeight + 'px';
+                } else {
+                    list.style.maxHeight = '';
+                }
+            });
+        });
+
+        // ===== STEP B: View Wards toggle =====
+        document.querySelectorAll('.lga-btn-wards').forEach(btn => {
+            btn.addEventListener('click', async function (e) {
+                e.stopPropagation();
+                const state    = this.dataset.state;
+                const lga      = this.dataset.lga;
+                const wardId   = `wards-${state.replace(/\s+/g,'-')}-${lga.replace(/[\s\/]+/g,'-')}`;
+                const sublist  = document.getElementById(wardId);
+                const isOpen   = sublist.classList.contains('open');
+
+                if (isOpen) {
+                    sublist.classList.remove('open');
+                    this.textContent = 'View Wards ▾';
+                    this.classList.remove('active');
+                    syncListHeight(sublist);
+                    return;
+                }
+
+                // Open and load
+                sublist.classList.add('open');
+                this.textContent = 'Hide Wards ▴';
+                this.classList.add('active');
+
+                // Only fetch if not already populated
+                if (sublist.querySelector('.ward-loading-inline')) {
+                    const stateAliases = { 'FCT ABUJA': 'FEDERAL CAPITAL TERRITORY', 'FCT': 'FEDERAL CAPITAL TERRITORY' };
+                    let dbState = state.toUpperCase();
+                    if (stateAliases[dbState]) dbState = stateAliases[dbState];
+                    const dbLga = await resolveLgaName(dbState, lga);
+                    let wardRows = [];
+                    try { wardRows = await fetchWardsDB(dbState, dbLga); } catch (err) { wardRows = []; }
+                    const inner = sublist.querySelector('.ward-sublist-inner');
+
+                    if (wardRows.length > 0) {
+                        inner.innerHTML = wardRows.map(ward => `
+                            <div class="ward-item">
+                                <span class="ward-name">${titleCase(ward)}</span>
+                                <button class="ward-register-btn"
+                                    data-state="${state}"
+                                    data-lga="${lga}"
+                                    data-ward="${ward}">Register</button>
+                            </div>
+                        `).join('');
+
+                        // Wire ward register buttons
+                        inner.querySelectorAll('.ward-register-btn').forEach(wBtn => {
+                            wBtn.addEventListener('click', function () {
+                                prefillAndScroll(
+                                    this.dataset.state,
+                                    this.dataset.lga,
+                                    this.dataset.ward
+                                );
+                            });
+                        });
+                    } else {
+                        inner.innerHTML = `<div class="ward-loading-inline" style="color:rgba(255,255,255,0.3);">No ward data available yet for this LGA.</div>`;
+                    }
+                }
+                syncListHeight(sublist);
+            });
+        });
+        // Size any auto-opened (search-filtered) cards to their full height
+        document.querySelectorAll('.state-card.open .lga-list').forEach(list => {
+            list.style.maxHeight = list.scrollHeight + 'px';
+        });
+    }
+
+    // Search
+    searchInput.addEventListener('input', function () {
+        renderStates(this.value);
+    });
+
+    // Initial render
+    renderStates();
+})();
+
+// ===== FORM SUBMISSION (Supabase) =====
+document.getElementById('registrationForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const firstName = document.getElementById('regFirstName').value.trim();
+    const lastName  = document.getElementById('regLastName').value.trim();
+    const email     = document.getElementById('regEmail').value.trim();
+    const phone     = document.getElementById('regPhone').value.trim();
+    const whatsapp  = document.getElementById('regWhatsApp').value.trim();
+    const group     = document.getElementById('regGroup').value;
+    const state     = document.getElementById('regState').value;
+    const lga       = document.getElementById('regLGA').value;
+    const ward      = document.getElementById('regWard').value;
+    const reason    = document.getElementById('regReason').value.trim();
+
+    const membershipStatus  = document.getElementById('regMembershipStatus').value;
+    const gender            = document.getElementById('regGender').value;
+    const maritalStatus     = document.getElementById('regMaritalStatus').value;
+    const ageGroup          = document.getElementById('regAgeGroup').value;
+    const religion          = document.getElementById('regReligion').value;
+    const occupation        = document.getElementById('regOccupation').value;
+    const ethnicGroup       = document.getElementById('regEthnicGroup').value.trim();
+    const digitalSkills     = document.getElementById('regDigitalSkills').value;
+    const mobilizationSkills = document.getElementById('regMobilizationSkills').value;
+
+    const puSelect  = document.getElementById('regPollingUnit');
+    const pollingUnit  = puSelect.value;
+    const puOption     = puSelect.options[puSelect.selectedIndex];
+    const delimitation = puOption ? (puOption.dataset.delimitation || null) : null;
+
+    const successDiv    = document.getElementById('formSuccess');
+    const successDetail = document.getElementById('successDetail');
+    const submitBtn     = this.querySelector('.form-submit');
+
+    // Show saving state
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+
+    try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/registrations`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'apikey': SUPABASE_KEY,
+                'Authorization': `Bearer ${SUPABASE_KEY}`,
+                'Prefer': 'return=minimal'
+            },
+            body: JSON.stringify({
+                full_name: `${firstName} ${lastName}`,
+                email: email || null,
+                phone: phone,
+                whatsapp: whatsapp || null,
+                group_name: group || null,
+                state: state,
+                lga: lga,
+                ward: ward || null,
+                polling_unit: pollingUnit || null,
+                delimitation: delimitation,
+                membership_status: membershipStatus || null,
+                gender: gender || null,
+                marital_status: maritalStatus || null,
+                age_group: ageGroup || null,
+                religion: religion || null,
+                occupation: occupation || null,
+                ethnic_group: ethnicGroup || null,
+                digital_skills: digitalSkills || null,
+                mobilization_skills: mobilizationSkills || null,
+                reason: reason || null
+            })
+        });
+
+        if (!response.ok) {
+            const errText = await response.text();
+            throw new Error(`Registration failed (${response.status}): ${errText}`);
+        }
+
+        // Show success
+        let locationStr = state;
+        if (lga)  locationStr = `${lga}, ${locationStr}`;
+        if (ward) locationStr = `${ward}, ${locationStr}`;
+        if (pollingUnit) locationStr = `${pollingUnit} — ${locationStr}`;
+
+        successDetail.textContent = `📍 ${locationStr}`;
+        submitBtn.style.display = 'none';
+        successDiv.style.display = 'block';
+        successDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    } catch (err) {
+        console.error(err);
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Complete Registration';
+        alert('Something went wrong submitting your registration. Please check your connection and try again.');
+    }
+});
+
+console.log('nigeriaData loaded:', Object.keys(nigeriaData).length, 'states');
+console.log('stateToSlug ready. Ward JSON files expected at: data/wards/[state-slug].json');
+</script>
+
+<!-- ===== FLOATING ASK FIXNAIJA (AI) BUTTON ===== -->
+<a href="ask-fixnaija.html" aria-label="Ask FixNaija AI"
+   style="position:fixed;right:20px;bottom:20px;z-index:1500;display:flex;align-items:center;gap:10px;
+          background:linear-gradient(135deg,#00a862,#008751);color:#fff;text-decoration:none;
+          padding:13px 20px;border-radius:999px;font-family:'Space Grotesk',sans-serif;font-weight:700;
+          box-shadow:0 12px 30px -8px rgba(0,135,81,.7);transition:transform .2s"
+   onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='none'">
+   <span style="font-size:1.2rem">💬</span>
+   <span>Ask <span style="color:#D4A017">FixNaija</span> <span style="font-size:.7rem;opacity:.85">AI</span></span>
+</a>
+
+</body>
+</html>

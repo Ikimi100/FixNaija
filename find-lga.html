@@ -3730,4 +3730,124 @@ async function fetchPollingUnits(state, lga, ward) {
                                 const waBtn = waLink
                                     ? `<a href="${waLink}" class="lga-btn lga-btn-whatsapp" target="_blank" rel="noopener">Join WhatsApp</a>`
                                     : `<span class="lga-btn lga-btn-whatsapp lga-btn-soon" title="WhatsApp group coming soon">Coming Soon</span>`;
-                                retur
+                                return `
+                                <div class="lga-item-wrap">
+                                    <div class="lga-item">
+                                        <span class="lga-name">${lga}</span>
+                                        <div class="lga-actions">
+                                            ${waBtn}
+                                            <button class="lga-btn lga-btn-wards" data-state="${state}" data-lga="${lga}">View Wards ▾</button>
+                                        </div>
+                                    </div>
+                                    <div class="ward-sublist" id="wards-${state.replace(/\s+/g,'-')}-${lga.replace(/[\s\/]+/g,'-')}">
+                                        <div class="ward-sublist-inner">
+                                            <div class="ward-loading-inline">
+                                                <span class="ward-loading-spinner"></span> Loading wards...
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                            }).join('')}
+                        </div>
+                    </div>
+                `;
+
+                statesGrid.appendChild(card);
+            }
+        });
+
+        if (visibleCount === 0) {
+            statesGrid.innerHTML = `
+                <div class="no-results">
+                    <div class="no-results-icon">🔍</div>
+                    <div>No states or LGAs found matching "<strong>${filter}</strong>"</div>
+                </div>`;
+            searchResults.textContent = '';
+        } else {
+            searchResults.textContent = filterLower
+                ? `Showing ${visibleCount} state${visibleCount !== 1 ? 's' : ''} matching "${filter}"`
+                : `Showing all ${visibleCount} states + FCT`;
+        }
+
+        // Accordion toggle
+        document.querySelectorAll('.state-card-header').forEach(header => {
+            header.addEventListener('click', function () {
+                this.closest('.state-card').classList.toggle('open');
+            });
+        });
+
+        // ===== STEP B: View Wards toggle =====
+        document.querySelectorAll('.lga-btn-wards').forEach(btn => {
+            btn.addEventListener('click', async function (e) {
+                e.stopPropagation();
+                const state    = this.dataset.state;
+                const lga      = this.dataset.lga;
+                const wardId   = `wards-${state.replace(/\s+/g,'-')}-${lga.replace(/[\s\/]+/g,'-')}`;
+                const sublist  = document.getElementById(wardId);
+                const isOpen   = sublist.classList.contains('open');
+
+                if (isOpen) {
+                    sublist.classList.remove('open');
+                    this.textContent = 'View Wards ▾';
+                    this.classList.remove('active');
+                    return;
+                }
+
+                // Open and load
+                sublist.classList.add('open');
+                this.textContent = 'Hide Wards ▴';
+                this.classList.add('active');
+
+                // Only fetch if not already populated
+                if (sublist.querySelector('.ward-loading-inline')) {
+                    const stateAliases = { 'FCT ABUJA': 'FEDERAL CAPITAL TERRITORY', 'FCT': 'FEDERAL CAPITAL TERRITORY' };
+                    let dbState = state.toUpperCase();
+                    if (stateAliases[dbState]) dbState = stateAliases[dbState];
+                    let wardRows = [];
+                    try { wardRows = await fetchWardsDB(dbState, lga.toUpperCase()); } catch (err) { wardRows = []; }
+                    const inner = sublist.querySelector('.ward-sublist-inner');
+
+                    if (wardRows.length > 0) {
+                        inner.innerHTML = wardRows.map(ward => `
+                            <div class="ward-item">
+                                <span class="ward-name">${titleCase(ward)}</span>
+                                <button class="ward-register-btn"
+                                    data-state="${state}"
+                                    data-lga="${lga}"
+                                    data-ward="${ward}">Register</button>
+                            </div>
+                        `).join('');
+
+                        // Wire ward register buttons
+                        inner.querySelectorAll('.ward-register-btn').forEach(wBtn => {
+                            wBtn.addEventListener('click', function () {
+                                const q = new URLSearchParams({
+                                    state: this.dataset.state,
+                                    lga: this.dataset.lga,
+                                    ward: this.dataset.ward
+                                });
+                                window.location.href = 'register.html?' + q.toString();
+                            });
+                        });
+                    } else {
+                        inner.innerHTML = `<div class="ward-loading-inline" style="color:rgba(255,255,255,0.3);">No ward data available yet for this LGA.</div>`;
+                    }
+                }
+            });
+        });
+    }
+
+    // Search
+    searchInput.addEventListener('input', function () {
+        renderStates(this.value);
+    });
+
+    // Initial render
+    renderStates();
+})();
+
+</script>
+
+</body>
+</html>

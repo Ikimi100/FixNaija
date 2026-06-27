@@ -145,4 +145,68 @@
    See: supabase/functions/ask-fixnaija/index.ts  +  ASK-FIXNAIJA-SETUP.md
    ========================================================= */
 var CONFIG = {
-  SUP
+  SUPABASE_URL: "https://bcdscsjqiqnzsthntutb.supabase.co",
+  SUPABASE_ANON_KEY: "sb_publishable_Cpkk6K0Xyt5GNVXTiur2mA_myhkpiti"  // public key — safe in client
+};
+
+var msgs=document.getElementById('msgs'), input=document.getElementById('input'),
+    statusEl=document.getElementById('status'), convo=[];
+
+var DEMO = !(CONFIG.SUPABASE_URL && CONFIG.SUPABASE_ANON_KEY);
+if(DEMO){ statusEl.textContent='● Demo mode'; statusEl.classList.add('demo'); }
+
+function add(text, who){
+  var b=document.createElement('div'); b.className='bubble '+who;
+  b.innerHTML = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+  msgs.appendChild(b); msgs.scrollTop=msgs.scrollHeight; return b;
+}
+function typing(){var t=document.createElement('div');t.className='typing';t.id='typing';t.innerHTML='<span></span><span></span><span></span>';msgs.appendChild(t);msgs.scrollTop=msgs.scrollHeight;}
+function stopTyping(){var t=document.getElementById('typing');if(t)t.remove();}
+
+/* ---- Demo answers (used until backend is configured) ---- */
+var DEMO_ANSWERS=[
+  {k:/right|vote|voter/i, a:"As a Nigerian voter you have the right to **vote freely and in secret**, to be treated with dignity, to **observe the counting** of votes, to see the result sheet (Form EC8A) posted at your polling unit, and to **report any violation**. Voters with disabilities, the elderly and pregnant women get priority. No one may watch or pressure how you mark your ballot.\n\n(Demo answer — connect the backend for live, detailed responses.)"},
+  {k:/road|whose job|responsib|who.*fix/i, a:"It depends on the road. **Inner/community roads** are usually your **Local Government's** job; **major roads within a state** belong to the **State Government**; **highways linking states** are **Federal**. Check the Civic Hub → 'How Government Works' to match the problem to the right office.\n\n(Demo answer — connect the backend for live responses.)"},
+  {k:/pvc|register|card/i, a:"To get your **PVC**: 1) check if you're already registered on the INEC portal, 2) start registration online (INEC CVR) or at your LGA office, 3) do your biometric capture with a valid ID, 4) collect the card in person on the announced date, 5) confirm your details and the polling-unit code. See Civic Hub → 'Get Your PVC' for the full guide.\n\n(Demo answer — connect the backend for live responses.)"},
+  {k:/report|project|abandon|complain/i, a:"Document it first — **photos, the location, and the date**. Then file it through the FixNaija **Report an Issue** tool so it joins the public record. You can also send a **Freedom of Information** request to the responsible agency for the contract and payment details. Want me to point you to the report form?\n\n(Demo answer — connect the backend for live responses.)"}
+];
+function demoReply(q){
+  for(var i=0;i<DEMO_ANSWERS.length;i++){ if(DEMO_ANSWERS[i].k.test(q)) return DEMO_ANSWERS[i].a; }
+  return "Great question! I can explain your rights, how government works, getting your PVC, reporting problems, and fact-checking civic claims. **This is demo mode** — once the team connects the AI backend, I'll give full, tailored answers. Meanwhile, explore the **Civic Hub** for detailed guides.";
+}
+
+/* ---- Live call to Supabase Edge Function ---- */
+async function liveReply(q){
+  convo.push({role:'user', content:q});
+  var res = await fetch(CONFIG.SUPABASE_URL + "/functions/v1/ask-fixnaija", {
+    method:'POST',
+    headers:{ 'Content-Type':'application/json', 'Authorization':'Bearer '+CONFIG.SUPABASE_ANON_KEY, 'apikey':CONFIG.SUPABASE_ANON_KEY },
+    body: JSON.stringify({ messages: convo })
+  });
+  if(!res.ok){ throw new Error('Backend error '+res.status); }
+  var data = await res.json();
+  var reply = data.reply || "Sorry, I couldn't generate a response.";
+  convo.push({role:'assistant', content:reply});
+  return reply;
+}
+
+async function ask(q){
+  add(q,'me'); input.value=''; typing();
+  try{
+    var reply = DEMO ? await new Promise(function(r){setTimeout(function(){r(demoReply(q));}, 700);}) : await liveReply(q);
+    stopTyping(); add(reply,'bot');
+  }catch(err){
+    stopTyping();
+    add("⚠️ I couldn't reach the assistant right now. Please try again, or explore the Civic Hub for answers. (Technical: "+err.message+")", 'bot');
+  }
+}
+
+document.getElementById('composer').addEventListener('submit', function(e){
+  e.preventDefault(); var q=input.value.trim(); if(q) ask(q);
+});
+document.querySelectorAll('#suggest button').forEach(function(b){
+  b.addEventListener('click', function(){ ask(b.textContent); });
+});
+</script>
+</body>
+</html>

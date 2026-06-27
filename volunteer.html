@@ -230,4 +230,70 @@
         </div>
       </div>
       <div class="field" style="margin-bottom:16px"><label>Why do you want to volunteer? (optional)</label><textarea name="why" placeholder="Tell us what drives you..."></textarea></div>
-      <label class="consent"><input type="checkbox" required style="margin-top:3px"> I consent to FixNaija using my details to coordinate my volunteering. My data will not be sold or shared with third parties, and I can request deletion at any time.</l
+      <label class="consent"><input type="checkbox" required style="margin-top:3px"> I consent to FixNaija using my details to coordinate my volunteering. My data will not be sold or shared with third parties, and I can request deletion at any time.</label>
+      <button class="btn btn-primary" type="submit" style="width:100%">Submit application</button>
+      <p id="volMsg" style="text-align:center;margin-top:14px;color:var(--green);font-weight:600;display:none">✅ Thank you! A coordinator will reach out via WhatsApp shortly.</p>
+    </form>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="block">
+  <div class="wrap reveal">
+    <div class="sec-head"><span class="eyebrow">Questions, answered</span><h2>Volunteer FAQ</h2></div>
+    <div class="faq">
+      <details class="qa"><summary>Is volunteering paid?</summary><div class="a">FixNaija roles are civic contributions and are generally unpaid. Some specialised, time-heavy commissions may include a stipend — these are agreed up front with your coordinator.</div></details>
+      <details class="qa"><summary>How much time do I need to give?</summary><div class="a">As much or as little as life allows. Many volunteers give a few hours a week; we also welcome per-task and per-event contributors, especially for monitoring, design and content.</div></details>
+      <details class="qa"><summary>I live abroad. Can I still help?</summary><div class="a">Absolutely — and we need you. Most tech, design, data, writing and coordination work is fully remote. Select "Diaspora" when you apply.</div></details>
+      <details class="qa"><summary>I have no special skills. Is there a role for me?</summary><div class="a">Yes. The most important role of all is the Ward Organiser — someone trusted in their community who can bring neighbours together. Showing up and caring is a skill.</div></details>
+      <details class="qa"><summary>How is my data handled?</summary><div class="a">Your information is used only to coordinate your volunteering. We never sell or share it with third parties, and you can request deletion at any time.</div></details>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand"><a class="brand" href="index.html"><img src="images/logo.png" alt="FixNaija logo"><span class="brand-name">FixNaija Movement</span></a>
+        <p>One Nigeria. 774 Communities. One Voice. A non-partisan grassroots network repairing Nigeria from the ground up.</p>
+        <div class="foot-soc"><a href="https://www.facebook.com/share/1dUGvvT1ph/" target="_blank" rel="noopener" title="Facebook">f</a><a href="https://www.instagram.com/fixnaijamovement?igsh=MWJlNHVycDh4cDJiMw==" target="_blank" rel="noopener" title="Instagram">ig</a></div>
+      </div>
+      <div><h4>Explore</h4><a class="fl" href="about.html">About</a><a class="fl" href="civic-resource.html">Civic Hub</a><a class="fl" href="volunteer.html">Volunteer</a><a class="fl" href="leadership.html">Leadership</a><a class="fl" href="find-lga.html">States &amp; LGAs</a></div>
+      <div><h4>Get Involved</h4><a class="fl" href="register.html">Register</a><a class="fl" href="report-issue.html">Report an Issue</a><a class="fl" href="ask-fixnaija.html">Ask FixNaija</a><a class="fl" href="mailto:fixnaijamovement@gmail.com">fixnaijamovement@gmail.com</a><a class="fl" href="tel:+2349165255606">+234 916 525 5606</a></div>
+    </div>
+    <div class="foot-bar"><span>© 2026 FixNaija Movement. All rights reserved.</span><span>Built by the people, for the people.</span></div>
+  </div>
+</footer>
+
+<div class="concept-note">New page · FixNaija</div>
+<script src="assets/fixnaija-pages.js"></script>
+<script>
+  // role filter
+  document.querySelectorAll('.filterbar button').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('.filterbar button').forEach(function(x){x.classList.remove('active');});
+      b.classList.add('active');
+      var cat=b.dataset.cat;
+      document.querySelectorAll('#roleGrid .role').forEach(function(card){
+        card.style.display = (cat==='all'||card.dataset.cat===cat)?'':'none';
+      });
+    });
+  });
+  // role apply -> prefill form select + scroll
+  document.querySelectorAll('.apply').forEach(function(a){
+    a.addEventListener('click', function(){
+      var r=a.dataset.role, sel=document.getElementById('roleSelect');
+      for(var i=0;i<sel.options.length;i++){ if(sel.options[i].value===r){sel.selectedIndex=i;break;} }
+      document.getElementById('apply').scrollIntoView({behavior:'smooth'});
+    });
+  });
+  function submitVol(e){
+    e.preventDefault();
+    // NOTE: wire this to your Supabase 'volunteers' table or email handler.
+    document.getElementById('volMsg').style.display='block';
+    e.target.reset();
+    return false;
+  }
+</script>
+</body>
+</html>

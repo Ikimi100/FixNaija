@@ -2588,4 +2588,127 @@ let videoUpload = { status: 'idle', url: null, filename: null, size: 0 };
 
     // Clear errors on input
     form.querySelectorAll('.form-input, .form-select, .form-textarea').forEach(input => {
-       
+        input.addEventListener('input', function () {
+            this.closest('.form-group')?.classList.remove('has-error');
+        });
+        input.addEventListener('change', function () {
+            this.closest('.form-group')?.classList.remove('has-error');
+        });
+    });
+
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        // Validate all required fields
+        const requiredFields = form.querySelectorAll('[required]');
+        let allValid = true;
+        requiredFields.forEach(field => {
+            if (!validateField(field)) allValid = false;
+        });
+
+        if (!allValid) {
+            // Scroll to first error
+            const firstError = form.querySelector('.has-error');
+            if (firstError) {
+                firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            return;
+        }
+
+        // Collect data
+        const name        = document.getElementById('repName').value.trim();
+        const phone       = document.getElementById('repPhone').value.trim();
+        const email       = document.getElementById('repEmail').value.trim();
+        const whatsapp    = document.getElementById('repWhatsApp').value.trim();
+        const state       = document.getElementById('repState').value;
+        const lga         = document.getElementById('repLGA').value;
+        const ward        = document.getElementById('repWard').value;
+        const landmark    = document.getElementById('repLandmark').value.trim();
+        const category    = document.getElementById('repCategory').value;
+        const title       = document.getElementById('repTitle').value.trim();
+        const description = document.getElementById('repDescription').value.trim();
+        const videoFile   = document.getElementById('videoFileInput').files[0];
+
+        // Show loading state
+        submitBtn.disabled = true;
+        submitBtn.classList.add('loading');
+
+        try {
+            // Build payload
+            const payload = {
+                reporter_name: name,
+                phone: phone,
+                email: email || null,
+                whatsapp: whatsapp || null,
+                state: state,
+                lga: lga,
+                ward: ward,
+                landmark: landmark || null,
+                category: category,
+                issue_title: title,
+                issue_description: description,
+                status: 'submitted',
+                submitted_at: new Date().toISOString()
+            };
+
+            // The video is uploaded the moment it is selected (see initVideoUpload),
+            // so here we just attach the result — or block submission if it isn't ready.
+            if (videoFile) {
+                if (videoUpload.status === 'uploading') {
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('loading');
+                    alert('Your video is still uploading. Please wait for the progress bar to reach 100%, then submit.');
+                    return;
+                }
+                if (videoUpload.status !== 'done' || !videoUpload.url) {
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('loading');
+                    alert('The video did not finish uploading. Please remove it and try again, or submit without a video.');
+                    return;
+                }
+                payload.has_video = true;
+                payload.video_filename = videoUpload.filename || videoFile.name;
+                payload.video_size = videoUpload.size || videoFile.size;
+                payload.video_url = videoUpload.url;
+            } else {
+                payload.has_video = false;
+            }
+
+            const response = await fetch(`${SUPABASE_URL}/rest/v1/community_reports`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'apikey': SUPABASE_KEY,
+                    'Authorization': `Bearer ${SUPABASE_KEY}`,
+                    'Prefer': 'return=minimal'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                const errText = await response.text();
+                throw new Error(`Submission failed (${response.status}): ${errText}`);
+            }
+
+            // Success
+            let locationStr = titleCase(state);
+            if (lga) locationStr = `${titleCase(lga)}, ${locationStr}`;
+            if (ward) locationStr = `${titleCase(ward)}, ${locationStr}`;
+
+            successDetail.textContent = `📍 ${locationStr} · ${category}`;
+            form.style.display = 'none';
+            successDiv.classList.add('active');
+            successDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        } catch (err) {
+            console.error(err);
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('loading');
+            alert('Something went wrong submitting your report. Please check your connection and try again.\n\nError: ' + err.message);
+        }
+    });
+})();
+</script>
+
+</body>
+</html>

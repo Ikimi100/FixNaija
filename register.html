@@ -3158,4 +3158,137 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
 
     const firstName = document.getElementById('regFirstName').value.trim();
     const lastName  = document.getElementById('regLastName').value.trim();
-    const email     = document.getElementById('regEmail')
+    const email     = document.getElementById('regEmail').value.trim();
+    const phone     = document.getElementById('regPhone').value.trim();
+    const whatsapp  = document.getElementById('regWhatsApp').value.trim();
+    const group     = document.getElementById('regGroup').value;
+    const state     = document.getElementById('regState').value;
+    const lga       = document.getElementById('regLGA').value;
+    const ward      = document.getElementById('regWard').value;
+    const reason    = document.getElementById('regReason').value.trim();
+
+    const membershipStatus  = document.getElementById('regMembershipStatus').value;
+    const gender            = document.getElementById('regGender').value;
+    const maritalStatus     = document.getElementById('regMaritalStatus').value;
+    const ageGroup          = document.getElementById('regAgeGroup').value;
+    const religion          = document.getElementById('regReligion').value;
+    const occupation        = document.getElementById('regOccupation').value;
+    const ethnicGroup       = document.getElementById('regEthnicGroup').value.trim();
+    const digitalSkills     = document.getElementById('regDigitalSkills').value;
+    const mobilizationSkills = document.getElementById('regMobilizationSkills').value;
+
+    const puSelect  = document.getElementById('regPollingUnit');
+    const pollingUnit  = puSelect.value;
+    const puOption     = puSelect.options[puSelect.selectedIndex];
+    const delimitation = puOption ? (puOption.dataset.delimitation || null) : null;
+
+    const successDiv    = document.getElementById('formSuccess');
+    const successDetail = document.getElementById('successDetail');
+    const submitBtn     = this.querySelector('.form-submit');
+
+    // Show saving state
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+
+    try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/registrations`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'apikey': SUPABASE_KEY,
+                'Authorization': `Bearer ${SUPABASE_KEY}`,
+                'Prefer': 'return=minimal'
+            },
+            body: JSON.stringify({
+                full_name: `${firstName} ${lastName}`,
+                email: email || null,
+                phone: phone,
+                whatsapp: whatsapp || null,
+                group_name: group || null,
+                state: state,
+                lga: lga,
+                ward: ward || null,
+                polling_unit: pollingUnit || null,
+                delimitation: delimitation,
+                membership_status: membershipStatus || null,
+                gender: gender || null,
+                marital_status: maritalStatus || null,
+                age_group: ageGroup || null,
+                religion: religion || null,
+                occupation: occupation || null,
+                ethnic_group: ethnicGroup || null,
+                digital_skills: digitalSkills || null,
+                mobilization_skills: mobilizationSkills || null,
+                reason: reason || null
+            })
+        });
+
+        if (!response.ok) {
+            const errText = await response.text();
+            throw new Error(`Registration failed (${response.status}): ${errText}`);
+        }
+
+        // Show success
+        let locationStr = state;
+        if (lga)  locationStr = `${lga}, ${locationStr}`;
+        if (ward) locationStr = `${ward}, ${locationStr}`;
+        if (pollingUnit) locationStr = `${pollingUnit} — ${locationStr}`;
+
+        successDetail.textContent = `📍 ${locationStr}`;
+        submitBtn.style.display = 'none';
+        successDiv.style.display = 'block';
+        successDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    } catch (err) {
+        console.error(err);
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Complete Registration';
+        alert('Something went wrong submitting your registration. Please check your connection and try again.');
+    }
+});
+
+
+// ===== Prefill form from URL parameters (?state=&lga=&ward=) =====
+(function prefillFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    const state = params.get('state');
+    const lga   = params.get('lga');
+    const ward  = params.get('ward') || '';
+    if (!state) return;
+
+    const regState = document.getElementById('regState');
+    const regLGA   = document.getElementById('regLGA');
+
+    const stateAliases = { 'FCT ABUJA': 'FEDERAL CAPITAL TERRITORY', 'FCT': 'FEDERAL CAPITAL TERRITORY' };
+    let s = state.toUpperCase();
+    if (stateAliases[s]) s = stateAliases[s];
+
+    const stateMatch = [...regState.options].find(o => o.value === s);
+    if (!stateMatch) return;
+
+    regState.value = s;
+    regState.dispatchEvent(new Event('change'));
+    if (!lga) return;
+
+    const lgaUpper = lga.toUpperCase();
+    (async function () {
+        for (let i = 0; i < 50; i++) {
+            await new Promise(r => setTimeout(r, 100));
+            if (regLGA.disabled) continue;
+            const match = [...regLGA.options].find(o => o.value.toUpperCase() === lgaUpper);
+            if (match) {
+                regLGA.value = match.value;
+                if (ward) {
+                    await populateWardDropdown(s, match.value, ward);
+                } else {
+                    regLGA.dispatchEvent(new Event('change'));
+                }
+            }
+            break;
+        }
+    })();
+})();
+</script>
+
+</body>
+</html>
