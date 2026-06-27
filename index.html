@@ -2747,15 +2747,17 @@
 
         <ul class="nav-links">
             <li><a href="#home" class="active">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#events">Events</a></li>
-            <li><a href="#news">News</a></li>
-            <li><a href="#states">States & LGAs</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="civic-resource.html">Civic Hub</a></li>
+            <li><a href="volunteer.html">Volunteer</a></li>
+            <li><a href="leadership.html">Leadership</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="find-lga.html">States & LGAs</a></li>
         </ul>
 
-        <button class="register-btn" onclick="document.getElementById('register').scrollIntoView({behavior:'smooth'})">Register</button>
+        <a href="ask-fixnaija.html" class="register-btn" style="background:linear-gradient(135deg,#e8c25a,#D4A017);color:#1A1A2E;text-decoration:none;margin-right:10px">✨ Ask AI</a>
+        <button class="register-btn" onclick="window.location.href='register.html'">Register</button>
 
         <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
             <span></span><span></span><span></span>
@@ -2765,13 +2767,16 @@
     <!-- ===== MOBILE MENU ===== -->
     <div class="mobile-menu" id="mobileMenu">
         <a href="#home" class="mobile-menu-link">Home</a>
-        <a href="#about" class="mobile-menu-link">About</a>
-        <a href="#events" class="mobile-menu-link">Events</a>
-        <a href="#news" class="mobile-menu-link">News</a>
-        <a href="#states" class="mobile-menu-link">States &amp; LGAs</a>
-        <a href="#gallery" class="mobile-menu-link">Gallery</a>
+        <a href="about.html" class="mobile-menu-link">About</a>
+        <a href="civic-resource.html" class="mobile-menu-link">Civic Hub</a>
+        <a href="volunteer.html" class="mobile-menu-link">Volunteer</a>
+        <a href="leadership.html" class="mobile-menu-link">Leadership</a>
+        <a href="events.html" class="mobile-menu-link">Events</a>
+        <a href="gallery.html" class="mobile-menu-link">Gallery</a>
+        <a href="find-lga.html" class="mobile-menu-link">States &amp; LGAs</a>
         <a href="#contact" class="mobile-menu-link">Contact</a>
-        <a href="#register" class="mobile-menu-link mobile-menu-register">Register With FixNaija</a>
+        <a href="ask-fixnaija.html" class="mobile-menu-link" style="color:#D4A017;font-weight:600">✨ Ask FixNaija (AI)</a>
+        <a href="register.html" class="mobile-menu-link mobile-menu-register">Register With FixNaija</a>
     </div>
 
     <!-- ===== HERO SECTION ===== -->
@@ -4917,6 +4922,17 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
 console.log('nigeriaData loaded:', Object.keys(nigeriaData).length, 'states');
 console.log('stateToSlug ready. Ward JSON files expected at: data/wards/[state-slug].json');
 </script>
+
+<!-- ===== FLOATING ASK FIXNAIJA (AI) BUTTON ===== -->
+<a href="ask-fixnaija.html" aria-label="Ask FixNaija AI"
+   style="position:fixed;right:20px;bottom:20px;z-index:1500;display:flex;align-items:center;gap:10px;
+          background:linear-gradient(135deg,#00a862,#008751);color:#fff;text-decoration:none;
+          padding:13px 20px;border-radius:999px;font-family:'Space Grotesk',sans-serif;font-weight:700;
+          box-shadow:0 12px 30px -8px rgba(0,135,81,.7);transition:transform .2s"
+   onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='none'">
+   <span style="font-size:1.2rem">💬</span>
+   <span>Ask <span style="color:#D4A017">FixNaija</span> <span style="font-size:.7rem;opacity:.85">AI</span></span>
+</a>
 
 </body>
 </html>
