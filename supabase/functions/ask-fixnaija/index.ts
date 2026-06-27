@@ -5,13 +5,16 @@
 // Deploy:
 //   supabase functions deploy ask-fixnaija --no-verify-jwt
 // Set your secret key (choose ONE provider below):
-//   supabase secrets set ANTHROPIC_API_KEY=sk-ant-...
+//   supabase secrets set GEMINI_API_KEY=AIza...        <-- FREE tier (recommended)
+//   (or)  supabase secrets set ANTHROPIC_API_KEY=sk-ant-...
 //   (or)  supabase secrets set OPENAI_API_KEY=sk-...
 //
 // The frontend (ask-fixnaija.html) POSTs: { messages: [{role, content}, ...] }
 // and expects back: { reply: "..." }
 // =============================================================
 
+const GEMINI_API_KEY = Deno.env.get("GEMINI_API_KEY") ?? "";
+const GEMINI_MODEL = Deno.env.get("GEMINI_MODEL") ?? "gemini-2.5-flash"; // free-tier Flash model; change if needed
 const ANTHROPIC_API_KEY = Deno.env.get("ANTHROPIC_API_KEY") ?? "";
 const OPENAI_API_KEY = Deno.env.get("OPENAI_API_KEY") ?? "";
 
@@ -79,7 +82,32 @@ Deno.serve(async (req) => {
   if (messages.length === 0) return json({ error: "No messages provided" }, 400);
 
   try {
-    // ---- Preferred: Anthropic Claude ----
+    // ---- Preferred: Google Gemini (free tier) ----
+    if (GEMINI_API_KEY) {
+      // Gemini uses roles "user" and "model"; map "assistant" -> "model".
+      const contents = messages.map((m) => ({
+        role: m.role === "assistant" ? "model" : "user",
+        parts: [{ text: m.content }],
+      }));
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
+      const r = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+          contents,
+          generationConfig: { maxOutputTokens: 700, temperature: 0.4 },
+        }),
+      });
+      if (!r.ok) return json({ error: "Gemini error", detail: await r.text() }, 502);
+      const data = await r.json();
+      const reply =
+        data?.candidates?.[0]?.content?.parts?.map((p: { text?: string }) => p.text ?? "").join("") ||
+        "Sorry, I couldn't generate a response.";
+      return json({ reply });
+    }
+
+    // ---- Alternative: Anthropic Claude ----
     if (ANTHROPIC_API_KEY) {
       const r = await fetch("https://api.anthropic.com/v1/messages", {
         method: "POST",
@@ -118,7 +146,7 @@ Deno.serve(async (req) => {
       return json({ reply });
     }
 
-    return json({ error: "No API key configured. Set ANTHROPIC_API_KEY or OPENAI_API_KEY as a Supabase secret." }, 500);
+    return json({ error: "No API key configured. Set GEMINI_API_KEY (free), ANTHROPIC_API_KEY, or OPENAI_API_KEY as a Supabase secret." }, 500);
   } catch (e) {
     return json({ error: "Server error", detail: String(e) }, 500);
   }
