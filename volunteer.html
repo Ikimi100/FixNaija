@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Volunteer Your Skills — FixNaija Movement</title>
+<meta name="description" content="Lend your skills to Nigeria's largest citizen-led accountability network. From ward organisers and civic monitors to developers, designers and storytellers — there's a seat for you at FixNaija.">
+<link rel="icon" type="image/png" href="images/logo.png">
+<link rel="apple-touch-icon" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/fixnaija-pages.css">
+<style>
+  .filterbar{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:34px}
+  .filterbar button{font-family:'Space Grotesk';font-weight:600;font-size:.88rem;padding:9px 18px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--ink-85);cursor:pointer;transition:.2s}
+  .filterbar button.active,.filterbar button:hover{background:var(--green);color:#fff;border-color:var(--green)}
+  .role .skills{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0}
+  .role .skills span{font-size:.74rem;font-family:'Space Grotesk';font-weight:600;background:rgba(212,160,23,.14);color:var(--gold-soft);padding:4px 10px;border-radius:999px}
+  .role ul{margin:10px 0 0;padding-left:18px}
+  .role li{font-size:.9rem;color:var(--ink-72);margin-bottom:6px}
+  .role .apply{display:inline-block;margin-top:14px;font-family:'Space Grotesk';font-weight:700;color:var(--green-bright);text-decoration:none;font-size:.9rem;cursor:pointer}
+  .form-card{max-width:760px;margin:0 auto;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:var(--radius-lg);padding:34px}
+  .frow{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+  @media(max-width:560px){.frow{grid-template-columns:1fr}}
+  .field label{display:block;font-family:'Space Grotesk';font-weight:600;font-size:.85rem;margin-bottom:6px}
+  .field input,.field select,.field textarea{width:100%;padding:13px 15px;border-radius:11px;border:1px solid rgba(255,255,255,.16);background:rgba(0,0,0,.25);color:#fff;font-size:.95rem;font-family:'Inter'}
+  .field textarea{min-height:110px;resize:vertical}
+  .field input::placeholder,.field textarea::placeholder{color:rgba(255,255,255,.45)}
+  .consent{display:flex;gap:10px;align-items:flex-start;font-size:.85rem;color:var(--ink-72);margin:8px 0 18px}
+  .why-list{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:820px){.why-list{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="images/logo.png" alt="FixNaija Movement logo"><span><span class="brand-name">FixNaija Movement</span><span class="brand-subline">People's Grassroots Network</span></span></a>
+    <ul class="nav-links">
+      <li><a href="index.html#home">Home</a></li><li><a href="about.html">About</a></li>
+      <li><a href="civic-resource.html">Civic Hub</a></li><li><a href="volunteer.html" class="active">Volunteer</a></li>
+      <li><a href="leadership.html">Leadership</a></li><li><a href="find-lga.html">States &amp; LGAs</a></li>
+      <li><a href="ask-fixnaija.html">Ask FixNaija</a></li>
+    </ul>
+    <button class="register-btn" onclick="location.href='register.html'">Register</button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#home">Home</a><a href="about.html">About</a><a href="civic-resource.html">Civic Hub</a>
+  <a href="volunteer.html">Volunteer</a><a href="leadership.html">Leadership</a><a href="find-lga.html">States &amp; LGAs</a>
+  <a href="events.html">Events</a><a href="gallery.html">Gallery</a><a href="ask-fixnaija.html">Ask FixNaija</a><a href="register.html">Register</a>
+</div>
+
+<header class="phero">
+  <div class="phero-flag"></div>
+  <div class="wrap">
+    <span class="eyebrow">Volunteer Programme</span>
+    <h1>Your skill is the <em>repair tool</em> Nigeria needs.</h1>
+    <p class="lede">FixNaija is built by ordinary Nigerians giving what they have — time, talent, and tenacity. Whether you can organise a ward, monitor a project, write code, design a flyer, or simply show up, there is a seat for you at this table. At home or in the diaspora.</p>
+    <div class="phero-cta">
+      <a class="btn btn-primary" href="#apply">Apply to volunteer →</a>
+      <a class="btn btn-ghost" href="#roles">Explore the roles</a>
+    </div>
+    <div class="metrics">
+      <div class="metric"><div class="n" data-count="774" data-suffix="">0</div><div class="l">LGAs to organise</div></div>
+      <div class="metric"><div class="n" data-count="300" data-suffix="+">0</div><div class="l">Youth leaders trained</div></div>
+      <div class="metric"><div class="n" data-count="36" data-suffix="">0</div><div class="l">States represented</div></div>
+      <div class="metric"><div class="n">Remote</div><div class="l">friendly &amp; diaspora-welcome</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ROLES -->
+<section class="block" id="roles">
+  <div class="wrap reveal">
+    <div class="sec-head">
+      <span class="eyebrow">Open Roles</span>
+      <h2>Every skill. Every level. Every state.</h2>
+      <p>From first-time volunteers to seasoned professionals — pick the craft that fits you. You can contribute per-task, per-event, or weekly.</p>
+    </div>
+    <div class="filterbar">
+      <button class="active" data-cat="all">All roles</button>
+      <button data-cat="ground">Grassroots &amp; Civic</button>
+      <button data-cat="tech">Tech &amp; Data</button>
+      <button data-cat="creative">Creative &amp; Media</button>
+      <button data-cat="pro">Professional &amp; Legal</button>
+    </div>
+    <div class="grid g3" id="roleGrid">
+
+      <div class="card role" data-cat="ground"><div class="ico">🤝</div><h3>Ward / LGA Organiser</h3><p>Be the face of FixNaija in your community.</p>
+        <ul><li>Build and grow your ward's member network</li><li>Convene local meetings and town halls</li><li>Link residents to the movement's tools</li></ul>
+        <div class="skills"><span>Communication</span><span>Local trust</span></div><a class="apply" data-role="Ward / LGA Organiser">Apply for this role →</a></div>
+
+      <div class="card role" data-cat="ground"><div class="ico">🔎</div><h3>Civic / Project Monitor</h3><p>Watch public projects from budget line to commissioning.</p>
+        <ul><li>Visit and photograph government projects</li><li>Geotag and report progress — or abandonment</li><li>Verify whether budgeted work was actually done</li></ul>
+        <div class="skills"><span>Smartphone</span><span>Attention to detail</span></div><a class="apply" data-role="Civic / Project Monitor">Apply for this role →</a></div>
+
+      <div class="card role" data-cat="ground"><div class="ico">🎓</div><h3>Civic Educator</h3><p>Teach citizens their rights and how power works.</p>
+        <ul><li>Run short civic-education sessions in your area</li><li>Translate guides into local languages</li><li>Help first-time voters understand the process</li></ul>
+        <div class="skills"><span>Teaching</span><span>Local language</span></div><a class="apply" data-role="Civic Educator">Apply for this role →</a></div>
+
+      <div class="card role" data-cat="tech"><div class="ico">💻</div><h3>Web / Software Developer</h3><p>Build the platform that powers the movement.</p>
+        <ul><li>Improve the report &amp; LGA-finder tools</li><li>Build dashboards from citizen reports</li><li>Maintain site performance &amp; accessibility</li></ul>
+        <div class="skills"><span>HTML/CSS/JS</span><span>Supabase</span><span>APIs</span></div><a class="apply" data-role="Web / Software Developer">Apply for this role →</a></div>
+
+      <div class="card role" data-cat="tech"><div class="ico">📊</div><h3>Data Analyst</h3><p>Turn thousands of citizen reports into evidence.</p>
+        <ul><li>Clean and analyse project &amp; budget data</li><li>Spot patterns of abandonment or waste</li><li>Build clear visualisations for campaigns</li></ul>
+        <div class="skills"><span>Excel/Sheets</span><span>Python/R</span><span>Data viz</span></div><a class="apply" data-role="Data Analyst">Apply for this role →</a></div>
+
+      <div class="card role" data-cat="tech"><div class="ico">🎨</div><h3>UI / UX Designer</h3><p>Make civic tools simple enough for everyone.</p>
+        <ul><li>Design the report &amp; registration flows</li><li>Run quick tests with real community members</li><li>Maintain a shared FixNaija design system</li></ul>
+        <div class="skills"><span>Figma</span><span>Prototyping</span></div><a class="apply" data-role="UI / UX Designer">Apply for this role →</a></div>
+
+      <div class="card role" data-cat="creative"><div class="ico">🖌️</div><h3>Graphic Designer</h3><p>Design visuals that move people to act.</p>
+        <ul><li>Posters, flyers and social templates</li><li>Maintain the FixNaija visual identity</li><li>Support LGA teams with local creatives</li></ul>
+        <div class="skills"><span>Illustrator</span><span>Canva</span><span>Photoshop</span></div><a class="apply" data-role="Graphic Designer">Apply for this role →</a></div>
+
+      <div class="card role" data-cat="creative"><div class="ico">🎬</div><h3>Video / Content Creator</h3><p>Tell the movement's story for young Nigerians.</p>
+        <ul><li>Shoot and edit Reels, Shorts &amp; explainers</li><li>Cover town halls and trainings</li><li>Turn civic topics into shareable content</li></ul>
+        <div class="skills"><span>CapCut</span><span>Premiere</span><span>Storytelling</span></div><a class="apply" data-role="Video / Content Creator">Apply for this role →</a></div>
+
+      <div class="card role" data-cat="creative"><div class="ico">📣</div><h3>Social Media Manager</h3><p>Run our daily presence and counter misinformation.</p>
+        <ul><li>Plan and ship a content calendar</li><li>Engage supporters across platforms</li><li>Correct false claims with verified facts</li></ul>
+        <div class="skills"><span>Meta Suite</span><span>X / TikTok</span><span>Analytics</span></div><a class="apply" data-role="Social Media Manager">Apply for this role →</a></div>
+
+      <div class="card role" data-cat="pro"><div class="ico">⚖️</div><h3>Legal Volunteer</h3><p>Help citizens use the law as a tool.</p>
+        <ul><li>Draft FOI request &amp; petition templates</li><li>Advise on rights and reporting procedures</li><li>Support documentation of violations</li></ul>
+        <div class="skills"><span>Law degree</span><span>FOI Act</span><span>Public interest</span></div><a class="apply" data-role="Legal Volunteer">Apply for this role →</a></div>
+
+      <div class="card role" data-cat="pro"><div class="ico">✍🏾</div><h3>Researcher / Writer</h3><p>Turn complex policy into clear, human language.</p>
+        <ul><li>Write civic guides &amp; explainers</li><li>Research budgets, contracts and records</li><li>Adapt content into Nigerian languages</li></ul>
+        <div class="skills"><span>Research</span><span>Writing</span><span>Pidgin/Hausa/Yoruba/Igbo</span></div><a class="apply" data-role="Researcher / Writer">Apply for this role →</a></div>
+
+      <div class="card role" data-cat="pro"><div class="ico">🌍</div><h3>Diaspora Coordinator</h3><p>Mobilise Nigerians abroad for the homeland.</p>
+        <ul><li>Organise diaspora chapters &amp; fundraising</li><li>Bring global skills to local projects (remote)</li><li>Connect diaspora to their home LGAs</li></ul>
+        <div class="skills"><span>Networking</span><span>Remote</span></div><a class="apply" data-role="Diaspora Coordinator">Apply for this role →</a></div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="block light">
+  <div class="wrap reveal">
+    <div class="sec-head"><span class="eyebrow">Why volunteer</span><h2>More than helping out. Building a nation.</h2><p>You'll work alongside committed Nigerians, learn real skills, and earn a place in the story of a country repairing itself.</p></div>
+    <div class="why-list">
+      <div class="card"><div class="ico">🏗️</div><h3>Build something historic</h3><p>Help create the largest citizen-led accountability network in Nigeria's history — across all 774 LGAs.</p></div>
+      <div class="card"><div class="ico">📈</div><h3>Grow your skills</h3><p>Get mentorship, training and references. Many volunteers gain experience that opens real career doors.</p></div>
+      <div class="card"><div class="ico">⏱️</div><h3>Flexible commitment</h3><p>Give what life allows — per-task, per-event, or a weekly rhythm. No bureaucracy.</p></div>
+      <div class="card"><div class="ico">🎖️</div><h3>Real recognition</h3><p>Active contributors are credited and celebrated across FixNaija channels and community events.</p></div>
+      <div class="card"><div class="ico">🌍</div><h3>Diaspora-welcome</h3><p>Most tech, design, writing and data work is fully remote. Nigerians abroad, we need you.</p></div>
+      <div class="card"><div class="ico">❤️</div><h3>Impact you can see</h3><p>Watch a reported project get fixed, a ward get organised, a first-time voter cast a ballot. Real, local, visible.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="block">
+  <div class="wrap reveal">
+    <div class="sec-head"><span class="eyebrow">How it works</span><h2>From application to first contribution — in days.</h2></div>
+    <div class="steps" style="max-width:880px;margin:0 auto">
+      <div class="step"><h4>Apply</h4><p>Tell us who you are, your strongest skill, your LGA, and how much time you can give.</p></div>
+      <div class="step"><h4>Get matched</h4><p>A coordinator pairs you with a team or your local ward network based on your skills and location.</p></div>
+      <div class="step"><h4>Onboard</h4><p>Join the volunteers' WhatsApp/community, agree to our code of conduct, and meet your team.</p></div>
+      <div class="step"><h4>Start contributing</h4><p>Pick up your first task — monitor a project, design a flyer, organise a meeting. Real impact, fast.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- APPLY -->
+<section class="block light" id="apply">
+  <div class="wrap reveal">
+    <div class="sec-head"><span class="eyebrow">Application</span><h2>Apply to volunteer</h2><p>Our coordinators review every application. Tell us about yourself and we'll be in touch — usually via WhatsApp.</p></div>
+    <form class="form-card" id="volForm" onsubmit="return submitVol(event)">
+      <div class="frow">
+        <div class="field"><label>Full name *</label><input name="name" required placeholder="Your full name"></div>
+        <div class="field"><label>Email *</label><input type="email" name="email" required placeholder="you@email.com"></div>
+      </div>
+      <div class="frow">
+        <div class="field"><label>WhatsApp number *</label><input name="phone" required placeholder="+234..."></div>
+        <div class="field"><label>State / location *</label>
+          <select name="state" required>
+            <option value="">Select your state</option>
+            <option>Abia</option><option>Adamawa</option><option>Akwa Ibom</option><option>Anambra</option><option>Bauchi</option><option>Bayelsa</option><option>Benue</option><option>Borno</option><option>Cross River</option><option>Delta</option><option>Ebonyi</option><option>Edo</option><option>Ekiti</option><option>Enugu</option><option>FCT (Abuja)</option><option>Gombe</option><option>Imo</option><option>Jigawa</option><option>Kaduna</option><option>Kano</option><option>Katsina</option><option>Kebbi</option><option>Kogi</option><option>Kwara</option><option>Lagos</option><option>Nasarawa</option><option>Niger</option><option>Ogun</option><option>Ondo</option><option>Osun</option><option>Oyo</option><option>Plateau</option><option>Rivers</option><option>Sokoto</option><option>Taraba</option><option>Yobe</option><option>Zamfara</option><option>Diaspora</option>
+          </select>
+        </div>
+      </div>
+      <div class="frow">
+        <div class="field"><label>Primary role *</label>
+          <select name="role" id="roleSelect" required>
+            <option value="">Choose your strongest craft</option>
+            <optgroup label="Grassroots &amp; Civic"><option>Ward / LGA Organiser</option><option>Civic / Project Monitor</option><option>Civic Educator</option></optgroup>
+            <optgroup label="Tech &amp; Data"><option>Web / Software Developer</option><option>Data Analyst</option><option>UI / UX Designer</option></optgroup>
+            <optgroup label="Creative &amp; Media"><option>Graphic Designer</option><option>Video / Content Creator</option><option>Social Media Manager</option></optgroup>
+            <optgroup label="Professional &amp; Legal"><option>Legal Volunteer</option><option>Researcher / Writer</option><option>Diaspora Coordinator</option></optgroup>
+          </select>
+        </div>
+        <div class="field"><label>Time you can give *</label>
+          <select name="time" required><option value="">Select</option><option>Per task</option><option>Per event</option><option>A few hours weekly</option><option>10+ hours weekly</option></select>
+        </div>
+      </div>
+      <div class="field" style="margin-bottom:16px"><label>Why do you want to volunteer? (optional)</label><textarea name="why" placeholder="Tell us what drives you..."></textarea></div>
+      <label class="consent"><input type="checkbox" required style="margin-top:3px"> I consent to FixNaija using my details to coordinate my volunteering. My data will not be sold or shared with third parties, and I can request deletion at any time.</label>
+      <button class="btn btn-primary" type="submit" style="width:100%">Submit application</button>
+      <p id="volMsg" style="text-align:center;margin-top:14px;color:var(--green);font-weight:600;display:none">✅ Thank you! A coordinator will reach out via WhatsApp shortly.</p>
+    </form>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="block">
+  <div class="wrap reveal">
+    <div class="sec-head"><span class="eyebrow">Questions, answered</span><h2>Volunteer FAQ</h2></div>
+    <div class="faq">
+      <details class="qa"><summary>Is volunteering paid?</summary><div class="a">FixNaija roles are civic contributions and are generally unpaid. Some specialised, time-heavy commissions may include a stipend — these are agreed up front with your coordinator.</div></details>
+      <details class="qa"><summary>How much time do I need to give?</summary><div class="a">As much or as little as life allows. Many volunteers give a few hours a week; we also welcome per-task and per-event contributors, especially for monitoring, design and content.</div></details>
+      <details class="qa"><summary>I live abroad. Can I still help?</summary><div class="a">Absolutely — and we need you. Most tech, design, data, writing and coordination work is fully remote. Select "Diaspora" when you apply.</div></details>
+      <details class="qa"><summary>I have no special skills. Is there a role for me?</summary><div class="a">Yes. The most important role of all is the Ward Organiser — someone trusted in their community who can bring neighbours together. Showing up and caring is a skill.</div></details>
+      <details class="qa"><summary>How is my data handled?</summary><div class="a">Your information is used only to coordinate your volunteering. We never sell or share it with third parties, and you can request deletion at any time.</div></details>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand"><a class="brand" href="index.html"><img src="images/logo.png" alt="FixNaija logo"><span class="brand-name">FixNaija Movement</span></a>
+        <p>One Nigeria. 774 Communities. One Voice. A non-partisan grassroots network repairing Nigeria from the ground up.</p>
+        <div class="foot-soc"><a href="https://www.facebook.com/profile.php?id=61590354706603" target="_blank" rel="noopener" title="Facebook">f</a><a href="https://www.instagram.com/fixnaijamovement/" target="_blank" rel="noopener" title="Instagram">ig</a></div>
+      </div>
+      <div><h4>Explore</h4><a class="fl" href="about.html">About</a><a class="fl" href="civic-resource.html">Civic Hub</a><a class="fl" href="volunteer.html">Volunteer</a><a class="fl" href="leadership.html">Leadership</a><a class="fl" href="find-lga.html">States &amp; LGAs</a></div>
+      <div><h4>Get Involved</h4><a class="fl" href="register.html">Register</a><a class="fl" href="report-issue.html">Report an Issue</a><a class="fl" href="ask-fixnaija.html">Ask FixNaija</a><a class="fl" href="mailto:fixnaijamovement@gmail.com">fixnaijamovement@gmail.com</a><a class="fl" href="tel:+2349165255606">+234 916 525 5606</a></div>
+    </div>
+    <div class="foot-bar"><span>© 2026 FixNaija Movement. All rights reserved.</span><span>Built by the people, for the people.</span></div>
+  </div>
+</footer>
+
+<div class="concept-note">New page · FixNaija</div>
+<script src="assets/fixnaija-pages.js"></script>
+<script>
+  // role filter
+  document.querySelectorAll('.filterbar button').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('.filterbar button').forEach(function(x){x.classList.remove('active');});
+      b.classList.add('active');
+      var cat=b.dataset.cat;
+      document.querySelectorAll('#roleGrid .role').forEach(function(card){
+        card.style.display = (cat==='all'||card.dataset.cat===cat)?'':'none';
+      });
+    });
+  });
+  // role apply -> prefill form select + scroll
+  document.querySelectorAll('.apply').forEach(function(a){
+    a.addEventListener('click', function(){
+      var r=a.dataset.role, sel=document.getElementById('roleSelect');
+      for(var i=0;i<sel.options.length;i++){ if(sel.options[i].value===r){sel.selectedIndex=i;break;} }
+      document.getElementById('apply').scrollIntoView({behavior:'smooth'});
+    });
+  });
+  function submitVol(e){
+    e.preventDefault();
+    // NOTE: wire this to your Supabase 'volunteers' table or email handler.
+    document.getElementById('volMsg').style.display='block';
+    e.target.reset();
+    return false;
+  }
+</script>
+</body>
+</html>

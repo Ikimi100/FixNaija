@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Civic Resource Hub — Know Your Rights | FixNaija Movement</title>
+<meta name="description" content="The FixNaija civic education hub: know your rights, get your PVC, understand how Nigeria's three tiers of government work, follow public money, and learn how to hold leaders accountable in your LGA.">
+<link rel="icon" type="image/png" href="images/logo.png">
+<link rel="apple-touch-icon" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/fixnaija-pages.css">
+<style>
+  /* page-specific */
+  .jump-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:8px}
+  @media(max-width:860px){.jump-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:480px){.jump-grid{grid-template-columns:1fr}}
+  .jump{display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:13px;padding:14px 16px;text-decoration:none;color:#fff;transition:.2s}
+  .jump:hover{border-color:var(--gold);transform:translateY(-3px)}
+  .jump .e{font-size:1.4rem}
+  .jump span{font-family:'Space Grotesk';font-weight:600;font-size:.92rem}
+  .tier{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:820px){.tier{grid-template-columns:1fr}}
+  .tier-card{border-radius:18px;padding:28px;border:1px solid rgba(26,26,46,.08);background:#fff;box-shadow:var(--shadow-soft);color:var(--charcoal)}
+  .tier-card .badge{display:inline-block;font-family:'Space Grotesk';font-weight:700;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:999px;margin-bottom:14px}
+  .tier-card.fed .badge{background:rgba(0,135,81,.12);color:var(--green)}
+  .tier-card.state .badge{background:rgba(212,160,23,.16);color:#9a7400}
+  .tier-card.lga .badge{background:rgba(26,26,46,.1);color:var(--charcoal)}
+  .tier-card h3{font-size:1.3rem;margin-bottom:6px}
+  .tier-card ul{margin:14px 0 0;padding-left:18px}
+  .tier-card li{margin-bottom:9px;color:#54546a;font-size:.95rem}
+  .money-flow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;margin-top:10px}
+  .money-step{flex:1;min-width:170px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;padding:20px;position:relative;margin:6px}
+  .money-step .k{font-family:'Space Grotesk';font-weight:700;color:var(--gold);font-size:1.05rem;margin-bottom:6px}
+  .money-step p{font-size:.9rem;color:var(--ink-72)}
+  .rights-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  @media(max-width:680px){.rights-grid{grid-template-columns:1fr}}
+  .right{display:flex;gap:14px;padding:18px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
+  .right .e{font-size:1.4rem}
+  .right h4{font-size:1.02rem;margin-bottom:4px}
+  .right p{font-size:.9rem;color:var(--ink-72)}
+  .calendar{max-width:760px;margin:0 auto;display:grid;gap:12px}
+  .cal-row{display:grid;grid-template-columns:130px 1fr;gap:18px;background:#fff;color:var(--charcoal);border-radius:13px;padding:18px 22px;box-shadow:var(--shadow-soft)}
+  .cal-row .when{font-family:'Space Grotesk';font-weight:700;color:var(--green)}
+  .cal-row p{color:#54546a;font-size:.93rem}
+  @media(max-width:520px){.cal-row{grid-template-columns:1fr;gap:4px}}
+  .note-box{background:rgba(212,160,23,.1);border:1px solid rgba(212,160,23,.4);border-radius:14px;padding:18px 22px;font-size:.95rem;color:var(--ink-85)}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <img src="images/logo.png" alt="FixNaija Movement logo">
+      <span><span class="brand-name">FixNaija Movement</span><span class="brand-subline">People's Grassroots Network</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="civic-resource.html" class="active">Civic Hub</a></li>
+      <li><a href="volunteer.html">Volunteer</a></li>
+      <li><a href="leadership.html">Leadership</a></li>
+      <li><a href="find-lga.html">States &amp; LGAs</a></li>
+      <li><a href="ask-fixnaija.html">Ask FixNaija</a></li>
+    </ul>
+    <button class="register-btn" onclick="location.href='register.html'">Register</button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#home">Home</a><a href="about.html">About</a><a href="civic-resource.html">Civic Hub</a>
+  <a href="volunteer.html">Volunteer</a><a href="leadership.html">Leadership</a><a href="find-lga.html">States &amp; LGAs</a>
+  <a href="events.html">Events</a><a href="gallery.html">Gallery</a><a href="ask-fixnaija.html">Ask FixNaija</a><a href="register.html">Register</a>
+</div>
+
+<!-- HERO -->
+<header class="phero">
+  <div class="phero-flag"></div>
+  <div class="wrap">
+    <span class="eyebrow">Civic Resource Hub</span>
+    <h1>Know your power.<br><em>Then use it.</em></h1>
+    <p class="lede">Most Nigerians were never taught how their own government works — what it owes them, where the money goes, or how to demand better. This hub fixes that. Plain-language guides on your rights, your vote, and how to hold every tier of government accountable, from Aso Rock down to your ward.</p>
+    <div class="phero-cta">
+      <a class="btn btn-primary" href="#rights">Start with your rights →</a>
+      <a class="btn btn-ghost" href="#accountability">How to hold leaders accountable</a>
+    </div>
+    <div class="jump-grid">
+      <a class="jump" href="#rights"><span class="e">⚖️</span><span>Your Rights</span></a>
+      <a class="jump" href="#pvc"><span class="e">🪪</span><span>Get Your PVC</span></a>
+      <a class="jump" href="#vote"><span class="e">🗳️</span><span>How to Vote</span></a>
+      <a class="jump" href="#govt"><span class="e">🏛️</span><span>How Govt Works</span></a>
+      <a class="jump" href="#money"><span class="e">💰</span><span>Follow the Money</span></a>
+      <a class="jump" href="#accountability"><span class="e">📢</span><span>Hold Leaders Accountable</span></a>
+      <a class="jump" href="#calendar"><span class="e">📅</span><span>Election Calendar</span></a>
+      <a class="jump" href="#faq"><span class="e">❓</span><span>FAQ</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- RIGHTS -->
+<section class="block" id="rights">
+  <div class="wrap reveal">
+    <div class="sec-head">
+      <span class="eyebrow">Module 1</span>
+      <h2>Your rights as a Nigerian citizen</h2>
+      <p>Chapter IV of the 1999 Constitution guarantees these to every Nigerian — not as favours from government, but as your entitlements. Know them, and no official can talk you out of them.</p>
+    </div>
+    <div class="rights-grid">
+      <div class="right"><span class="e">🗣️</span><div><h4>Freedom of expression</h4><p>You may hold opinions, speak, write and criticise government without fear (s.39). Peaceful criticism is your right, not a crime.</p></div></div>
+      <div class="right"><span class="e">🤝</span><div><h4>Peaceful assembly &amp; association</h4><p>You can gather, protest peacefully, and form or join groups and movements like FixNaija (s.40).</p></div></div>
+      <div class="right"><span class="e">⚖️</span><div><h4>Dignity &amp; fair hearing</h4><p>No torture, no degrading treatment; you are presumed innocent and entitled to a fair hearing (s.34, s.36).</p></div></div>
+      <div class="right"><span class="e">🚶🏾</span><div><h4>Freedom of movement</h4><p>You may live, move and trade anywhere in Nigeria — no LGA, state or checkpoint can lawfully deny you (s.41).</p></div></div>
+      <div class="right"><span class="e">🙅🏾‍♀️</span><div><h4>Freedom from discrimination</h4><p>No one may be treated unfairly because of ethnicity, religion, gender, or political opinion (s.42).</p></div></div>
+      <div class="right"><span class="e">🗳️</span><div><h4>The right to vote</h4><p>Every citizen 18+ may register and vote. Your PVC turns this right into power (s.77, Electoral Act).</p></div></div>
+    </div>
+    <div class="note-box reveal" style="margin-top:26px">💡 <strong>A right you don't use is a right you lose.</strong> FixNaija's whole mission is helping ordinary Nigerians turn these paper rights into real power — ward by ward, LGA by LGA.</div>
+  </div>
+</section>
+
+<!-- PVC -->
+<section class="block light" id="pvc">
+  <div class="wrap reveal">
+    <div class="sec-head">
+      <span class="eyebrow">Module 2</span>
+      <h2>Get your Permanent Voter Card (PVC)</h2>
+      <p>No PVC, no vote — it is the single most important card a Nigerian citizen can own. Here's exactly how to get yours through INEC.</p>
+    </div>
+    <div class="steps" style="max-width:880px;margin:0 auto">
+      <div class="step"><h4>Check if you're already registered</h4><p>Visit the INEC Voter Verification portal and enter your details. If you registered before and never collected your card, skip to step 4.</p></div>
+      <div class="step"><h4>Start the registration</h4><p>Register online via the INEC Continuous Voter Registration (CVR) portal to book a slot, or walk in to your LGA's INEC office. You must be a Nigerian citizen aged 18 or older.</p></div>
+      <div class="step"><h4>Complete biometric capture</h4><p>At the centre, INEC captures your fingerprints and photograph. Bring valid ID (NIN slip, national ID, driver's licence, or international passport).</p></div>
+      <div class="step"><h4>Collect your PVC</h4><p>INEC announces collection dates. Go to your registration LGA with your slip, confirm your details on the card, and collect it in person.</p></div>
+      <div class="step"><h4>Protect &amp; verify it</h4><p>Check that your name, photo and the four-part polling-unit code are correct. Keep it safe — you'll need it on every election day.</p></div>
+    </div>
+    <div class="center" style="margin-top:30px">
+      <a class="btn btn-primary" href="https://cvr.inecnigeria.org/" target="_blank" rel="noopener">Register / verify on INEC →</a>
+    </div>
+  </div>
+</section>
+
+<!-- VOTE -->
+<section class="block" id="vote">
+  <div class="wrap reveal">
+    <div class="sec-head">
+      <span class="eyebrow">Module 3</span>
+      <h2>How to vote — and protect your vote</h2>
+      <p>Voting in Nigeria is run by INEC and verified at every polling unit by BVAS (the Bimodal Voter Accreditation System), which reads your PVC and confirms your fingerprint or face before you get a ballot. Here's the day, step by step.</p>
+    </div>
+    <div class="steps" style="max-width:880px;margin:0 auto">
+      <div class="step"><h4>Arrive early at YOUR polling unit</h4><p>Get there from 8:00 AM. You can only vote at the unit shown by the four-part code on your PVC — nowhere else. Join the orderly queue.</p></div>
+      <div class="step"><h4>Get accredited with BVAS</h4><p>Hand over your PVC. The BVAS device verifies your fingerprint or face. No accreditation = no ballot, even if your name is in the register.</p></div>
+      <div class="step"><h4>Receive your ballot paper</h4><p>Once accredited, your name is ticked and you're handed a stamped, signed ballot for each election being held that day.</p></div>
+      <div class="step"><h4>Thumbprint in secret — one box only</h4><p>Step into the cubicle and make ONE clear thumbprint inside the box of your chosen candidate. Double marks or marks outside the box void your vote.</p></div>
+      <div class="step"><h4>Cast your ballot</h4><p>Fold with the markings inside and drop it into the correct transparent ballot box.</p></div>
+      <div class="step"><h4>Stay and protect the result</h4><p>You have the right to remain while votes are counted and the result sheet (Form EC8A) is announced and uploaded to the INEC Result Viewing Portal (IReV). Photograph the posted EC8A.</p></div>
+    </div>
+    <div class="note-box reveal" style="margin-top:26px;max-width:880px;margin-left:auto;margin-right:auto">🛡️ <strong>If you're in the queue by 2:30 PM, you MUST be allowed to vote.</strong> Do not leave the line. Vote-buying, intimidation and ballot snatching are crimes — record them and report to INEC, the police, or observers like Yiaga Africa.</div>
+  </div>
+</section>
+
+<!-- HOW GOVT WORKS -->
+<section class="block light" id="govt">
+  <div class="wrap reveal">
+    <div class="sec-head">
+      <span class="eyebrow">Module 4 · FixNaija deep-dive</span>
+      <h2>How your government actually works</h2>
+      <p>Power in Nigeria sits in three tiers. When something is broken, the first question is always: <em>whose job was it?</em> Knowing this is the difference between shouting into the air and holding the right person accountable.</p>
+    </div>
+    <div class="tier">
+      <div class="tier-card fed">
+        <span class="badge">Tier 1 · Federal</span>
+        <h3>The Federal Government</h3>
+        <p style="color:#54546a;font-size:.95rem">Led by the President. Handles nationwide matters.</p>
+        <ul>
+          <li>Defence, foreign affairs, currency &amp; the army/police</li>
+          <li>Federal roads, rail, airports, power grid</li>
+          <li>National policy, federal universities &amp; hospitals</li>
+          <li>Hold to account: your Senators &amp; House of Reps members</li>
+        </ul>
+      </div>
+      <div class="tier-card state">
+        <span class="badge">Tier 2 · State</span>
+        <h3>State Government</h3>
+        <p style="color:#54546a;font-size:.95rem">Led by the Governor. Closest tier with real money.</p>
+        <ul>
+          <li>State roads, schools, primary healthcare, water</li>
+          <li>State hospitals, environment, internal security votes</li>
+          <li>Receives the bulk of federal allocation each month</li>
+          <li>Hold to account: your Governor &amp; State House of Assembly member</li>
+        </ul>
+      </div>
+      <div class="tier-card lga">
+        <span class="badge">Tier 3 · Local Govt</span>
+        <h3>Local Government (LGA)</h3>
+        <p style="color:#54546a;font-size:.95rem">Led by the Council Chairman. The tier nearest your street — and the most ignored.</p>
+        <ul>
+          <li>Refuse collection, markets, motor parks, drainage</li>
+          <li>Primary schools &amp; primary healthcare (with the state)</li>
+          <li>Local roads, public conveniences, birth/death records</li>
+          <li>Hold to account: your Council Chairman &amp; Councillor</li>
+        </ul>
+      </div>
+    </div>
+    <div class="center" style="margin-top:30px">
+      <a class="btn btn-primary" href="find-lga.html">See who serves your LGA →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOLLOW THE MONEY -->
+<section class="block" id="money">
+  <div class="wrap reveal">
+    <div class="sec-head">
+      <span class="eyebrow">Module 5 · Follow the money</span>
+      <h2>Where public money comes from — and goes</h2>
+      <p>Every project in your community is supposed to be paid for from public funds. Understanding the flow is how you spot when money "disappears" between the budget and the project site.</p>
+    </div>
+    <div class="money-flow">
+      <div class="money-step"><div class="k">1 · Revenue</div><p>Government earns from oil, taxes (VAT, company &amp; personal tax) and customs duties. This pools into the Federation Account.</p></div>
+      <div class="money-step"><div class="k">2 · Sharing (FAAC)</div><p>Each month the Federation Account Allocation Committee shares the pool between the Federal, State and the 774 LGAs by a set formula.</p></div>
+      <div class="money-step"><div class="k">3 · The Budget</div><p>Each tier passes a budget — a public document listing every planned project and its cost. By law, you are allowed to read it.</p></div>
+      <div class="money-step"><div class="k">4 · The Project</div><p>Contracts are awarded and work begins. This is where citizens must watch: was it built, at the right quality, for the budgeted amount?</p></div>
+    </div>
+    <div class="grid g2" style="margin-top:24px">
+      <div class="card reveal"><div class="ico">📖</div><h3>How to read a budget line</h3><p>A budget line names the project, its location (often your LGA), the responsible ministry/agency, and the amount. Search the official Open Treasury Portal and your State's budget website. If a road in your ward has a budget line but no road exists — that's your case.</p></div>
+      <div class="card reveal"><div class="ico">🔎</div><h3>The FixNaija project tracker</h3><p>Our platform lets citizens photograph, geotag and report on government projects — from "ongoing" to "abandoned" — straight from the site. Together these reports become evidence no official can ignore.</p><a class="tag" href="report-issue.html">Report a project in your area →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCOUNTABILITY -->
+<section class="block light" id="accountability">
+  <div class="wrap reveal">
+    <div class="sec-head">
+      <span class="eyebrow">Module 6 · The toolkit</span>
+      <h2>How to hold your leaders accountable</h2>
+      <p>Accountability is a skill, and these are the legal tools every Nigerian can use. You don't need to be a lawyer or an activist — just informed and organised.</p>
+    </div>
+    <div class="grid g3">
+      <div class="card reveal"><div class="ico">📄</div><h3>Freedom of Information (FOI)</h3><p>The FOI Act 2011 gives you the right to request records from any public institution — contracts, budgets, spending. They must respond within 7 days. We provide ready-to-use request templates.</p></div>
+      <div class="card reveal"><div class="ico">✍🏾</div><h3>Petitions &amp; the legislature</h3><p>You can formally petition your State Assembly or the National Assembly. A petition signed by an organised ward carries far more weight than a lone voice.</p></div>
+      <div class="card reveal"><div class="ico">📸</div><h3>Document &amp; report</h3><p>Photos, dates and locations turn complaints into evidence. Use the FixNaija report tool so your case joins thousands of others as a public record.</p></div>
+      <div class="card reveal"><div class="ico">🤝</div><h3>Organise your ward</h3><p>One person is easy to ignore; a ward network is not. Register with FixNaija to connect with organisers near you and act together.</p></div>
+      <div class="card reveal"><div class="ico">📞</div><h3>Use oversight channels</h3><p>Report corruption to the EFCC and ICPC; report rights abuses to the National Human Rights Commission. Keep records of every report.</p></div>
+      <div class="card reveal"><div class="ico">🗳️</div><h3>Vote with memory</h3><p>The strongest accountability tool of all: re-elect those who delivered, retire those who didn't. Keep a record of campaign promises.</p></div>
+    </div>
+    <div class="center" style="margin-top:32px">
+      <a class="btn btn-gold" href="report-issue.html">📢 Report a problem in my area</a>
+    </div>
+  </div>
+</section>
+
+<!-- CALENDAR -->
+<section class="block" id="calendar">
+  <div class="wrap reveal">
+    <div class="sec-head">
+      <span class="eyebrow">Module 7</span>
+      <h2>Key civic &amp; election calendar</h2>
+      <p>Mark these so you're never caught off guard. Exact dates for the 2027 general elections are released by INEC — always confirm on the official INEC channels.</p>
+    </div>
+    <div class="calendar">
+      <div class="cal-row"><span class="when">Ongoing</span><div><strong>Continuous Voter Registration (CVR)</strong><p>INEC periodically opens registration for new voters and updates. Don't wait for election season — register the moment you turn 18.</p></div></div>
+      <div class="cal-row"><span class="when">~1 yr before</span><div><strong>Party primaries &amp; candidate nomination</strong><p>Parties pick their candidates. This is when you research who is actually on the ballot.</p></div></div>
+      <div class="cal-row"><span class="when">~90 days before</span><div><strong>Official campaign period begins</strong><p>Campaigning is legally allowed. Track promises now so you can hold winners to them later.</p></div></div>
+      <div class="cal-row"><span class="when">PVC deadline</span><div><strong>Final PVC collection</strong><p>INEC announces the last day to collect your PVC before the election. Miss it and you cannot vote.</p></div></div>
+      <div class="cal-row"><span class="when">2027</span><div><strong>General elections (Presidential, NASS, Governorship, State Assembly)</strong><p>Polls open 8:30 AM and close 2:30 PM at your registered polling unit.</p></div></div>
+    </div>
+    <div class="center" style="margin-top:26px"><a class="btn btn-ghost" href="https://www.inecnigeria.org/" target="_blank" rel="noopener">Confirm dates on INEC →</a></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="block light" id="faq">
+  <div class="wrap reveal">
+    <div class="sec-head"><span class="eyebrow">Questions, answered</span><h2>Civic FAQ</h2></div>
+    <div class="faq">
+      <details class="qa"><summary>Is FixNaija a political party?</summary><div class="a">No. FixNaija is a non-partisan grassroots movement — a nationwide repair project built by ordinary Nigerians. We don't field candidates; we educate, organise and demand accountability from whoever holds office.</div></details>
+      <details class="qa"><summary>I'm not registered to vote. Where do I start?</summary><div class="a">Start with Module 2 above, then use the INEC CVR portal to begin registration or book a slot at your LGA office. You'll need a valid ID and to be 18 or older.</div></details>
+      <details class="qa"><summary>A project in my area was budgeted but never built. What can I do?</summary><div class="a">Document it (photos, location, date), then file it through our report tool. You can also send an FOI request to the responsible agency asking for the contract and payment records. We'll help you connect with organisers in your ward.</div></details>
+      <details class="qa"><summary>Whose responsibility is my bad local road?</summary><div class="a">It depends on the road. Inner/community roads are usually the Local Government's; major intra-state roads belong to the State; highways linking states are Federal. Module 4 breaks down who does what.</div></details>
+      <details class="qa"><summary>Can I really request government documents?</summary><div class="a">Yes. The Freedom of Information Act 2011 gives every Nigerian the right to request records from public institutions, and they must respond within 7 days. No reason is required.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="block">
+  <div class="wrap reveal">
+    <div class="cta-band">
+      <span class="eyebrow" style="color:#fff">Knowledge → Action</span>
+      <h2 style="margin-top:12px">You now know your power. Join the people using it.</h2>
+      <p>Find your LGA network, register with FixNaija, and take your seat at the table. The movement is only as strong as the citizens inside it.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a class="btn btn-gold" href="register.html">Register with FixNaija</a>
+        <a class="btn btn-ghost" href="ask-fixnaija.html">Ask FixNaija a question</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html"><img src="images/logo.png" alt="FixNaija logo"><span class="brand-name">FixNaija Movement</span></a>
+        <p>One Nigeria. 774 Communities. One Voice. A non-partisan grassroots network repairing Nigeria from the ground up.</p>
+        <div class="foot-soc">
+          <a href="https://www.facebook.com/profile.php?id=61590354706603" target="_blank" rel="noopener" title="Facebook">f</a>
+          <a href="https://www.instagram.com/fixnaijamovement/" target="_blank" rel="noopener" title="Instagram">ig</a>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a class="fl" href="about.html">About</a>
+        <a class="fl" href="civic-resource.html">Civic Hub</a>
+        <a class="fl" href="volunteer.html">Volunteer</a>
+        <a class="fl" href="leadership.html">Leadership</a>
+        <a class="fl" href="find-lga.html">States &amp; LGAs</a>
+      </div>
+      <div>
+        <h4>Get Involved</h4>
+        <a class="fl" href="register.html">Register</a>
+        <a class="fl" href="report-issue.html">Report an Issue</a>
+        <a class="fl" href="ask-fixnaija.html">Ask FixNaija</a>
+        <a class="fl" href="mailto:fixnaijamovement@gmail.com">fixnaijamovement@gmail.com</a>
+        <a class="fl" href="tel:+2349165255606">+234 916 525 5606</a>
+      </div>
+    </div>
+    <div class="foot-bar"><span>© 2026 FixNaija Movement. All rights reserved.</span><span>Civic education for every Nigerian.</span></div>
+  </div>
+</footer>
+
+<div class="concept-note">New page · FixNaija</div>
+<script src="assets/fixnaija-pages.js"></script>
+</body>
+</html>

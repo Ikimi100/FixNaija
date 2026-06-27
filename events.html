@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upcoming Events — Town Halls &amp; Trainings | FixNaija Movement</title>
+<meta name="description" content="Town halls, civic trainings, project-monitoring walkabouts and ward meetings near you. Meet your FixNaija coordinators and be part of the change in real Nigerian cities.">
+<link rel="icon" type="image/png" href="images/logo.png">
+<link rel="apple-touch-icon" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/fixnaija-pages.css">
+<style>
+  .filterbar{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:34px}
+  .filterbar button{font-family:'Space Grotesk';font-weight:600;font-size:.88rem;padding:9px 18px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--ink-85);cursor:pointer;transition:.2s}
+  .filterbar button.active,.filterbar button:hover{background:var(--green);color:#fff;border-color:var(--green)}
+  .ev{display:grid;grid-template-columns:96px 1fr auto;gap:22px;align-items:center;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:16px;padding:20px 24px;transition:.2s}
+  .ev:hover{border-color:var(--gold);transform:translateY(-3px)}
+  .ev .date{text-align:center;background:linear-gradient(135deg,var(--green),var(--green-deep));border-radius:12px;padding:12px 8px}
+  .ev .date .d{font-family:'Space Grotesk';font-weight:700;font-size:1.7rem;line-height:1}
+  .ev .date .m{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-soft);margin-top:4px}
+  .ev .type{display:inline-block;font-family:'Space Grotesk';font-weight:700;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:8px;background:rgba(212,160,23,.16);color:var(--gold-soft)}
+  .ev h3{font-size:1.18rem;margin-bottom:4px}
+  .ev .meta{color:var(--ink-60);font-size:.88rem}
+  .ev .cta{white-space:nowrap}
+  @media(max-width:680px){.ev{grid-template-columns:72px 1fr;gap:14px}.ev .cta{grid-column:1/-1;justify-self:start}}
+  .ev-list{display:grid;gap:16px;max-width:920px;margin:0 auto}
+  .host-card{max-width:720px;margin:0 auto;text-align:center;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:18px;padding:34px}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="images/logo.png" alt="FixNaija Movement logo"><span><span class="brand-name">FixNaija Movement</span><span class="brand-subline">People's Grassroots Network</span></span></a>
+    <ul class="nav-links">
+      <li><a href="index.html#home">Home</a></li><li><a href="about.html">About</a></li>
+      <li><a href="civic-resource.html">Civic Hub</a></li><li><a href="volunteer.html">Volunteer</a></li>
+      <li><a href="events.html" class="active">Events</a></li><li><a href="find-lga.html">States &amp; LGAs</a></li>
+      <li><a href="ask-fixnaija.html">Ask FixNaija</a></li>
+    </ul>
+    <button class="register-btn" onclick="location.href='register.html'">Register</button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#home">Home</a><a href="about.html">About</a><a href="civic-resource.html">Civic Hub</a>
+  <a href="volunteer.html">Volunteer</a><a href="leadership.html">Leadership</a><a href="find-lga.html">States &amp; LGAs</a>
+  <a href="events.html">Events</a><a href="gallery.html">Gallery</a><a href="ask-fixnaija.html">Ask FixNaija</a><a href="register.html">Register</a>
+</div>
+
+<header class="phero">
+  <div class="phero-flag"></div>
+  <div class="wrap">
+    <span class="eyebrow">Upcoming Events</span>
+    <h1>Real events. Real cities. <em>Real change.</em></h1>
+    <p class="lede">Meet your local coordinators, learn your civic rights, monitor projects together, and connect with fellow Nigerians building the movement. Find an event near you and show up — that's how change starts.</p>
+    <div class="phero-cta">
+      <a class="btn btn-primary" href="#events">See what's coming →</a>
+      <a class="btn btn-ghost" href="#host">Host an event</a>
+    </div>
+  </div>
+</header>
+
+<section class="block" id="events">
+  <div class="wrap reveal">
+    <div class="sec-head"><span class="eyebrow">What's coming up</span><h2>Find an event near you</h2><p>Sample upcoming gatherings. Dates and locations are confirmed by your state and LGA coordinators — register to get alerts for your area.</p></div>
+    <div class="filterbar">
+      <button class="active" data-cat="all">All</button>
+      <button data-cat="townhall">Town Halls</button>
+      <button data-cat="training">Trainings</button>
+      <button data-cat="monitor">Project Walkabouts</button>
+      <button data-cat="ward">Ward Meetings</button>
+    </div>
+    <div class="ev-list" id="evList">
+
+      <div class="ev" data-cat="townhall"><div class="date"><div class="d">12</div><div class="m">Jul</div></div>
+        <div><span class="type">Town Hall</span><h3>South-West Community Town Hall</h3><p class="meta">📍 Ibadan, Oyo State · 10:00 AM · Open to all</p></div>
+        <a class="btn btn-gold cta" href="register.html">RSVP</a></div>
+
+      <div class="ev" data-cat="training"><div class="date"><div class="d">19</div><div class="m">Jul</div></div>
+        <div><span class="type">Training</span><h3>Civic Monitoring &amp; Reporting Workshop</h3><p class="meta">📍 Abuja Leadership Academy · 9:00 AM · For new volunteers</p></div>
+        <a class="btn btn-gold cta" href="volunteer.html">Join</a></div>
+
+      <div class="ev" data-cat="monitor"><div class="date"><div class="d">26</div><div class="m">Jul</div></div>
+        <div><span class="type">Project Walkabout</span><h3>Track the LGA Road Projects</h3><p class="meta">📍 Your LGA · Morning · Bring a smartphone</p></div>
+        <a class="btn btn-gold cta" href="report-issue.html">Sign up</a></div>
+
+      <div class="ev" data-cat="ward"><div class="date"><div class="d">02</div><div class="m">Aug</div></div>
+        <div><span class="type">Ward Meeting</span><h3>Ward Organisers' Monthly Meet</h3><p class="meta">📍 All active wards · Evening · Members only</p></div>
+        <a class="btn btn-gold cta" href="find-lga.html">Find mine</a></div>
+
+      <div class="ev" data-cat="training"><div class="date"><div class="d">09</div><div class="m">Aug</div></div>
+        <div><span class="type">Training</span><h3>Know Your Rights &amp; FOI Clinic</h3><p class="meta">📍 Online (Zoom) · 4:00 PM · Open to all</p></div>
+        <a class="btn btn-gold cta" href="register.html">Register</a></div>
+
+      <div class="ev" data-cat="townhall"><div class="date"><div class="d">16</div><div class="m">Aug</div></div>
+        <div><span class="type">Town Hall</span><h3>North-Central Citizens' Forum</h3><p class="meta">📍 Jos, Plateau State · 10:00 AM · Open to all</p></div>
+        <a class="btn btn-gold cta" href="register.html">RSVP</a></div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOST -->
+<section class="block light" id="host">
+  <div class="wrap reveal">
+    <div class="sec-head"><span class="eyebrow">Lead from your community</span><h2>Want to host a FixNaija event?</h2></div>
+    <div class="host-card" style="background:#fff;color:var(--charcoal);box-shadow:var(--shadow-soft);border:1px solid rgba(26,26,46,.08)">
+      <p style="color:#54546a;font-size:1.05rem;line-height:1.8;margin-bottom:22px">Town halls, civic clinics and ward meetings don't need a big budget — they need a committed organiser. If you can gather your neighbours, we'll support you with materials, speakers, and a coordinator to guide you.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a class="btn btn-primary" href="volunteer.html">Become an organiser</a>
+        <a class="btn btn-ghost" style="color:var(--charcoal);border-color:rgba(26,26,46,.25)" href="mailto:fixnaijamovement@gmail.com">Email the events team</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap reveal">
+    <div class="cta-band">
+      <span class="eyebrow" style="color:#fff">Never miss an event</span>
+      <h2 style="margin-top:12px">Get alerts for events in your LGA</h2>
+      <p>Register with FixNaija and we'll notify you whenever something is happening near you.</p>
+      <a class="btn btn-gold" href="register.html">Register for alerts</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand"><a class="brand" href="index.html"><img src="images/logo.png" alt="FixNaija logo"><span class="brand-name">FixNaija Movement</span></a>
+        <p>One Nigeria. 774 Communities. One Voice. A non-partisan grassroots network repairing Nigeria from the ground up.</p>
+        <div class="foot-soc"><a href="https://www.facebook.com/profile.php?id=61590354706603" target="_blank" rel="noopener" title="Facebook">f</a><a href="https://www.instagram.com/fixnaijamovement/" target="_blank" rel="noopener" title="Instagram">ig</a></div>
+      </div>
+      <div><h4>Explore</h4><a class="fl" href="about.html">About</a><a class="fl" href="civic-resource.html">Civic Hub</a><a class="fl" href="volunteer.html">Volunteer</a><a class="fl" href="leadership.html">Leadership</a><a class="fl" href="gallery.html">Gallery</a></div>
+      <div><h4>Get Involved</h4><a class="fl" href="register.html">Register</a><a class="fl" href="report-issue.html">Report an Issue</a><a class="fl" href="ask-fixnaija.html">Ask FixNaija</a><a class="fl" href="mailto:fixnaijamovement@gmail.com">fixnaijamovement@gmail.com</a><a class="fl" href="tel:+2349165255606">+234 916 525 5606</a></div>
+    </div>
+    <div class="foot-bar"><span>© 2026 FixNaija Movement. All rights reserved.</span><span>Show up. Speak up. Fix Naija.</span></div>
+  </div>
+</footer>
+
+<div class="concept-note">New page · FixNaija</div>
+<script src="assets/fixnaija-pages.js"></script>
+<script>
+  document.querySelectorAll('.filterbar button').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('.filterbar button').forEach(function(x){x.classList.remove('active');});
+      b.classList.add('active');
+      var cat=b.dataset.cat;
+      document.querySelectorAll('#evList .ev').forEach(function(ev){ ev.style.display=(cat==='all'||ev.dataset.cat===cat)?'':'none'; });
+    });
+  });
+</script>
+</body>
+</html>

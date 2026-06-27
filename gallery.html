@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Media Gallery — Moments From the Movement | FixNaija Movement</title>
+<meta name="description" content="Photos and moments from the FixNaija Movement — town halls, trainings, project monitoring and citizens organising across Nigeria's 774 LGAs.">
+<link rel="icon" type="image/png" href="images/logo.png">
+<link rel="apple-touch-icon" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/fixnaija-pages.css">
+<style>
+  .masonry{columns:3;column-gap:16px}
+  @media(max-width:860px){.masonry{columns:2}}
+  @media(max-width:520px){.masonry{columns:1}}
+  .gitem{break-inside:avoid;margin-bottom:16px;position:relative;border-radius:14px;overflow:hidden;cursor:pointer;border:1px solid var(--line)}
+  .gitem img{width:100%;display:block;transition:transform .4s}
+  .gitem:hover img{transform:scale(1.05)}
+  .gitem .cap{position:absolute;left:0;right:0;bottom:0;padding:30px 16px 14px;background:linear-gradient(transparent,rgba(14,14,28,.85));font-family:'Space Grotesk';font-weight:600;font-size:.92rem;opacity:0;transition:opacity .3s}
+  .gitem:hover .cap{opacity:1}
+  /* lightbox */
+  .lb{position:fixed;inset:0;background:rgba(8,8,16,.94);display:none;align-items:center;justify-content:center;z-index:2000;padding:30px}
+  .lb.open{display:flex}
+  .lb img{max-width:90vw;max-height:82vh;border-radius:12px}
+  .lb .x{position:absolute;top:20px;right:26px;font-size:2.2rem;color:#fff;cursor:pointer;font-family:'Space Grotesk';line-height:1}
+  .lb .nav{position:absolute;top:50%;transform:translateY(-50%);font-size:2.6rem;color:#fff;cursor:pointer;padding:10px 18px;user-select:none}
+  .lb .prev{left:10px}.lb .next{right:10px}
+  .lb .cap{position:absolute;bottom:24px;left:0;right:0;text-align:center;color:rgba(255,255,255,.8);font-family:'Space Grotesk'}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="images/logo.png" alt="FixNaija Movement logo"><span><span class="brand-name">FixNaija Movement</span><span class="brand-subline">People's Grassroots Network</span></span></a>
+    <ul class="nav-links">
+      <li><a href="index.html#home">Home</a></li><li><a href="about.html">About</a></li>
+      <li><a href="civic-resource.html">Civic Hub</a></li><li><a href="volunteer.html">Volunteer</a></li>
+      <li><a href="leadership.html">Leadership</a></li><li><a href="gallery.html" class="active">Gallery</a></li>
+      <li><a href="ask-fixnaija.html">Ask FixNaija</a></li>
+    </ul>
+    <button class="register-btn" onclick="location.href='register.html'">Register</button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#home">Home</a><a href="about.html">About</a><a href="civic-resource.html">Civic Hub</a>
+  <a href="volunteer.html">Volunteer</a><a href="leadership.html">Leadership</a><a href="find-lga.html">States &amp; LGAs</a>
+  <a href="events.html">Events</a><a href="gallery.html">Gallery</a><a href="ask-fixnaija.html">Ask FixNaija</a><a href="register.html">Register</a>
+</div>
+
+<header class="phero">
+  <div class="phero-flag"></div>
+  <div class="wrap">
+    <span class="eyebrow">Media Gallery</span>
+    <h1>Moments from <em>the movement</em>.</h1>
+    <p class="lede">Every photo is a citizen who chose to show up. Town halls, trainings, project monitoring and ordinary Nigerians doing extraordinary things — ward by ward, across the country.</p>
+    <div class="phero-cta"><a class="btn btn-primary" href="#grid">View the gallery →</a><a class="btn btn-ghost" href="volunteer.html">Be in the next photo</a></div>
+  </div>
+</header>
+
+<section class="block" id="grid">
+  <div class="wrap reveal">
+    <div class="masonry" id="masonry">
+      <div class="gitem" data-cap="Citizens at a community town hall"><img src="images/gallery-1.jpg" alt="FixNaija community gathering" loading="lazy"><div class="cap">Community town hall</div></div>
+      <div class="gitem" data-cap="Youth leaders in training"><img src="images/gallery-2.jpg" alt="Youth leaders training" loading="lazy"><div class="cap">Youth leadership training</div></div>
+      <div class="gitem" data-cap="Project monitoring on the ground"><img src="images/gallery-3.jpg" alt="Project monitoring" loading="lazy"><div class="cap">Project monitoring</div></div>
+      <div class="gitem" data-cap="Ward organisers meeting"><img src="images/gallery-4.jpg" alt="Ward organisers" loading="lazy"><div class="cap">Ward organisers meet</div></div>
+      <div class="gitem" data-cap="Citizens registering with FixNaija"><img src="images/gallery-5.jpg" alt="Registration drive" loading="lazy"><div class="cap">Registration drive</div></div>
+      <div class="gitem" data-cap="Civic education session"><img src="images/gallery-6.jpg" alt="Civic education" loading="lazy"><div class="cap">Civic education session</div></div>
+      <div class="gitem" data-cap="On the streets, ward by ward"><img src="images/gallery-7.jpg" alt="Street mobilisation" loading="lazy"><div class="cap">Mobilising the ward</div></div>
+      <div class="gitem" data-cap="One voice, many communities"><img src="images/gallery-8.jpg" alt="The movement" loading="lazy"><div class="cap">One Nigeria, one voice</div></div>
+      <div class="gitem" data-cap="774 LGA network launch"><img src="images/news-774-network.jpg" alt="774 network" loading="lazy"><div class="cap">774 LGA network</div></div>
+      <div class="gitem" data-cap="Project tracking begins"><img src="images/news-project-tracking.jpg" alt="Project tracking" loading="lazy"><div class="cap">Project tracking begins</div></div>
+      <div class="gitem" data-cap="Youth leaders trained in Abuja"><img src="images/news-youth-leaders.jpg" alt="Youth leaders Abuja" loading="lazy"><div class="cap">Youth leaders, Abuja</div></div>
+      <div class="gitem" data-cap="The movement in motion"><img src="images/about-movement.jpg" alt="About the movement" loading="lazy"><div class="cap">The movement in motion</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="block light">
+  <div class="wrap reveal">
+    <div class="cta-band">
+      <span class="eyebrow" style="color:#fff">Your story belongs here</span>
+      <h2 style="margin-top:12px">Join the movement and be in the next frame.</h2>
+      <p>Register, volunteer, or report an issue in your area — and become part of the story FixNaija is writing across Nigeria.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a class="btn btn-gold" href="register.html">Register with FixNaija</a>
+        <a class="btn btn-ghost" href="events.html">Find an event near me</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand"><a class="brand" href="index.html"><img src="images/logo.png" alt="FixNaija logo"><span class="brand-name">FixNaija Movement</span></a>
+        <p>One Nigeria. 774 Communities. One Voice. A non-partisan grassroots network repairing Nigeria from the ground up.</p>
+        <div class="foot-soc"><a href="https://www.facebook.com/profile.php?id=61590354706603" target="_blank" rel="noopener" title="Facebook">f</a><a href="https://www.instagram.com/fixnaijamovement/" target="_blank" rel="noopener" title="Instagram">ig</a></div>
+      </div>
+      <div><h4>Explore</h4><a class="fl" href="about.html">About</a><a class="fl" href="civic-resource.html">Civic Hub</a><a class="fl" href="volunteer.html">Volunteer</a><a class="fl" href="leadership.html">Leadership</a><a class="fl" href="events.html">Events</a></div>
+      <div><h4>Get Involved</h4><a class="fl" href="register.html">Register</a><a class="fl" href="report-issue.html">Report an Issue</a><a class="fl" href="ask-fixnaija.html">Ask FixNaija</a><a class="fl" href="mailto:fixnaijamovement@gmail.com">fixnaijamovement@gmail.com</a><a class="fl" href="tel:+2349165255606">+234 916 525 5606</a></div>
+    </div>
+    <div class="foot-bar"><span>© 2026 FixNaija Movement. All rights reserved.</span><span>Every photo is a citizen who showed up.</span></div>
+  </div>
+</footer>
+
+<!-- Lightbox -->
+<div class="lb" id="lb">
+  <span class="x" id="lbX">&times;</span>
+  <span class="nav prev" id="lbPrev">&#8249;</span>
+  <img id="lbImg" src="" alt="">
+  <span class="nav next" id="lbNext">&#8250;</span>
+  <div class="cap" id="lbCap"></div>
+</div>
+
+<div class="concept-note">New page · FixNaija</div>
+<script src="assets/fixnaija-pages.js"></script>
+<script>
+  var items=[].slice.call(document.querySelectorAll('#masonry .gitem'));
+  var lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg'),lbCap=document.getElementById('lbCap'),idx=0;
+  function show(i){idx=(i+items.length)%items.length;var im=items[idx].querySelector('img');lbImg.src=im.src;lbCap.textContent=items[idx].dataset.cap||'';lb.classList.add('open');}
+  items.forEach(function(it,i){it.addEventListener('click',function(){show(i);});});
+  document.getElementById('lbX').onclick=function(){lb.classList.remove('open');};
+  document.getElementById('lbNext').onclick=function(e){e.stopPropagation();show(idx+1);};
+  document.getElementById('lbPrev').onclick=function(e){e.stopPropagation();show(idx-1);};
+  lb.addEventListener('click',function(e){if(e.target===lb)lb.classList.remove('open');});
+  document.addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;if(e.key==='Escape')lb.classList.remove('open');if(e.key==='ArrowRight')show(idx+1);if(e.key==='ArrowLeft')show(idx-1);});
+</script>
+</body>
+</html>
