@@ -1,0 +1,35 @@
+/* =========================================================
+   FixNaija mobile drawer menu — standalone, id-scoped so it
+   reliably overrides older pages' inline .mobile-menu styles.
+   Link this in pages that DON'T already use fixnaija-pages.css.
+   ========================================================= */
+.mm-scrim{position:fixed;inset:0;background:rgba(8,8,16,.5);opacity:0;visibility:hidden;transition:opacity .3s;z-index:1100}
+.mm-scrim.open{opacity:1;visibility:visible}
+#mobileMenu{position:fixed;inset:0 0 0 auto;height:100%;width:min(90%,400px);background:#f6f8f5;color:#1A1A2E;transform:translateX(105%);transition:transform .38s cubic-bezier(.4,0,.2,1);z-index:1200;overflow-y:auto;box-shadow:-22px 0 60px rgba(0,0,0,.45);display:flex;flex-direction:column;padding:0}
+#mobileMenu.open{transform:translateX(0)}
+#mobileMenu .mm-head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid rgba(26,26,46,.08);position:sticky;top:0;background:#f6f8f5;z-index:2}
+#mobileMenu .mm-brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+#mobileMenu .mm-brand img{width:42px;height:42px;object-fit:contain}
+#mobileMenu .mm-bn{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.05rem;color:#1A1A2E;display:block;line-height:1.1}
+#mobileMenu .mm-bs{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#D4A017;font-weight:600}
+#mobileMenu .mm-close{width:42px;height:42px;border-radius:50%;border:none;background:rgba(26,26,46,.06);color:#1A1A2E;font-size:1.6rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+#mobileMenu .mm-body{padding:18px 18px 30px}
+#mobileMenu .mm-label{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#008751;margin:8px 4px 14px}
+#mobileMenu .mm-label::before{content:"";width:20px;height:3px;border-radius:2px;background:#008751}
+#mobileMenu .mm-item{display:flex;align-items:center;gap:14px;padding:13px 15px;background:#fff;border:1px solid rgba(26,26,46,.07);border-radius:14px;margin-bottom:10px;text-decoration:none;color:#1A1A2E;box-shadow:0 2px 10px rgba(26,26,46,.04);transition:transform .15s,border-color .15s}
+#mobileMenu .mm-item:active,#mobileMenu .mm-item:hover{border-color:#008751;transform:translateX(2px)}
+#mobileMenu .mm-ico{width:46px;height:46px;flex:0 0 46px;border-radius:12px;background:linear-gradient(135deg,rgba(0,168,98,.16),rgba(212,160,23,.12));display:flex;align-items:center;justify-content:center;font-size:1.3rem}
+#mobileMenu .mm-text{flex:1;display:flex;flex-direction:column;line-height:1.3}
+#mobileMenu .mm-text b{font-family:'Space Grotesk',sans-serif;font-size:1rem}
+#mobileMenu .mm-text small{color:#6a6a7a;font-size:.8rem;margin-top:2px}
+#mobileMenu .mm-arrow{color:#b6b6c2;font-size:1.4rem;font-weight:300}
+#mobileMenu .mm-cta{background:linear-gradient(135deg,#008751,#006b3f);border-radius:18px;padding:24px;margin:18px 4px;color:#fff}
+#mobileMenu .mm-cta .badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.16);padding:6px 13px;border-radius:999px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+#mobileMenu .mm-cta h4{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;margin-bottom:8px;color:#fff}
+#mobileMenu .mm-cta p{font-size:.9rem;color:rgba(255,255,255,.85);margin-bottom:16px}
+#mobileMenu .mm-cta-btn{display:block;text-align:center;background:#fff;color:#006b3f;font-family:'Space Grotesk',sans-serif;font-weight:700;padding:14px;border-radius:999px;text-decoration:none}
+#mobileMenu .mm-social{display:flex;gap:10px;padding:0 4px}
+#mobileMenu .mm-social a{flex:1;height:54px;border-radius:12px;background:#fff;border:1px solid rgba(26,26,46,.08);display:flex;align-items:center;justify-content:center;text-decoration:none;color:#1A1A2E}
+#mobileMenu .mm-social a:hover{border-color:#008751;color:#008751}
+#mobileMenu .mm-social svg{width:22px;height:22px}
+#mobileMenu .mm-copy{text-align:center;color:#9a9aa8;font-size:.76rem;margin-top:20px;padding:0 4px}
