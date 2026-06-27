@@ -122,7 +122,7 @@ var CONFIG = {
 };
 
 var msgs=document.getElementById('msgs'), input=document.getElementById('input'),
-    statusEl=document.getElementById('status'), history=[];
+    statusEl=document.getElementById('status'), convo=[];
 
 var DEMO = !(CONFIG.SUPABASE_URL && CONFIG.SUPABASE_ANON_KEY);
 if(DEMO){ statusEl.textContent='● Demo mode'; statusEl.classList.add('demo'); }
@@ -149,16 +149,16 @@ function demoReply(q){
 
 /* ---- Live call to Supabase Edge Function ---- */
 async function liveReply(q){
-  history.push({role:'user', content:q});
+  convo.push({role:'user', content:q});
   var res = await fetch(CONFIG.SUPABASE_URL + "/functions/v1/ask-fixnaija", {
     method:'POST',
     headers:{ 'Content-Type':'application/json', 'Authorization':'Bearer '+CONFIG.SUPABASE_ANON_KEY, 'apikey':CONFIG.SUPABASE_ANON_KEY },
-    body: JSON.stringify({ messages: history })
+    body: JSON.stringify({ messages: convo })
   });
   if(!res.ok){ throw new Error('Backend error '+res.status); }
   var data = await res.json();
   var reply = data.reply || "Sorry, I couldn't generate a response.";
-  history.push({role:'assistant', content:reply});
+  convo.push({role:'assistant', content:reply});
   return reply;
 }
 
