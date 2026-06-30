@@ -3148,7 +3148,7 @@
                 <p class="news-subheadline">Stay informed with the latest developments, stories, and announcements from FixNaija grassroots networks across the country.</p>
             </div>
 
-            <div class="news-grid">
+            <div class="news-grid" id="newsGrid" data-dynamic="false">
                 <!-- News Card 1 -->
                 <article class="news-card">
                     <div class="news-image-area">
@@ -3158,7 +3158,7 @@
                     <div class="news-content">
                         <h3 class="news-headline-text">FixNaija Launches 774 LGA Network</h3>
                         <p class="news-excerpt">We have officially activated grassroots coordinators in all 774 Local Government Areas, creating the largest citizen-led accountability network in Nigeria's history.</p>
-                        <a href="#" class="news-read-more">
+                        <a href="news-article.html?slug=774-lga-network" class="news-read-more">
                             Read More
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                         </a>
@@ -3174,7 +3174,7 @@
                     <div class="news-content">
                         <h3 class="news-headline-text">Youth Leaders Trained in Abuja</h3>
                         <p class="news-excerpt">Over 300 young community organizers completed intensive training on civic monitoring, digital advocacy, and peaceful mobilization at our Abuja leadership academy.</p>
-                        <a href="#" class="news-read-more">
+                        <a href="news-article.html?slug=youth-leaders-abuja" class="news-read-more">
                             Read More
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                         </a>
@@ -3190,7 +3190,7 @@
                     <div class="news-content">
                         <h3 class="news-headline-text">Community Project Tracking Begins</h3>
                         <p class="news-excerpt">Our new digital platform allows citizens to photograph, geotag, and report on local government projects — bringing transparency to every ward in Nigeria.</p>
-                        <a href="#" class="news-read-more">
+                        <a href="news-article.html?slug=community-project-tracking" class="news-read-more">
                             Read More
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                         </a>
@@ -3199,6 +3199,51 @@
             </div>
         </div>
     </section>
+
+    <!-- ===== LATEST NEWS: live from Supabase (featured + published) ===== -->
+    <script>
+    (function(){
+        const NEWS_SB_URL = 'https://bcdscsjqiqnzsthntutb.supabase.co';
+        const NEWS_SB_KEY = 'sb_publishable_Cpkk6K0Xyt5GNVXTiur2mA_myhkpiti';
+        const grid = document.getElementById('newsGrid');
+        if(!grid) return;
+
+        const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        const fmtDate = d => { if(!d) return ''; const x = new Date(d + 'T00:00:00'); return isNaN(x) ? '' : x.toLocaleDateString('en-NG',{year:'numeric',month:'long',day:'numeric'}); };
+
+        function card(a){
+            const href = 'news-article.html?slug=' + encodeURIComponent(a.slug || a.id);
+            const img = a.image_url ? esc(a.image_url) : 'images/logo.png';
+            return `
+                <article class="news-card">
+                    <div class="news-image-area">
+                        <img src="${img}" alt="${esc(a.title)}" class="news-img" loading="lazy" onerror="this.src='images/logo.png'">
+                        <span class="news-date-tag">${esc(fmtDate(a.published_date))}</span>
+                    </div>
+                    <div class="news-content">
+                        <h3 class="news-headline-text">${esc(a.title)}</h3>
+                        <p class="news-excerpt">${esc(a.excerpt || '')}</p>
+                        <a href="${href}" class="news-read-more">
+                            Read More
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </a>
+                    </div>
+                </article>`;
+        }
+
+        const url = `${NEWS_SB_URL}/rest/v1/news?select=*&published=eq.true&featured=eq.true&order=published_date.desc&limit=3`;
+        fetch(url, { headers: { 'apikey': NEWS_SB_KEY, 'Authorization': `Bearer ${NEWS_SB_KEY}` } })
+            .then(r => r.ok ? r.json() : Promise.reject(r.status))
+            .then(rows => {
+                if(Array.isArray(rows) && rows.length){
+                    grid.innerHTML = rows.map(card).join('');
+                    grid.setAttribute('data-dynamic','true');
+                }
+                // else: keep the static fallback cards already in the HTML
+            })
+            .catch(() => { /* keep static fallback cards */ });
+    })();
+    </script>
 
     <!-- ===== STATES & LGAs SECTION ===== -->
     <section class="states-section" id="states">

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>FixNaija — News Manager</title>
+<link rel="icon" type="image/png" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--green:#008751;--green-dark:#006B40;--charcoal:#1A1A2E;--charcoal-soft:#23233B;--gold:#D4A017;--white:#fff;--light:#F5F5F5;--border:#E6E6EC;--muted:#6B6B80;--danger:#c0392b}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--light);color:var(--charcoal);min-height:100vh}
+h1,h2,h3,.brand{font-family:'Space Grotesk',sans-serif}
+a{color:var(--green)}
+
+/* login */
+.login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--charcoal);background-image:radial-gradient(circle at 80% 10%,rgba(0,135,81,.25),transparent 50%),radial-gradient(circle at 10% 90%,rgba(212,160,23,.12),transparent 50%);padding:24px}
+.login-card{background:#fff;border-radius:16px;padding:40px 36px;width:100%;max-width:400px;box-shadow:0 24px 64px rgba(0,0,0,.4)}
+.login-card .brand{font-size:1.5rem;font-weight:700;margin-bottom:4px}
+.login-card .brand span{color:var(--green)}
+.login-sub{color:var(--muted);font-size:.88rem;margin-bottom:28px}
+.field{margin-bottom:16px}
+label{display:block;font-size:.82rem;font-weight:600;margin-bottom:6px}
+input,textarea,select{width:100%;padding:11px 13px;border:1px solid var(--border);border-radius:9px;font-family:inherit;font-size:.95rem;background:#fff;color:var(--charcoal)}
+textarea{resize:vertical;min-height:160px;line-height:1.6}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(0,135,81,.12)}
+.btn{font-family:'Space Grotesk';font-weight:600;border:none;border-radius:9px;padding:11px 20px;cursor:pointer;font-size:.92rem;transition:.15s}
+.btn-primary{background:var(--green);color:#fff;width:100%}
+.btn-primary:hover{background:var(--green-dark)}
+.btn-sm{padding:7px 13px;font-size:.82rem;border-radius:7px}
+.btn-ghost{background:#fff;border:1px solid var(--border);color:var(--charcoal)}
+.btn-ghost:hover{border-color:var(--green);color:var(--green)}
+.btn-danger{background:#fff;border:1px solid #f0c8c4;color:var(--danger)}
+.btn-danger:hover{background:var(--danger);color:#fff}
+.btn-gold{background:var(--gold);color:var(--charcoal)}
+.err{color:var(--danger);font-size:.84rem;margin-top:10px;min-height:18px}
+
+/* app */
+.app{display:none}
+.topbar{background:var(--charcoal);color:#fff;padding:0 28px;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
+.topbar .brand{font-size:1.15rem;font-weight:700}
+.topbar .brand span{color:var(--gold)}
+.topbar .right{display:flex;gap:12px;align-items:center}
+.topbar a.viewsite{color:#cfcfe0;text-decoration:none;font-size:.85rem}
+.topbar a.viewsite:hover{color:#fff}
+.wrap{max-width:1080px;margin:0 auto;padding:28px 20px 80px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+@media(max-width:880px){.grid{grid-template-columns:1fr}}
+.panel{background:#fff;border:1px solid var(--border);border-radius:14px;padding:24px;box-shadow:0 2px 12px rgba(26,26,46,.04)}
+.panel h2{font-size:1.1rem;margin-bottom:4px}
+.panel .hint{color:var(--muted);font-size:.84rem;margin-bottom:20px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:520px){.row2{grid-template-columns:1fr}}
+.checks{display:flex;gap:22px;margin:6px 0 18px;flex-wrap:wrap}
+.check{display:flex;align-items:center;gap:9px;font-size:.9rem;font-weight:600;cursor:pointer}
+.check input{width:auto}
+.check small{display:block;font-weight:400;color:var(--muted);font-size:.78rem}
+.formfoot{display:flex;gap:10px;margin-top:6px}
+.formfoot .btn{flex:1}
+.msg{font-size:.86rem;margin-top:12px;min-height:18px}
+.msg.ok{color:var(--green)}
+.msg.bad{color:var(--danger)}
+
+/* list */
+.listhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.count{color:var(--muted);font-size:.84rem}
+.post{border:1px solid var(--border);border-radius:11px;padding:14px 16px;margin-bottom:12px;transition:.15s}
+.post:hover{border-color:#cfcfe0}
+.post .ph{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.post .pt{font-family:'Space Grotesk';font-weight:600;font-size:1rem;line-height:1.3}
+.post .pmeta{color:var(--muted);font-size:.78rem;margin-top:3px}
+.badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
+.badge{font-size:.7rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 9px;border-radius:999px}
+.b-feat{background:rgba(212,160,23,.18);color:#8a6a08}
+.b-draft{background:#eee;color:#777}
+.b-live{background:rgba(0,135,81,.14);color:var(--green-dark)}
+.pactions{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}
+.empty{text-align:center;color:var(--muted);padding:40px 10px;font-size:.9rem}
+.spin{display:inline-block;width:15px;height:15px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:s .7s linear infinite;vertical-align:-2px}
+@keyframes s{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<!-- ===== LOGIN ===== -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-card">
+    <div class="brand">Fix<span>Naija</span> · News</div>
+    <p class="login-sub">Sign in to create and manage news stories.</p>
+    <div class="field"><label for="email">Email</label><input type="email" id="email" autocomplete="username" placeholder="you@example.com"></div>
+    <div class="field"><label for="password">Password</label><input type="password" id="password" autocomplete="current-password" placeholder="••••••••"></div>
+    <button class="btn btn-primary" id="loginBtn">Sign in</button>
+    <div class="err" id="loginError"></div>
+  </div>
+</div>
+
+<!-- ===== APP ===== -->
+<div class="app" id="app">
+  <div class="topbar">
+    <div class="brand">Fix<span>Naija</span> News Manager</div>
+    <div class="right">
+      <a class="viewsite" href="index.html#news" target="_blank">View homepage ↗</a>
+      <button class="btn btn-sm btn-gold" id="logoutBtn">Log out</button>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="grid">
+
+      <!-- editor -->
+      <div class="panel">
+        <h2 id="formTitle">Create a news story</h2>
+        <p class="hint">Tick <strong>Feature on homepage</strong> to show a story in the Latest News timeline (newest 3 appear).</p>
+
+        <input type="hidden" id="editId">
+        <div class="field"><label for="title">Headline *</label><input type="text" id="title" placeholder="e.g. FixNaija Reaches 1 Million Members"></div>
+        <div class="row2">
+          <div class="field"><label for="category">Category</label><input type="text" id="category" placeholder="Milestone, Training, Update…" value="Update"></div>
+          <div class="field"><label for="pubdate">Date</label><input type="date" id="pubdate"></div>
+        </div>
+        <div class="field"><label for="slug">Slug (URL) </label><input type="text" id="slug" placeholder="auto-generated from headline"></div>
+        <div class="field"><label for="image">Image URL</label><input type="text" id="image" placeholder="images/news-xxx.jpg  or  https://…"></div>
+        <div class="field"><label for="excerpt">Excerpt (card summary) *</label><textarea id="excerpt" style="min-height:80px" placeholder="1–2 sentence summary shown on the card."></textarea></div>
+        <div class="field"><label for="body">Full story</label><textarea id="body" placeholder="Write the full article. Leave a blank line between paragraphs."></textarea></div>
+
+        <div class="checks">
+          <label class="check"><input type="checkbox" id="featured"> <span>Feature on homepage<small>Show in Latest News timeline</small></span></label>
+          <label class="check"><input type="checkbox" id="published" checked> <span>Published<small>Uncheck to keep as a draft</small></span></label>
+        </div>
+
+        <div class="formfoot">
+          <button class="btn btn-primary" id="saveBtn">Publish story</button>
+          <button class="btn btn-ghost" id="resetBtn" style="flex:0 0 auto">Clear</button>
+        </div>
+        <div class="msg" id="formMsg"></div>
+      </div>
+
+      <!-- list -->
+      <div class="panel">
+        <div class="listhead">
+          <h2>All stories</h2>
+          <span class="count" id="count"></span>
+        </div>
+        <div id="list"><div class="empty">Loading…</div></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = 'https://bcdscsjqiqnzsthntutb.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_Cpkk6K0Xyt5GNVXTiur2mA_myhkpiti';
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const slugify = s => String(s||'').toLowerCase().trim().replace(/['"]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,70);
+const fmtDate = d => { if(!d) return ''; const x=new Date(d+'T00:00:00'); return isNaN(x)?d:x.toLocaleDateString('en-NG',{year:'numeric',month:'short',day:'numeric'}); };
+
+// ===== AUTH =====
+(async function init(){
+  const { data:{ session } } = await sb.auth.getSession();
+  if(session) showApp();
+})();
+$('loginBtn').addEventListener('click', doLogin);
+$('password').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
+
+async function doLogin(){
+  const email=$('email').value.trim(), password=$('password').value, err=$('loginError');
+  err.textContent='';
+  if(!email||!password){ err.textContent='Enter your email and password.'; return; }
+  $('loginBtn').disabled=true; $('loginBtn').innerHTML='<span class="spin"></span> Signing in…';
+  const { error } = await sb.auth.signInWithPassword({ email, password });
+  $('loginBtn').disabled=false; $('loginBtn').textContent='Sign in';
+  if(error){ err.textContent='Sign-in failed. Check your email and password.'; return; }
+  showApp();
+}
+$('logoutBtn').addEventListener('click', async()=>{ await sb.auth.signOut(); location.reload(); });
+
+function showApp(){
+  $('loginScreen').style.display='none';
+  $('app').style.display='block';
+  if(!$('pubdate').value) $('pubdate').value = new Date().toISOString().slice(0,10);
+  loadPosts();
+}
+
+// auto slug from title (only while creating / if slug empty)
+$('title').addEventListener('input', ()=>{ if(!$('editId').value && !$('slug').dataset.touched) $('slug').value = slugify($('title').value); });
+$('slug').addEventListener('input', ()=>{ $('slug').dataset.touched = '1'; });
+
+// ===== LIST =====
+async function loadPosts(){
+  $('list').innerHTML='<div class="empty">Loading…</div>';
+  const { data, error } = await sb.from('news').select('*').order('published_date',{ascending:false}).order('created_at',{ascending:false});
+  if(error){ $('list').innerHTML='<div class="empty">Could not load stories.<br><small>'+esc(error.message)+'</small><br><small>Did you run supabase_news_setup.sql?</small></div>'; $('count').textContent=''; return; }
+  $('count').textContent = (data.length||0) + ' total';
+  if(!data.length){ $('list').innerHTML='<div class="empty">No stories yet. Create your first one on the left.</div>'; return; }
+  $('list').innerHTML = data.map(renderPost).join('');
+}
+
+function renderPost(p){
+  const feat = p.featured ? '<span class="badge b-feat">★ Featured</span>' : '';
+  const live = p.published ? '<span class="badge b-live">Published</span>' : '<span class="badge b-draft">Draft</span>';
+  return `<div class="post" data-id="${p.id}">
+    <div class="ph">
+      <div>
+        <div class="pt">${esc(p.title)}</div>
+        <div class="pmeta">${esc(fmtDate(p.published_date))} · ${esc(p.category||'Update')} · /${esc(p.slug)}</div>
+      </div>
+    </div>
+    <div class="badges">${live}${feat}</div>
+    <div class="pactions">
+      <button class="btn btn-sm btn-ghost" onclick="editPost('${p.id}')">Edit</button>
+      <button class="btn btn-sm btn-ghost" onclick="toggle('${p.id}','featured',${!p.featured})">${p.featured?'Unfeature':'Feature'}</button>
+      <button class="btn btn-sm btn-ghost" onclick="toggle('${p.id}','published',${!p.published})">${p.published?'Unpublish':'Publish'}</button>
+      <a class="btn btn-sm btn-ghost" href="news-article.html?slug=${encodeURIComponent(p.slug)}" target="_blank">Open ↗</a>
+      <button class="btn btn-sm btn-danger" onclick="del('${p.id}','${esc(p.title).replace(/'/g,"\\'")}')">Delete</button>
+    </div>
+  </div>`;
+}
+
+let CACHE=[];
+async function editPost(id){
+  const { data } = await sb.from('news').select('*').eq('id',id).limit(1);
+  const p = data && data[0]; if(!p) return;
+  $('editId').value=p.id; $('title').value=p.title||''; $('category').value=p.category||'';
+  $('pubdate').value=p.published_date||''; $('slug').value=p.slug||''; $('slug').dataset.touched='1';
+  $('image').value=p.image_url||''; $('excerpt').value=p.excerpt||''; $('body').value=p.body||'';
+  $('featured').checked=!!p.featured; $('published').checked=!!p.published;
+  $('formTitle').textContent='Edit story'; $('saveBtn').textContent='Save changes';
+  $('formMsg').textContent=''; window.scrollTo({top:0,behavior:'smooth'});
+}
+
+async function toggle(id, field, val){
+  const patch={}; patch[field]=val;
+  const { error } = await sb.from('news').update(patch).eq('id',id);
+  if(error){ alert('Update failed: '+error.message); return; }
+  loadPosts();
+}
+
+async function del(id, title){
+  if(!confirm('Delete "'+title+'"? This cannot be undone.')) return;
+  const { error } = await sb.from('news').delete().eq('id',id);
+  if(error){ alert('Delete failed: '+error.message); return; }
+  if($('editId').value===id) resetForm();
+  loadPosts();
+}
+
+// ===== SAVE =====
+$('saveBtn').addEventListener('click', saveStory);
+$('resetBtn').addEventListener('click', resetForm);
+
+async function saveStory(){
+  const msg=$('formMsg'); msg.className='msg'; msg.textContent='';
+  const title=$('title').value.trim(), excerpt=$('excerpt').value.trim();
+  if(!title){ msg.classList.add('bad'); msg.textContent='Headline is required.'; return; }
+  if(!excerpt){ msg.classList.add('bad'); msg.textContent='Excerpt is required (it shows on the card).'; return; }
+
+  const row = {
+    title, excerpt,
+    slug: ($('slug').value.trim() || slugify(title)),
+    category: $('category').value.trim() || 'Update',
+    image_url: $('image').value.trim() || null,
+    body: $('body').value.trim() || null,
+    published_date: $('pubdate').value || new Date().toISOString().slice(0,10),
+    featured: $('featured').checked,
+    published: $('published').checked
+  };
+
+  $('saveBtn').disabled=true; const old=$('saveBtn').textContent; $('saveBtn').innerHTML='<span class="spin"></span> Saving…';
+  const id=$('editId').value;
+  let error;
+  if(id){ ({ error } = await sb.from('news').update(row).eq('id',id)); }
+  else  { ({ error } = await sb.from('news').insert([row])); }
+  $('saveBtn').disabled=false; $('saveBtn').textContent=old;
+
+  if(error){
+    msg.classList.add('bad');
+    msg.textContent = /duplicate|unique/i.test(error.message) ? 'That slug is already used — change the slug and try again.' : ('Save failed: '+error.message);
+    return;
+  }
+  msg.classList.add('ok'); msg.textContent = id ? 'Story updated.' : 'Story published.';
+  resetForm(true); loadPosts();
+}
+
+function resetForm(keepMsg){
+  $('editId').value=''; $('title').value=''; $('category').value='Update'; $('slug').value=''; $('slug').dataset.touched='';
+  $('image').value=''; $('excerpt').value=''; $('body').value='';
+  $('featured').checked=false; $('published').checked=true;
+  $('pubdate').value=new Date().toISOString().slice(0,10);
+  $('formTitle').textContent='Create a news story'; $('saveBtn').textContent='Publish story';
+  if(!keepMsg) $('formMsg').textContent='';
+}
+</script>
+</body>
+</html>
