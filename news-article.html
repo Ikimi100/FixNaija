@@ -137,8 +137,35 @@ async function loadArticle(){
   }
 }
 
+function setMeta(attr, key, val){
+  let el = document.head.querySelector(`meta[${attr}="${key}"]`);
+  if(!el){ el = document.createElement('meta'); el.setAttribute(attr, key); document.head.appendChild(el); }
+  el.setAttribute('content', val);
+}
+function setCanonical(url){
+  let el = document.head.querySelector('link[rel="canonical"]');
+  if(!el){ el = document.createElement('link'); el.setAttribute('rel','canonical'); document.head.appendChild(el); }
+  el.setAttribute('href', url);
+}
 function render(a){
   document.title = a.title + ' — FixNaija Movement';
+  // ----- dynamic SEO / social tags for this story -----
+  const pageUrl = 'https://www.fixnaijamovement.com.ng/news-article.html?slug=' + encodeURIComponent(a.slug || a.id);
+  const desc = (a.excerpt || a.title || '').slice(0, 200);
+  const img = a.image_url ? (/^https?:/i.test(a.image_url) ? a.image_url : 'https://www.fixnaijamovement.com.ng/' + a.image_url.replace(/^\//,'')) : 'https://www.fixnaijamovement.com.ng/images/logo.png';
+  setCanonical(pageUrl);
+  setMeta('name','description', desc);
+  setMeta('property','og:type', 'article');
+  setMeta('property','og:site_name', 'FixNaija Movement');
+  setMeta('property','og:title', a.title);
+  setMeta('property','og:description', desc);
+  setMeta('property','og:url', pageUrl);
+  setMeta('property','og:image', img);
+  setMeta('name','twitter:card', 'summary_large_image');
+  setMeta('name','twitter:title', a.title);
+  setMeta('name','twitter:description', desc);
+  setMeta('name','twitter:image', img);
+
   const paras = String(a.body || a.excerpt || '').split(/\n{2,}|\n/).map(p => p.trim()).filter(Boolean);
   const bodyHtml = paras.length ? paras.map(p => `<p>${esc(p)}</p>`).join('') : `<p>${esc(a.excerpt || '')}</p>`;
   const hero = a.image_url ? `<img class="art-hero" src="${esc(a.image_url)}" alt="${esc(a.title)}" onerror="this.style.display='none'">` : '';

@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Keep admin tools out of search
+Disallow: /admin.html
+Disallow: /news-admin.html
+
+Sitemap: https://www.fixnaijamovement.com.ng/sitemap.xml
