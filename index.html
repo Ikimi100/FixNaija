@@ -218,7 +218,9 @@ section.blk{padding:88px 0}
 @media(max-width:960px){
   .ans-wrap{grid-template-columns:1fr}
   .ans-panel{position:static;padding:24px 20px}
-  .ans-list{flex-direction:row;overflow-x:auto;gap:8px;margin:0 -18px;padding:0 18px 8px;scrollbar-width:none}
+  .ans-list{flex-direction:row;overflow-x:auto;gap:8px;margin:0 -18px;padding:0 18px 8px;scrollbar-width:none;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22px,#000 calc(100% - 34px),transparent 100%);
+    mask-image:linear-gradient(90deg,transparent 0,#000 22px,#000 calc(100% - 34px),transparent 100%)}
   .ans-list::-webkit-scrollbar{display:none}
   .ans-item{flex:0 0 auto;padding:10px 14px;border-radius:999px;gap:9px}
   .ans-item .tx small,.ans-item .ar{display:none}
@@ -910,11 +912,28 @@ const ISSUES=[
     if(i===cur&&btns[cur].classList.contains('active')){return;}
     cur=i;
     btns.forEach((b,j)=>{b.classList.toggle('active',j===i);b.setAttribute('aria-selected',j===i?'true':'false');});
+    if(btns[i].scrollIntoView){btns[i].scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});}
     if(swapping)return;
     swapping=true;body.classList.add('swap');
     setTimeout(()=>{fill(cur);body.classList.remove('swap');swapping=false;},220);
   }
   fill(0);btns[0].classList.add('active');btns[0].setAttribute('aria-selected','true');
+
+  /* gentle auto-scroll of the issue pills (mobile) so every option gets seen */
+  let dir=1,pausedScroll=false,resumeT,inView=false;
+  const pauseScroll=()=>{pausedScroll=true;clearTimeout(resumeT);resumeT=setTimeout(()=>{pausedScroll=false;},4500);};
+  ['touchstart','pointerdown','wheel'].forEach(ev=>list.addEventListener(ev,pauseScroll,{passive:true}));
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(es=>{es.forEach(e=>{inView=e.isIntersecting;});},{threshold:.2}).observe(list);
+  }else{inView=true;}
+  (function drift(){
+    if(inView && !pausedScroll && list.scrollWidth>list.clientWidth+8){
+      list.scrollLeft+=dir*0.55;
+      if(list.scrollLeft+list.clientWidth>=list.scrollWidth-1){dir=-1;}
+      else if(list.scrollLeft<=0){dir=1;}
+    }
+    requestAnimationFrame(drift);
+  })();
 })();
 
 /* Hero slide "Get Involved" → also hand off to the registration page */
