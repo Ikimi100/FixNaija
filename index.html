@@ -186,6 +186,46 @@ section.blk{padding:88px 0}
 .bio-facts .f b{display:block;font-family:'Space Grotesk',sans-serif;color:#fff;font-size:1.05rem}
 .bio-facts .f span{color:var(--muted);font-size:.85rem}
 
+/* ============ ANSWERS EXPLORER ============ */
+.ans-blk{background:radial-gradient(900px 520px at 100% 10%,rgba(0,135,81,.10),transparent 60%),radial-gradient(700px 420px at 0% 90%,rgba(212,160,23,.07),transparent 60%),var(--charcoal-2)}
+.ans-wrap{display:grid;grid-template-columns:.95fr 1.05fr;gap:24px;max-width:1140px;margin:0 auto;align-items:start}
+.ans-list{display:flex;flex-direction:column;gap:8px}
+.ans-item{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:var(--charcoal-card);border:1px solid var(--line);border-radius:14px;padding:12px 15px;cursor:pointer;color:#fff;font-family:'Inter',sans-serif;transition:transform .16s,border-color .16s,background .16s}
+.ans-item:hover{transform:translateX(4px);border-color:rgba(0,168,98,.5)}
+.ans-item .ic{flex:0 0 42px;width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;background:linear-gradient(135deg,rgba(0,168,98,.16),rgba(212,160,23,.14))}
+.ans-item .tx b{font-family:'Space Grotesk',sans-serif;font-size:.98rem;display:block;line-height:1.2}
+.ans-item .tx small{color:var(--muted);font-size:.78rem;display:block;margin-top:2px}
+.ans-item .ar{margin-left:auto;color:#6f6f88;font-size:1.3rem;transition:.16s}
+.ans-item.active{background:linear-gradient(135deg,rgba(0,135,81,.22),rgba(212,160,23,.10));border-color:rgba(212,160,23,.6);transform:translateX(4px)}
+.ans-item.active .ar{color:var(--gold);transform:translateX(3px)}
+.ans-panel{position:sticky;top:96px;background:var(--charcoal-card);border:1px solid var(--line);border-radius:22px;padding:30px 32px;box-shadow:0 26px 60px rgba(0,0,0,.45);overflow:hidden}
+.ans-body{transition:opacity .22s ease,transform .22s ease}
+.ans-body.swap{opacity:0;transform:translateY(10px)}
+.ans-stat{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:18px}
+.ans-stat .n{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(2.2rem,4.5vw,3rem);color:var(--gold);letter-spacing:-.02em;line-height:1}
+.ans-stat .l{color:var(--muted);font-size:.92rem;max-width:340px}
+.ans-h{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.ans-h::before{content:"";width:20px;height:2px;background:var(--gold)}
+.ans-h.green{color:#22e08a}
+.ans-h.green::before{background:#22e08a}
+.ans-prob{color:var(--muted);font-size:.98rem;margin-bottom:20px}
+.ans-sol{list-style:none;margin-bottom:22px}
+.ans-sol li{display:flex;gap:11px;color:#e7e7f0;font-size:.95rem;margin-bottom:11px}
+.ans-sol li i{flex:0 0 22px;width:22px;height:22px;border-radius:50%;background:rgba(0,168,98,.2);color:#22e08a;display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:700;font-size:.78rem;margin-top:2px}
+.ans-act{display:flex;flex-wrap:wrap;gap:10px;align-items:center;border-top:1px solid var(--line);padding-top:18px}
+.ans-act .cta{padding:12px 20px;font-size:.88rem}
+.ans-src{color:#8a8a9c;font-size:.76rem;margin-top:14px}
+@media(max-width:960px){
+  .ans-wrap{grid-template-columns:1fr}
+  .ans-panel{position:static;padding:24px 20px}
+  .ans-list{flex-direction:row;overflow-x:auto;gap:8px;margin:0 -18px;padding:0 18px 8px;scrollbar-width:none}
+  .ans-list::-webkit-scrollbar{display:none}
+  .ans-item{flex:0 0 auto;padding:10px 14px;border-radius:999px;gap:9px}
+  .ans-item .tx small,.ans-item .ar{display:none}
+  .ans-item .ic{flex:0 0 30px;width:30px;height:30px;border-radius:50%;font-size:1rem}
+  .ans-item:hover,.ans-item.active{transform:none}
+}
+
 /* ============ STATEMENT BAND ============ */
 .band{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--green-dark),var(--green));padding:70px 0}
 .band::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.08) 1px,transparent 1px);background-size:24px 24px;opacity:.6}
@@ -305,6 +345,7 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
     <ul class="nav-links">
       <li><a href="#home" class="active">Home</a></li>
       <li><a href="#leader">The Candidate</a></li>
+      <li><a href="#answers">The Answers</a></li>
       <li><a href="#map">States</a></li>
       <li><a href="#explore">Explore</a></li>
       <li><a href="about.html">About</a></li>
@@ -329,6 +370,7 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
     <div class="mm-label">Navigate</div>
     <a class="mm-item" href="#home"><span class="mm-ico">🏠</span><span class="mm-text"><b>Home</b><small>Welcome to FixNaija</small></span><span class="mm-arrow">›</span></a>
     <a class="mm-item" href="#leader"><span class="mm-ico">👤</span><span class="mm-text"><b>The Candidate</b><small>Prince Adewole Adebayo · SDP</small></span><span class="mm-arrow">›</span></a>
+    <a class="mm-item" href="#answers"><span class="mm-ico">🛠️</span><span class="mm-text"><b>The Answers</b><small>9 deep problems · the repair plan</small></span><span class="mm-arrow">›</span></a>
     <a class="mm-item" href="about.html"><span class="mm-ico">📖</span><span class="mm-text"><b>About</b><small>Our story &amp; the pillars</small></span><span class="mm-arrow">›</span></a>
     <a class="mm-item" href="civic-resource.html"><span class="mm-ico">⚖️</span><span class="mm-text"><b>Civic Hub</b><small>Rights, PVC &amp; accountability</small></span><span class="mm-arrow">›</span></a>
     <a class="mm-item" href="volunteer.html"><span class="mm-ico">🤝</span><span class="mm-text"><b>Volunteer</b><small>Lend your skills</small></span><span class="mm-arrow">›</span></a>
@@ -449,6 +491,34 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
           <div class="f"><b>All 774 LGAs</b><span>Grassroots mission</span></div>
         </div>
         <a href="leadership.html" class="cta cta-g">Read His Full Story →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THE ANSWERS · PROBLEM → SOLUTION EXPLORER ===== -->
+<section class="blk ans-blk" id="answers">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow center">The Answers</span>
+      <h2>Deep Problems. <span class="g">Deeper Answers.</span></h2>
+      <p>Every Nigerian knows what is broken. FixNaija shows the repair plan — issue by issue, drawn from Prince Adebayo's public programme. Pick a problem.</p>
+    </div>
+    <div class="ans-wrap">
+      <div class="ans-list" id="ansList" role="tablist" aria-label="National issues"></div>
+      <div class="ans-panel">
+        <div class="ans-body" id="ansBody" role="tabpanel">
+          <div class="ans-stat"><span class="n" id="ansN"></span><span class="l" id="ansL"></span></div>
+          <div class="ans-h">The Problem</div>
+          <p class="ans-prob" id="ansProb"></p>
+          <div class="ans-h green">The FixNaija Answer</div>
+          <ul class="ans-sol" id="ansSol"></ul>
+          <div class="ans-act">
+            <a class="cta cta-p" id="ansCta" href="#">Take Action →</a>
+            <a class="cta cta-o" href="register.html">Join the Repair Work</a>
+          </div>
+          <p class="ans-src">Drawn from Prince Adewole Adebayo's public statements, debates and the SDP programme for 2027.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -759,6 +829,94 @@ document.getElementById('joinForm').addEventListener('submit',function(e){
   if(state)qs.set('state',state);
   location.href='register.html?'+qs.toString();
 });
+/* ===== THE ANSWERS · problem → solution explorer ===== */
+const ISSUES=[
+ {ic:"⚡",name:"Power & Energy",tag:"~5,500MW for 220M people",n:"~5,500MW",l:"peak grid output for over 220 million Nigerians — homes and factories run on generators instead",
+  prob:"Six decades after independence, the national grid still delivers only a few thousand megawatts. Businesses burn trillions of naira on diesel, manufacturers close or relocate, and every blackout taxes the poorest hardest.",
+  sol:["Get every refinery working and end dependence on imported fuel — until Nigeria becomes a net exporter of refined products.",
+       "Decentralise generation so states, cities and industry can produce and distribute power without waiting on Abuja.",
+       "Expand energy alternatives and efficient public transport to cut what families and firms burn on fuel."],
+  cta:["Report a Power Problem →","report-issue.html"]},
+ {ic:"🛡️",name:"Insecurity",tag:"Policing that protects elites",n:"774",l:"LGAs — and every single one deserves policing that answers to its own community",
+  prob:"Security in Nigeria has too often meant protecting the political elite, while kidnapping became an industry and security votes became an enterprise. Farmers can't reach their fields; travellers fear their own highways.",
+  sol:["Establish state police — communities policed by people who know them, under proper regulation. A position Adebayo championed years before it became national consensus.",
+       "Redefine security as the protection of the ordinary citizen, not the convoy of the powerful.",
+       "End the profiteering: transparent security spending, and strengthened, accountable operations against insurgency and banditry."],
+  cta:["Report an Incident →","report-issue.html"]},
+ {ic:"⚖️",name:"Corruption",tag:"Trillions leak every year",n:"₦ Trillions",l:"leak from public coffers every year through theft, waste and unblocked loopholes",
+  prob:"Corruption is not just stolen money — it is the hospital never built, the road never tarred, the teacher never paid. Worse, politicians facing trial learn that defecting to the ruling party buys forgiveness.",
+  sol:["Anti-graft agencies that are truly independent: law enforcement investigates, the judiciary adjudicates, and sanctions apply without political coloration.",
+       "No amnesty by defection — your party card is not a pardon.",
+       "Block revenue losses and fix collection first, instead of piling new taxes on citizens already struggling."],
+  cta:["Know Your Rights →","civic-resource.html"]},
+ {ic:"💼",name:"Jobs & the Economy",tag:"Target: 30 million jobs",n:"30M",l:"jobs — the target of a full-employment economy built on agriculture, industry and innovation",
+  prob:"Millions of capable young Nigerians are idle or underemployed, and the most talented are japa-ing abroad. An economy that cannot employ its youth is an economy running out of future.",
+  sol:["Create 30 million jobs through agriculture, manufacturing, digital innovation and enterprise development.",
+       "A nationwide jobs and public-works initiative — with a target of cutting unemployment to 4% within two years.",
+       "Back small businesses with credit, infrastructure and markets so enterprise, not government, becomes the biggest employer."],
+  cta:["Volunteer Your Skills →","volunteer.html"]},
+ {ic:"💰",name:"Cost of Living",tag:"63% below the poverty line",n:"63%",l:"of Nigerians live below the national poverty line — roughly 130 million people",
+  prob:"Inflation has eaten salaries, savings and dignity. Subsidy removal without a cushion, plus policy missteps on top, left ordinary families paying the bill for decisions they never made.",
+  sol:["Fix the sequencing: working refineries and cheaper transport first, so fuel and food prices fall for real.",
+       "Plug government leakages and improve revenue collection instead of squeezing struggling households with new taxes.",
+       "An 18-month emergency poverty-reduction programme — with the declared target of cutting poverty to 2%."],
+  cta:["Join a Town Hall →","events.html"]},
+ {ic:"🎓",name:"Education",tag:"~20M children out of school",n:"~20M",l:"Nigerian children are out of school — the highest number anywhere in the world",
+  prob:"A country that leaves 20 million children outside the classroom is writing its own crisis 20 years in advance. And for those who do graduate, a student-loan burden Adebayo calls unconstitutional awaits.",
+  sol:["Free and compulsory education from primary to tertiary — because education is a right, not a loan.",
+       "Enrol the 20 million out-of-school children, and don't stop at graduation: education ends when the graduate is employed.",
+       "Entrepreneurship incubation centres nationwide and 5 million young people trained in green technology."],
+  cta:["Explore the Civic Hub →","civic-resource.html"]},
+ {ic:"🏥",name:"Healthcare",tag:"Doctors leaving in droves",n:"110/1,000",l:"Nigerian children die before their fifth birthday, while our doctors japa abroad",
+  prob:"Hospitals without medicine, clinics without doctors, and a brain-drain that ships our best medics to London and Toronto. Nigerians deserve better than 'go and manage it'.",
+  sol:["Free medical check-ups four times a year for every Nigerian — catch illness before it becomes catastrophe.",
+       "Prevention-first health policy: primary care, immunisation and clean water before billion-naira teaching-hospital contracts.",
+       "Pay, equip and respect health workers so staying home becomes the smarter career move."],
+  cta:["Report a Failing Clinic →","report-issue.html"]},
+ {ic:"🛣️",name:"Infrastructure & Roads",tag:"Bad roads tax everything",n:"~70%",l:"of the road network is unpaved or in disrepair — raising the price of everything that moves",
+  prob:"Every pothole is a tax. Poor roads, rail and logistics drive up transport costs, which drive up food prices, which drive up hunger. The IMF itself ties Nigeria's inflation to its infrastructure gap.",
+  sol:["Infrastructure-first economics: roads, rail and logistics that cut transport costs — and with them, the price of food.",
+       "A national public-works programme that doubles as the jobs engine, rebuilding communities with local hands.",
+       "Working ports and power so made-in-Nigeria goods can compete at home and abroad."],
+  cta:["Report a Bad Road →","report-issue.html"]},
+ {ic:"🌾",name:"Food Security",tag:"Food inflation peaked ~40%",n:"~40%",l:"where food inflation peaked — the cruellest tax, paid heaviest by the poorest households",
+  prob:"A nation blessed with arable land now struggles to feed itself. Conflict keeps farmers off their fields, bad roads rot harvests before market, and imports drain scarce dollars.",
+  sol:["Modernise agriculture as both the food engine and the jobs engine — mechanisation, storage and extension services.",
+       "Rural roads and storage so harvests reach markets instead of rotting in villages.",
+       "Secure farmland — the security plan and the food plan are the same plan."],
+  cta:["Find Your LGA →","find-lga.html"]}
+];
+(function(){
+  const list=document.getElementById('ansList');
+  if(!list)return;
+  const body=document.getElementById('ansBody'),nEl=document.getElementById('ansN'),lEl=document.getElementById('ansL'),
+        probEl=document.getElementById('ansProb'),solEl=document.getElementById('ansSol'),ctaEl=document.getElementById('ansCta');
+  let cur=0,swapping=false;
+  ISSUES.forEach((it,i)=>{
+    const b=document.createElement('button');
+    b.className='ans-item';b.type='button';b.setAttribute('role','tab');
+    b.innerHTML='<span class="ic">'+it.ic+'</span><span class="tx"><b>'+it.name+'</b><small>'+it.tag+'</small></span><span class="ar">›</span>';
+    b.addEventListener('click',()=>select(i));
+    list.appendChild(b);
+  });
+  const btns=[...list.children];
+  function fill(i){
+    const it=ISSUES[i];
+    nEl.textContent=it.n;lEl.textContent=it.l;probEl.textContent=it.prob;
+    solEl.innerHTML=it.sol.map(s=>'<li><i>✓</i><span>'+s+'</span></li>').join('');
+    ctaEl.textContent=it.cta[0];ctaEl.href=it.cta[1];
+  }
+  function select(i){
+    if(i===cur&&btns[cur].classList.contains('active')){return;}
+    cur=i;
+    btns.forEach((b,j)=>{b.classList.toggle('active',j===i);b.setAttribute('aria-selected',j===i?'true':'false');});
+    if(swapping)return;
+    swapping=true;body.classList.add('swap');
+    setTimeout(()=>{fill(cur);body.classList.remove('swap');swapping=false;},220);
+  }
+  fill(0);btns[0].classList.add('active');btns[0].setAttribute('aria-selected','true');
+})();
+
 /* Hero slide "Get Involved" → also hand off to the registration page */
 document.getElementById('heroJoin').addEventListener('submit',function(e){
   e.preventDefault();
