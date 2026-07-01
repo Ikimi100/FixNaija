@@ -3268,12 +3268,25 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
     const state = params.get('state');
     const lga   = params.get('lga');
     const ward  = params.get('ward') || '';
+
+    // prefill name & email handed over from the homepage "Get Involved" form
+    const nm = params.get('name');
+    const em = params.get('email');
+    if (em) { const f = document.getElementById('regEmail'); if (f) f.value = em; }
+    if (nm) {
+        const parts = nm.trim().split(/\s+/);
+        const fn = document.getElementById('regFirstName');
+        const ln = document.getElementById('regLastName');
+        if (fn) fn.value = parts[0] || '';
+        if (ln && parts.length > 1) ln.value = parts.slice(1).join(' ');
+    }
+
     if (!state) return;
 
     const regState = document.getElementById('regState');
     const regLGA   = document.getElementById('regLGA');
 
-    const stateAliases = { 'FCT ABUJA': 'FEDERAL CAPITAL TERRITORY', 'FCT': 'FEDERAL CAPITAL TERRITORY' };
+    const stateAliases = { 'FCT ABUJA': 'FEDERAL CAPITAL TERRITORY', 'FCT (ABUJA)': 'FEDERAL CAPITAL TERRITORY', 'FCT': 'FEDERAL CAPITAL TERRITORY' };
     let s = state.toUpperCase();
     if (stateAliases[s]) s = stateAliases[s];
 

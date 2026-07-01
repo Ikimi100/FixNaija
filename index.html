@@ -743,7 +743,21 @@ function wireJoinForm(o){
     }finally{btn.disabled=false;btn.textContent=label;}
   });
 }
-wireJoinForm({form:'joinForm',name:'jName',email:'jEmail',state:'jState',btn:'joinSubmit',ok:'joinOk',err:'joinErr',source:'Homepage email signup'});
+/* "Get Involved / Count Me In" → hand off to the registration page with details prefilled */
+document.getElementById('joinForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const name=document.getElementById('jName').value.trim();
+  const email=document.getElementById('jEmail').value.trim();
+  const state=document.getElementById('jState').value;
+  const btn=document.getElementById('joinSubmit');
+  btn.disabled=true;btn.textContent='Taking you to registration…';
+  const qs=new URLSearchParams();
+  if(name)qs.set('name',name);
+  if(email)qs.set('email',email);
+  if(state)qs.set('state',state);
+  location.href='register.html?'+qs.toString();
+});
+/* Hero slide quick-signup stays an inline signup */
 wireJoinForm({form:'heroJoin',email:'hjEmail',state:'hjState',btn:'hjBtn',ok:'hjOk',err:'hjErr',source:'Hero slider signup'});
 </script>
 </body>
