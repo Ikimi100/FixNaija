@@ -277,6 +277,8 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
   .hero-statbar .s{padding:0 16px}
   .hero-statbar .n{font-size:1.35rem}
   .bio-img img{height:400px}
+  .map-ctas{justify-content:center}
+  .map-ctas .cta{flex:1;justify-content:center;min-width:140px;padding:15px 14px}
   .bio-img .fb p{display:none}
   .bio-img .fb{text-align:center}
   .foot-grid{grid-template-columns:1fr;text-align:center}
@@ -757,8 +759,18 @@ document.getElementById('joinForm').addEventListener('submit',function(e){
   if(state)qs.set('state',state);
   location.href='register.html?'+qs.toString();
 });
-/* Hero slide quick-signup stays an inline signup */
-wireJoinForm({form:'heroJoin',email:'hjEmail',state:'hjState',btn:'hjBtn',ok:'hjOk',err:'hjErr',source:'Hero slider signup'});
+/* Hero slide "Get Involved" → also hand off to the registration page */
+document.getElementById('heroJoin').addEventListener('submit',function(e){
+  e.preventDefault();
+  const email=document.getElementById('hjEmail').value.trim();
+  const state=document.getElementById('hjState').value;
+  const btn=document.getElementById('hjBtn');
+  btn.disabled=true;btn.textContent='Taking you to registration…';
+  const qs=new URLSearchParams();
+  if(email)qs.set('email',email);
+  if(state)qs.set('state',state);
+  location.href='register.html?'+qs.toString();
+});
 </script>
 </body>
 </html>
