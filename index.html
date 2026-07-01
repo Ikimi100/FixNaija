@@ -164,6 +164,11 @@ section.blk{padding:88px 0}
 .map-count{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1rem;margin-top:10px}
 .map-count b{color:var(--gold)}
 .map-side .cta{margin-top:8px}
+.map-ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.ng-map{width:100%}
+.ng-map svg{width:100%;height:auto;display:block;overflow:visible}
+.ng-map path{fill:rgba(255,255,255,.055);stroke:rgba(0,168,98,.4);stroke-width:.9;cursor:pointer;transition:fill .18s,filter .18s;outline:none}
+.ng-map path:hover,.ng-map path:focus,.ng-map path.lit{fill:var(--green-soft);stroke:#fff;filter:drop-shadow(0 5px 12px rgba(0,168,98,.55))}
 
 /* ============ PRINCE BIO ============ */
 .bio-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:52px;align-items:center;max-width:1120px;margin:0 auto}
@@ -348,7 +353,7 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
       <div class="wrap">
         <div class="slide-inner">
           <span class="badge-live"><span class="dot"></span> SDP · Presidential Campaign · 2027</span>
-          <h1>A New Nigeria<br><span class="u">Is Possible.</span></h1>
+          <h1>For God. For Nigeria.<br><span class="u">For All.</span></h1>
           <p class="lead"><b>Prince Adewole Adebayo</b> — SDP Presidential Candidate — is leading a citizen-owned movement to rebuild our nation <b>ward by ward, LGA by LGA</b>. Competence over cronyism. No citizen left behind.</p>
           <form class="hero-join" id="heroJoin">
             <span class="hj-label"><span class="dot"></span> Join the Movement</span>
@@ -447,7 +452,7 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
       <p>Hover any state to light it up in our colours — then find your Local Government Area and take your seat at the table.</p>
     </div>
     <div class="map-wrap">
-      <div class="map-grid" id="mapGrid" aria-label="Interactive map of Nigerian states"></div>
+      <div class="ng-map"><svg viewBox="0 0 744 600" id="ngMap" preserveAspectRatio="xMidYMid meet" role="group" aria-label="Interactive map of Nigeria — 36 states and the FCT"></svg></div>
       <div class="map-side">
         <span class="eyebrow">Your State</span>
         <div class="map-readout">
@@ -456,7 +461,10 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
           <div class="map-progress"><i></i></div>
           <div class="map-count"><b id="rsCount">37</b> / 37 states &amp; FCT organized</div>
         </div>
-        <a href="find-lga.html" class="cta cta-p">Find My LGA →</a>
+        <div class="map-ctas">
+          <a href="find-lga.html" class="cta cta-p">Find My LGA →</a>
+          <a href="register.html" class="cta cta-g">Register to Join →</a>
+        </div>
       </div>
     </div>
   </div>
@@ -590,6 +598,8 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
 
 <a href="ask-fixnaija.html" class="fab-ai" aria-label="Ask FixNaija AI">✨ <span>Ask FixNaija</span></a>
 
+<!-- Nigeria state geometry (loads locally, no fetch needed) -->
+<script src="data/nigeria-states.js"></script>
 <script>
 /* ===== Scrolling header (OK-Movement style: condense + smart hide/reveal) ===== */
 const navbar=document.getElementById('navbar');
@@ -623,18 +633,29 @@ const STATES=[
  ["Ogun","OGU",2,6],["Ondo","OND",3,6],["Edo","EDO",4,6],["Anambra","ANA",5,6],["Imo","IMO",6,6],["Abia","ABI",7,6],["Akwa Ibom","AKW",8,6],
  ["Lagos","LAG",1,7],["Delta","DEL",4,7],["Bayelsa","BAY",5,7],["Rivers","RIV",6,7]
 ];
-/* build map */
-const grid=document.getElementById('mapGrid'),rsState=document.getElementById('rsState'),rsSub=document.getElementById('rsSub');
-STATES.forEach(([name,abbr,c,r])=>{
-  const a=document.createElement('a');
-  a.className='tile';a.href='find-lga.html';a.style.gridColumn=c;a.style.gridRow=r;
-  a.setAttribute('data-name',name);a.setAttribute('aria-label',name);
-  a.innerHTML='<span>'+abbr+'</span>';
-  const show=()=>{rsState.textContent=name;rsSub.textContent='Active chapter · organizing';};
-  a.addEventListener('mouseenter',show);
-  a.addEventListener('focus',show);
-  grid.appendChild(a);
-});
+/* build interactive SVG map of Nigeria from window.NG_STATES (data/nigeria-states.js) */
+const rsState=document.getElementById('rsState'),rsSub=document.getElementById('rsSub');
+(function buildMap(){
+  const svg=document.getElementById('ngMap');
+  if(!svg||!window.NG_STATES){return;}
+  const NS='http://www.w3.org/2000/svg';
+  window.NG_STATES.forEach(st=>{
+    const p=document.createElementNS(NS,'path');
+    p.setAttribute('d',st.d);
+    p.setAttribute('data-name',st.name);
+    p.setAttribute('tabindex','0');
+    p.setAttribute('role','link');
+    p.setAttribute('aria-label',st.name);
+    const show=()=>{rsState.textContent=st.name;rsSub.textContent='Active chapter · organizing';
+      svg.querySelectorAll('path.lit').forEach(x=>x.classList.remove('lit'));p.classList.add('lit');};
+    p.addEventListener('mouseenter',show);
+    p.addEventListener('focus',show);
+    p.addEventListener('mouseleave',()=>p.classList.remove('lit'));
+    p.addEventListener('click',()=>{location.href='find-lga.html';});
+    p.addEventListener('keydown',e=>{if(e.key==='Enter'){location.href='find-lga.html';}});
+    svg.appendChild(p);
+  });
+})();
 /* populate BOTH state dropdowns (main form + hero form) alphabetically */
 const stateNames=[...STATES].map(s=>s[0]).sort();
 ['jState','hjState'].forEach(id=>{
