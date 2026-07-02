@@ -181,10 +181,7 @@ section.blk{padding:88px 0}
 .bio-txt .role{color:var(--gold-soft);font-weight:600;font-family:'Space Grotesk',sans-serif;margin-bottom:18px;display:block}
 .bio-txt p{color:var(--muted);margin-bottom:16px;font-size:1.03rem}
 .bio-txt p b{color:#fff;font-weight:600}
-.bio-facts{display:flex;gap:26px;flex-wrap:wrap;margin:22px 0 26px}
-.bio-facts .f{border-left:2px solid var(--green-soft);padding-left:14px}
-.bio-facts .f b{display:block;font-family:'Space Grotesk',sans-serif;color:#fff;font-size:1.05rem}
-.bio-facts .f span{color:var(--muted);font-size:.85rem}
+.bio-txt .cta{margin-top:8px}
 
 /* ============ ANSWERS EXPLORER ============ */
 .ans-blk{background:radial-gradient(900px 520px at 100% 10%,rgba(0,135,81,.10),transparent 60%),radial-gradient(700px 420px at 0% 90%,rgba(212,160,23,.07),transparent 60%),var(--charcoal-2)}
@@ -307,6 +304,19 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
 .v-ic,.p-ic{display:flex;width:52px;height:52px;border-radius:14px;align-items:center;justify-content:center;font-size:1.5rem;background:linear-gradient(135deg,rgba(0,168,98,.18),rgba(212,160,23,.16));margin-bottom:16px}
 .val-card h3{font-size:1.06rem;margin-bottom:9px}
 .val-card p{color:var(--muted);font-size:.9rem}
+
+/* ============ DECLARATION ============ */
+.decl-blk{background:radial-gradient(900px 520px at 50% 0,rgba(0,135,81,.12),transparent 62%),radial-gradient(600px 380px at 100% 100%,rgba(212,160,23,.07),transparent 60%),var(--charcoal-2)}
+.decl{max-width:760px;margin:0 auto;text-align:center}
+.decl p{color:#d6d6e2;font-size:1.05rem;margin-bottom:20px}
+.decl p b{color:#fff;font-weight:600}
+.decl p em{color:var(--gold-soft);font-style:normal;font-weight:600}
+.decl .d-em{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(1.15rem,2.8vw,1.55rem);color:#fff;line-height:1.35;margin:30px 0 22px}
+.d-hl{color:var(--green-soft)}
+.decl-final{margin-top:36px;border-top:1px solid var(--line);padding-top:30px}
+.decl-final p{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.25rem;color:#fff;margin-bottom:8px}
+.decl-final .d-date{font-family:'Inter',sans-serif;font-weight:400;color:var(--muted);font-size:1rem;margin-bottom:24px}
+.decl-final .d-date b{color:var(--gold)}
 
 /* ============ CHALLENGES ============ */
 .chal-blk{background:radial-gradient(700px 420px at 100% 0,rgba(212,160,23,.08),transparent 60%),var(--charcoal-2)}
@@ -480,12 +490,12 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
         <div class="slide-inner">
           <span class="badge-live"><span class="dot"></span> SDP · Presidential Campaign · 2027</span>
           <h1>The New Nigeria<br><span class="u">Begins With Us.</span></h1>
-          <p class="lead"><b>Integrity. Competence. Courage.</b> — leadership you can trust. The Nigeria we dream of will not be handed to us; it will be built by us — ward by ward, hand in hand. <b>Together we can.</b></p>
+          <p class="lead">Not with Aso Rock. Not with godfathers. Not with the same faces recycling the same failures. <b>With us — the people.</b> The 68 million who refused to be fooled. Change does not trickle down from power; <b>it rises from the ground up.</b></p>
           <div class="hero-ctas">
             <a href="register.html" class="cta cta-p">Get Involved →</a>
-            <a href="about.html" class="cta cta-o">Learn About the Movement</a>
+            <a href="#declaration" class="cta cta-o">Read Our Declaration</a>
           </div>
-          <div class="slide-foot"><span>A people-powered campaign for 2027.</span></div>
+          <div class="slide-foot"><span>The New Nigeria begins the day we decide it does. <b>That day is February 2027.</b></span></div>
         </div>
       </div>
     </div>
@@ -496,8 +506,8 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
       <div class="wrap">
         <div class="slide-inner">
           <span class="badge-live"><span class="dot"></span> Meet the Candidate</span>
-          <h1>Competence<br><span class="g">Over Cronyism.</span></h1>
-          <p class="lead">A prince of the Ondo Kingdom, lawyer and lifelong institution-builder, <b>Prince Adewole Adebayo</b> now carries decades of nation-building onto the national stage as <b>SDP Presidential Candidate</b>.</p>
+          <h1>The Right Man.<br><span class="g">The Right Time.</span></h1>
+          <p class="lead"><b>Prince Adewole Adebayo</b> is not asking to lead a country — <b>he is asking to serve a movement.</b> A lawyer, employer and builder who has spent decades creating jobs, backing education and lifting communities across Nigeria — <b>long before seeking any office.</b> Now he brings that record to the national stage as <b>SDP Presidential Candidate</b>.</p>
           <div class="hero-ctas">
             <a href="leadership.html" class="cta cta-g">Read His Story →</a>
             <a href="about.html" class="cta cta-o">Our Vision</a>
@@ -570,6 +580,33 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
       <div class="val-card"><span class="v-ic">🗳️</span><h3>Citizen Participation</h3><p>We organize residents to take an active role in governance, community development, policy discussion and public decision-making — ward by ward.</p></div>
       <div class="val-card"><span class="v-ic">🔍</span><h3>Transparency in Governance</h3><p>We demand open decision-making, public access to information and leadership that earns the trust of citizens.</p></div>
       <div class="val-card"><span class="v-ic">🌱</span><h3>Sustainable Development</h3><p>We champion repairs that last — institutions, infrastructure and opportunity built to outlive any one administration.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== OUR DECLARATION ===== -->
+<section class="blk decl-blk" id="declaration">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow center">Our Declaration</span>
+      <h2>The New Nigeria <span class="g">Begins With Us.</span></h2>
+    </div>
+    <div class="decl">
+      <p class="d-em">Not with Aso Rock. Not with godfathers.<br>Not with the same faces recycling the same failures.</p>
+      <p><b>With us. The people.</b> The 68 million who refused to be fooled.</p>
+      <p>For too long, we outsourced our destiny to men who auctioned it. We watched. We complained. We posted. We prayed. And Nigeria got worse.</p>
+      <p>Because <em>change does not trickle down from power. It rises from the ground up</em> — from the market woman who shows up at her polling unit, from the graduate who drives three people to vote, from the diaspora Nigerian who calls home and says: <b>"This time, please go out."</b></p>
+      <p>The New Nigeria is not a government programme. <em>It is a people's decision.</em></p>
+      <p>And Prince Adewole Adebayo is not asking to lead a country. <em>He is asking to serve a movement.</em></p>
+      <p>A movement that says the Constitution means what it says — that power belongs to the people. That security and welfare are not campaign promises — <em>they are legal obligations.</em> That a president who cannot travel freely in his own country has already lost the most important election — <em>the one for the confidence of his own citizens.</em></p>
+      <p>We are not waiting for a messiah. <b>We are the movement.</b></p>
+      <p>We are 68 million registered Nigerians who stayed home in 2023 because nobody on that ballot deserved the walk to the polling unit.</p>
+      <p class="d-em">2027 is different. The candidate is different.<br>And this time — <span class="d-hl">we show up.</span></p>
+      <div class="decl-final">
+        <p>The New Nigeria begins the day we decide it does.</p>
+        <p class="d-date">That day is <b>February 2027</b>. That decision is <b>yours</b>.</p>
+        <a href="register.html" class="cta cta-g">Count Me In →</a>
+      </div>
     </div>
   </div>
 </section>
@@ -729,11 +766,6 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
         <span class="role">SDP Presidential Candidate · Prince of Ondo Kingdom · Lawyer</span>
         <p>Born on <b>8 January 1972 in Ondo City</b>, Prince Adewole Adebayo is a prince of the Ondo Kingdom, a lawyer, and an entrepreneur whose career has been defined by <b>building institutions rather than chasing office</b>. As the <b>SDP Presidential Candidate</b>, he now carries that record onto the national stage.</p>
         <p>From founding his own legal practice to backing education, enterprise and social causes, his life's work has centred on lasting structures that outlive any one person. FixNaija channels those decades of institution-building into a <b>citizen-owned movement to repair Nigeria across all 774 LGAs</b> — grounded in accountability, competence and service to the ordinary Nigerian.</p>
-        <div class="bio-facts">
-          <div class="f"><b>Ondo Kingdom</b><span>Prince &amp; native son</span></div>
-          <div class="f"><b>Law &amp; Enterprise</b><span>Institution-builder</span></div>
-          <div class="f"><b>All 774 LGAs</b><span>Grassroots mission</span></div>
-        </div>
         <a href="leadership.html" class="cta cta-g">Read His Full Story →</a>
       </div>
     </div>
