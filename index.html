@@ -294,6 +294,73 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
 /* ============ FLOATING AI ============ */
 .fab-ai{position:fixed;right:22px;bottom:22px;z-index:900;display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,var(--gold-soft),var(--gold));color:var(--charcoal);font-family:'Space Grotesk',sans-serif;font-weight:700;text-decoration:none;padding:14px 20px;border-radius:999px;box-shadow:0 14px 34px rgba(212,160,23,.45)}
 
+/* ============ IMPACT STRIP ============ */
+.impact-blk{background:radial-gradient(800px 460px at 50% 0,rgba(0,135,81,.10),transparent 60%),var(--charcoal-2)}
+.impact-tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:-14px auto 44px;max-width:880px}
+.impact-tags span{background:var(--charcoal-card);border:1px solid var(--line);border-radius:999px;padding:9px 18px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.9rem;color:#e7e7f0}
+.impact-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:1020px;margin:0 auto}
+.ist{background:var(--charcoal-card);border:1px solid var(--line);border-radius:18px;padding:28px 18px;text-align:center;transition:transform .18s,border-color .18s}
+.ist:hover{transform:translateY(-3px);border-color:rgba(0,168,98,.5)}
+.ist .n{display:block;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:2.5rem;color:var(--gold);letter-spacing:-.02em;line-height:1.15}
+.ist .l{color:var(--muted);font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+
+/* ============ MOVEMENT VALUES ============ */
+.values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:1120px;margin:0 auto}
+.val-card{background:var(--charcoal-card);border:1px solid var(--line);border-radius:18px;padding:26px 22px;transition:transform .18s,border-color .18s}
+.val-card:hover{transform:translateY(-3px);border-color:rgba(212,160,23,.5)}
+.v-ic,.p-ic{display:flex;width:52px;height:52px;border-radius:14px;align-items:center;justify-content:center;font-size:1.5rem;background:linear-gradient(135deg,rgba(0,168,98,.18),rgba(212,160,23,.16));margin-bottom:16px}
+.val-card h3{font-size:1.06rem;margin-bottom:9px}
+.val-card p{color:var(--muted);font-size:.9rem}
+
+/* ============ CHALLENGES ============ */
+.chal-blk{background:radial-gradient(700px 420px at 100% 0,rgba(212,160,23,.08),transparent 60%),var(--charcoal-2)}
+.chal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:1120px;margin:0 auto 36px}
+.chal-card{background:var(--charcoal-card);border:1px solid var(--line);border-left:3px solid var(--green-soft);border-radius:14px;padding:20px}
+.chal-card h4{font-size:1rem;margin-bottom:8px}
+.chal-card p{color:var(--muted);font-size:.87rem}
+.commit-box{max-width:860px;margin:0 auto;text-align:center;background:linear-gradient(135deg,rgba(0,135,81,.16),rgba(212,160,23,.10));border:1px solid rgba(0,168,98,.35);border-radius:22px;padding:36px 30px}
+.commit-box h3{font-size:1.45rem;margin-bottom:10px;color:var(--gold-soft)}
+.commit-box p{color:#e0eae4;font-size:.98rem;margin-bottom:22px}
+.commit-box p a{color:var(--gold-soft)}
+
+/* ============ PROGRAMMES ============ */
+.prog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1020px;margin:0 auto}
+.prog-card{display:flex;flex-direction:column;background:var(--charcoal-card);border:1px solid var(--line);border-radius:18px;padding:28px 24px;text-decoration:none;color:#fff;transition:transform .18s,border-color .18s}
+.prog-card:hover{transform:translateY(-4px);border-color:rgba(0,168,98,.55)}
+.prog-card h3{font-size:1.15rem;margin-bottom:9px}
+.prog-card p{color:var(--muted);font-size:.92rem;margin-bottom:16px}
+.p-link{margin-top:auto;color:var(--gold-soft);font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.9rem}
+
+/* ============ TESTIMONIALS ============ */
+.testi-blk{background:radial-gradient(700px 400px at 0 0,rgba(212,160,23,.08),transparent 60%),var(--charcoal-2)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1080px;margin:0 auto}
+.t-card{background:var(--charcoal-card);border:1px solid var(--line);border-radius:18px;padding:26px}
+.t-stars{color:var(--gold);letter-spacing:2px;margin-bottom:12px;font-size:.9rem}
+.t-card h3{font-size:1.02rem;margin-bottom:10px}
+.t-card p{color:var(--muted);font-size:.92rem;font-style:italic;margin-bottom:14px}
+.t-who{color:var(--gold-soft);font-size:.82rem;font-weight:600}
+
+/* ============ GALLERY PREVIEW ============ */
+.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:1080px;margin:0 auto 32px}
+.gal-item{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);display:block}
+.gal-item img{width:100%;height:220px;object-fit:cover;transition:transform .35s}
+.gal-item:hover img{transform:scale(1.06)}
+.gal-item span{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 12px;background:linear-gradient(180deg,transparent,rgba(10,10,18,.92));font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.88rem;color:#fff}
+.gal-cta{text-align:center}
+
+/* ============ LATEST NEWS ============ */
+.news-blk{background:var(--charcoal-2)}
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1080px;margin:0 auto}
+.news-card{display:flex;flex-direction:column;background:var(--charcoal-card);border:1px solid var(--line);border-radius:18px;overflow:hidden;text-decoration:none;color:#fff;transition:transform .18s,border-color .18s}
+.news-card:hover{transform:translateY(-4px);border-color:rgba(0,168,98,.55)}
+.nc-img img{width:100%;height:180px;object-fit:cover}
+.nc-body{padding:20px;display:flex;flex-direction:column;flex:1}
+.nc-meta{display:flex;justify-content:space-between;align-items:center;font-size:.76rem;color:var(--muted);margin-bottom:10px}
+.nc-meta .cat{background:rgba(0,168,98,.16);color:#8ff0c2;border-radius:999px;padding:4px 11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:.68rem}
+.nc-body h3{font-size:1.04rem;margin-bottom:8px}
+.nc-body p{color:var(--muted);font-size:.88rem;margin-bottom:14px}
+.nc-more{margin-top:auto;color:var(--gold-soft);font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.88rem}
+
 /* ============ RESPONSIVE ============ */
 @media(max-width:1080px){
   .nav-links,.nav-actions .btn-ai,.nav-actions .btn-join{display:none}
@@ -306,6 +373,8 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
   .map-wrap,.bio-wrap,.join-wrap{grid-template-columns:1fr}
   .bio-img{order:-1;max-width:460px;margin:0 auto}
   .foot-grid{grid-template-columns:1fr 1fr}
+  .impact-stats,.values-grid,.chal-grid,.gal-grid{grid-template-columns:repeat(2,1fr)}
+  .prog-grid,.testi-grid,.news-grid{grid-template-columns:1fr}
 }
 @media(max-width:620px){
   .wrap{padding:0 18px}
@@ -334,6 +403,9 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
   .foot-bottom{justify-content:center;text-align:center;flex-direction:column;gap:8px}
   .foot-bottom a{margin:0 9px}
   .fab-ai span{display:none}
+  .values-grid,.chal-grid,.gal-grid{grid-template-columns:1fr}
+  .ist .n{font-size:1.9rem}
+  .gal-item img{height:190px}
 }
 </style>
 </head>
@@ -354,6 +426,7 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
       <li><a href="#explore">Explore</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="events.html">Events</a></li>
+      <li><a href="#news">News</a></li>
       <li><a href="#join">Join</a></li>
     </ul>
     <div class="nav-actions">
@@ -411,18 +484,11 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
           <span class="badge-live"><span class="dot"></span> SDP · Presidential Campaign · 2027</span>
           <h1>The New Nigeria<br><span class="u">Begins With Us.</span></h1>
           <p class="lead"><b>Integrity. Competence. Courage.</b> — leadership you can trust. The Nigeria we dream of will not be handed to us; it will be built by us — ward by ward, hand in hand. <b>Together we can.</b></p>
-          <form class="hero-join" id="heroJoin">
-            <span class="hj-label"><span class="dot"></span> Join the Movement</span>
-            <div class="row">
-              <input type="email" id="hjEmail" placeholder="Email address" required>
-              <select id="hjState" required><option value="">Select state…</option></select>
-            </div>
-            <button type="submit" class="hj-btn" id="hjBtn">Get Involved →</button>
-            <div class="hj-note">🔒 Your details are private. We never sell or share your information.</div>
-            <div class="hj-ok" id="hjOk">🎉 You're in! Welcome to the movement.</div>
-            <div class="hj-err" id="hjErr">Something went wrong. Please try again.</div>
-          </form>
-          <div class="slide-foot"><a href="about.html">Learn about our movement →</a><span class="vdiv"></span><span>A people-powered campaign for 2027.</span></div>
+          <div class="hero-ctas">
+            <a href="register.html" class="cta cta-p">Get Involved →</a>
+            <a href="about.html" class="cta cta-o">Learn About the Movement</a>
+          </div>
+          <div class="slide-foot"><span>A people-powered campaign for 2027.</span></div>
         </div>
       </div>
     </div>
@@ -474,27 +540,39 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
   </div>
 </section>
 
-<!-- ===== MEET THE CANDIDATE ===== -->
-<section class="blk" id="leader">
+<!-- ===== IMPACT STRIP ===== -->
+<section class="blk impact-blk" id="impact">
   <div class="wrap">
-    <div class="bio-wrap">
-      <div class="bio-img">
-        <img src="images/about-movement.jpg" alt="Prince Adewole Adebayo with supporters at a grassroots gathering">
-        <div class="fb"><b>SDP Presidential Candidate</b><p>Repairing Nigeria is the work of a generation — and it starts in the community.</p></div>
-      </div>
-      <div class="bio-txt">
-        <span class="eyebrow">Meet the Candidate</span>
-        <h2>Prince Adewole Adebayo</h2>
-        <span class="role">SDP Presidential Candidate · Prince of Ondo Kingdom · Lawyer</span>
-        <p>Born on <b>8 January 1972 in Ondo City</b>, Prince Adewole Adebayo is a prince of the Ondo Kingdom, a lawyer, and an entrepreneur whose career has been defined by <b>building institutions rather than chasing office</b>. As the <b>SDP Presidential Candidate</b>, he now carries that record onto the national stage.</p>
-        <p>From founding his own legal practice to backing education, enterprise and social causes, his life's work has centred on lasting structures that outlive any one person. FixNaija channels those decades of institution-building into a <b>citizen-owned movement to repair Nigeria across all 774 LGAs</b> — grounded in accountability, competence and service to the ordinary Nigerian.</p>
-        <div class="bio-facts">
-          <div class="f"><b>Ondo Kingdom</b><span>Prince &amp; native son</span></div>
-          <div class="f"><b>Law &amp; Enterprise</b><span>Institution-builder</span></div>
-          <div class="f"><b>All 774 LGAs</b><span>Grassroots mission</span></div>
-        </div>
-        <a href="leadership.html" class="cta cta-g">Read His Full Story →</a>
-      </div>
+    <div class="sec-head">
+      <span class="eyebrow center">Beyond Politics</span>
+      <h2>Driving Change Across <span class="g">Nigeria</span></h2>
+      <p>Our impact is measured by the people we engage, the communities we reach and the repairs we champion. Through collaboration, advocacy and citizen participation, FixNaija is building momentum for lasting transformation.</p>
+    </div>
+    <div class="impact-tags">
+      <span>🏛 Governance</span><span>🛡 Security</span><span>⚡ Power</span><span>📚 Education</span><span>🏥 Healthcare</span><span>🛣 Infrastructure</span><span>💼 Jobs</span>
+    </div>
+    <div class="impact-stats">
+      <div class="ist"><span class="n" data-count="37">0</span><span class="l">🗺 States &amp; FCT</span></div>
+      <div class="ist"><span class="n" data-count="774">0</span><span class="l">🏘 Communities</span></div>
+      <div class="ist"><span class="n" data-count="9">0</span><span class="l">🛠 Repair Plans</span></div>
+      <div class="ist"><span class="n" data-count="200" data-suffix="M+">0</span><span class="l">👥 Nigerians</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MOVEMENT VALUES ===== -->
+<section class="blk" id="movement">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow center">Who We Are</span>
+      <h2>A Movement Built Around <span class="g">the People</span></h2>
+      <p>FixNaija is a citizen-owned grassroots movement dedicated to restoring trust in governance and ensuring that every Nigerian — in every ward, LGA and state — has access to quality services, infrastructure, opportunity and representation.</p>
+    </div>
+    <div class="values-grid">
+      <div class="val-card"><span class="v-ic">⚖️</span><h3>Accountability to the People</h3><p>Leaders and public institutions must answer for their actions, their promises and their stewardship of public resources.</p></div>
+      <div class="val-card"><span class="v-ic">🗳️</span><h3>Citizen Participation</h3><p>We organize residents to take an active role in governance, community development, policy discussion and public decision-making — ward by ward.</p></div>
+      <div class="val-card"><span class="v-ic">🔍</span><h3>Transparency in Governance</h3><p>We demand open decision-making, public access to information and leadership that earns the trust of citizens.</p></div>
+      <div class="val-card"><span class="v-ic">🌱</span><h3>Sustainable Development</h3><p>We champion repairs that last — institutions, infrastructure and opportunity built to outlive any one administration.</p></div>
     </div>
   </div>
 </section>
@@ -503,9 +581,9 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
 <section class="blk ans-blk" id="answers">
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow center">The Answers</span>
+      <span class="eyebrow center">The FixNaija Agenda</span>
       <h2>Deep Problems. <span class="g">Deeper Answers.</span></h2>
-      <p>Every Nigerian knows what is broken. FixNaija shows the repair plan — issue by issue, drawn from Prince Adebayo's public programme. Pick a problem.</p>
+      <p>The FixNaija Agenda is a practical blueprint for a functional, inclusive and thriving Nigeria. Every Nigerian knows what is broken — here is the repair plan, issue by issue, drawn from Prince Adebayo's public programme. Pick a problem.</p>
     </div>
     <div class="ans-wrap">
       <div class="ans-list" id="ansList" role="tablist" aria-label="National issues"></div>
@@ -563,29 +641,6 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
   </div>
 </section>
 
-<!-- ===== EXPLORE SECTIONS ===== -->
-<section class="blk" id="explore">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow center">Explore the Movement</span>
-      <h2>Everywhere You Can <span class="g">Take Action</span></h2>
-      <p>One tap to every corner of FixNaija — learn, organize, report and get involved.</p>
-    </div>
-    <div class="explore-grid">
-      <a class="ex-card" href="about.html"><span class="ex-ic">📖</span><span class="ex-tx"><b>About Us</b><small>Our story &amp; pillars</small></span><span class="ex-ar">›</span></a>
-      <a class="ex-card" href="leadership.html"><span class="ex-ic">👤</span><span class="ex-tx"><b>Leadership</b><small>Meet the Candidate</small></span><span class="ex-ar">›</span></a>
-      <a class="ex-card" href="civic-resource.html"><span class="ex-ic">⚖️</span><span class="ex-tx"><b>Civic Hub</b><small>Rights, PVC &amp; power</small></span><span class="ex-ar">›</span></a>
-      <a class="ex-card" href="find-lga.html"><span class="ex-ic">📍</span><span class="ex-tx"><b>States &amp; LGAs</b><small>Find your community</small></span><span class="ex-ar">›</span></a>
-      <a class="ex-card" href="volunteer.html"><span class="ex-ic">🤝</span><span class="ex-tx"><b>Volunteer</b><small>Lend your skills</small></span><span class="ex-ar">›</span></a>
-      <a class="ex-card" href="events.html"><span class="ex-ic">📅</span><span class="ex-tx"><b>Events</b><small>Town halls &amp; trainings</small></span><span class="ex-ar">›</span></a>
-      <a class="ex-card" href="gallery.html"><span class="ex-ic">🖼️</span><span class="ex-tx"><b>Media Gallery</b><small>Moments &amp; movement</small></span><span class="ex-ar">›</span></a>
-      <a class="ex-card" href="report-issue.html"><span class="ex-ic">📢</span><span class="ex-tx"><b>Report an Issue</b><small>Flag a problem</small></span><span class="ex-ar">›</span></a>
-      <a class="ex-card" href="ask-fixnaija.html"><span class="ex-ic">💬</span><span class="ex-tx"><b>Ask FixNaija AI</b><small>Civic assistant</small></span><span class="ex-ar">›</span></a>
-      <a class="ex-card" href="register.html"><span class="ex-ic">✍️</span><span class="ex-tx"><b>Register</b><small>Take your seat</small></span><span class="ex-ar">›</span></a>
-    </div>
-  </div>
-</section>
-
 <!-- ===== EMAIL SIGNUP ===== -->
 <section class="blk join-blk" id="join">
   <div class="wrap">
@@ -617,6 +672,187 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
           <p class="privacy">Your details are private. We never sell or share your information.</p>
         </form>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CHALLENGES ===== -->
+<section class="blk chal-blk" id="challenges">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow center">Why We Organize</span>
+      <h2>The Challenges Facing <span class="g">Nigerians</span></h2>
+      <p>Building a better Nigeria begins with understanding the realities facing its people. Across all 36 states and the FCT, families confront the same daily struggles — and FixNaija exists to repair them.</p>
+    </div>
+    <div class="chal-grid">
+      <div class="chal-card"><h4>⚡ Power &amp; Energy</h4><p>A national grid of barely ~5,500MW for over 220 million people keeps homes dark and factories running on generators.</p></div>
+      <div class="chal-card"><h4>🛡 Insecurity</h4><p>Kidnapping, banditry and insurgency keep farmers off their fields and travellers afraid of their own highways.</p></div>
+      <div class="chal-card"><h4>⚖️ Corruption</h4><p>Trillions of naira leak from public coffers every year — the hospital never built, the road never tarred, the teacher never paid.</p></div>
+      <div class="chal-card"><h4>💼 Unemployment</h4><p>Millions of capable young Nigerians are idle or underemployed, and the most talented are leaving in droves.</p></div>
+      <div class="chal-card"><h4>💰 Cost of Living</h4><p>Inflation has eaten salaries and savings, with roughly 63% of Nigerians living below the national poverty line.</p></div>
+      <div class="chal-card"><h4>🎓 Education</h4><p>Around 20 million Nigerian children are out of school — the highest number anywhere in the world.</p></div>
+      <div class="chal-card"><h4>🏥 Healthcare</h4><p>Hospitals without medicine, clinics without doctors, and a brain-drain shipping our best medics abroad.</p></div>
+      <div class="chal-card"><h4>🛣 Infrastructure</h4><p>Roughly 70% of the road network is unpaved or in disrepair — raising the price of everything that moves.</p></div>
+    </div>
+    <div class="commit-box">
+      <h3>Our Commitment</h3>
+      <p>At FixNaija, every challenge is an invitation to repair. Through transparent governance, active citizen participation and the plans in <a href="#answers">the FixNaija Agenda</a>, we are committed to a Nigeria that is safe, prosperous, inclusive and resilient — built ward by ward, hand in hand with residents, community leaders and partners.</p>
+      <a href="#answers" class="cta cta-p">See the Repair Plan →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROGRAMMES ===== -->
+<section class="blk prog-blk" id="programmes">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow center">Our Programmes</span>
+      <h2>Driving Change Through <span class="g">Action</span></h2>
+      <p>FixNaija turns ideas into measurable results — programmes designed to strengthen communities, empower citizens and improve everyday life across the federation.</p>
+    </div>
+    <div class="prog-grid">
+      <a class="prog-card" href="report-issue.html"><span class="p-ic">📢</span><h3>Issue Watch</h3><p>Report and track community problems — bad roads, failing clinics, power cuts — so nothing broken stays hidden.</p><span class="p-link">Report an Issue →</span></a>
+      <a class="prog-card" href="civic-resource.html"><span class="p-ic">⚖️</span><h3>Citizens' Civic Hub</h3><p>Know your rights, get your PVC and engage directly with governance through our civic resource centre.</p><span class="p-link">Open the Civic Hub →</span></a>
+      <a class="prog-card" href="volunteer.html"><span class="p-ic">🤝</span><h3>Volunteer Corps</h3><p>Skills, organizing and youth empowerment — lend your talent to the repair work in your own LGA.</p><span class="p-link">Volunteer →</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MEET THE CANDIDATE ===== -->
+<section class="blk" id="leader">
+  <div class="wrap">
+    <div class="bio-wrap">
+      <div class="bio-img">
+        <img src="images/about-movement.jpg" alt="Prince Adewole Adebayo with supporters at a grassroots gathering">
+        <div class="fb"><b>SDP Presidential Candidate</b><p>Repairing Nigeria is the work of a generation — and it starts in the community.</p></div>
+      </div>
+      <div class="bio-txt">
+        <span class="eyebrow">Meet the Candidate</span>
+        <h2>Prince Adewole Adebayo</h2>
+        <span class="role">SDP Presidential Candidate · Prince of Ondo Kingdom · Lawyer</span>
+        <p>Born on <b>8 January 1972 in Ondo City</b>, Prince Adewole Adebayo is a prince of the Ondo Kingdom, a lawyer, and an entrepreneur whose career has been defined by <b>building institutions rather than chasing office</b>. As the <b>SDP Presidential Candidate</b>, he now carries that record onto the national stage.</p>
+        <p>From founding his own legal practice to backing education, enterprise and social causes, his life's work has centred on lasting structures that outlive any one person. FixNaija channels those decades of institution-building into a <b>citizen-owned movement to repair Nigeria across all 774 LGAs</b> — grounded in accountability, competence and service to the ordinary Nigerian.</p>
+        <div class="bio-facts">
+          <div class="f"><b>Ondo Kingdom</b><span>Prince &amp; native son</span></div>
+          <div class="f"><b>Law &amp; Enterprise</b><span>Institution-builder</span></div>
+          <div class="f"><b>All 774 LGAs</b><span>Grassroots mission</span></div>
+        </div>
+        <a href="leadership.html" class="cta cta-g">Read His Full Story →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VOICES OF THE PEOPLE ===== -->
+<section class="blk testi-blk" id="voices">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow center">Voices of the People</span>
+      <h2>What Nigerians Are <span class="g">Saying</span></h2>
+      <p>The strength of FixNaija is the people who carry it. Hear from residents, volunteers and community stakeholders who share our vision of an accountable, inclusive and prosperous Nigeria.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="t-card">
+        <div class="t-stars">⭐⭐⭐⭐⭐</div>
+        <h3>FixNaija gives every citizen a voice</h3>
+        <p>"For the first time, I feel ordinary residents have a platform to raise our concerns and help shape the future of our community. FixNaija truly puts the people first."</p>
+        <div class="t-who">— Community Volunteer, Lagos</div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">⭐⭐⭐⭐⭐</div>
+        <h3>A movement that represents our communities</h3>
+        <p>"FixNaija renewed my confidence in participation. It is encouraging to see organizers who listen, engage and care about the challenges facing our neighbourhoods."</p>
+        <div class="t-who">— Youth Organizer, Enugu</div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">⭐⭐⭐⭐⭐</div>
+        <h3>Hope for a better Nigeria</h3>
+        <p>"The FixNaija vision inspires hope for better roads, healthcare, education, security and opportunity for every Nigerian. Together, we can build the country we deserve."</p>
+        <div class="t-who">— Market Trader, Kano</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GALLERY PREVIEW ===== -->
+<section class="blk" id="gallery">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow center">Gallery</span>
+      <h2>Moments From the <span class="g">Movement</span></h2>
+      <p>Explore memorable moments from the FixNaija journey — community engagement, advocacy, volunteers and events across the federation.</p>
+    </div>
+    <div class="gal-grid">
+      <a href="gallery.html" class="gal-item"><img src="images/gallery-1.jpg" alt="Community engagement" loading="lazy"><span>📸 Community Engagement</span></a>
+      <a href="gallery.html" class="gal-item"><img src="images/gallery-2.jpg" alt="Leadership and advocacy" loading="lazy"><span>🏛 Leadership &amp; Advocacy</span></a>
+      <a href="gallery.html" class="gal-item"><img src="images/gallery-3.jpg" alt="Volunteer activities" loading="lazy"><span>🤝 Volunteer Activities</span></a>
+      <a href="gallery.html" class="gal-item"><img src="images/gallery-4.jpg" alt="Public events" loading="lazy"><span>🎤 Public Events</span></a>
+      <a href="gallery.html" class="gal-item"><img src="images/gallery-5.jpg" alt="Community development" loading="lazy"><span>🌱 Community Development</span></a>
+      <a href="gallery.html" class="gal-item"><img src="images/gallery-6.jpg" alt="Movement highlights" loading="lazy"><span>🎉 Movement Highlights</span></a>
+    </div>
+    <div class="gal-cta"><a class="cta cta-o" href="gallery.html">View the Full Gallery →</a></div>
+  </div>
+</section>
+
+<!-- ===== LATEST NEWS ===== -->
+<section class="blk news-blk" id="news">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow center">Recent Posts</span>
+      <h2>Latest From the <span class="g">Movement</span></h2>
+      <p>News, community outreach, leadership engagements and stories of the repair work happening across Nigeria.</p>
+    </div>
+    <div class="news-grid" id="newsGrid">
+      <a class="news-card" href="news-article.html?slug=community-project-tracking">
+        <div class="nc-img"><img src="images/news-project-tracking.jpg" alt="" loading="lazy"></div>
+        <div class="nc-body">
+          <div class="nc-meta"><span class="cat">Accountability</span><span>Jun 10, 2026</span></div>
+          <h3>Community Project Tracking Begins</h3>
+          <p>Our new digital platform lets citizens photograph, geotag, and report on local government projects — bringing transparency to every ward in Nigeria.</p>
+          <span class="nc-more">Read More →</span>
+        </div>
+      </a>
+      <a class="news-card" href="news-article.html?slug=youth-leaders-abuja">
+        <div class="nc-img"><img src="images/news-youth-leaders.jpg" alt="" loading="lazy"></div>
+        <div class="nc-body">
+          <div class="nc-meta"><span class="cat">Training</span><span>Jun 8, 2026</span></div>
+          <h3>Youth Leaders Trained in Abuja</h3>
+          <p>Over 300 young community organizers completed intensive training on civic monitoring, digital advocacy, and peaceful mobilization at our Abuja leadership academy.</p>
+          <span class="nc-more">Read More →</span>
+        </div>
+      </a>
+      <a class="news-card" href="news-article.html?slug=774-lga-network">
+        <div class="nc-img"><img src="images/news-774-network.jpg" alt="" loading="lazy"></div>
+        <div class="nc-body">
+          <div class="nc-meta"><span class="cat">Milestone</span><span>Jun 5, 2026</span></div>
+          <h3>FixNaija Launches 774 LGA Network</h3>
+          <p>We have officially activated grassroots coordinators in all 774 Local Government Areas, creating the largest citizen-led accountability network in Nigeria's history.</p>
+          <span class="nc-more">Read More →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EXPLORE SECTIONS ===== -->
+<section class="blk" id="explore">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow center">Explore the Movement</span>
+      <h2>Everywhere You Can <span class="g">Take Action</span></h2>
+      <p>One tap to every corner of FixNaija — learn, organize, report and get involved.</p>
+    </div>
+    <div class="explore-grid">
+      <a class="ex-card" href="about.html"><span class="ex-ic">📖</span><span class="ex-tx"><b>About Us</b><small>Our story &amp; pillars</small></span><span class="ex-ar">›</span></a>
+      <a class="ex-card" href="leadership.html"><span class="ex-ic">👤</span><span class="ex-tx"><b>Leadership</b><small>Meet the Candidate</small></span><span class="ex-ar">›</span></a>
+      <a class="ex-card" href="civic-resource.html"><span class="ex-ic">⚖️</span><span class="ex-tx"><b>Civic Hub</b><small>Rights, PVC &amp; power</small></span><span class="ex-ar">›</span></a>
+      <a class="ex-card" href="find-lga.html"><span class="ex-ic">📍</span><span class="ex-tx"><b>States &amp; LGAs</b><small>Find your community</small></span><span class="ex-ar">›</span></a>
+      <a class="ex-card" href="volunteer.html"><span class="ex-ic">🤝</span><span class="ex-tx"><b>Volunteer</b><small>Lend your skills</small></span><span class="ex-ar">›</span></a>
+      <a class="ex-card" href="events.html"><span class="ex-ic">📅</span><span class="ex-tx"><b>Events</b><small>Town halls &amp; trainings</small></span><span class="ex-ar">›</span></a>
+      <a class="ex-card" href="gallery.html"><span class="ex-ic">🖼️</span><span class="ex-tx"><b>Media Gallery</b><small>Moments &amp; movement</small></span><span class="ex-ar">›</span></a>
+      <a class="ex-card" href="report-issue.html"><span class="ex-ic">📢</span><span class="ex-tx"><b>Report an Issue</b><small>Flag a problem</small></span><span class="ex-ar">›</span></a>
+      <a class="ex-card" href="ask-fixnaija.html"><span class="ex-ic">💬</span><span class="ex-tx"><b>Ask FixNaija AI</b><small>Civic assistant</small></span><span class="ex-ar">›</span></a>
+      <a class="ex-card" href="register.html"><span class="ex-ic">✍️</span><span class="ex-tx"><b>Register</b><small>Take your seat</small></span><span class="ex-ar">›</span></a>
     </div>
   </div>
 </section>
@@ -740,9 +976,9 @@ const rsState=document.getElementById('rsState'),rsSub=document.getElementById('
     svg.appendChild(p);
   });
 })();
-/* populate BOTH state dropdowns (main form + hero form) alphabetically */
+/* populate the state dropdown (main join form) alphabetically */
 const stateNames=[...STATES].map(s=>s[0]).sort();
-['jState','hjState'].forEach(id=>{
+['jState'].forEach(id=>{
   const sel=document.getElementById(id);
   if(!sel)return;
   stateNames.forEach(n=>{const o=document.createElement('option');o.value=n;o.textContent=n;sel.appendChild(o);});
@@ -937,18 +1173,51 @@ const ISSUES=[
   })();
 })();
 
-/* Hero slide "Get Involved" → also hand off to the registration page */
-document.getElementById('heroJoin').addEventListener('submit',function(e){
-  e.preventDefault();
-  const email=document.getElementById('hjEmail').value.trim();
-  const state=document.getElementById('hjState').value;
-  const btn=document.getElementById('hjBtn');
-  btn.disabled=true;btn.textContent='Taking you to registration…';
-  const qs=new URLSearchParams();
-  if(email)qs.set('email',email);
-  if(state)qs.set('state',state);
-  location.href='register.html?'+qs.toString();
-});
+/* ===== Impact stats count-up ===== */
+(function(){
+  const els=document.querySelectorAll('.impact-stats .n');
+  if(!els.length)return;
+  function run(el){
+    const target=parseInt(el.dataset.count,10)||0,suf=el.dataset.suffix||'';
+    const t0=performance.now(),dur=1400;
+    (function tick(now){
+      const p=Math.min((now-t0)/dur,1);
+      el.textContent=Math.round(target*(1-Math.pow(1-p,3)))+suf;
+      if(p<1)requestAnimationFrame(tick);
+    })(t0);
+  }
+  if('IntersectionObserver' in window){
+    const obs=new IntersectionObserver(es=>{es.forEach(e=>{
+      if(e.isIntersecting&&!e.target.dataset.done){e.target.dataset.done='1';run(e.target);}
+    });},{threshold:.5});
+    els.forEach(el=>obs.observe(el));
+  }else{els.forEach(run);}
+})();
+
+/* ===== Latest news → live from Supabase (falls back to the static cards) ===== */
+(async function(){
+  const grid=document.getElementById('newsGrid');
+  if(!grid)return;
+  try{
+    const res=await fetch(`${SUPABASE_URL}/rest/v1/news?select=title,slug,category,excerpt,image_url,published_date&published=eq.true&featured=eq.true&order=published_date.desc&limit=3`,
+      {headers:{'apikey':SUPABASE_KEY,'Authorization':`Bearer ${SUPABASE_KEY}`}});
+    if(!res.ok)return;
+    const rows=await res.json();
+    if(!rows.length)return;
+    const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const fmt=d=>{try{return new Date(d+'T00:00:00').toLocaleDateString('en-NG',{year:'numeric',month:'short',day:'numeric'});}catch(_){return d||'';}};
+    grid.innerHTML=rows.map(a=>`
+      <a class="news-card" href="news-article.html?slug=${encodeURIComponent(a.slug)}">
+        <div class="nc-img"><img src="${esc(a.image_url||'images/nnn.jpg')}" alt="" loading="lazy"></div>
+        <div class="nc-body">
+          <div class="nc-meta"><span class="cat">${esc(a.category||'Update')}</span><span>${esc(fmt(a.published_date))}</span></div>
+          <h3>${esc(a.title)}</h3>
+          <p>${esc(a.excerpt||'')}</p>
+          <span class="nc-more">Read More →</span>
+        </div>
+      </a>`).join('');
+  }catch(_){/* keep static cards */}
+})();
 </script>
 </body>
 </html>
