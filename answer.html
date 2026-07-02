@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The FixNaija Agenda — Deep Problems, Deeper Answers</title>
+<meta name="description" content="The FixNaija repair plan, issue by issue — drawn from Prince Adewole Adebayo's public programme.">
+<link rel="icon" type="image/png" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#008751; --green-dark:#006b3f; --green-soft:#00a862;
+  --charcoal:#1A1A2E; --charcoal-2:#12121f; --charcoal-card:#1f1f36;
+  --gold:#D4A017; --gold-soft:#e8c25a;
+  --white:#fff; --muted:#b8b8c8; --line:rgba(255,255,255,.08);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--charcoal);color:var(--white);line-height:1.6;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;line-height:1.15}
+a{color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+
+/* nav */
+.navbar{position:sticky;top:0;z-index:100;height:70px;display:flex;align-items:center;background:rgba(18,18,31,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.navbar .wrap{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1100px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+.brand img{width:38px;height:38px;object-fit:contain}
+.brand .bn{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1rem;display:block;line-height:1.05}
+.brand .bs{font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.nav-back{background:rgba(255,255,255,.08);border:1px solid var(--line);color:#fff;text-decoration:none;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.84rem;padding:9px 16px;border-radius:999px;white-space:nowrap}
+
+/* page */
+.pg{padding:40px 0 70px}
+.crumb{display:inline-flex;align-items:center;gap:7px;color:var(--muted);text-decoration:none;font-size:.88rem;margin-bottom:24px}
+.crumb:hover{color:#fff}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--gold)}
+.issue-head{display:flex;align-items:center;gap:16px;margin-bottom:22px}
+.issue-head .ic{flex:0 0 62px;width:62px;height:62px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:2rem;background:linear-gradient(135deg,rgba(0,168,98,.16),rgba(212,160,23,.14));border:1px solid var(--line)}
+.issue-head h1{font-size:clamp(1.7rem,5.5vw,2.6rem);letter-spacing:-.02em}
+.issue-head small{display:block;color:var(--muted);font-family:'Inter',sans-serif;font-weight:400;font-size:.92rem;margin-top:4px}
+
+.panel{background:var(--charcoal-card);border:1px solid var(--line);border-radius:22px;padding:28px 26px;box-shadow:0 26px 60px rgba(0,0,0,.45)}
+.stat{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:18px}
+.stat .n{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(2.2rem,7vw,3rem);color:var(--gold);letter-spacing:-.02em;line-height:1}
+.stat .l{color:var(--muted);font-size:.92rem;max-width:400px}
+.h{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.h::before{content:"";width:20px;height:2px;background:var(--gold)}
+.h.green{color:#22e08a}
+.h.green::before{background:#22e08a}
+.prob{color:var(--muted);font-size:.98rem;margin-bottom:22px}
+.sol{list-style:none;margin-bottom:22px}
+.sol li{display:flex;gap:11px;color:#e7e7f0;font-size:.95rem;margin-bottom:12px}
+.sol li i{flex:0 0 22px;width:22px;height:22px;border-radius:50%;background:rgba(0,168,98,.2);color:#22e08a;display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:700;font-size:.78rem;margin-top:2px}
+.act{display:flex;flex-wrap:wrap;gap:10px;align-items:center;border-top:1px solid var(--line);padding-top:18px}
+.cta{display:inline-flex;align-items:center;gap:9px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.9rem;text-decoration:none;padding:13px 22px;border-radius:999px;transition:transform .18s}
+.cta:hover{transform:translateY(-2px)}
+.cta-p{background:linear-gradient(135deg,var(--green-soft),var(--green-dark));color:#fff;box-shadow:0 12px 30px rgba(0,135,81,.4)}
+.cta-o{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.22)}
+.src{color:#8a8a9c;font-size:.76rem;margin-top:14px}
+
+/* other issues */
+.more{margin-top:44px}
+.more h2{font-size:1.3rem;margin-bottom:18px}
+.more-grid{display:grid;grid-template-columns:1fr;gap:10px}
+.more-item{display:flex;align-items:center;gap:13px;background:var(--charcoal-card);border:1px solid var(--line);border-radius:14px;padding:13px 15px;text-decoration:none;color:#fff;transition:border-color .16s,transform .16s}
+.more-item:hover{border-color:rgba(0,168,98,.5);transform:translateX(4px)}
+.more-item .ic{flex:0 0 40px;width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;background:linear-gradient(135deg,rgba(0,168,98,.16),rgba(212,160,23,.14))}
+.more-item .tx b{font-family:'Space Grotesk',sans-serif;font-size:.95rem;display:block;line-height:1.2}
+.more-item .tx small{color:var(--muted);font-size:.78rem}
+.more-item .ar{margin-left:auto;color:#6f6f88;font-size:1.3rem}
+@media(min-width:700px){.more-grid{grid-template-columns:1fr 1fr}}
+
+/* footer */
+footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:26px 0;text-align:center;color:#7f7f92;font-size:.85rem}
+footer a{color:var(--gold-soft);text-decoration:none}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <img src="images/logo.png" alt="FixNaija Movement logo">
+      <span><span class="bn">FixNaija Movement</span><span class="bs">People's Grassroots Network</span></span>
+    </a>
+    <a class="nav-back" href="index.html#answers">← All Issues</a>
+  </div>
+</nav>
+
+<main class="pg">
+  <div class="wrap">
+    <a class="crumb" href="index.html#answers">← Back to the FixNaija Agenda</a>
+    <div id="content">
+      <span class="eyebrow">The FixNaija Agenda</span>
+      <div class="issue-head">
+        <span class="ic" id="iIc">🛠️</span>
+        <h1 id="iName">Loading…<small id="iTag"></small></h1>
+      </div>
+      <div class="panel">
+        <div class="stat"><span class="n" id="iN"></span><span class="l" id="iL"></span></div>
+        <div class="h">The Problem</div>
+        <p class="prob" id="iProb"></p>
+        <div class="h green">The FixNaija Answer</div>
+        <ul class="sol" id="iSol"></ul>
+        <div class="act">
+          <a class="cta cta-p" id="iCta" href="#">Take Action →</a>
+          <a class="cta cta-o" href="register.html">Join the Repair Work</a>
+        </div>
+        <p class="src">Drawn from Prince Adewole Adebayo's public statements, debates and the SDP programme for 2027.</p>
+      </div>
+    </div>
+
+    <div class="more">
+      <h2>More Deep Problems, Deeper Answers</h2>
+      <div class="more-grid" id="moreGrid"></div>
+    </div>
+  </div>
+</main>
+
+<footer>© 2026 FixNaija Movement · <a href="index.html">Home</a> · <a href="index.html#answers">The Agenda</a> · <a href="register.html">Register</a></footer>
+
+<script>
+/* Same data as the homepage explorer — keep the two in sync */
+const ISSUES=[
+ {slug:"power",ic:"⚡",name:"Power & Energy",tag:"~5,500MW for 220M people",n:"~5,500MW",l:"peak grid output for over 220 million Nigerians — homes and factories run on generators instead",
+  prob:"Six decades after independence, the national grid still delivers only a few thousand megawatts. Businesses burn trillions of naira on diesel, manufacturers close or relocate, and every blackout taxes the poorest hardest.",
+  sol:["Get every refinery working and end dependence on imported fuel — until Nigeria becomes a net exporter of refined products.",
+       "Decentralise generation so states, cities and industry can produce and distribute power without waiting on Abuja.",
+       "Expand energy alternatives and efficient public transport to cut what families and firms burn on fuel."],
+  cta:["Report a Power Problem →","report-issue.html"]},
+ {slug:"insecurity",ic:"🛡️",name:"Insecurity",tag:"Policing that protects elites",n:"774",l:"LGAs — and every single one deserves policing that answers to its own community",
+  prob:"Security in Nigeria has too often meant protecting the political elite, while kidnapping became an industry and security votes became an enterprise. Farmers can't reach their fields; travellers fear their own highways.",
+  sol:["Establish state police — communities policed by people who know them, under proper regulation. A position Adebayo championed years before it became national consensus.",
+       "Redefine security as the protection of the ordinary citizen, not the convoy of the powerful.",
+       "End the profiteering: transparent security spending, and strengthened, accountable operations against insurgency and banditry."],
+  cta:["Report an Incident →","report-issue.html"]},
+ {slug:"corruption",ic:"⚖️",name:"Corruption",tag:"Trillions leak every year",n:"₦ Trillions",l:"leak from public coffers every year through theft, waste and unblocked loopholes",
+  prob:"Corruption is not just stolen money — it is the hospital never built, the road never tarred, the teacher never paid. Worse, politicians facing trial learn that defecting to the ruling party buys forgiveness.",
+  sol:["Anti-graft agencies that are truly independent: law enforcement investigates, the judiciary adjudicates, and sanctions apply without political coloration.",
+       "No amnesty by defection — your party card is not a pardon.",
+       "Block revenue losses and fix collection first, instead of piling new taxes on citizens already struggling."],
+  cta:["Know Your Rights →","civic-resource.html"]},
+ {slug:"jobs",ic:"💼",name:"Jobs & the Economy",tag:"Target: 30 million jobs",n:"30M",l:"jobs — the target of a full-employment economy built on agriculture, industry and innovation",
+  prob:"Millions of capable young Nigerians are idle or underemployed, and the most talented are japa-ing abroad. An economy that cannot employ its youth is an economy running out of future.",
+  sol:["Create 30 million jobs through agriculture, manufacturing, digital innovation and enterprise development.",
+       "A nationwide jobs and public-works initiative — with a target of cutting unemployment to 4% within two years.",
+       "Back small businesses with credit, infrastructure and markets so enterprise, not government, becomes the biggest employer."],
+  cta:["Volunteer Your Skills →","volunteer.html"]},
+ {slug:"cost-of-living",ic:"💰",name:"Cost of Living",tag:"63% below the poverty line",n:"63%",l:"of Nigerians live below the national poverty line — roughly 130 million people",
+  prob:"Inflation has eaten salaries, savings and dignity. Subsidy removal without a cushion, plus policy missteps on top, left ordinary families paying the bill for decisions they never made.",
+  sol:["Fix the sequencing: working refineries and cheaper transport first, so fuel and food prices fall for real.",
+       "Plug government leakages and improve revenue collection instead of squeezing struggling households with new taxes.",
+       "An 18-month emergency poverty-reduction programme — with the declared target of cutting poverty to 2%."],
+  cta:["Join a Town Hall →","events.html"]},
+ {slug:"education",ic:"🎓",name:"Education",tag:"~20M children out of school",n:"~20M",l:"Nigerian children are out of school — the highest number anywhere in the world",
+  prob:"A country that leaves 20 million children outside the classroom is writing its own crisis 20 years in advance. And for those who do graduate, a student-loan burden Adebayo calls unconstitutional awaits.",
+  sol:["Free and compulsory education from primary to tertiary — because education is a right, not a loan.",
+       "Enrol the 20 million out-of-school children, and don't stop at graduation: education ends when the graduate is employed.",
+       "Entrepreneurship incubation centres nationwide and 5 million young people trained in green technology."],
+  cta:["Explore the Civic Hub →","civic-resource.html"]},
+ {slug:"healthcare",ic:"🏥",name:"Healthcare",tag:"Doctors leaving in droves",n:"110/1,000",l:"Nigerian children die before their fifth birthday, while our doctors japa abroad",
+  prob:"Hospitals without medicine, clinics without doctors, and a brain-drain that ships our best medics to London and Toronto. Nigerians deserve better than 'go and manage it'.",
+  sol:["Free medical check-ups four times a year for every Nigerian — catch illness before it becomes catastrophe.",
+       "Prevention-first health policy: primary care, immunisation and clean water before billion-naira teaching-hospital contracts.",
+       "Pay, equip and respect health workers so staying home becomes the smarter career move."],
+  cta:["Report a Failing Clinic →","report-issue.html"]},
+ {slug:"infrastructure",ic:"🛣️",name:"Infrastructure & Roads",tag:"Bad roads tax everything",n:"~70%",l:"of the road network is unpaved or in disrepair — raising the price of everything that moves",
+  prob:"Every pothole is a tax. Poor roads, rail and logistics drive up transport costs, which drive up food prices, which drive up hunger. The IMF itself ties Nigeria's inflation to its infrastructure gap.",
+  sol:["Infrastructure-first economics: roads, rail and logistics that cut transport costs — and with them, the price of food.",
+       "A national public-works programme that doubles as the jobs engine, rebuilding communities with local hands.",
+       "Working ports and power so made-in-Nigeria goods can compete at home and abroad."],
+  cta:["Report a Bad Road →","report-issue.html"]},
+ {slug:"food-security",ic:"🌾",name:"Food Security",tag:"Food inflation peaked ~40%",n:"~40%",l:"where food inflation peaked — the cruellest tax, paid heaviest by the poorest households",
+  prob:"A nation blessed with arable land now struggles to feed itself. Conflict keeps farmers off their fields, bad roads rot harvests before market, and imports drain scarce dollars.",
+  sol:["Modernise agriculture as both the food engine and the jobs engine — mechanisation, storage and extension services.",
+       "Rural roads and storage so harvests reach markets instead of rotting in villages.",
+       "Secure farmland — the security plan and the food plan are the same plan."],
+  cta:["Find Your LGA →","find-lga.html"]}
+];
+
+(function(){
+  const slug=new URLSearchParams(location.search).get('issue');
+  let it=ISSUES.find(x=>x.slug===slug)||ISSUES[0];
+
+  document.title=it.name+' — The FixNaija Agenda';
+  document.getElementById('iIc').textContent=it.ic;
+  document.getElementById('iName').firstChild.textContent=it.name;
+  document.getElementById('iTag').textContent=it.tag;
+  document.getElementById('iN').textContent=it.n;
+  document.getElementById('iL').textContent=it.l;
+  document.getElementById('iProb').textContent=it.prob;
+  document.getElementById('iSol').innerHTML=it.sol.map(s=>'<li><i>✓</i><span></span></li>').join('');
+  [...document.querySelectorAll('#iSol li span')].forEach((el,i)=>el.textContent=it.sol[i]);
+  const cta=document.getElementById('iCta');
+  cta.textContent=it.cta[0];cta.href=it.cta[1];
+
+  /* other issues */
+  const grid=document.getElementById('moreGrid');
+  ISSUES.filter(x=>x.slug!==it.slug).forEach(x=>{
+    const a=document.createElement('a');
+    a.className='more-item';a.href='answer.html?issue='+x.slug;
+    a.innerHTML='<span class="ic"></span><span class="tx"><b></b><small></small></span><span class="ar">›</span>';
+    a.querySelector('.ic').textContent=x.ic;
+    a.querySelector('b').textContent=x.name;
+    a.querySelector('small').textContent=x.tag;
+    grid.appendChild(a);
+  });
+})();
+</script>
+</body>
+</html>

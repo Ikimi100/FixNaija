@@ -216,16 +216,12 @@ section.blk{padding:88px 0}
 .ans-act .cta{padding:12px 20px;font-size:.88rem}
 .ans-src{color:#8a8a9c;font-size:.76rem;margin-top:14px}
 @media(max-width:960px){
+  /* phones/tablets: show ONLY the issue pills — tapping one opens its own detail page */
   .ans-wrap{grid-template-columns:1fr}
-  .ans-panel{position:static;padding:24px 20px}
-  .ans-list{flex-direction:row;overflow-x:auto;gap:8px;margin:0 -18px;padding:0 18px 8px;scrollbar-width:none;
-    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22px,#000 calc(100% - 34px),transparent 100%);
-    mask-image:linear-gradient(90deg,transparent 0,#000 22px,#000 calc(100% - 34px),transparent 100%)}
-  .ans-list::-webkit-scrollbar{display:none}
-  .ans-item{flex:0 0 auto;padding:10px 14px;border-radius:999px;gap:9px}
-  .ans-item .tx small,.ans-item .ar{display:none}
-  .ans-item .ic{flex:0 0 30px;width:30px;height:30px;border-radius:50%;font-size:1rem}
-  .ans-item:hover,.ans-item.active{transform:none}
+  .ans-panel{display:none}
+  .ans-list{flex-direction:column;gap:10px}
+  .ans-item:hover,.ans-item.active{transform:none;background:var(--charcoal-card);border-color:var(--line)}
+  .ans-item.active .ar{color:#6f6f88;transform:none}
 }
 
 /* ============ STATEMENT BAND ============ */
@@ -386,9 +382,10 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
   .hero-join .row{flex-direction:column}
   .hero-join select{flex:1}
   .slide-dots{bottom:auto;top:20px;right:18px}
-  .hero-statbar .in{padding:14px 16px}
-  .hero-statbar .s{padding:0 16px}
-  .hero-statbar .n{font-size:1.35rem}
+  .hero-statbar .in{padding:12px 8px;flex-wrap:nowrap;justify-content:space-around;gap:0}
+  .hero-statbar .s{flex-direction:column;align-items:center;text-align:center;gap:2px;padding:0 8px;flex:1;min-width:0}
+  .hero-statbar .n{font-size:1.15rem}
+  .hero-statbar .l{font-size:.58rem;letter-spacing:.08em;white-space:nowrap}
   .bio-img img{height:400px}
   .map-ctas{justify-content:center}
   .map-ctas .cta{flex:1;justify-content:center;min-width:140px;padding:15px 14px}
@@ -1125,17 +1122,22 @@ const ISSUES=[
        "Secure farmland — the security plan and the food plan are the same plan."],
   cta:["Find Your LGA →","find-lga.html"]}
 ];
+const ISSUE_SLUGS=['power','insecurity','corruption','jobs','cost-of-living','education','healthcare','infrastructure','food-security'];
 (function(){
   const list=document.getElementById('ansList');
   if(!list)return;
   const body=document.getElementById('ansBody'),nEl=document.getElementById('ansN'),lEl=document.getElementById('ansL'),
         probEl=document.getElementById('ansProb'),solEl=document.getElementById('ansSol'),ctaEl=document.getElementById('ansCta');
   let cur=0,swapping=false;
+  const isMobile=()=>window.matchMedia('(max-width:960px)').matches;
   ISSUES.forEach((it,i)=>{
     const b=document.createElement('button');
     b.className='ans-item';b.type='button';b.setAttribute('role','tab');
     b.innerHTML='<span class="ic">'+it.ic+'</span><span class="tx"><b>'+it.name+'</b><small>'+it.tag+'</small></span><span class="ar">›</span>';
-    b.addEventListener('click',()=>select(i));
+    b.addEventListener('click',()=>{
+      if(isMobile()){location.href='answer.html?issue='+ISSUE_SLUGS[i];return;} /* phone → dedicated detail page */
+      select(i);
+    });
     list.appendChild(b);
   });
   const btns=[...list.children];
