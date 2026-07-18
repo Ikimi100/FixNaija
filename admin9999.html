@@ -732,22 +732,6 @@ const SUPABASE_URL = 'https://bcdscsjqiqnzsthntutb.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_Cpkk6K0Xyt5GNVXTiur2mA_myhkpiti';
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-// Canonical list of registration groups — keep this in sync with the
-// "Select Your Group" dropdown in register.html. Groups listed here
-// always show in the filter + leaderboard below, even at zero, so a
-// new group is trackable from day one instead of only appearing after
-// its first registration comes in.
-const OFFICIAL_GROUPS = [
-    'New Registration',
-    'PAA FIX NAIJA',
-    'IBBN – EL BUBA',
-    'New Green Congress (NGC)',
-    'United for Adewole Progress 2027',
-    'Prince Adewole Adebayo Grassroots Movement (PAAGM)',
-    'Dominion Force Association of Nigeria',
-    '19 Northern Stars'
-];
-
 const $ = id => document.getElementById(id);
 let allRows = [];        // every registration loaded
 let filteredRows = [];   // after search filter
@@ -1195,7 +1179,7 @@ function addSep(parent) {
 // ===== TABLE + SEARCH + PAGING =====
 // ===== ADVANCED FILTER + SEARCH =====
 function populateFilterOptions() {
-    const groups = new Set(OFFICIAL_GROUPS);
+    const groups = new Set();
     let hasUnassigned = false;
     allRows.forEach(r => { if (r.group_name) groups.add(r.group_name); else hasUnassigned = true; });
     const gSel = $('fltGroup');
@@ -1334,14 +1318,11 @@ $('clearFilterBtn').addEventListener('click', clearFilters);
 function renderLeaderboard() {
     const list = $('groupList');
     const rows = groupCount(filteredRows, r => r.group_name || '(Unassigned)');
-    const present = new Set(rows.map(([name]) => name));
-    OFFICIAL_GROUPS.forEach(g => { if (!present.has(g)) rows.push([g, 0]); });
-    rows.sort((a, b) => b[1] - a[1]);
     if (rows.length === 0) {
         list.innerHTML = '<li class="empty-note">No registrations in this view.</li>';
         return;
     }
-    const max = rows[0][1] || 1;
+    const max = rows[0][1];
     list.innerHTML = '';
     rows.forEach(([name, count]) => {
         const li = document.createElement('li');
