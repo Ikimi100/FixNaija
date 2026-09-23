@@ -3205,6 +3205,53 @@ async function populatePUDropdown(stateName, lgaName, wardName) {
     });
 })();
 
+// ===== Dropdown choices (managed at form-options.html — no code needed) =====
+// The <option>s written in the HTML above are only a fallback: if this lookup
+// fails (or the form_options table doesn't exist yet), the form keeps them.
+const FORM_OPTION_SELECTS = {
+    group_name:          'regGroup',
+    membership_status:   'regMembershipStatus',
+    gender:              'regGender',
+    marital_status:      'regMaritalStatus',
+    age_group:           'regAgeGroup',
+    religion:            'regReligion',
+    occupation:          'regOccupation',
+    digital_skills:      'regDigitalSkills',
+    mobilization_skills: 'regMobilizationSkills'
+};
+
+(async function loadFormOptions() {
+    try {
+        const params = new URLSearchParams({
+            select: 'field,value,label,sort_order',
+            active: 'eq.true',
+            order: 'sort_order.asc,label.asc'
+        });
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/form_options?${params}`, { headers: SB_HEADERS });
+        if (!res.ok) return;
+        const rows = await res.json();
+        if (!Array.isArray(rows) || !rows.length) return;
+
+        const byField = {};
+        rows.forEach(r => { (byField[r.field] = byField[r.field] || []).push(r); });
+
+        Object.entries(FORM_OPTION_SELECTS).forEach(([field, id]) => {
+            const list = byField[field];
+            const sel  = document.getElementById(id);
+            if (!sel || !list || !list.length) return;
+            const picked = sel.value;
+            const first  = sel.options[0];
+            const placeholder = first && first.value === '' ? first.cloneNode(true) : null;
+            sel.innerHTML = '';
+            if (placeholder) sel.appendChild(placeholder);
+            list.forEach(r => sel.appendChild(new Option(r.label || r.value, r.value)));
+            if (picked && [...sel.options].some(o => o.value === picked)) sel.value = picked;
+        });
+    } catch (e) {
+        console.warn('[FixNaija] Using built-in form choices:', e);
+    }
+})();
+
 // ===== FORM SUBMISSION (Supabase) =====
 document.getElementById('registrationForm').addEventListener('submit', async function (e) {
     e.preventDefault();

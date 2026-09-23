@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>FixNaija — Form Options</title>
+<link rel="icon" type="image/png" href="images/logo.png">
+<link rel="apple-touch-icon" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --green: #008751;
+    --green-dark: #006B40;
+    --green-tint: rgba(0,135,81,0.09);
+    --charcoal: #1A1A2E;
+    --gold: #D4A017;
+    --white: #FFFFFF;
+    --light-gray: #F5F5F5;
+    --border: #E6E6EC;
+    --muted: #6B6B80;
+    --red: #B3261E;
+    --red-tint: #FDECEC;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: var(--light-gray); color: var(--charcoal); min-height: 100vh; }
+h1, h2, h3, .brand { font-family: 'Space Grotesk', sans-serif; }
+button { font: inherit; }
+[hidden] { display: none !important; }
+
+/* ===== LOGIN ===== */
+.login-screen {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px;
+    background: var(--charcoal);
+    background-image: radial-gradient(circle at 80% 10%, rgba(0,135,81,0.25), transparent 50%),
+                      radial-gradient(circle at 10% 90%, rgba(212,160,23,0.12), transparent 50%);
+}
+.login-card { background: var(--white); border-radius: 16px; padding: 40px 36px; width: 100%; max-width: 400px; box-shadow: 0 24px 64px rgba(0,0,0,0.4); }
+.login-card .brand { font-size: 1.5rem; font-weight: 700; margin-bottom: 4px; }
+.login-card .brand span { color: var(--green); }
+.login-sub { color: var(--muted); font-size: 0.88rem; margin-bottom: 28px; }
+.field { margin-bottom: 16px; }
+.field label { display: block; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 6px; }
+.field input { width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 8px; font: inherit; font-size: 0.95rem; }
+.field input:focus { outline: none; border-color: var(--green); }
+.login-error { display: none; background: var(--red-tint); color: var(--red); border-radius: 8px; padding: 10px 14px; font-size: 0.85rem; margin-bottom: 16px; }
+
+/* ===== BUTTONS ===== */
+.btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 11px 18px; border: none; border-radius: 8px; font-weight: 600; font-size: 0.92rem;
+    cursor: pointer; text-decoration: none; transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    white-space: nowrap;
+}
+.btn-primary { background: var(--green); color: var(--white); }
+.btn-primary:hover { background: var(--green-dark); }
+.btn-primary:disabled { opacity: 0.6; cursor: wait; }
+.btn-block { width: 100%; }
+.btn-ghost { background: var(--white); color: var(--charcoal); border: 1.5px solid var(--border); padding: 8px 14px; font-size: 0.85rem; }
+.btn-ghost:hover:not(:disabled) { border-color: var(--charcoal); }
+.btn-ghost:disabled { opacity: 0.45; cursor: default; }
+.btn-danger { background: var(--red); color: var(--white); }
+.btn-danger:hover { filter: brightness(1.1); }
+.btn-link { background: none; border: none; color: var(--green-dark); font-weight: 600; font-size: 0.85rem; cursor: pointer; padding: 0; }
+.btn-link:hover { text-decoration: underline; }
+
+/* ===== TOP BAR ===== */
+.app { display: none; }
+.topbar {
+    background: var(--charcoal); color: var(--white); padding: 14px 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    position: sticky; top: 0; z-index: 20;
+}
+.topbar .brand { font-size: 1.1rem; font-weight: 700; }
+.topbar .brand span { color: var(--gold); }
+.topbar-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.topbar .who { font-size: 0.8rem; color: rgba(255,255,255,0.65); }
+.topbar .btn-ghost { background: transparent; color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.25); }
+.topbar .btn-ghost:hover { color: var(--white); border-color: var(--white); }
+
+.wrap { max-width: 1120px; margin: 0 auto; padding: 28px 24px 80px; }
+.intro { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 22px; }
+.intro h1 { font-size: 1.6rem; line-height: 1.2; }
+.intro p { color: var(--muted); font-size: 0.92rem; margin-top: 6px; max-width: 620px; line-height: 1.5; }
+.save-status { font-size: 0.82rem; color: var(--muted); display: inline-flex; align-items: center; gap: 6px; min-height: 20px; }
+.save-status:empty { display: none; }
+.save-status.ok { color: var(--green-dark); }
+.save-status.err { color: var(--red); }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.save-status.busy .dot { animation: pulse 0.9s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: 0.25; } }
+
+/* ===== SETUP NOTICE ===== */
+.notice { background: #FFF8E5; border: 1px solid #F1D98A; border-radius: 12px; padding: 20px 22px; margin-bottom: 22px; }
+.notice h2 { font-size: 1.05rem; margin-bottom: 6px; }
+.notice p, .notice li { font-size: 0.9rem; color: #5B4A12; line-height: 1.55; }
+.notice ol { margin: 8px 0 0 20px; }
+.notice code { background: rgba(0,0,0,0.06); padding: 1px 6px; border-radius: 4px; font-size: 0.85em; }
+
+/* ===== LAYOUT ===== */
+.layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 20px; align-items: start; }
+.side { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 8px; position: sticky; top: 78px; }
+.side-title { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); padding: 10px 12px 6px; }
+.field-btn {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%;
+    padding: 10px 12px; border: 0; background: none; border-radius: 8px; text-align: left; cursor: pointer;
+    color: var(--charcoal); font-size: 0.92rem;
+}
+.field-btn:hover { background: var(--light-gray); }
+.field-btn.active { background: var(--green-tint); color: var(--green-dark); font-weight: 600; }
+.field-btn .count { font-size: 0.75rem; font-weight: 600; color: var(--muted); background: var(--light-gray); border-radius: 999px; padding: 2px 8px; font-variant-numeric: tabular-nums; }
+.field-btn.active .count { background: var(--white); color: var(--green-dark); }
+
+.panel { background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.panel-head { padding: 20px 22px 16px; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+.panel-head h2 { font-size: 1.2rem; }
+.panel-head .sub { color: var(--muted); font-size: 0.85rem; margin-top: 4px; }
+.preview { min-width: 220px; max-width: 320px; flex: 1; }
+.preview label { display: block; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 6px; }
+.preview select { width: 100%; padding: 9px 12px; border: 1.5px solid var(--border); border-radius: 8px; font: inherit; font-size: 0.88rem; background: var(--white); color: var(--charcoal); }
+
+.add-box { padding: 16px 22px; background: #FAFAFC; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.add-row { display: flex; gap: 8px; }
+.add-row input, .add-box textarea {
+    flex: 1; min-width: 0; padding: 11px 14px; border: 1.5px solid var(--border); border-radius: 8px; font: inherit; font-size: 0.95rem; background: var(--white);
+}
+.add-box textarea { width: 100%; min-height: 120px; resize: vertical; margin-bottom: 8px; display: block; }
+.add-row input:focus, .add-box textarea:focus { outline: none; border-color: var(--green); }
+.add-foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 8px; font-size: 0.8rem; color: var(--muted); flex-wrap: wrap; }
+
+.toolbar { display: flex; gap: 8px; align-items: center; padding: 12px 22px; flex-wrap: wrap; }
+.search { flex: 1; min-width: 180px; position: relative; }
+.search input { width: 100%; padding: 9px 12px 9px 34px; border: 1.5px solid var(--border); border-radius: 8px; font: inherit; font-size: 0.88rem; }
+.search input:focus { outline: none; border-color: var(--green); }
+.search svg { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); width: 15px; height: 15px; color: var(--muted); }
+.toolbar-note { font-size: 0.78rem; color: var(--muted); width: 100%; }
+
+.opt-list { list-style: none; }
+.opt { display: flex; align-items: center; gap: 12px; padding: 10px 22px; border-top: 1px solid var(--border); transition: background 0.4s ease; }
+.opt:hover { background: #FCFCFD; }
+.opt.flash { background: var(--green-tint); }
+.opt.is-hidden .lbl { color: var(--muted); }
+.pos-btn {
+    width: 34px; height: 30px; flex: none; border: 1px dashed transparent; background: none; border-radius: 6px;
+    color: var(--muted); font-size: 0.8rem; font-variant-numeric: tabular-nums; cursor: pointer;
+}
+.pos-btn:hover:not(:disabled) { border-color: var(--border); color: var(--charcoal); }
+.pos-btn:disabled { cursor: default; }
+.pos-input { width: 54px; height: 30px; flex: none; border: 1.5px solid var(--green); border-radius: 6px; font: inherit; font-size: 0.85rem; text-align: center; }
+.opt .name { flex: 1; min-width: 0; }
+.opt .lbl { font-weight: 500; font-size: 0.93rem; overflow-wrap: anywhere; }
+.opt .val { font-size: 0.75rem; color: var(--muted); margin-top: 2px; overflow-wrap: anywhere; }
+.badge { display: inline-block; font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; background: #FFF1CC; color: #7A5A00; padding: 2px 8px; border-radius: 999px; margin-left: 8px; vertical-align: 2px; }
+.actions { display: flex; gap: 6px; flex: none; }
+.icon-btn {
+    width: 34px; height: 34px; border: 1px solid var(--border); background: var(--white); border-radius: 8px; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center; color: var(--charcoal);
+}
+.icon-btn svg { width: 16px; height: 16px; }
+.icon-btn:hover:not(:disabled) { border-color: var(--charcoal); }
+.icon-btn:disabled { opacity: 0.3; cursor: default; }
+.icon-btn.danger:hover:not(:disabled) { border-color: var(--red); color: var(--red); background: var(--red-tint); }
+.icon-btn.on { color: var(--green-dark); }
+
+.edit-box { flex: 1; min-width: 0; display: grid; gap: 10px; padding: 4px 0; }
+.edit-box label { display: block; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 4px; }
+.edit-box input { width: 100%; padding: 9px 12px; border: 1.5px solid var(--border); border-radius: 8px; font: inherit; font-size: 0.92rem; }
+.edit-box input:focus { outline: none; border-color: var(--green); }
+.edit-box .hint { font-size: 0.76rem; color: var(--muted); margin-top: 4px; line-height: 1.45; }
+.edit-actions { display: flex; gap: 8px; }
+
+.empty { padding: 36px 22px; text-align: center; color: var(--muted); font-size: 0.9rem; border-top: 1px solid var(--border); }
+.loading { padding: 48px 22px; text-align: center; color: var(--muted); }
+
+/* ===== TOAST + MODAL ===== */
+.toast {
+    position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 20px); opacity: 0; pointer-events: none;
+    background: var(--charcoal); color: var(--white); padding: 12px 18px; border-radius: 10px; font-size: 0.88rem;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.25); transition: all 0.2s ease; max-width: calc(100vw - 32px); z-index: 60;
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+.toast.error { background: var(--red); }
+.modal-bg { position: fixed; inset: 0; background: rgba(26,26,46,0.55); display: none; align-items: center; justify-content: center; padding: 16px; z-index: 50; }
+.modal-bg.open { display: flex; }
+.modal { background: var(--white); border-radius: 14px; padding: 24px; max-width: 440px; width: 100%; box-shadow: 0 24px 64px rgba(0,0,0,0.3); }
+.modal h3 { font-size: 1.1rem; margin-bottom: 8px; overflow-wrap: anywhere; }
+.modal p { color: var(--muted); font-size: 0.9rem; line-height: 1.55; }
+.modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px; flex-wrap: wrap; }
+
+@media (max-width: 820px) {
+    .layout { grid-template-columns: 1fr; }
+    .side { position: static; display: flex; gap: 6px; overflow-x: auto; padding: 6px; }
+    .side-title { display: none; }
+    .field-btn { width: auto; flex: none; white-space: nowrap; }
+}
+@media (max-width: 560px) {
+    .topbar { padding: 12px 16px; }
+    .topbar .who { display: none; }
+    .wrap { padding: 20px 16px 72px; }
+    .panel-head, .add-box, .toolbar { padding-left: 16px; padding-right: 16px; }
+    .opt { flex-wrap: wrap; padding: 12px 16px; gap: 8px 10px; }
+    .opt .name { flex-basis: calc(100% - 50px); }
+    .actions { width: 100%; justify-content: flex-end; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== LOGIN ===== -->
+<div class="login-screen" id="loginScreen">
+    <div class="login-card">
+        <div class="brand">Fix<span>Naija</span> Admin</div>
+        <p class="login-sub">Sign in to manage the registration form choices.</p>
+        <div class="login-error" id="loginError"></div>
+        <div class="field">
+            <label for="loginEmail">Email</label>
+            <input type="email" id="loginEmail" autocomplete="username">
+        </div>
+        <div class="field">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" autocomplete="current-password">
+        </div>
+        <button class="btn btn-primary btn-block" id="loginBtn">Sign in</button>
+    </div>
+</div>
+
+<!-- ===== APP ===== -->
+<div class="app" id="app">
+    <div class="topbar">
+        <div class="brand">Fix<span>Naija</span> · Form Options</div>
+        <div class="topbar-right">
+            <span class="who" id="whoAmI"></span>
+            <a class="btn btn-ghost" href="admin.html">Command Room</a>
+            <a class="btn btn-ghost" href="register.html" target="_blank" rel="noopener">View form ↗</a>
+            <button class="btn btn-ghost" id="logoutBtn">Sign out</button>
+        </div>
+    </div>
+
+    <div class="wrap">
+        <div class="intro">
+            <div>
+                <h1>Registration form choices</h1>
+                <p>Add, rename, hide or reorder the options people pick from on the registration form. Changes go live on the website as soon as you make them — no code, no GitHub push.</p>
+            </div>
+            <div class="save-status" id="saveStatus" aria-live="polite"></div>
+        </div>
+
+        <div class="notice" id="setupNotice" hidden>
+            <h2>One-time setup needed</h2>
+            <p>The database table for form choices hasn't been created yet. Until it is, the form keeps using its built-in choices.</p>
+            <ol>
+                <li>Open your Supabase project → <strong>SQL Editor</strong> → <strong>New query</strong>.</li>
+                <li>Paste everything from <code>supabase_form_options_setup.sql</code> and click <strong>Run</strong>.</li>
+                <li>Come back here and <button class="btn-link" id="retryBtn">reload the choices</button>.</li>
+            </ol>
+        </div>
+
+        <div class="layout" id="layout">
+            <nav class="side" id="side" aria-label="Form fields">
+                <div class="side-title">Dropdowns on the form</div>
+            </nav>
+
+            <section class="panel" id="panel">
+                <div class="loading" id="loading">Loading choices…</div>
+
+                <div id="editor" hidden>
+                    <div class="panel-head">
+                        <div>
+                            <h2 id="fieldTitle"></h2>
+                            <div class="sub" id="fieldSub"></div>
+                        </div>
+                        <div class="preview">
+                            <label for="previewSelect">Preview — how it looks on the form</label>
+                            <select id="previewSelect"></select>
+                        </div>
+                    </div>
+
+                    <div class="add-box">
+                        <div class="add-row" id="addSingle">
+                            <input type="text" id="addInput" placeholder="Type a new choice…" autocomplete="off" maxlength="200" aria-label="New choice">
+                            <button class="btn btn-primary" id="addBtn">Add</button>
+                        </div>
+                        <div id="addMulti" hidden>
+                            <textarea id="addTextarea" aria-label="New choices, one per line" placeholder="One choice per line, e.g.&#10;KOGI YOUTH FOR PAA&#10;ARISE WOMEN OF NIGER STATE"></textarea>
+                            <button class="btn btn-primary" id="addManyBtn">Add all</button>
+                        </div>
+                        <div class="add-foot">
+                            <span id="addHint">New choices are added to the bottom of the list.</span>
+                            <button class="btn-link" id="toggleMultiBtn">Add several at once</button>
+                        </div>
+                    </div>
+
+                    <div class="toolbar">
+                        <div class="search">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                            <input type="search" id="searchInput" placeholder="Search this list…" aria-label="Search choices">
+                        </div>
+                        <button class="btn btn-ghost" id="sortBtn">Sort A–Z</button>
+                        <div class="toolbar-note" id="toolbarNote" hidden>Clear the search to reorder choices.</div>
+                    </div>
+
+                    <ul class="opt-list" id="optList"></ul>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="modal-bg" id="modalBg">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <h3 id="modalTitle"></h3>
+        <p id="modalBody"></p>
+        <div class="modal-actions" id="modalActions"></div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = 'https://bcdscsjqiqnzsthntutb.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_Cpkk6K0Xyt5GNVXTiur2mA_myhkpiti';
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const TABLE = 'form_options';
+
+// Every dropdown on register.html that can be managed here.
+// "key" matches the column name in the registrations table.
+const FIELDS = [
+    { key: 'group_name',          name: 'Groups',              formLabel: 'Select Your Group',   placeholder: 'Select your group' },
+    { key: 'membership_status',   name: 'Membership status',   formLabel: 'Membership Status',   placeholder: 'Select membership status' },
+    { key: 'gender',              name: 'Gender',              formLabel: 'Gender',              placeholder: 'Select gender' },
+    { key: 'marital_status',      name: 'Marital status',      formLabel: 'Marital Status',      placeholder: 'Select marital status' },
+    { key: 'age_group',           name: 'Age group',           formLabel: 'Age Group',           placeholder: 'Select age group' },
+    { key: 'religion',            name: 'Religion',            formLabel: 'Religion',            placeholder: 'Select religion' },
+    { key: 'occupation',          name: 'Occupation / Status', formLabel: 'Occupation / Status', placeholder: 'Select your status' },
+    { key: 'digital_skills',      name: 'Digital skills',      formLabel: 'Digital Skills',      placeholder: 'Select level' },
+    { key: 'mobilization_skills', name: 'Mobilization skills', formLabel: 'Mobilization Skills', placeholder: 'Select level' }
+];
+// Choices that stay pinned at the top when you use "Sort A–Z"
+const PINNED_VALUES = ['New Registration'];
+
+const $ = id => document.getElementById(id);
+const ICONS = {
+    up:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>',
+    down:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>',
+    edit:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>',
+    eye:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>',
+    eyeOff:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.9 4.2A10 10 0 0 1 12 4c6.5 0 10 8 10 8a17 17 0 0 1-2.2 3.2M6.6 6.6A17 17 0 0 0 2 12s3.5 8 10 8a9.7 9.7 0 0 0 5.4-1.6"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/><path d="m2 2 20 20"/></svg>',
+    trash: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/></svg>'
+};
+
+let options = [];               // every row from form_options
+let currentField = FIELDS[0].key;
+let editingId = null;
+let searchQ = '';
+let pending = 0;
+
+// ---------- helpers ----------
+const clean = s => String(s == null ? '' : s).replace(/\s+/g, ' ').trim();
+const norm  = s => clean(s).toLowerCase();
+const labelOf = r => r.label || r.value;
+function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+function fieldMeta(key) { return FIELDS.find(f => f.key === key); }
+function rowsFor(field) {
+    return options
+        .filter(o => o.field === field)
+        .sort((a, b) => (a.sort_order - b.sort_order) || labelOf(a).localeCompare(labelOf(b)));
+}
+function isMissingTable(err) {
+    const m = ((err && err.message) || '') + ' ' + ((err && err.code) || '');
+    return /PGRST205|42P01|schema cache|does not exist/i.test(m);
+}
+
+let toastTimer;
+function toast(msg, type) {
+    const t = $('toast');
+    t.textContent = msg;
+    t.className = 'toast show' + (type === 'error' ? ' error' : '');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { t.className = 'toast'; }, type === 'error' ? 6000 : 3500);
+}
+
+function setBusy(delta) {
+    pending = Math.max(0, pending + delta);
+    const s = $('saveStatus');
+    if (pending > 0) { s.className = 'save-status busy'; s.innerHTML = '<span class="dot"></span> Saving…'; }
+    else { s.className = 'save-status ok'; s.innerHTML = '<span class="dot"></span> All changes saved — live on the form'; }
+}
+function setError(msg) {
+    const s = $('saveStatus');
+    s.className = 'save-status err';
+    s.innerHTML = '<span class="dot"></span> ' + esc(msg);
+}
+
+// Small promise-based confirm dialog. buttons: [{ label, value, kind }]
+function ask(title, body, buttons) {
+    return new Promise(resolve => {
+        $('modalTitle').textContent = title;
+        $('modalBody').textContent = body;
+        const box = $('modalActions');
+        box.innerHTML = '';
+        const close = v => { $('modalBg').classList.remove('open'); document.removeEventListener('keydown', onKey); resolve(v); };
+        const onKey = e => { if (e.key === 'Escape') close(null); };
+        buttons.forEach(b => {
+            const btn = document.createElement('button');
+            btn.className = 'btn ' + (b.kind === 'danger' ? 'btn-danger' : b.kind === 'primary' ? 'btn-primary' : 'btn-ghost');
+            btn.textContent = b.label;
+            btn.addEventListener('click', () => close(b.value));
+            box.appendChild(btn);
+        });
+        document.addEventListener('keydown', onKey);
+        $('modalBg').onclick = e => { if (e.target === $('modalBg')) close(null); };
+        $('modalBg').classList.add('open');
+        const first = box.firstElementChild; if (first) first.focus();
+    });
+}
+
+// ---------- auth (same Supabase login as the Command Room) ----------
+async function init() {
+    const { data: { session } } = await sb.auth.getSession();
+    if (session) showApp(session.user.email);
+}
+init();
+
+$('loginBtn').addEventListener('click', doLogin);
+$('loginPassword').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+
+async function doLogin() {
+    const email = $('loginEmail').value.trim();
+    const password = $('loginPassword').value;
+    const errBox = $('loginError');
+    errBox.style.display = 'none';
+    if (!email || !password) {
+        errBox.textContent = 'Enter your email and password.';
+        errBox.style.display = 'block';
+        return;
+    }
+    $('loginBtn').disabled = true;
+    $('loginBtn').textContent = 'Signing in…';
+    const { data, error } = await sb.auth.signInWithPassword({ email, password });
+    $('loginBtn').disabled = false;
+    $('loginBtn').textContent = 'Sign in';
+    if (error) {
+        errBox.textContent = 'Sign-in failed. Check your email and password.';
+        errBox.style.display = 'block';
+        return;
+    }
+    showApp(data.user.email);
+}
+
+$('logoutBtn').addEventListener('click', async () => { await sb.auth.signOut(); location.reload(); });
+
+function showApp(email) {
+    $('loginScreen').style.display = 'none';
+    $('app').style.display = 'block';
+    $('whoAmI').textContent = email;
+    loadOptions();
+}
+
+// ---------- load ----------
+async function loadOptions() {
+    $('loading').hidden = false;
+    $('loading').textContent = 'Loading choices…';
+    $('editor').hidden = true;
+    const { data, error } = await sb.from(TABLE).select('*')
+        .order('field', { ascending: true })
+        .order('sort_order', { ascending: true });
+    if (error) {
+        if (isMissingTable(error)) {
+            $('setupNotice').hidden = false;
+            $('loading').textContent = 'Waiting for the one-time setup above.';
+        } else {
+            $('loading').textContent = 'Could not load choices: ' + error.message;
+        }
+        renderSide();
+        return;
+    }
+    $('setupNotice').hidden = true;
+    options = data || [];
+    $('loading').hidden = true;
+    $('editor').hidden = false;
+    renderAll();
+}
+$('retryBtn').addEventListener('click', loadOptions);
+
+// ---------- render ----------
+function renderAll() { renderSide(); renderPanel(); }
+
+function renderSide() {
+    const side = $('side');
+    side.querySelectorAll('.field-btn').forEach(b => b.remove());
+    FIELDS.forEach(f => {
+        const rows = rowsFor(f.key);
+        const visible = rows.filter(r => r.active).length;
+        const btn = document.createElement('button');
+        btn.className = 'field-btn' + (f.key === currentField ? ' active' : '');
+        btn.innerHTML = `<span>${esc(f.name)}</span><span class="count" title="${visible} visible of ${rows.length}">${visible}</span>`;
+        btn.addEventListener('click', () => {
+            currentField = f.key; editingId = null; searchQ = ''; $('searchInput').value = '';
+            renderAll();
+        });
+        side.appendChild(btn);
+    });
+}
+
+function renderPanel() {
+    const f = fieldMeta(currentField);
+    const rows = rowsFor(currentField);
+    const visible = rows.filter(r => r.active);
+    const hiddenCount = rows.length - visible.length;
+
+    $('fieldTitle').textContent = f.name;
+    $('fieldSub').textContent = `“${f.formLabel}” on the form · ${visible.length} visible` + (hiddenCount ? ` · ${hiddenCount} hidden` : '');
+    $('addInput').placeholder = currentField === 'group_name' ? 'Type a new group name…' : `Add a new ${f.name.toLowerCase()} choice…`;
+
+    // live preview of the dropdown
+    const pv = $('previewSelect');
+    pv.innerHTML = '';
+    pv.add(new Option(f.placeholder, ''));
+    visible.forEach(r => pv.add(new Option(labelOf(r), r.value)));
+
+    // list
+    const q = norm(searchQ);
+    const shown = q ? rows.filter(r => norm(labelOf(r)).includes(q) || norm(r.value).includes(q)) : rows;
+    const canReorder = !q;
+    $('toolbarNote').hidden = canReorder;
+    $('sortBtn').disabled = rows.length < 2;
+
+    const list = $('optList');
+    list.innerHTML = '';
+    if (!rows.length) {
+        list.innerHTML = '<li class="empty">No choices saved yet for this dropdown — the form is using its built-in list. Add one above to take over.</li>';
+        return;
+    }
+    if (!shown.length) {
+        list.innerHTML = `<li class="empty">Nothing matches “${esc(searchQ)}”.</li>`;
+        return;
+    }
+    shown.forEach(r => list.appendChild(r.id === editingId ? editRow(r) : viewRow(r, rows, canReorder, visible.length)));
+}
+
+function viewRow(r, rows, canReorder, visibleCount) {
+    const idx = rows.indexOf(r);
+    const li = document.createElement('li');
+    li.className = 'opt' + (r.active ? '' : ' is-hidden');
+    li.dataset.id = r.id;
+    const showVal = r.label && r.label !== r.value;
+    const lastVisible = r.active && visibleCount <= 1;
+    li.innerHTML = `
+        <button class="pos-btn" title="${canReorder ? 'Click to type a new position' : 'Clear the search to reorder'}" aria-label="Position ${idx + 1}. Click to change" ${canReorder ? '' : 'disabled'}>${idx + 1}</button>
+        <div class="name">
+            <div class="lbl">${esc(labelOf(r))}${r.active ? '' : '<span class="badge">Hidden</span>'}</div>
+            ${showVal ? `<div class="val">Saved as: ${esc(r.value)}</div>` : ''}
+        </div>
+        <div class="actions">
+            <button class="icon-btn" data-act="up" title="Move up" aria-label="Move up" ${canReorder && idx > 0 ? '' : 'disabled'}>${ICONS.up}</button>
+            <button class="icon-btn" data-act="down" title="Move down" aria-label="Move down" ${canReorder && idx < rows.length - 1 ? '' : 'disabled'}>${ICONS.down}</button>
+            <button class="icon-btn" data-act="edit" title="Rename" aria-label="Rename">${ICONS.edit}</button>
+            <button class="icon-btn ${r.active ? '' : 'on'}" data-act="toggle" title="${lastVisible ? 'Keep at least one visible choice' : r.active ? 'Hide from the form' : 'Show on the form'}" aria-label="${r.active ? 'Hide' : 'Show'}" ${lastVisible ? 'disabled' : ''}>${r.active ? ICONS.eyeOff : ICONS.eye}</button>
+            <button class="icon-btn danger" data-act="delete" title="${lastVisible ? 'Keep at least one visible choice' : 'Delete'}" aria-label="Delete" ${lastVisible ? 'disabled' : ''}>${ICONS.trash}</button>
+        </div>`;
+    li.querySelector('.pos-btn').addEventListener('click', e => startPositionEdit(e.currentTarget, r, rows.length));
+    li.querySelectorAll('[data-act]').forEach(b => b.addEventListener('click', () => {
+        const act = b.dataset.act;
+        if (act === 'up') move(r.id, -1);
+        else if (act === 'down') move(r.id, 1);
+        else if (act === 'edit') { editingId = r.id; renderPanel(); }
+        else if (act === 'toggle') toggleActive(r);
+        else if (act === 'delete') removeChoice(r);
+    }));
+    return li;
+}
+
+function editRow(r) {
+    const li = document.createElement('li');
+    li.className = 'opt';
+    li.dataset.id = r.id;
+    const linked = r.label == null || r.label === r.value;
+    li.innerHTML = `
+        <div class="edit-box">
+            <div>
+                <label>Shown on the form</label>
+                <input type="text" class="e-label" maxlength="200" value="${esc(labelOf(r))}">
+            </div>
+            <div>
+                <label>Saved in records as</label>
+                <input type="text" class="e-value" maxlength="200" value="${esc(r.value)}">
+                <div class="hint">This is the name the Command Room counts under. If you change it, people who already registered keep the old name, and new sign-ups get the new one.</div>
+            </div>
+            <div class="edit-actions">
+                <button class="btn btn-primary e-save">Save</button>
+                <button class="btn btn-ghost e-cancel">Cancel</button>
+            </div>
+        </div>`;
+    const lbl = li.querySelector('.e-label');
+    const val = li.querySelector('.e-value');
+    let keepLinked = linked;
+    lbl.addEventListener('input', () => { if (keepLinked) val.value = lbl.value; });
+    val.addEventListener('input', () => { keepLinked = false; });
+    const save = () => saveEdit(r, lbl.value, val.value);
+    const cancel = () => { editingId = null; renderPanel(); };
+    li.querySelector('.e-save').addEventListener('click', save);
+    li.querySelector('.e-cancel').addEventListener('click', cancel);
+    [lbl, val].forEach(inp => inp.addEventListener('keydown', e => {
+        if (e.key === 'Enter') save();
+        if (e.key === 'Escape') cancel();
+    }));
+    setTimeout(() => { lbl.focus(); lbl.select(); }, 0);
+    return li;
+}
+
+// ---------- actions ----------
+function findDuplicate(field, name, exceptId) {
+    const n = norm(name);
+    return rowsFor(field).find(r => r.id !== exceptId && (norm(r.value) === n || norm(labelOf(r)) === n));
+}
+
+async function addChoices(rawNames) {
+    const field = currentField;
+    const names = rawNames.map(clean).filter(Boolean);
+    if (!names.length) { toast('Type a choice first.'); return false; }
+
+    const rows = rowsFor(field);
+    let maxOrder = rows.reduce((m, r) => Math.max(m, r.sort_order || 0), 0);
+    const seen = new Set();
+    const toAdd = [];
+    const skipped = [];
+    names.forEach(n => {
+        const dup = findDuplicate(field, n);
+        if (dup || seen.has(norm(n))) { skipped.push({ name: n, hidden: !!(dup && !dup.active) }); return; }
+        seen.add(norm(n));
+        maxOrder += 10;
+        toAdd.push({ field, value: n, label: n, sort_order: maxOrder, active: true });
+    });
+    if (!toAdd.length) {
+        const s = skipped[0];
+        toast(skipped.length > 1 ? 'All of those are already in this list.'
+            : s.hidden ? `“${s.name}” is already in this list but hidden. Click its eye icon to show it again.`
+            : `“${s.name}” is already in this list.`, 'error');
+        return false;
+    }
+
+    setBusy(1);
+    const { data, error } = await sb.from(TABLE).insert(toAdd).select();
+    setBusy(-1);
+    if (error) {
+        setError('Not saved');
+        toast('Could not add: ' + error.message, 'error');
+        return false;
+    }
+    options.push(...data);
+    searchQ = ''; $('searchInput').value = '';
+    renderAll();
+    const addedMsg = toAdd.length === 1 ? `Added “${toAdd[0].label}”. It's live on the form now.` : `Added ${toAdd.length} choices. They're live on the form now.`;
+    toast(skipped.length ? `${addedMsg} Skipped ${skipped.length} already in the list.` : addedMsg);
+    // briefly highlight the new rows
+    data.forEach((d, i) => {
+        const el = document.querySelector(`.opt[data-id="${d.id}"]`);
+        if (!el) return;
+        el.classList.add('flash');
+        if (i === data.length - 1) el.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        setTimeout(() => el.classList.remove('flash'), 1800);
+    });
+    return true;
+}
+
+$('addBtn').addEventListener('click', async () => {
+    if (await addChoices([$('addInput').value])) $('addInput').value = '';
+    $('addInput').focus();
+});
+$('addInput').addEventListener('keydown', async e => {
+    if (e.key !== 'Enter') return;
+    e.preventDefault();
+    if (await addChoices([$('addInput').value])) $('addInput').value = '';
+});
+$('addManyBtn').addEventListener('click', async () => {
+    if (await addChoices($('addTextarea').value.split(/\r?\n/))) $('addTextarea').value = '';
+});
+$('toggleMultiBtn').addEventListener('click', () => {
+    const multi = $('addMulti').hidden;
+    $('addMulti').hidden = !multi;
+    $('addSingle').hidden = multi;
+    $('toggleMultiBtn').textContent = multi ? 'Add one at a time' : 'Add several at once';
+    $('addHint').textContent = multi ? 'Paste one choice per line. Duplicates are skipped.' : 'New choices are added to the bottom of the list.';
+    (multi ? $('addTextarea') : $('addInput')).focus();
+});
+
+async function saveOrder(ordered) {
+    const changed = [];
+    ordered.forEach((r, i) => {
+        const so = (i + 1) * 10;
+        if (r.sort_order !== so) { r.sort_order = so; changed.push(r); }
+    });
+    renderAll();
+    if (!changed.length) return;
+    setBusy(1);
+    const results = await Promise.all(changed.map(r => sb.from(TABLE).update({ sort_order: r.sort_order }).eq('id', r.id)));
+    setBusy(-1);
+    const failed = results.find(x => x.error);
+    if (failed) {
+        setError('Order not saved');
+        toast('Could not save the new order: ' + failed.error.message, 'error');
+        loadOptions();
+    }
+}
+
+function move(id, dir) {
+    const rows = rowsFor(currentField);
+    const i = rows.findIndex(r => r.id === id);
+    const j = i + dir;
+    if (i < 0 || j < 0 || j >= rows.length) return;
+    [rows[i], rows[j]] = [rows[j], rows[i]];
+    saveOrder(rows);
+    // keep keyboard focus on the same button so repeated moves are easy
+    const btn = document.querySelector(`.opt[data-id="${id}"] [data-act="${dir < 0 ? 'up' : 'down'}"]`);
+    if (btn && !btn.disabled) btn.focus();
+}
+
+function moveTo(id, position) {
+    const rows = rowsFor(currentField);
+    const i = rows.findIndex(r => r.id === id);
+    if (i < 0) return;
+    const target = Math.min(Math.max(1, position), rows.length) - 1;
+    if (target === i) { renderPanel(); return; }
+    const [item] = rows.splice(i, 1);
+    rows.splice(target, 0, item);
+    saveOrder(rows);
+    const el = document.querySelector(`.opt[data-id="${id}"]`);
+    if (el) { el.classList.add('flash'); el.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); setTimeout(() => el.classList.remove('flash'), 1500); }
+}
+
+function startPositionEdit(btn, r, total) {
+    const input = document.createElement('input');
+    input.type = 'number';
+    input.min = 1; input.max = total;
+    input.className = 'pos-input';
+    input.value = btn.textContent.trim();
+    input.setAttribute('aria-label', `New position (1 to ${total})`);
+    btn.replaceWith(input);
+    input.focus(); input.select();
+    let done = false;
+    const finish = apply => {
+        if (done) return; done = true;
+        const n = parseInt(input.value, 10);
+        if (apply && !isNaN(n)) moveTo(r.id, n); else renderPanel();
+    };
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') finish(true); if (e.key === 'Escape') finish(false); });
+    input.addEventListener('blur', () => finish(true));
+}
+
+$('sortBtn').addEventListener('click', async () => {
+    const rows = rowsFor(currentField);
+    const ok = await ask('Sort A–Z?', `This puts all ${rows.length} ${fieldMeta(currentField).name.toLowerCase()} choices in alphabetical order. You can still move them afterwards.`,
+        [{ label: 'Cancel', value: false }, { label: 'Sort A–Z', value: true, kind: 'primary' }]);
+    if (!ok) return;
+    const pinned = rows.filter(r => PINNED_VALUES.includes(r.value));
+    const rest = rows.filter(r => !PINNED_VALUES.includes(r.value))
+        .sort((a, b) => labelOf(a).localeCompare(labelOf(b), undefined, { sensitivity: 'base', numeric: true }));
+    await saveOrder(pinned.concat(rest));
+    toast('Sorted A–Z.');
+});
+
+async function saveEdit(r, rawLabel, rawValue) {
+    const label = clean(rawLabel);
+    const value = clean(rawValue) || label;
+    if (!label) { toast('The name cannot be empty.', 'error'); return; }
+    const dup = findDuplicate(r.field, label, r.id) || (value !== label && findDuplicate(r.field, value, r.id));
+    if (dup) { toast(`“${labelOf(dup)}” is already in this list.`, 'error'); return; }
+    if (label === labelOf(r) && value === r.value) { editingId = null; renderPanel(); return; }
+
+    const oldValue = r.value;
+    setBusy(1);
+    const { error } = await sb.from(TABLE).update({ label, value }).eq('id', r.id);
+    setBusy(-1);
+    if (error) {
+        setError('Not saved');
+        toast('Could not rename: ' + error.message, 'error');
+        return;
+    }
+    r.label = label; r.value = value;
+    editingId = null;
+    renderAll();
+    toast(value !== oldValue ? `Renamed. People already registered as “${oldValue}” keep that name.` : 'Renamed. Live on the form now.');
+}
+
+async function toggleActive(r) {
+    const makeActive = !r.active;
+    if (!makeActive && rowsFor(r.field).filter(x => x.active).length <= 1) {
+        toast('Keep at least one visible choice in each dropdown.', 'error');
+        return;
+    }
+    r.active = makeActive;
+    renderAll();
+    setBusy(1);
+    const { error } = await sb.from(TABLE).update({ active: makeActive }).eq('id', r.id);
+    setBusy(-1);
+    if (error) {
+        r.active = !makeActive;
+        renderAll();
+        setError('Not saved');
+        toast('Could not update: ' + error.message, 'error');
+        return;
+    }
+    toast(makeActive ? `“${labelOf(r)}” is back on the form.` : `“${labelOf(r)}” is hidden from the form. Existing registrations are untouched.`);
+}
+
+async function removeChoice(r) {
+    if (r.active && rowsFor(r.field).filter(x => x.active).length <= 1) {
+        toast('Keep at least one visible choice in each dropdown.', 'error');
+        return;
+    }
+    const buttons = [{ label: 'Cancel', value: null }];
+    if (r.active) buttons.push({ label: 'Hide instead', value: 'hide' });
+    buttons.push({ label: 'Delete', value: 'delete', kind: 'danger' });
+    const choice = await ask(`Delete “${labelOf(r)}”?`,
+        'It will disappear from the form and from this list. People who already registered with it keep it on their record. If you might need it again, hiding is safer.',
+        buttons);
+    if (choice === 'hide') { toggleActive(r); return; }
+    if (choice !== 'delete') return;
+
+    setBusy(1);
+    const { error } = await sb.from(TABLE).delete().eq('id', r.id);
+    setBusy(-1);
+    if (error) {
+        setError('Not deleted');
+        toast('Could not delete: ' + error.message, 'error');
+        return;
+    }
+    options = options.filter(o => o.id !== r.id);
+    if (editingId === r.id) editingId = null;
+    renderAll();
+    toast(`Deleted “${labelOf(r)}”.`);
+}
+
+$('searchInput').addEventListener('input', e => { searchQ = e.target.value; editingId = null; renderPanel(); });
+</script>
+</body>
+</html>

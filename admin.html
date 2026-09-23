@@ -443,6 +443,7 @@ td.mono { font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; white-spa
         <div class="brand">Fix<span>Naija</span> · Command Room</div>
         <div class="topbar-right">
             <span class="who" id="whoAmI"></span>
+            <a class="btn btn-ghost" href="form-options.html" style="text-decoration:none;" title="Add or edit groups and other form choices">Form options</a>
             <button class="btn btn-ghost" id="logoutBtn">Sign out</button>
         </div>
     </div>
@@ -732,12 +733,13 @@ const SUPABASE_URL = 'https://bcdscsjqiqnzsthntutb.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_Cpkk6K0Xyt5GNVXTiur2mA_myhkpiti';
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-// Canonical list of registration groups — keep this in sync with the
-// "Select Your Group" dropdown in register.html. Groups listed here
-// always show in the filter + leaderboard below, even at zero, so a
-// new group is trackable from day one instead of only appearing after
-// its first registration comes in.
-const OFFICIAL_GROUPS = [
+// Canonical list of registration groups. Groups listed here always show
+// in the filter + leaderboard below, even at zero, so a new group is
+// trackable from day one instead of only appearing after its first
+// registration comes in.
+// The live list now comes from the form_options table (manage it at
+// form-options.html); the list below is only a fallback if that fails.
+let OFFICIAL_GROUPS = [
     'New Registration',
     'PAA FIX NAIJA',
     'BENUE ARISE FOR PAA',
@@ -778,12 +780,28 @@ const OFFICIAL_GROUPS = [
     'CRCN - (Christian Reformed Church of Nigeria)',
     'WESTERN REGION COALITION FOR ADEBAYO',
     'NUMAN FEDERATION CARNIVAL TROUPES',
+    'GREAT NIGERIA MOVEMENT',
     'AbegShift4PAA2027',
     'HEKAN (United Church of Christ in Nigeria, UCCN)',
     'GOOD GOVERNANCE FOR THE PEOPLE SUPPORT GROUP'
 ];
 
 const $ = id => document.getElementById(id);
+
+// Pull the current (visible) group list from form_options.
+async function loadOfficialGroups() {
+    try {
+        const { data, error } = await sb
+            .from('form_options')
+            .select('value, sort_order')
+            .eq('field', 'group_name')
+            .eq('active', true)
+            .order('sort_order', { ascending: true });
+        if (!error && data && data.length) OFFICIAL_GROUPS = data.map(r => r.value);
+    } catch (e) {
+        console.warn('[FixNaija] Using built-in group list:', e);
+    }
+}
 
 // Removes any row returned more than once by paginated fetches.
 function dedupeById(rows) {
@@ -1123,6 +1141,7 @@ $('reportTableBody').addEventListener('change', e => {
 // ===== DATA LOADING (pages of 1000) =====
 async function loadData() {
     allRows = [];
+    const groupsReady = loadOfficialGroups();
 
     // Ask Postgres for the real count. head:true fetches zero rows - just the number.
     const { count: exactCount, error: countErr } = await sb
@@ -1158,6 +1177,7 @@ async function loadData() {
         console.warn('[FixNaija] Loaded ' + allRows.length + ' rows but database reports ' + dbTotal + '.');
     }
 
+    await groupsReady;
     populateFilterOptions();
     applyFilters();
 }
