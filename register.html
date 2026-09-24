@@ -168,6 +168,24 @@
 .rg-dup strong{font-family:var(--display,'Archivo'),sans-serif;font-weight:800;color:#8a3a0c}
 .rg-dup em{font-style:normal;font-weight:700}
 .form-input.rg-flag{border-color:#f26a1b!important;box-shadow:0 0 0 3px rgba(242,106,27,.18)!important}
+
+/* ===== "I'm in" share card (made in the browser, never uploaded) ===== */
+.rg-share{display:grid;grid-template-columns:200px 1fr;gap:22px;align-items:center;text-align:left;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:16px;margin:6px auto 20px;max-width:560px}
+.rg-share-prev{position:relative;border-radius:8px;overflow:hidden;background:#f8f6f0;aspect-ratio:4/5;box-shadow:0 12px 26px -12px rgba(0,0,0,.6)}
+.rg-share-prev img{width:100%;height:100%;object-fit:cover;display:block}
+.rg-share-prev .ld{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#626b63;font-size:.8rem}
+.rg-share-prev .ld[hidden],.rg-share-prev img[hidden]{display:none}
+.rg-share-txt b{display:block;font-family:var(--display);font-weight:800;color:#fff;font-size:1.25rem;letter-spacing:-.02em;margin-bottom:4px}
+.rg-share-txt p{font-size:.86rem;margin:0 0 10px;color:#c9d4cc;max-width:none}
+.rg-share-name{display:flex;align-items:center;gap:8px;font-size:.82rem;color:#c9d4cc;margin-bottom:12px;cursor:pointer}
+.rg-share-name input{accent-color:#00a651;width:16px;height:16px}
+.rg-share-btns{display:flex;flex-wrap:wrap;gap:8px}
+.rg-share-btns .btn{height:44px;padding:0 16px;font-size:.84rem}
+.rg-share-btns .rg-go{background:#f26a1b;color:#fff;border-color:#f26a1b}
+.rg-share-btns .rg-go:hover{background:#d9530b}
+.rg-share-btns .rg-dl{background:transparent;color:#fff;border-color:rgba(255,255,255,.3)}
+.rg-share-hint{display:none;font-size:.78rem;color:#7fe0ae;margin-top:8px}
+@media(max-width:560px){.rg-share{grid-template-columns:1fr;text-align:center}.rg-share-prev{max-width:220px;margin:0 auto}.rg-share-name,.rg-share-btns{justify-content:center}}
 </style>
 </head>
 <body class="rg-page">
@@ -212,7 +230,8 @@
     <a class="mm-item" href="about.html"><span class="mm-ico">📖</span><span class="mm-text"><b>About</b><small>Our story &amp; the pillars</small></span><span class="mm-arrow">›</span></a>
     <a class="mm-item" href="civic-resource.html"><span class="mm-ico">⚖️</span><span class="mm-text"><b>Civic Hub</b><small>Rights, PVC &amp; accountability</small></span><span class="mm-arrow">›</span></a>
     <a class="mm-item" href="volunteer.html"><span class="mm-ico">🤝</span><span class="mm-text"><b>Volunteer</b><small>Lend your skills</small></span><span class="mm-arrow">›</span></a>
-    <a class="mm-item" href="events.html"><span class="mm-ico">📅</span><span class="mm-text"><b>Upcoming Events</b><small>Town halls &amp; trainings</small></span><span class="mm-arrow">›</span></a>
+    
+    <a class="mm-item" href="protect-the-vote.html"><span class="mm-ico">🗳️</span><span class="mm-text"><b>Protect the Vote</b><small>Be a polling unit agent</small></span><span class="mm-arrow">›</span></a><a class="mm-item" href="events.html"><span class="mm-ico">📅</span><span class="mm-text"><b>Upcoming Events</b><small>Town halls &amp; trainings</small></span><span class="mm-arrow">›</span></a>
     <a class="mm-item" href="gallery.html"><span class="mm-ico">🖼️</span><span class="mm-text"><b>Media Gallery</b><small>Moments from the movement</small></span><span class="mm-arrow">›</span></a>
     <a class="mm-item" href="find-lga.html"><span class="mm-ico">📍</span><span class="mm-text"><b>States &amp; LGAs</b><small>Find your community</small></span><span class="mm-arrow">›</span></a>
     <a class="mm-item" href="ask-fixnaija.html"><span class="mm-ico">💬</span><span class="mm-text"><b>Ask FixNaija</b><small>Civic AI assistant</small></span><span class="mm-arrow">›</span></a>
@@ -504,6 +523,7 @@
                     <div class="success-actions">
                         <a class="btn btn-wa" href="https://wa.me/?text=I%20just%20registered%20with%20the%20FixNaija%20Movement.%20The%20New%20Nigeria%20begins%20with%20us%20%E2%80%94%20take%20your%20seat%20too%3A%20https%3A%2F%2Fwww.fixnaijamovement.com.ng%2Fregister.html" target="_blank" rel="noopener">Invite friends on WhatsApp</a>
                         <a class="btn btn-line" href="https://whatsapp.com/channel/0029VbDCNnk2v1J2LgfvCm06" target="_blank" rel="noopener">Join the FixNaija channel</a>
+                        <a class="btn btn-line" href="protect-the-vote.html">Protect your polling unit</a>
                         <a class="btn btn-line" href="index.html">Back to home</a>
                     </div>
                 </div>
@@ -517,7 +537,7 @@
         <ul class="rg-why">
           <li><b>Meet your organisers</b><span>A coordinator from your LGA will reach out on WhatsApp.</span></li>
           <li><b>Get action alerts</b><span>Town halls, PVC drives and events near you.</span></li>
-          <li><b>Protect the vote</b><span>Stand with your polling unit on election day.</span></li>
+          <li><b><a href="protect-the-vote.html" style="color:inherit;text-decoration:underline;text-underline-offset:3px">Protect the vote</a></b><span>Stand with your polling unit on election day.</span></li>
         </ul>
         <div class="rg-stats">
           <div><b id="rgDays">—</b><span>days to the presidential election</span></div>
@@ -536,7 +556,7 @@
     <div class="foot-top">
       <a class="b" href="index.html"><img src="images/logo.png" alt="FixNaija logo" width="44" height="44"><span><span class="bn">FixNaija Movement</span><span class="bs">Adebayo · Bugaje · 2027</span></span></a>
       <div class="foot-links">
-        <a href="index.html">Home</a><a href="about.html">About</a><a href="find-lga.html">Find your LGA</a><a href="volunteer.html">Volunteer</a><a href="report-issue.html">Report an issue</a><a href="mailto:fixnaijamovement@gmail.com">fixnaijamovement@gmail.com</a><a href="tel:+2349165255606">+234 916 525 5606</a>
+        <a href="index.html">Home</a><a href="about.html">About</a><a href="find-lga.html">Find your LGA</a><a href="volunteer.html">Volunteer</a><a href="report-issue.html">Report an issue</a><a href="protect-the-vote.html">Protect the vote</a><a href="mailto:fixnaijamovement@gmail.com">fixnaijamovement@gmail.com</a><a href="tel:+2349165255606">+234 916 525 5606</a>
       </div>
     </div>
     <div class="foot-bottom">
@@ -978,7 +998,7 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
   /* when the success card appears, collapse the form into a celebration */
   const succ=document.getElementById('formSuccess');
   if(succ&&'MutationObserver' in window){
-    new MutationObserver(()=>{if(succ.style.display==='block'){form.classList.add('is-done');window.scrollTo({top:form.getBoundingClientRect().top+scrollY-110,behavior:'smooth'});}}).observe(succ,{attributes:true,attributeFilter:['style']});
+    new MutationObserver(()=>{if(succ.style.display==='block'){form.classList.add('is-done');if(window.rgBuildShare)window.rgBuildShare();window.scrollTo({top:form.getBoundingClientRect().top+scrollY-110,behavior:'smooth'});}}).observe(succ,{attributes:true,attributeFilter:['style']});
   }
   /* one registration per phone number: shown when the database says this number is already in */
   window.rgShowAlreadyRegistered=function(phone){
@@ -992,6 +1012,92 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
     if(p){p.classList.add('rg-flag');p.addEventListener('input',()=>{p.classList.remove('rg-flag');box.remove();},{once:true});}
     box.scrollIntoView({behavior:'smooth',block:'center'});
   };
+
+  /* ===== "I'm in" share card ===================================================
+     Drawn on this device from what the person typed — nothing is uploaded. */
+  (function(){
+    const W=1080,H=1350;
+    const load=src=>new Promise((ok,no)=>{const i=new Image();i.onload=()=>ok(i);i.onerror=no;i.src=src;});
+    const tc=s=>String(s||'').toLowerCase().replace(/(^|[\s\/\-\(])\w/g,c=>c.toUpperCase());
+    let imgs=null;
+    function fit(ctx,text,font,size,max){let s=size;do{ctx.font=font.replace('{s}',s);if(ctx.measureText(text).width<=max)break;s-=2;}while(s>18);return s;}
+    function wrap(ctx,text,x,y,max,lh){const words=text.split(' ');let line='';for(const w of words){const t=line?line+' '+w:w;if(ctx.measureText(t).width>max&&line){ctx.fillText(line,x,y);y+=lh;line=w;}else line=t;}if(line)ctx.fillText(line,x,y);return y;}
+    async function draw(showName){
+      if(!imgs){imgs=await Promise.all(['images/logo.png','images/hero-ticket.webp','images/sdp-mark.png'].map(load));}
+      try{await Promise.all(['800 120px Archivo','700 30px Archivo','400 36px Poppins','600 36px Poppins'].map(f=>document.fonts.load(f)));}catch(_){}
+      const [logo,pair,sdp]=imgs;
+      const c=document.createElement('canvas');c.width=W;c.height=H;const x=c.getContext('2d');
+      /* paper + soft tints */
+      x.fillStyle='#f8f6f0';x.fillRect(0,0,W,H);
+      let g=x.createRadialGradient(W*.92,H*.02,0,W*.92,H*.02,W*.8);g.addColorStop(0,'#ffe9d6');g.addColorStop(1,'rgba(255,233,214,0)');x.fillStyle=g;x.fillRect(0,0,W,H);
+      g=x.createRadialGradient(0,H*.78,0,0,H*.78,W*.7);g.addColorStop(0,'#dcefe3');g.addColorStop(1,'rgba(220,239,227,0)');x.fillStyle=g;x.fillRect(0,0,W,H);
+      /* flag line */
+      x.fillStyle='#00663a';x.fillRect(0,0,W*.34,12);x.fillStyle='#e8e5dc';x.fillRect(W*.34,0,W*.32,12);x.fillStyle='#f26a1b';x.fillRect(W*.66,0,W*.34,12);
+      /* brand */
+      x.save();x.shadowColor='rgba(13,20,15,.25)';x.shadowBlur=18;x.shadowOffsetY=6;x.fillStyle='#fff';x.beginPath();x.arc(135,135,62,0,Math.PI*2);x.fill();x.restore();
+      x.save();x.beginPath();x.arc(135,135,55,0,Math.PI*2);x.clip();x.drawImage(logo,80,80,110,110);x.restore();
+      x.fillStyle='#0d140f';x.font='800 46px Archivo';x.textBaseline='alphabetic';x.fillText('FixNaija Movement',222,128);
+      x.fillStyle='#00a651';x.beginPath();x.arc(229,160,7,0,Math.PI*2);x.fill();
+      x.fillStyle='#00663a';x.font='700 24px Archivo';x.fillText('ADEBAYO · BUGAJE · 2027'.split('').join(String.fromCharCode(8202)),246,169);
+      const sh=64,sw=sdp.width*sh/sdp.height;x.drawImage(sdp,W-80-sw,103,sw,sh);
+      /* eyebrow */
+      x.fillStyle='#00663a';x.fillRect(80,292,30,6);x.fillStyle='#f26a1b';x.fillRect(122,292,30,6);
+      x.fillStyle='#00663a';x.font='700 26px Archivo';x.fillText('I JUST REGISTERED'.split('').join(String.fromCharCode(8202)),172,302);
+      /* I'm in. */
+      x.font='800 220px Archivo';x.fillStyle='#0d140f';x.fillText("I'm",70,500);const w1=x.measureText("I'm ").width;x.fillStyle='#00663a';x.fillText('in.',70+w1,500);
+      /* who + where */
+      const first=(document.getElementById('regFirstName').value||'').trim().split(/\s+/)[0];
+      const lga=(document.getElementById('regLGA').value||'').trim(), st=(document.getElementById('regState').value||'').trim();
+      let where=tc(st).replace('Federal Capital Territory','FCT Abuja'); if(lga) where=tc(lga)+', '+where;
+      const who=(showName&&first?tc(first)+' from ':'From ')+where;
+      x.fillStyle='#0d140f';const fs=fit(x,who,'800 {s}px Archivo',58,W-160);x.font=`800 ${fs}px Archivo`;x.fillText(who,80,590);
+      x.fillStyle='#4d564e';x.font='400 32px Poppins';x.fillText('Registered to help repair Nigeria —',80,648);x.fillText('one polling unit at a time.',80,694);
+      /* the ticket: photo right, names left */
+      const ph=420,pw=pair.width*ph/pair.height;x.drawImage(pair,W-pw+10,1110-ph,pw,ph);
+      const nx=80;let ny=800;
+      const person=(role,name,col)=>{x.fillStyle=col;x.font='700 22px Archivo';x.fillText(role.split('').join(String.fromCharCode(8202)),nx,ny);ny+=46;x.fillStyle='#0d140f';x.font='800 38px Archivo';x.fillText(name,nx,ny);ny+=74;};
+      x.fillStyle='#0d140f';x.fillRect(nx,742,52,5);
+      person('FOR PRESIDENT','Adewole Adebayo','#00663a');
+      person('FOR VICE PRESIDENT','Usman M. Bugaje','#d9530b');
+      /* bottom band */
+      x.fillStyle='#063d25';x.fillRect(0,1110,W,H-1110);
+      x.fillStyle='#7fe0ae';x.font='700 26px Archivo';x.fillText('SATURDAY · 16 JANUARY 2027'.split('').join(String.fromCharCode(8202)),80,1180);
+      x.fillStyle='#ffffff';x.font='800 50px Archivo';x.fillText('Join me → fixnaijamovement.com.ng',80,1250);
+      x.fillStyle='rgba(255,255,255,.7)';x.font='400 26px Poppins';x.fillText('Register free in 2 minutes · all 774 LGAs',80,1298);
+      x.fillStyle='#00a651';x.fillRect(0,H-10,W/2,10);x.fillStyle='#f26a1b';x.fillRect(W/2,H-10,W/2,10);
+      return await new Promise(r=>c.toBlob(r,'image/png'));
+    }
+    let url=null,blob=null;
+    async function refresh(){
+      const img=document.getElementById('rgShareImg');
+      try{blob=await draw(document.getElementById('rgShareName').checked);}catch(e){console.warn('[FixNaija share card]',e);document.getElementById('rgShare').hidden=true;return;}
+      if(url)URL.revokeObjectURL(url);url=URL.createObjectURL(blob);
+      img.src=url;img.hidden=false;document.getElementById('rgShareLd').hidden=true;
+      document.getElementById('rgShareDl').href=url;
+    }
+    window.rgBuildShare=function(){
+      if(document.getElementById('rgShare'))return;
+      const box=document.createElement('div');box.className='rg-share';box.id='rgShare';
+      box.innerHTML='<div class="rg-share-prev"><span class="ld" id="rgShareLd">Making your card…</span><img id="rgShareImg" alt="Your FixNaija “I’m in” card" hidden></div>'+
+        '<div class="rg-share-txt"><b>Tell your people.</b><p>Your personal card is ready — post it on WhatsApp Status, Facebook or Instagram and bring three friends along.</p>'+
+        '<label class="rg-share-name"><input type="checkbox" id="rgShareName" checked> Show my first name on the card</label>'+
+        '<div class="rg-share-btns"><button type="button" class="btn rg-go" id="rgShareBtn">Share my card</button><a class="btn rg-dl" id="rgShareDl" download="fixnaija-im-in.png" href="#">Download</a></div>'+
+        '<div class="rg-share-hint" id="rgShareHint">Saved to your downloads — attach it in WhatsApp or your Status.</div></div>';
+      const actions=succ.querySelector('.success-actions');succ.insertBefore(box,actions);
+      document.getElementById('rgShareName').addEventListener('change',refresh);
+      document.getElementById('rgShareDl').addEventListener('click',()=>{document.getElementById('rgShareHint').style.display='block';});
+      document.getElementById('rgShareBtn').addEventListener('click',async()=>{
+        if(!blob)return;
+        const file=new File([blob],'fixnaija-im-in.png',{type:'image/png'});
+        const text='I just registered with the FixNaija Movement for Adebayo–Bugaje 2027. Take your seat too: https://www.fixnaijamovement.com.ng/register.html';
+        if(navigator.canShare&&navigator.canShare({files:[file]})){
+          try{await navigator.share({files:[file],text,title:'I’m in — FixNaija'});return;}catch(e){if(e&&e.name==='AbortError')return;}
+        }
+        document.getElementById('rgShareDl').click();
+      });
+      refresh();
+    };
+  })();
   /* days to election */
   const d=Math.ceil((new Date('2027-01-16T08:30:00+01:00')-new Date())/86400000);
   const dEl=document.getElementById('rgDays');

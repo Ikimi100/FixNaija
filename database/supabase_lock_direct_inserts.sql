@@ -29,6 +29,10 @@ begin
     execute 'drop policy if exists "Public can apply to volunteer" on public.volunteers';
     execute 'revoke insert on public.volunteers from anon, authenticated';
   end if;
+  if to_regclass('public.pu_agents') is not null then
+    execute 'drop policy if exists "Public can sign up as agent" on public.pu_agents';
+    execute 'revoke insert on public.pu_agents from anon, authenticated';
+  end if;
 end $$;
 
 commit;
@@ -42,4 +46,7 @@ commit;
 -- create policy "Public can apply to volunteer" on public.volunteers for insert to anon, authenticated
 --   with check (consent = true and status = 'new' and admin_notes is null);
 -- grant insert on public.volunteers to anon, authenticated;
+-- create policy "Public can sign up as agent" on public.pu_agents for insert to anon, authenticated
+--   with check (consent = true and status = 'new' and admin_notes is null);
+-- grant insert on public.pu_agents to anon, authenticated;
 -- commit;

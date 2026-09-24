@@ -569,6 +569,33 @@ td.mono { font-family: 'Archivo', sans-serif; font-size: 0.8rem; white-space: no
 .vol thead th{position:sticky;top:0;z-index:1}
 .vol td{white-space:nowrap}
 .vol td.vol-why{white-space:normal}
+
+/* ===== PROTECT THE VOTE + BACKUPS ===== */
+#agCoverage{max-height:560px;overflow:auto}
+.cov-row{display:grid;grid-template-columns:minmax(110px,1fr) 1.4fr auto;gap:14px;align-items:center;padding:11px 22px;border-bottom:1px solid var(--border);font-size:.88rem}
+.cov-row:last-child{border-bottom:none}
+.cov-row .nm{font-weight:500}
+.cov-row .tr{height:8px;background:var(--light-gray);border-radius:4px;overflow:hidden}
+.cov-row .tr i{display:block;height:100%;background:var(--green);border-radius:4px;min-width:2px}
+.cov-row .vl{font-variant-numeric:tabular-nums;color:var(--muted);font-size:.78rem;white-space:nowrap;text-align:right;min-width:120px}
+#agents th,#agents td{padding-left:10px;padding-right:10px}
+.cov-row .vl b{color:var(--charcoal)}
+.ag-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:16px 22px 22px;border-top:1px solid var(--border)}
+.ag-facts .mini .v{font-size:1.2rem}
+@media(max-width:700px){.ag-facts{grid-template-columns:1fr 1fr}}
+.status-select[data-v="trained"]{color:#1f5fbf;border-left:4px solid #2a78d6}
+.status-select[data-v="assigned"]{color:var(--green-dark);border-left:4px solid var(--green)}
+.bk{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:800px){.bk{grid-template-columns:1fr}}
+.bk-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:22px 24px;display:flex;flex-direction:column;gap:6px}
+.bk-card .l{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+.bk-card .v{font-family:'Archivo',sans-serif;font-weight:800;font-size:1.3rem;color:var(--charcoal)}
+.bk-card .s{font-size:.8rem;color:var(--muted);line-height:1.55;margin-bottom:10px}
+.bk-card .s.warn{color:#9a5b00}
+.bk-card .btn{align-self:flex-start}
+.btn-line-dark{background:#fff;color:var(--charcoal);border:1.5px solid var(--border);padding:8px 14px;font-size:.85rem}
+.btn-line-dark:hover{border-color:var(--charcoal)}
+.btn[disabled]{opacity:.6;cursor:wait}
 </style>
 </head>
 <body>
@@ -597,6 +624,7 @@ td.mono { font-family: 'Archivo', sans-serif; font-size: 0.8rem; white-space: no
         <div class="brand">Fix<span>Naija</span> · Command Room</div>
         <div class="topbar-right">
             <span class="who" id="whoAmI"></span>
+            <a class="btn btn-ghost vol-link" href="#agents" style="text-decoration:none;" title="Jump to polling unit agents">Agents<span class="nav-count" id="agBadge" hidden></span></a>
             <a class="btn btn-ghost vol-link" href="#volunteers" style="text-decoration:none;" title="Jump to volunteer applications">Volunteers<span class="nav-count" id="volBadge" hidden></span></a>
             <a class="btn btn-ghost" href="form-options.html" style="text-decoration:none;" title="Add or edit groups and other form choices">Form options</a>
             <button class="btn btn-ghost" id="logoutBtn">Sign out</button>
@@ -901,6 +929,67 @@ td.mono { font-family: 'Archivo', sans-serif; font-size: 0.8rem; white-space: no
                 </div>
             </div>
         </div>
+
+        <!-- ===== PROTECT THE VOTE (polling unit agents) ===== -->
+        <section class="vol" id="agents" aria-label="Polling unit agents">
+            <div class="ins-head">
+                <h2>Protect the vote</h2>
+                <p>Polling unit agent sign-ups &middot; coverage counts everyone not marked "declined"</p>
+            </div>
+            <div class="ins-kpis" id="agKpis"></div>
+            <div class="dual-grid">
+                <div class="panel">
+                    <div class="panel-head"><h2>Coverage by state</h2><span class="filter-status" id="agCovNote"></span></div>
+                    <div class="panel-body"><ul class="break-list" id="agCoverage"><li class="loading-note">Loading…</li></ul></div>
+                </div>
+                <div class="panel">
+                    <div class="panel-head"><h2>By role</h2></div>
+                    <div class="panel-body"><ul class="break-list" id="agRoles"><li class="loading-note">Loading…</li></ul><div class="ag-facts" id="agFacts"></div></div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-head">
+                    <h2>Agents <span class="filter-status" id="agCount"></span></h2>
+                    <div class="table-tools">
+                        <select id="agStatusFilter" aria-label="Filter by status" style="padding:9px 10px;border:1.5px solid var(--border);border-radius:8px;font:inherit;font-size:.85rem;background:#fff">
+                            <option value="">All statuses</option><option value="new">New</option><option value="contacted">Contacted</option><option value="trained">Trained</option><option value="assigned">Assigned</option><option value="declined">Declined</option>
+                        </select>
+                        <input type="search" class="search-input" id="agSearch" placeholder="Search name, phone, ward, PU…">
+                        <button class="btn btn-gold" id="agExportBtn">Export CSV</button>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="table-scroll" style="max-height:640px;overflow:auto">
+                        <table>
+                            <thead><tr><th>Date</th><th>Name</th><th>WhatsApp</th><th>Where (LGA, state · ward)</th><th>Polling unit</th><th>Role</th><th>Votes here</th><th>Status</th></tr></thead>
+                            <tbody id="agTableBody"><tr><td colspan="8" class="loading-note">Loading…</td></tr></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== DATA & BACKUPS ===== -->
+        <section class="vol" id="backups" aria-label="Data and backups">
+            <div class="ins-head">
+                <h2>Data &amp; backups</h2>
+                <p>Weekly copies inside Supabase, plus a copy for your own computer</p>
+            </div>
+            <div class="bk">
+                <div class="bk-card">
+                    <div class="l">Automatic weekly backup</div>
+                    <div class="v" id="bkLast">Checking…</div>
+                    <div class="s" id="bkMeta"></div>
+                    <button class="btn btn-line-dark" id="bkNow" type="button">Back up now</button>
+                </div>
+                <div class="bk-card">
+                    <div class="l">Copy on your computer</div>
+                    <div class="v" id="bkLocal">—</div>
+                    <div class="s" id="bkLocalNote">One file with every registration, report, volunteer and agent. Download it every week or two and keep it somewhere safe and private — never in the GitHub repo.</div>
+                    <button class="btn btn-gold" id="bkDownload" type="button">Download full copy (.json)</button>
+                </div>
+            </div>
+        </section>
 
         <!-- ===== VOLUNTEERS (volunteer.html applications) ===== -->
         <section class="vol" id="volunteers" aria-label="Volunteers">
@@ -1502,6 +1591,9 @@ function showDash(email) {
     loadData();
     loadReports();
     loadVolunteers();
+    loadAgents();
+    loadBackupStatus();
+    renderLocalBackup();
 }
 
 // ===== COMMUNITY REPORTS CONSOLE =====
@@ -2381,6 +2473,215 @@ function renderDupNote() {
     $('insDupBtn').onclick = () => downloadCsv('fixnaija-duplicate-phones',
         ['phone_key', 'copy', 'created_at', 'full_name', 'phone', 'whatsapp', 'email', 'state', 'lga', 'ward', 'group_name', 'id'], dupRows);
 }
+
+// =====================================================================
+// PROTECT THE VOTE — polling unit agents (table: pu_agents)
+// Needs database/supabase_pu_agents_setup.sql.
+// =====================================================================
+let allAgents = [];
+let agCoverage = null;
+const AG_STATUS = [['new', 'New'], ['contacted', 'Contacted'], ['trained', 'Trained'], ['assigned', 'Assigned'], ['declined', 'Declined']];
+const TOTAL_PUS = 176846;
+
+async function fetchAll(table) {
+    let rows = [], from = 0; const STEP = 1000;
+    while (from < 200000) {
+        const { data, error } = await sb.from(table).select('*')
+            .order('created_at', { ascending: false }).order('id', { ascending: false })
+            .range(from, from + STEP - 1);
+        if (error) throw error;
+        rows = rows.concat(data || []);
+        if (!data || data.length < STEP) break;
+        from += STEP;
+    }
+    return rows;
+}
+const tableMissing = err => /(does not exist|could not find|schema cache)/i.test((err && err.message) || '');
+
+async function loadAgents() {
+    const body = $('agTableBody'); if (!body) return;
+    try {
+        allAgents = await fetchAll('pu_agents');
+    } catch (error) {
+        $('agKpis').innerHTML = ''; $('agRoles').innerHTML = $('agCoverage').innerHTML = '<li class="empty-note">—</li>';
+        body.innerHTML = `<tr><td colspan="8" class="empty-note">${tableMissing(error)
+            ? 'Agent sign-ups will show here once you run <b>database/supabase_pu_agents_setup.sql</b> in Supabase.'
+            : 'Could not load agents: ' + escapeHtml(error.message)}</td></tr>`;
+        return;
+    }
+    try {
+        const { data, error } = await sb.rpc('pu_coverage');
+        agCoverage = error ? null : data;
+    } catch (_) { agCoverage = null; }
+    const badge = $('agBadge');
+    const fresh = allAgents.filter(r => (r.status || 'new') === 'new').length;
+    if (badge) { badge.textContent = fresh ? String(fresh) : ''; badge.hidden = !fresh; }
+    renderAgents();
+}
+
+function filteredAgents() {
+    const q = ($('agSearch').value || '').trim().toLowerCase();
+    const st = $('agStatusFilter').value;
+    return allAgents.filter(r => {
+        if (st && (r.status || 'new') !== st) return false;
+        if (q) {
+            const hay = [r.full_name, r.phone, r.whatsapp, r.email, r.state, r.lga, r.ward, r.polling_unit, r.delimitation, r.role].map(x => String(x || '').toLowerCase());
+            if (!hay.some(x => x.includes(q))) return false;
+        }
+        return true;
+    });
+}
+
+function renderAgents() {
+    const all = allAgents, rows = filteredAgents(), now = Date.now();
+    const active = all.filter(r => (r.status || 'new') !== 'declined');
+    const coveredPUs = new Set(active.map(r => r.delimitation).filter(Boolean)).size;
+    const states = new Set(active.map(r => FX.normState(r.state)).filter(Boolean)).size;
+    const count = s => all.filter(r => (r.status || 'new') === s).length;
+
+    const k = $('agKpis'); k.textContent = '';
+    const kpi = (l, v, s, meter) => {
+        const c = FX.el('div', 'kpi'); c.append(FX.el('div', 'l', l), FX.el('div', 'v', v), FX.el('div', 's', s));
+        if (meter != null) { const m = FX.el('div', 'meter'); const i = FX.el('i'); i.style.width = Math.max(meter > 0 ? 1 : 0, Math.min(100, meter)) + '%'; m.appendChild(i); c.appendChild(m); }
+        k.appendChild(c);
+    };
+    kpi('Agents signed up', FX.fmt(all.length), `${FX.fmt(all.filter(r => new Date(r.created_at).getTime() >= now - 7 * 864e5).length)} in the last 7 days`);
+    kpi('Polling units covered', FX.fmt(coveredPUs), `of ${FX.fmt(TOTAL_PUS)} · ${FX.pctS(coveredPUs, TOTAL_PUS)}`, FX.pct(coveredPUs, TOTAL_PUS));
+    kpi('States with agents', FX.fmt(states), `of 37 · ${FX.pctS(states, 37)}`, FX.pct(states, 37));
+    kpi('Waiting for a call', FX.fmt(count('new')), `${FX.fmt(count('trained') + count('assigned'))} trained or assigned`, FX.pct(count('new'), all.length));
+
+    // coverage by state (from the database when available)
+    const cov = $('agCoverage');
+    if (agCoverage && agCoverage.length) {
+        const list = agCoverage.map(r => ({ st: r.state, total: Number(r.total_pus), cov: Number(r.covered_pus), n: Number(r.agents) }))
+            .sort((a, b) => (b.cov / b.total) - (a.cov / a.total) || b.n - a.n || a.st.localeCompare(b.st));
+        cov.innerHTML = list.map(r => {
+            const p = r.total ? r.cov / r.total * 100 : 0;
+            return `<li class="cov-row"><span class="nm">${escapeHtml(pretty(r.st))}</span><span class="tr"><i style="width:${Math.max(r.cov ? 1 : 0, p)}%"></i></span><span class="vl"><b>${FX.pctS(r.cov, r.total)}</b> · ${r.cov.toLocaleString()} / ${r.total.toLocaleString()} PUs · ${r.n.toLocaleString()} agents</span></li>`;
+        }).join('');
+        $('agCovNote').textContent = 'polling units with at least one agent';
+    } else {
+        const t = FX.tally(active, r => pretty(FX.normState(r.state))).entries;
+        cov.innerHTML = t.length ? t.map(([st, n]) => `<li class="cov-row"><span class="nm">${escapeHtml(st)}</span><span class="tr"><i style="width:${n / t[0][1] * 100}%"></i></span><span class="vl"><b>${n.toLocaleString()}</b> agents</span></li>`).join('')
+            : '<li class="empty-note">No agents yet.</li>';
+        $('agCovNote').textContent = 'agents per state';
+    }
+
+    // by role + quick facts
+    const rl = FX.tally(rows, r => FX.val(r.role)).entries;
+    $('agRoles').innerHTML = rl.length ? rl.map(([name, n]) => `
+        <li class="break-row leaf"><span class="break-name">${escapeHtml(name)}</span>
+        <span class="break-bar-track"><span class="break-bar" style="width:${Math.max(4, Math.round(n / rl[0][1] * 100))}%"></span></span>
+        <span class="break-count">${n.toLocaleString()}</span><span class="break-pct">${FX.pctS(n, rows.length)}</span></li>`).join('')
+        : '<li class="empty-note">No sign-ups in this view.</li>';
+    const f = $('agFacts'); f.textContent = '';
+    const mini = (l, v, s) => { const m = FX.el('div', 'mini'); m.append(FX.el('div', 'l', l), FX.el('div', 'v', v), FX.el('div', 's', s)); f.appendChild(m); };
+    mini('Vote where they serve', FX.pctS(rows.filter(r => r.registered_here === 'Yes').length, rows.length), 'said "Yes"');
+    mini('Have a smartphone', FX.pctS(rows.filter(r => r.has_smartphone).length, rows.length), 'for result photos');
+    mini('Served before', FX.pctS(rows.filter(r => r.experience === 'Served before').length, rows.length), 'experienced agents');
+
+    // table
+    $('agCount').textContent = rows.length === all.length ? `${all.length.toLocaleString()} total` : `${rows.length.toLocaleString()} of ${all.length.toLocaleString()}`;
+    const body = $('agTableBody');
+    if (!rows.length) { body.innerHTML = `<tr><td colspan="8" class="empty-note">${all.length ? 'No agents match.' : 'No agent sign-ups yet.'}</td></tr>`; return; }
+    const d = s => new Date(s).toLocaleString('en-NG', { day: '2-digit', month: 'short', year: '2-digit', hour: '2-digit', minute: '2-digit' });
+    body.innerHTML = rows.slice(0, 500).map(r => {
+        const wa = waLink(r.whatsapp || r.phone), cur = r.status || 'new';
+        const opts = AG_STATUS.map(([v, l]) => `<option value="${v}"${v === cur ? ' selected' : ''}>${l}</option>`).join('');
+        return `<tr>
+            <td class="mono">${escapeHtml(d(r.created_at))}</td>
+            <td><b>${escapeHtml(r.full_name || '')}</b></td>
+            <td class="mono">${wa ? `<a href="${wa}" target="_blank" rel="noopener" style="color:var(--green-dark)">${escapeHtml(r.whatsapp || r.phone)}</a>` : escapeHtml(r.phone || '')}</td>
+            <td>${escapeHtml(pretty(r.lga || ''))}, ${escapeHtml(pretty(r.state || ''))}${r.ward ? `<br><span style="color:var(--muted)">${escapeHtml(pretty(r.ward))}</span>` : ''}</td>
+            <td>${r.polling_unit ? escapeHtml(pretty(r.polling_unit)) + (r.delimitation ? `<br><span class="mono" style="color:var(--muted)">${escapeHtml(r.delimitation)}</span>` : '') : '—'}</td>
+            <td>${escapeHtml(r.role || '')}</td>
+            <td>${escapeHtml(r.registered_here || '—')}</td>
+            <td><select class="status-select ag-status" data-v="${cur}" data-id="${escapeHtml(r.id)}">${opts}</select></td>
+        </tr>`;
+    }).join('') + (rows.length > 500 ? `<tr><td colspan="8" class="empty-note">Showing the newest 500 — use search or Export CSV for the rest.</td></tr>` : '');
+}
+
+async function updateAgentStatus(sel) {
+    const id = sel.dataset.id, value = sel.value, prev = sel.dataset.v;
+    sel.disabled = true;
+    const { error } = await sb.from('pu_agents').update({ status: value }).eq('id', id);
+    sel.disabled = false;
+    if (error) { sel.value = prev; alert('Could not update this agent: ' + error.message); return; }
+    const r = allAgents.find(x => String(x.id) === String(id)); if (r) r.status = value;
+    try { const { data, error: e2 } = await sb.rpc('pu_coverage'); if (!e2) agCoverage = data; } catch (_) {}
+    const fresh = allAgents.filter(x => (x.status || 'new') === 'new').length;
+    const badge = $('agBadge'); if (badge) { badge.textContent = fresh ? String(fresh) : ''; badge.hidden = !fresh; }
+    renderAgents();
+}
+
+$('agSearch').addEventListener('input', renderAgents);
+$('agStatusFilter').addEventListener('change', renderAgents);
+$('agTableBody').addEventListener('change', e => { const s = e.target.closest('.ag-status'); if (s) updateAgentStatus(s); });
+$('agExportBtn').addEventListener('click', () => downloadCsv('fixnaija-pu-agents',
+    ['created_at', 'status', 'full_name', 'phone', 'whatsapp', 'email', 'state', 'lga', 'ward', 'polling_unit', 'delimitation', 'role', 'registered_here', 'experience', 'has_smartphone'], filteredAgents()));
+$('refreshLink').addEventListener('click', () => loadAgents());
+
+// =====================================================================
+// DATA & BACKUPS
+// =====================================================================
+const BK_KEY = 'fx_last_full_backup';
+const ago = t => { const d = Math.floor((Date.now() - t) / 864e5); return d <= 0 ? 'today' : d === 1 ? 'yesterday' : `${d} days ago`; };
+
+async function loadBackupStatus() {
+    const last = $('bkLast'), meta = $('bkMeta'), btn = $('bkNow');
+    if (!last) return;
+    let data = null, error = null;
+    try { ({ data, error } = await sb.rpc('backup_status')); } catch (e) { error = e; }
+    if (error) {
+        last.textContent = 'Not set up yet';
+        meta.innerHTML = 'Run <b>database/supabase_backups_setup.sql</b> in Supabase to switch on weekly copies.';
+        btn.disabled = true;
+        return;
+    }
+    btn.disabled = false;
+    if (!data || !data.length) { last.textContent = 'No copies yet'; meta.textContent = 'Press "Back up now" to take the first one.'; return; }
+    const top = data[0], c = top.row_counts || {};
+    last.textContent = new Date(top.taken_at).toLocaleString('en-NG', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+    const part = (k, label) => c[k] != null ? `${Number(c[k]).toLocaleString()} ${label}` : null;
+    meta.textContent = [part('registrations', 'registrations'), part('community_reports', 'reports'), part('volunteers', 'volunteers'), part('pu_agents', 'agents')]
+        .filter(Boolean).join(' · ') + ` — ${data.length} weekly ${data.length === 1 ? 'copy' : 'copies'} kept, every Sunday 3am.`;
+}
+
+function renderLocalBackup() {
+    const el = $('bkLocal'), note = $('bkLocalNote'); if (!el) return;
+    let t = null; try { t = Number(localStorage.getItem(BK_KEY)) || null; } catch (_) {}
+    el.textContent = t ? 'Downloaded ' + ago(t) : 'Never downloaded on this computer';
+    note.classList.toggle('warn', !t || Date.now() - t > 7 * 864e5);
+}
+
+$('bkNow').addEventListener('click', async () => {
+    const btn = $('bkNow'); btn.disabled = true; btn.textContent = 'Backing up…';
+    const { error } = await sb.rpc('backup_now');
+    btn.textContent = 'Back up now';
+    if (error) { btn.disabled = false; alert('Backup failed: ' + error.message); return; }
+    await loadBackupStatus();
+});
+
+$('bkDownload').addEventListener('click', async () => {
+    const btn = $('bkDownload'); const label = btn.textContent;
+    btn.disabled = true; btn.textContent = 'Preparing…';
+    const out = { exported_at: new Date().toISOString(), source: 'FixNaija admin', counts: {}, tables: {} };
+    try {
+        for (const t of ['registrations', 'community_reports', 'volunteers', 'pu_agents']) {
+            try { out.tables[t] = await fetchAll(t); out.counts[t] = out.tables[t].length; }
+            catch (e) { if (!tableMissing(e)) throw e; }
+        }
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(new Blob([JSON.stringify(out)], { type: 'application/json' }));
+        a.download = `fixnaija-full-backup-${out.exported_at.slice(0, 10)}.json`;
+        a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+        try { localStorage.setItem(BK_KEY, String(Date.now())); } catch (_) {}
+        renderLocalBackup();
+    } catch (e) {
+        alert('Could not build the backup: ' + e.message);
+    }
+    btn.disabled = false; btn.textContent = label;
+});
 
 // ===== HELPERS =====
 function pretty(str) {

@@ -1,6 +1,6 @@
 /* =====================================================================
-   FixNaija form guard — used by register.html, report-issue.html and
-   volunteer.html (any <form data-guard="table_name">).
+   FixNaija form guard — used by register.html, report-issue.html,
+   volunteer.html and protect-the-vote.html (any <form data-guard="table_name">).
 
    1. ALWAYS ON: an invisible "leave this empty" box that only bots fill
       in, and a check that stops forms submitted faster than a human could.
@@ -21,7 +21,7 @@
 
   var SUBMIT_FUNCTION = 'https://bcdscsjqiqnzsthntutb.supabase.co/functions/v1/secure-submit';
   var PUBLIC_KEY = 'sb_publishable_Cpkk6K0Xyt5GNVXTiur2mA_myhkpiti';
-  var GUARDED = /\/rest\/v1\/(registrations|community_reports|volunteers)(?:\?|$)/;
+  var GUARDED = /\/rest\/v1\/(registrations|community_reports|volunteers|pu_agents)(?:\?|$)/;
   var MIN_MS = 3000;          // nobody fills these forms in under 3 seconds
   var TOKEN_WAIT_MS = 12000;  // how long to wait for the bot check before sending anyway
 

@@ -1,6 +1,6 @@
-# FixNaija — form protection & volunteers: setup
+# FixNaija — form protection, volunteers, agents & backups: setup
 
-This covers the register, report and volunteer forms. **Part 1 is needed now** (the volunteer form saves nothing until you do it). Part 2 is the stronger bot check. It is optional, and nothing changes until you switch it on.
+This covers the register, report, volunteer and Protect the vote forms, and the automatic backups. **Part 1 is needed now** (the volunteer form saves nothing until you do it). Part 2 is the stronger bot check. It is optional, and nothing changes until you switch it on.
 
 This folder (`docs/`), `database/` and `supabase/` stay in GitHub but are never put on the live website (see `.vercelignore`).
 
@@ -15,6 +15,8 @@ Supabase → your project → **SQL Editor** → **New query**. For each file be
 | 1 | `database/supabase_security_hardening.sql` | *Skip if you already ran it.* Makes supporters' data admin-only. |
 | 2 | `database/supabase_volunteers_setup.sql` | Creates the **volunteers** table the volunteer form saves to. |
 | 3 | `database/supabase_form_protection.sql` | Allows **one registration per phone number**, sets size limits on form fields, and makes the report-video bucket accept videos only (max 100 MB). |
+| 4 | `database/supabase_pu_agents_setup.sql` | Creates the **pu_agents** table for the Protect the vote page (`protect-the-vote.html`), plus the polling-unit coverage numbers on the admin page. |
+| 5 | `database/supabase_backups_setup.sql` | **Automatic weekly backups.** Every Sunday at 3am (Nigeria time) it copies your supporter tables into a private part of the database and keeps the last 4 copies. It also takes the first copy straight away. |
 
 Every script is safe to run again.
 
@@ -24,6 +26,10 @@ Then: **Authentication → Sign In / Providers → Email → turn OFF "Allow new
 
 - Open `volunteer.html`, apply with your own details, and it should say *"Thank you! Your application is in."*
 - In `admin.html`, the new **Volunteers** section (button in the top bar) should show your application.
+- Sign up on `protect-the-vote.html`. You should appear in the admin page's **Protect the vote** section, with your polling unit counted in the coverage.
+- The admin page's **Data & backups** card should show the date of the first automatic copy. Press **Download full copy** now and then, and keep the file somewhere private (not in GitHub).
+
+> If the backups script warns that it could not switch on pg_cron: in Supabase, go to **Integrations → Cron**, enable it, then run `supabase_backups_setup.sql` again.
 - Register twice with the same phone number. The second time, the page should say *"This phone number is already registered."*
 
 > To allow family members to share one phone number again later, run this in the SQL Editor:

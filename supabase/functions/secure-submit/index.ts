@@ -44,6 +44,13 @@ const TABLES: Record<string, TableRule> = {
     cols: ["full_name", "email", "phone", "state", "role", "time_commitment", "motivation", "consent"],
     fixed: { status: "new" },
   },
+  pu_agents: {
+    cols: [
+      "full_name", "phone", "whatsapp", "email", "state", "lga", "ward", "polling_unit",
+      "delimitation", "role", "registered_here", "experience", "has_smartphone", "consent",
+    ],
+    fixed: { status: "new" },
+  },
 };
 
 const VERIFY_URL = Deno.env.get("TURNSTILE_VERIFY_URL") ??

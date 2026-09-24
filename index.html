@@ -458,7 +458,7 @@ html,body{overflow-x:clip}
 .join-err{display:none;background:#fdecec;border:1px solid #f3c2c2;padding:14px;color:#b43131;text-align:center;font-size:.9rem;margin-top:12px}
 
 /* ---------- PROGRAMMES ---------- */
-.prog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.prog-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}@media(max-width:1200px){.prog-grid{grid-template-columns:1fr 1fr}}
 .prog-card{position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid var(--rule);padding:30px 28px;text-decoration:none;color:var(--body);transition:transform .2s,box-shadow .2s,border-color .2s;overflow:hidden}
 .prog-card::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform .3s}
 .prog-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
@@ -750,7 +750,8 @@ footer::before{content:"";position:absolute;inset:0;background-image:var(--grain
     <a class="mm-item" href="about.html"><span class="mm-ico">📖</span><span class="mm-text"><b>About</b><small>Our story &amp; the pillars</small></span><span class="mm-arrow">›</span></a>
     <a class="mm-item" href="civic-resource.html"><span class="mm-ico">⚖️</span><span class="mm-text"><b>Civic Hub</b><small>Rights, PVC &amp; accountability</small></span><span class="mm-arrow">›</span></a>
     <a class="mm-item" href="volunteer.html"><span class="mm-ico">🤝</span><span class="mm-text"><b>Volunteer</b><small>Lend your skills</small></span><span class="mm-arrow">›</span></a>
-    <a class="mm-item" href="events.html"><span class="mm-ico">📅</span><span class="mm-text"><b>Upcoming Events</b><small>Town halls &amp; trainings</small></span><span class="mm-arrow">›</span></a>
+    
+    <a class="mm-item" href="protect-the-vote.html"><span class="mm-ico">🗳️</span><span class="mm-text"><b>Protect the Vote</b><small>Be a polling unit agent</small></span><span class="mm-arrow">›</span></a><a class="mm-item" href="events.html"><span class="mm-ico">📅</span><span class="mm-text"><b>Upcoming Events</b><small>Town halls &amp; trainings</small></span><span class="mm-arrow">›</span></a>
     <a class="mm-item" href="gallery.html"><span class="mm-ico">🖼️</span><span class="mm-text"><b>Media Gallery</b><small>Moments from the movement</small></span><span class="mm-arrow">›</span></a>
     <a class="mm-item" href="find-lga.html"><span class="mm-ico">📍</span><span class="mm-text"><b>States &amp; LGAs</b><small>Find your community</small></span><span class="mm-arrow">›</span></a>
     <a class="mm-item" href="ask-fixnaija.html"><span class="mm-ico">💬</span><span class="mm-text"><b>Ask FixNaija</b><small>Civic AI assistant</small></span><span class="mm-arrow">›</span></a>
@@ -1246,6 +1247,7 @@ footer::before{content:"";position:absolute;inset:0;background-image:var(--grain
       </div>
     </div>
     <div class="prog-grid">
+      <a class="prog-card rv" href="protect-the-vote.html"><span class="p-ic">🗳️</span><h3>Protect the Vote</h3><p>Be the ticket's eyes at your polling unit on 16 January 2027 — sign up and we'll train you for it.</p><span class="link-arrow">Become an agent →</span></a>
       <a class="prog-card rv" href="report-issue.html"><span class="p-ic">📢</span><h3>Issue Watch</h3><p>Report and track community problems — bad roads, failing clinics, power cuts — so nothing broken stays hidden.</p><span class="link-arrow">Report an issue →</span></a>
       <a class="prog-card rv" href="civic-resource.html"><span class="p-ic">⚖️</span><h3>Citizens' Civic Hub</h3><p>Know your rights, get your PVC and engage directly with governance through our civic resource centre.</p><span class="link-arrow">Open the Civic Hub →</span></a>
       <a class="prog-card rv" href="volunteer.html"><span class="p-ic">🤝</span><h3>Volunteer Corps</h3><p>Skills, organising and youth empowerment — lend your talent to the repair work in your own LGA.</p><span class="link-arrow">Volunteer →</span></a>
@@ -1418,6 +1420,7 @@ footer::before{content:"";position:absolute;inset:0;background-image:var(--grain
           <li><a href="register.html">Register</a></li>
           <li><a href="find-lga.html">Find your LGA</a></li>
           <li><a href="volunteer.html">Volunteer</a></li>
+          <li><a href="protect-the-vote.html">Protect the vote</a></li>
           <li><a href="report-issue.html">Report an issue</a></li>
           <li><a href="civic-resource.html">Civic Hub</a></li>
         </ul>
