@@ -42,6 +42,7 @@ create table if not exists backups.snapshots (
   row_counts jsonb not null default '{}'::jsonb
 );
 revoke all on backups.snapshots from public, anon, authenticated;
+alter table backups.snapshots enable row level security;   -- extra lock: no policies = no access from the website keys
 
 -- copy every supporter table into backups.<table>_<date>
 create or replace function backups.take_snapshot(keep int default 4)
@@ -61,6 +62,7 @@ begin
   foreach t in array tables loop
     if to_regclass('public.' || t) is not null then
       execute format('create table backups.%I as table public.%I', t || '_' || sfx, t);
+      execute format('alter table backups.%I enable row level security', t || '_' || sfx);
       execute format('select count(*) from backups.%I', t || '_' || sfx) into n;
       counts := counts || jsonb_build_object(t, n);
     end if;
