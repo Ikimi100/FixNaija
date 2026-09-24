@@ -5,8 +5,8 @@
   var m = document.getElementById('mobileMenu');
   if(t && m){
     var scrim = document.createElement('div'); scrim.className = 'mm-scrim'; document.body.appendChild(scrim);
-    function openM(){ m.classList.add('open'); scrim.classList.add('open'); t.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; }
-    function closeM(){ m.classList.remove('open'); scrim.classList.remove('open'); t.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
+    function openM(){ m.classList.add('open'); scrim.classList.add('open'); t.classList.add('open'); t.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; }
+    function closeM(){ m.classList.remove('open'); scrim.classList.remove('open'); t.classList.remove('open'); t.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
     t.addEventListener('click', function(){ m.classList.contains('open') ? closeM() : openM(); });
     scrim.addEventListener('click', closeM);
     var x = document.getElementById('menuClose'); if(x) x.addEventListener('click', closeM);

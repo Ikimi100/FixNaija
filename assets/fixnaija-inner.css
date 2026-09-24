@@ -1,0 +1,115 @@
+/* =====================================================================
+   FixNaija · inner pages — "Paper & Green" components
+   Loads AFTER fixnaija-theme.css (header, footer, tokens, buttons).
+   Used by: leadership, civic-resource, volunteer, events, gallery,
+            ask-fixnaija, news-article
+   ===================================================================== */
+:root{
+  /* names the older page styles still use, mapped onto the new palette */
+  --charcoal:#0d140f; --charcoal-2:#172019;
+  --gold:#c25e00; --gold-soft:#d9530b;
+  --green-bright:#00a651;
+  --white:#ffffff; --light-gray:#f8f6f0;
+  --ink-60:#6b746c; --ink-72:#4d564e; --ink-85:#2e372f;
+  --line:#e8e5dc;
+  --radius:10px; --radius-lg:14px;
+  --shadow-soft:0 1px 2px rgba(13,20,15,.04),0 10px 26px -16px rgba(13,20,15,.2);
+  --maxw:1180px;
+}
+.center{text-align:center}
+.dh{font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:1.1}
+
+/* ---------- page hero ---------- */
+.phero{position:relative;overflow:hidden;padding:clamp(56px,8vw,108px) 0 clamp(48px,6vw,84px);
+  background:
+    radial-gradient(820px 440px at 88% -6%,#fff1e4 0,rgba(255,241,228,0) 62%),
+    radial-gradient(720px 420px at -4% 104%,var(--green-tint) 0,rgba(232,243,237,0) 62%),
+    var(--paper-2);
+  border-bottom:1px solid var(--rule)}
+.phero::before{content:"";position:absolute;inset:0;background-image:var(--grain);opacity:.05;pointer-events:none}
+.phero>.wrap{position:relative;width:min(100% - 2*var(--gut),1180px)}
+.phero-flag{display:none}
+.phero h1{font-size:clamp(2.6rem,6.2vw,4.9rem);line-height:.96;letter-spacing:-.045em;max-width:15ch;color:var(--ink);margin-top:18px}
+.phero h1 em{font-style:normal;color:var(--green)}
+.phero .lede{margin:22px 0 30px;font-size:1.1rem;line-height:1.7;color:var(--muted);max-width:60ch}
+.phero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.metrics{display:flex;flex-wrap:wrap;margin-top:44px;border-top:1px solid var(--rule-2)}
+.metric{padding:20px 30px 0 0;margin-right:30px;border-right:1px solid var(--rule);min-width:0}
+.metric:last-child{border-right:none;margin-right:0}
+.metric .n{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,3.2vw,2.6rem);letter-spacing:-.035em;line-height:1;color:var(--ink)}
+.metric .l{font-size:.76rem;color:var(--muted);letter-spacing:.03em;margin-top:6px}
+@media(max-width:640px){.metric{padding:16px 18px 0 0;margin-right:18px}}
+
+/* ---------- sections ---------- */
+section.block{padding:clamp(64px,8vw,104px) 0;background:var(--paper);color:var(--body)}
+section.block.light{background:var(--paper-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+section.block>.wrap{width:min(100% - 2*var(--gut),1180px)}
+.sec-head{max-width:740px;margin:0 auto 52px;text-align:center}
+.sec-head h2{font-size:clamp(2rem,4.4vw,3.1rem);letter-spacing:-.04em;line-height:1.02;margin:16px 0 14px;color:var(--ink)}
+.sec-head p{color:var(--muted);font-size:1.05rem}
+.sec-head .eyebrow{justify-content:center}
+
+/* ---------- buttons used by the page markup ---------- */
+.btn-primary{background:var(--green);color:#fff;border-color:var(--green)}
+.btn-primary:hover{background:#00552f}
+.btn-gold{background:var(--orange);color:#fff;border-color:var(--orange)}
+.btn-gold:hover{background:var(--orange-2)}
+.btn-ghost{background:#fff;color:var(--ink);border:1px solid var(--rule-2)}
+.btn-ghost:hover{border-color:var(--ink)}
+
+/* ---------- cards ---------- */
+.grid{display:grid;gap:18px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:900px){.g3,.g4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:580px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--rule);border-radius:10px;padding:28px;color:var(--body);transition:transform .25s,box-shadow .25s,border-color .25s}
+.card:hover{transform:translateY(-3px);border-color:var(--rule-2);box-shadow:var(--shadow)}
+.card .ico{width:52px;height:52px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.45rem;background:var(--green-tint);margin-bottom:18px}
+.card h3{font-size:1.16rem;margin-bottom:8px;color:var(--ink);letter-spacing:-.015em}
+.card p{font-size:.95rem;color:var(--muted)}
+.card .tag{display:inline-flex;gap:6px;margin-top:14px;font-family:var(--display);font-weight:700;color:var(--green);font-size:.86rem;text-decoration:none}
+
+/* ---------- numbered steps ---------- */
+.steps{counter-reset:step;display:grid;gap:14px}
+.step{position:relative;background:#fff;border:1px solid var(--rule);border-radius:10px;padding:24px 26px 24px 88px;color:var(--body)}
+.step::before{counter-increment:step;content:counter(step,decimal-leading-zero);position:absolute;left:24px;top:18px;font-family:var(--display);font-weight:800;font-size:2rem;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1.3px var(--green)}
+.step h4{font-size:1.08rem;margin-bottom:6px;color:var(--ink)}
+.step p{font-size:.95rem;color:var(--muted)}
+
+/* ---------- chips ---------- */
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.chip{background:#fff;border:1px solid var(--rule-2);color:var(--ink);padding:11px 20px;border-radius:999px;font-family:var(--display);font-weight:700;font-size:.9rem}
+
+/* ---------- FAQ ---------- */
+.faq{max-width:840px;margin:0 auto;display:grid;gap:10px}
+.qa{background:#fff;border:1px solid var(--rule);border-radius:10px;overflow:hidden;color:var(--body)}
+.qa summary{cursor:pointer;list-style:none;padding:20px 24px;font-family:var(--display);font-weight:700;font-size:1.02rem;color:var(--ink);display:flex;justify-content:space-between;align-items:center;gap:14px}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::after{content:"+";flex:0 0 30px;height:30px;border-radius:50%;background:var(--green-tint);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:1.2rem;transition:transform .2s}
+.qa[open] summary::after{transform:rotate(45deg)}
+.qa[open]{border-color:var(--rule-2)}
+.qa .a{padding:0 24px 22px;color:var(--muted);font-size:.96rem}
+
+/* ---------- dark call-to-action band ---------- */
+.cta-band{position:relative;overflow:hidden;text-align:center;background:var(--green-deep);color:#cfe0d5;border-radius:14px;padding:clamp(52px,7vw,84px) 24px}
+.cta-band::before{content:"";position:absolute;inset:0;background-image:var(--grain);opacity:.12;pointer-events:none}
+.cta-band::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,var(--green-3) 0 50%,var(--orange) 50% 100%)}
+.cta-band>*{position:relative}
+.cta-band .eyebrow{color:#7fe0ae!important;justify-content:center}
+.cta-band h2{color:#fff;font-size:clamp(1.9rem,4.4vw,3rem);letter-spacing:-.04em;line-height:1.05;max-width:22ch;margin:14px auto 14px}
+.cta-band p{color:rgba(255,255,255,.8);max-width:52ch;margin:0 auto 28px}
+.cta-band .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}
+.cta-band .btn-ghost:hover{border-color:#fff}
+
+/* ---------- scroll reveal ---------- */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+
+/* ---------- footer (richer link list on inner pages) ---------- */
+.foot-links{max-width:720px}
+
+/* a CTA band that follows another white section doesn't need a full gap above it */
+section.block:not(.light)+section.block:not(.light):has(>.wrap>.cta-band){padding-top:0}
