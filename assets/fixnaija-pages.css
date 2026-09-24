@@ -177,3 +177,7 @@ section.light .qa .a{color:#54546a}
 
 /* concept ribbon */
 .concept-note{position:fixed;left:14px;bottom:14px;z-index:1500;background:var(--gold);color:var(--charcoal);font-family:'Archivo';font-weight:700;font-size:.72rem;padding:7px 13px;border-radius:999px;box-shadow:var(--shadow)}
+
+/* keep the closed mobile drawer (and its shadow) fully off-screen */
+.mobile-menu{visibility:hidden;transition:transform .38s cubic-bezier(.4,0,.2,1),visibility 0s linear .38s}
+.mobile-menu.open{visibility:visible;transition:transform .38s cubic-bezier(.4,0,.2,1),visibility 0s}

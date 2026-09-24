@@ -1,0 +1,11 @@
+# Everything below stays in GitHub but is NEVER put on the live website.
+_private
+Claude outputs
+old and new outputs
+database
+docs
+supabase
+*.sql
+*.md
+.gitignore
+.vercelignore

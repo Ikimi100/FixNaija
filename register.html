@@ -164,6 +164,10 @@
 }
 @media(prefers-reduced-motion:reduce){.pulse,.ward-loading-spinner{animation:none}}
 
+.rg-dup{display:flex;flex-direction:column;gap:4px;margin:0 0 16px;padding:14px 16px;border-radius:10px;background:#fff4ec;border:1px solid #f5c29c;color:#6d2f09;font-size:.92rem;line-height:1.5}
+.rg-dup strong{font-family:var(--display,'Archivo'),sans-serif;font-weight:800;color:#8a3a0c}
+.rg-dup em{font-style:normal;font-weight:700}
+.form-input.rg-flag{border-color:#f26a1b!important;box-shadow:0 0 0 3px rgba(242,106,27,.18)!important}
 </style>
 </head>
 <body class="rg-page">
@@ -247,7 +251,7 @@
 
   <div class="wrap rg-grid">
     <div class="rg-card">
-      <form class="registration-form" id="registrationForm">
+      <form class="registration-form" id="registrationForm" data-guard="registrations">
           <div class="rg-progress" aria-live="polite">
             <div class="rg-progress-top"><b>Your registration</b><span id="rgProgressText">0% complete</span></div>
             <div class="rg-bar"><i id="rgBar"></i></div>
@@ -862,6 +866,12 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
 
         if (!response.ok) {
             const errText = await response.text();
+            if (response.status === 409 && errText.includes('DUPLICATE_PHONE')) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Complete Registration';
+                if (window.rgShowAlreadyRegistered) window.rgShowAlreadyRegistered(phone);
+                return;
+            }
             throw new Error(`Registration failed (${response.status}): ${errText}`);
         }
 
@@ -970,6 +980,18 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
   if(succ&&'MutationObserver' in window){
     new MutationObserver(()=>{if(succ.style.display==='block'){form.classList.add('is-done');window.scrollTo({top:form.getBoundingClientRect().top+scrollY-110,behavior:'smooth'});}}).observe(succ,{attributes:true,attributeFilter:['style']});
   }
+  /* one registration per phone number: shown when the database says this number is already in */
+  window.rgShowAlreadyRegistered=function(phone){
+    let box=document.getElementById('rgDup');
+    if(!box){
+      box=document.createElement('div');box.id='rgDup';box.className='rg-dup';box.setAttribute('role','alert');
+      const btn=form.querySelector('.form-submit');btn.parentNode.insertBefore(box,btn);
+    }
+    box.innerHTML='<strong>This phone number is already registered.</strong><span>If that was you, you\u2019re already in \u2014 no need to register again. Registering someone else? Please use <em>their own</em> phone number.</span>';
+    const p=document.getElementById('regPhone');
+    if(p){p.classList.add('rg-flag');p.addEventListener('input',()=>{p.classList.remove('rg-flag');box.remove();},{once:true});}
+    box.scrollIntoView({behavior:'smooth',block:'center'});
+  };
   /* days to election */
   const d=Math.ceil((new Date('2027-01-16T08:30:00+01:00')-new Date())/86400000);
   const dEl=document.getElementById('rgDays');
@@ -988,5 +1010,6 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
   })();
 })();
 </script>
+<script src="assets/fixnaija-guard.js" defer></script>
 </body>
 </html>

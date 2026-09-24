@@ -1,0 +1,9 @@
+# Private working files: never committed
+_private/
+Claude outputs/
+old and new outputs/
+
+# System junk
+.DS_Store
+Thumbs.db
+desktop.ini

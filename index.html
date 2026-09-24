@@ -1805,7 +1805,7 @@ const ISSUE_SLUGS=['power','insecurity','corruption','jobs','cost-of-living','ed
   }catch(_){/* keep static cards */}
 })();
 
-/* ===== Live registration counter (count only — needs registration_count() from supabase_security_hardening.sql) ===== */
+/* ===== Live registration counter (count only — needs registration_count() from database/supabase_security_hardening.sql) ===== */
 (async function(){
   const box=document.getElementById('liveCount'),num=document.getElementById('liveNum');
   if(!box||!num)return;

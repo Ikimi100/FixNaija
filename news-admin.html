@@ -196,7 +196,7 @@ $('slug').addEventListener('input', ()=>{ $('slug').dataset.touched = '1'; });
 async function loadPosts(){
   $('list').innerHTML='<div class="empty">Loading…</div>';
   const { data, error } = await sb.from('news').select('*').order('published_date',{ascending:false}).order('created_at',{ascending:false});
-  if(error){ $('list').innerHTML='<div class="empty">Could not load stories.<br><small>'+esc(error.message)+'</small><br><small>Did you run supabase_news_setup.sql?</small></div>'; $('count').textContent=''; return; }
+  if(error){ $('list').innerHTML='<div class="empty">Could not load stories.<br><small>'+esc(error.message)+'</small><br><small>Did you run database/supabase_news_setup.sql?</small></div>'; $('count').textContent=''; return; }
   $('count').textContent = (data.length||0) + ' total';
   if(!data.length){ $('list').innerHTML='<div class="empty">No stories yet. Create your first one on the left.</div>'; return; }
   $('list').innerHTML = data.map(renderPost).join('');

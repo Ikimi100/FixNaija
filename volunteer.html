@@ -30,6 +30,7 @@
   .consent{display:flex;gap:10px;align-items:flex-start;font-size:.85rem;color:var(--ink-72);margin:8px 0 18px}
   .why-list{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   @media(max-width:820px){.why-list{grid-template-columns:1fr}}
+  section.light .consent{color:#4a4a5a}
 </style>
 <!-- SEO / social tags -->
 <link rel="canonical" href="https://www.fixnaijamovement.com.ng/volunteer.html">
@@ -212,7 +213,7 @@
 <section class="block light" id="apply">
   <div class="wrap reveal">
     <div class="sec-head"><span class="eyebrow">Application</span><h2>Apply to volunteer</h2><p>Our coordinators review every application. Tell us about yourself and we'll be in touch — usually via WhatsApp.</p></div>
-    <form class="form-card" id="volForm" onsubmit="return submitVol(event)">
+    <form class="form-card" id="volForm" data-guard="volunteers" onsubmit="return submitVol(event)">
       <div class="frow">
         <div class="field"><label>Full name *</label><input name="name" required placeholder="Your full name"></div>
         <div class="field"><label>Email *</label><input type="email" name="email" required placeholder="you@email.com"></div>
@@ -241,9 +242,9 @@
         </div>
       </div>
       <div class="field" style="margin-bottom:16px"><label>Why do you want to volunteer? (optional)</label><textarea name="why" placeholder="Tell us what drives you..."></textarea></div>
-      <label class="consent"><input type="checkbox" required style="margin-top:3px"> I consent to FixNaija using my details to coordinate my volunteering. My data will not be sold or shared with third parties, and I can request deletion at any time.</label>
+      <label class="consent"><input type="checkbox" name="consent" required style="margin-top:3px"> I consent to FixNaija using my details to coordinate my volunteering. My data will not be sold or shared with third parties, and I can request deletion at any time.</label>
       <button class="btn btn-primary" type="submit" style="width:100%">Submit application</button>
-      <p id="volMsg" style="text-align:center;margin-top:14px;color:var(--green);font-weight:600;display:none">✅ Thank you! A coordinator will reach out via WhatsApp shortly.</p>
+      <p id="volMsg" role="status" aria-live="polite" style="text-align:center;margin-top:14px;color:var(--green);font-weight:600;display:none"></p>
     </form>
   </div>
 </section>
@@ -276,7 +277,6 @@
   </div>
 </footer>
 
-<div class="concept-note">New page · FixNaija</div>
 <script src="assets/fixnaija-pages.js"></script>
 <script>
   // role filter
@@ -298,13 +298,56 @@
       document.getElementById('apply').scrollIntoView({behavior:'smooth'});
     });
   });
+  // ---- volunteer applications → Supabase "volunteers" table ----
+  // (table created by database/supabase_volunteers_setup.sql; admins see them in admin.html)
+  var SB_URL = 'https://bcdscsjqiqnzsthntutb.supabase.co';
+  var SB_KEY = 'sb_publishable_Cpkk6K0Xyt5GNVXTiur2mA_myhkpiti';
+  function showVolMsg(text, kind){
+    var m = document.getElementById('volMsg');
+    m.textContent = text;
+    m.style.color = kind === 'err' ? '#ff9b8f' : kind === 'info' ? '#f2c14e' : 'var(--green)';
+    m.style.display = 'block';
+  }
   function submitVol(e){
     e.preventDefault();
-    // NOTE: wire this to your Supabase 'volunteers' table or email handler.
-    document.getElementById('volMsg').style.display='block';
-    e.target.reset();
+    var f = e.target, btn = f.querySelector('button[type="submit"]');
+    var val = function(n){ var el = f.elements[n]; return el ? String(el.value || '').trim() : ''; };
+    var row = {
+      full_name: val('name'),
+      email: val('email') || null,
+      phone: val('phone'),
+      state: val('state'),
+      role: val('role'),
+      time_commitment: val('time') || null,
+      motivation: val('why') || null,
+      consent: !!(f.elements.consent && f.elements.consent.checked)
+    };
+    var label = btn.textContent;
+    btn.disabled = true; btn.textContent = 'Sending your application…';
+    document.getElementById('volMsg').style.display = 'none';
+    fetch(SB_URL + '/rest/v1/volunteers', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'apikey': SB_KEY, 'Prefer': 'return=minimal' },
+      body: JSON.stringify(row)
+    }).then(function(res){
+      if (res.ok) return null;
+      return res.text().then(function(t){ return { status: res.status, text: t }; });
+    }).then(function(err){
+      btn.disabled = false; btn.textContent = label;
+      if (!err) { f.reset(); showVolMsg('\u2705 Thank you! Your application is in. A coordinator will reach out via WhatsApp shortly.', 'ok'); return; }
+      if (err.status === 409 && err.text.indexOf('DUPLICATE_PHONE') > -1) {
+        showVolMsg('You have already applied with this WhatsApp number \u2014 a coordinator will be in touch. No need to apply again.', 'info'); return;
+      }
+      console.error('[FixNaija volunteer]', err.status, err.text);
+      showVolMsg('Sorry, your application did not go through. Please check your connection and try again.', 'err');
+    }).catch(function(x){
+      console.error('[FixNaija volunteer]', x);
+      btn.disabled = false; btn.textContent = label;
+      showVolMsg('Sorry, your application did not go through. Please check your connection and try again.', 'err');
+    });
     return false;
   }
 </script>
+<script src="assets/fixnaija-guard.js" defer></script>
 </body>
 </html>

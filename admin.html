@@ -548,6 +548,27 @@ td.mono { font-family: 'Archivo', sans-serif; font-size: 0.8rem; white-space: no
   .hm{grid-template-columns:30px repeat(24,minmax(0,1fr));gap:1px}
   .hb li{grid-template-columns:minmax(90px,46%) 1fr auto}
 }
+
+/* ===== VOLUNTEERS + duplicate-phone note ===== */
+.vol{margin:40px 0 28px;scroll-margin-top:84px}
+.vol .ins-kpis{grid-template-columns:repeat(4,1fr)}
+.status-select[data-v="new"]{color:var(--muted);border-left:4px solid var(--muted)}
+.status-select[data-v="contacted"]{color:#9A6B00;border-left:4px solid var(--gold)}
+.status-select[data-v="onboarded"]{color:var(--green-dark);border-left:4px solid var(--green)}
+.status-select[data-v="declined"]{color:#B3261E;border-left:4px solid #B3261E}
+.vol-why{min-width:220px;max-width:360px;font-size:.8rem;color:var(--charcoal-soft);white-space:normal}
+#volStatusFilter{padding:9px 10px;border:1.5px solid var(--border);border-radius:8px;font:inherit;font-size:.85rem;background:#fff;color:var(--charcoal)}
+.dup-note{display:flex;align-items:center;justify-content:space-between;gap:10px 16px;flex-wrap:wrap;background:#fff8e6;border:1px solid #efd697;border-radius:12px;padding:12px 16px;margin-bottom:16px;font-size:.85rem;line-height:1.5;color:#4d3900}
+.dup-note[hidden]{display:none}
+.dup-note .ic{font-weight:800;color:#9A6B00;margin-right:6px}
+.nav-count{display:inline-block;min-width:20px;padding:1px 6px;margin-left:6px;border-radius:999px;background:var(--gold);color:var(--charcoal);font-size:.7rem;font-weight:800;text-align:center;line-height:1.5}
+.nav-count[hidden]{display:none}
+@media(max-width:1100px){.vol .ins-kpis{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.topbar .vol-link{display:none}}
+.vol .table-scroll{max-height:640px;overflow:auto}
+.vol thead th{position:sticky;top:0;z-index:1}
+.vol td{white-space:nowrap}
+.vol td.vol-why{white-space:normal}
 </style>
 </head>
 <body>
@@ -576,6 +597,7 @@ td.mono { font-family: 'Archivo', sans-serif; font-size: 0.8rem; white-space: no
         <div class="brand">Fix<span>Naija</span> · Command Room</div>
         <div class="topbar-right">
             <span class="who" id="whoAmI"></span>
+            <a class="btn btn-ghost vol-link" href="#volunteers" style="text-decoration:none;" title="Jump to volunteer applications">Volunteers<span class="nav-count" id="volBadge" hidden></span></a>
             <a class="btn btn-ghost" href="form-options.html" style="text-decoration:none;" title="Add or edit groups and other form choices">Form options</a>
             <button class="btn btn-ghost" id="logoutBtn">Sign out</button>
         </div>
@@ -707,6 +729,7 @@ td.mono { font-family: 'Archivo', sans-serif; font-size: 0.8rem; white-space: no
                 <h2>Insights</h2>
                 <p>Every chart here follows the filters above &middot; <b id="insBase">—</b> people in this view</p>
             </div>
+            <div class="dup-note" id="insDup" hidden><span><span class="ic">!</span><span id="insDupText"></span></span><button class="btn btn-gold" id="insDupBtn" type="button">Download the list (CSV)</button></div>
             <div class="ins-kpis" id="insKpis"></div>
             <div class="ins-grid">
                 <div class="card"><h3>Geopolitical zones</h3><p class="cap">Where registrations come from</p><div id="insZones"></div></div>
@@ -878,6 +901,49 @@ td.mono { font-family: 'Archivo', sans-serif; font-size: 0.8rem; white-space: no
                 </div>
             </div>
         </div>
+
+        <!-- ===== VOLUNTEERS (volunteer.html applications) ===== -->
+        <section class="vol" id="volunteers" aria-label="Volunteers">
+            <div class="ins-head">
+                <h2>Volunteers</h2>
+                <p>Applications from the volunteer page &middot; change the status as you call people</p>
+            </div>
+            <div class="ins-kpis" id="volKpis"></div>
+            <div class="dual-grid">
+                <div class="panel">
+                    <div class="panel-head"><h2>By role</h2></div>
+                    <div class="panel-body"><ul class="break-list" id="volRoleList"><li class="loading-note">Loading…</li></ul></div>
+                </div>
+                <div class="panel">
+                    <div class="panel-head"><h2>By state</h2></div>
+                    <div class="panel-body"><ul class="break-list" id="volStateList"><li class="loading-note">Loading…</li></ul></div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-head">
+                    <h2>Applications <span class="filter-status" id="volCount"></span></h2>
+                    <div class="table-tools">
+                        <select id="volStatusFilter" aria-label="Filter by status">
+                            <option value="">All statuses</option>
+                            <option value="new">New</option>
+                            <option value="contacted">Contacted</option>
+                            <option value="onboarded">Onboarded</option>
+                            <option value="declined">Declined</option>
+                        </select>
+                        <input type="search" class="search-input" id="volSearch" placeholder="Search name, phone, role…">
+                        <button class="btn btn-gold" id="volExportBtn">Export CSV</button>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="table-scroll">
+                        <table>
+                            <thead><tr><th>Date</th><th>Name</th><th>WhatsApp</th><th>Email</th><th>State</th><th>Role</th><th>Time</th><th>Status</th><th>Why they want to help</th></tr></thead>
+                            <tbody id="volTableBody"><tr><td colspan="9" class="loading-note">Loading…</td></tr></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <p class="footnote">FixNaija Movement · Data refreshes on each sign-in · <a href="#" id="refreshLink" style="color:var(--green-dark);">Refresh now</a></p>
     </div>
@@ -1435,6 +1501,7 @@ function showDash(email) {
     $('whoAmI').textContent = email;
     loadData();
     loadReports();
+    loadVolunteers();
 }
 
 // ===== COMMUNITY REPORTS CONSOLE =====
@@ -1655,7 +1722,7 @@ function exportReportsCSV() {
     const rows = filterReports();
     if (!rows.length) return;
     const cols = ['submitted_at','status','reporter_name','phone','email','whatsapp','state','lga','ward','landmark','category','issue_title','issue_description','has_video','video_url'];
-    const esc = v => { v = v == null ? '' : String(v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
+    const esc = safeCsv;
     const csv = [cols.join(',')].concat(rows.map(r => cols.map(c => esc(r[c])).join(','))).join('\n');
     const a = document.createElement('a');
     a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
@@ -1963,6 +2030,7 @@ function applyFilters() {
     renderTable();
     fxSafe(renderTrendExtra);
     fxSafe(renderInsights);
+    fxSafe(renderDupNote);
     updateFilterStatus();
 }
 
@@ -2126,9 +2194,192 @@ $('exportBtn').addEventListener('click', () => {
 });
 
 function csvCell(v) {
+    return safeCsv(v);
+}
+
+// =====================================================================
+// VOLUNTEERS — applications from volunteer.html (table: volunteers)
+// Read + status updates only. Needs database/supabase_volunteers_setup.sql.
+// =====================================================================
+let allVolunteers = [];
+const VOL_STATUS = [['new', 'New'], ['contacted', 'Contacted'], ['onboarded', 'Onboarded'], ['declined', 'Declined']];
+
+// a spreadsheet must never run a formula typed into a public form
+function safeCsv(v) {
     if (v === null || v === undefined) return '';
-    const s = String(v);
-    return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+    let s = String(v);
+    if (/^[=@\t\r]/.test(s) || /^[+\-](?![\d\s()]+$)/.test(s)) s = "'" + s;
+    return /[",\n\r]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+}
+function downloadCsv(name, cols, rows) {
+    const csv = [cols.join(',')].concat(rows.map(r => cols.map(c => safeCsv(r[c])).join(','))).join('\n');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8;' }));
+    a.download = `${name}-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+function waLink(phone) {
+    const raw = String(phone || '').trim();
+    let d = raw.replace(/\D/g, '');
+    if (!d) return null;
+    if (!raw.startsWith('+')) {
+        if (d.length === 11 && d.startsWith('0')) d = '234' + d.slice(1);
+        else if (d.length === 10) d = '234' + d;
+    }
+    return 'https://wa.me/' + d;
+}
+
+async function loadVolunteers() {
+    const body = $('volTableBody');
+    if (!body) return;
+    let rows = [], from = 0;
+    const STEP = 1000;
+    while (from < 50000) {
+        const { data, error } = await sb.from('volunteers').select('*')
+            .order('created_at', { ascending: false }).order('id', { ascending: false })
+            .range(from, from + STEP - 1);
+        if (error) {
+            const missing = /volunteers/.test(error.message || '') && /(does not exist|could not find|schema cache)/i.test(error.message || '');
+            $('volKpis').innerHTML = '';
+            $('volRoleList').innerHTML = $('volStateList').innerHTML = '<li class="empty-note">—</li>';
+            body.innerHTML = `<tr><td colspan="9" class="empty-note">${missing
+                ? 'Volunteer applications will show here once you run <b>database/supabase_volunteers_setup.sql</b> in Supabase.'
+                : 'Could not load volunteers: ' + escapeHtml(error.message)}</td></tr>`;
+            $('volCount').textContent = '';
+            return;
+        }
+        rows = rows.concat(data || []);
+        if (!data || data.length < STEP) break;
+        from += STEP;
+    }
+    allVolunteers = rows;
+    const badge = $('volBadge');
+    const fresh = rows.filter(r => (r.status || 'new') === 'new').length;
+    if (badge) { badge.textContent = fresh ? String(fresh) : ''; badge.hidden = !fresh; }
+    renderVolunteers();
+}
+
+function filteredVolunteers() {
+    const q = ($('volSearch').value || '').trim().toLowerCase();
+    const st = $('volStatusFilter').value;
+    return allVolunteers.filter(r => {
+        if (st && (r.status || 'new') !== st) return false;
+        if (q) {
+            const hay = [r.full_name, r.phone, r.email, r.state, r.role, r.time_commitment, r.motivation].map(x => String(x || '').toLowerCase());
+            if (!hay.some(x => x.includes(q))) return false;
+        }
+        return true;
+    });
+}
+
+function renderVolunteers() {
+    const all = allVolunteers;
+    const rows = filteredVolunteers();
+    const now = Date.now();
+    const count = s => all.filter(r => (r.status || 'new') === s).length;
+
+    // KPIs (whole list)
+    const k = $('volKpis'); k.textContent = '';
+    const kpi = (l, v, s, meter) => {
+        const c = FX.el('div', 'kpi'); c.append(FX.el('div', 'l', l), FX.el('div', 'v', v), FX.el('div', 's', s));
+        if (meter != null) { const m = FX.el('div', 'meter'); const i = FX.el('i'); i.style.width = Math.min(100, meter) + '%'; m.appendChild(i); c.appendChild(m); }
+        k.appendChild(c);
+    };
+    const week = all.filter(r => new Date(r.created_at).getTime() >= now - 7 * 864e5).length;
+    kpi('Applications', FX.fmt(all.length), 'all time');
+    kpi('Waiting for a call', FX.fmt(count('new')), `${FX.pctS(count('new'), all.length)} still new`, FX.pct(count('new'), all.length));
+    kpi('Last 7 days', FX.fmt(week), 'new applications');
+    kpi('Onboarded', FX.fmt(count('onboarded')), `${FX.pctS(count('onboarded'), all.length)} of applicants`, FX.pct(count('onboarded'), all.length));
+
+    // by role / by state (follow the table filters)
+    const list = (id, fn) => {
+        const ul = $(id);
+        const t = FX.tally(rows, fn).entries;
+        if (!t.length) { ul.innerHTML = '<li class="empty-note">No applications in this view.</li>'; return; }
+        const max = t[0][1];
+        ul.innerHTML = t.slice(0, 12).map(([name, n]) => `
+            <li class="break-row leaf">
+                <span class="break-name">${escapeHtml(name)}</span>
+                <span class="break-bar-track"><span class="break-bar" style="width:${Math.max(4, Math.round(n / max * 100))}%"></span></span>
+                <span class="break-count">${n.toLocaleString()}</span>
+                <span class="break-pct">${FX.pctS(n, rows.length)}</span>
+            </li>`).join('');
+    };
+    list('volRoleList', r => FX.val(r.role));
+    list('volStateList', r => FX.val(r.state));
+
+    $('volCount').textContent = rows.length === all.length ? `${all.length.toLocaleString()} total` : `${rows.length.toLocaleString()} of ${all.length.toLocaleString()}`;
+    const body = $('volTableBody');
+    if (!rows.length) { body.innerHTML = `<tr><td colspan="9" class="empty-note">${all.length ? 'No applications match.' : 'No volunteer applications yet.'}</td></tr>`; return; }
+    const d = s => new Date(s).toLocaleString('en-NG', { day: '2-digit', month: 'short', year: '2-digit', hour: '2-digit', minute: '2-digit' });
+    body.innerHTML = rows.slice(0, 500).map(r => {
+        const wa = waLink(r.phone);
+        const cur = r.status || 'new';
+        const opts = VOL_STATUS.map(([v, l]) => `<option value="${v}"${v === cur ? ' selected' : ''}>${l}</option>`).join('');
+        return `<tr>
+            <td class="mono">${escapeHtml(d(r.created_at))}</td>
+            <td><b>${escapeHtml(r.full_name || '')}</b></td>
+            <td class="mono">${wa ? `<a href="${wa}" target="_blank" rel="noopener" style="color:var(--green-dark)">${escapeHtml(r.phone)}</a>` : escapeHtml(r.phone || '')}</td>
+            <td>${r.email ? `<a href="mailto:${escapeHtml(r.email)}" style="color:var(--green-dark)">${escapeHtml(r.email)}</a>` : '—'}</td>
+            <td>${escapeHtml(r.state || '')}</td>
+            <td>${escapeHtml(r.role || '')}</td>
+            <td>${escapeHtml(r.time_commitment || '—')}</td>
+            <td><select class="status-select vol-status" data-v="${cur}" data-id="${escapeHtml(r.id)}">${opts}</select></td>
+            <td class="vol-why">${escapeHtml(r.motivation || '—')}</td>
+        </tr>`;
+    }).join('') + (rows.length > 500 ? `<tr><td colspan="9" class="empty-note">Showing the newest 500 — use search or Export CSV for the rest.</td></tr>` : '');
+}
+
+async function updateVolunteerStatus(sel) {
+    const id = sel.dataset.id, value = sel.value, prev = sel.dataset.v;
+    sel.disabled = true;
+    const { error } = await sb.from('volunteers').update({ status: value }).eq('id', id);
+    sel.disabled = false;
+    if (error) {
+        sel.value = prev;
+        alert('Could not update this volunteer: ' + error.message);
+        return;
+    }
+    sel.dataset.v = value;
+    const r = allVolunteers.find(x => String(x.id) === String(id));
+    if (r) r.status = value;
+    const badge = $('volBadge');
+    const fresh = allVolunteers.filter(x => (x.status || 'new') === 'new').length;
+    if (badge) { badge.textContent = fresh ? String(fresh) : ''; badge.hidden = !fresh; }
+    renderVolunteers();
+}
+
+$('volSearch').addEventListener('input', renderVolunteers);
+$('volStatusFilter').addEventListener('change', renderVolunteers);
+$('volTableBody').addEventListener('change', e => { const s = e.target.closest('.vol-status'); if (s) updateVolunteerStatus(s); });
+$('volExportBtn').addEventListener('click', () => downloadCsv('fixnaija-volunteers',
+    ['created_at', 'status', 'full_name', 'phone', 'email', 'state', 'role', 'time_commitment', 'motivation'], filteredVolunteers()));
+$('refreshLink').addEventListener('click', () => loadVolunteers());
+
+// ---------- duplicate phone numbers already in registrations ----------
+function renderDupNote() {
+    const box = $('insDup'); if (!box) return;
+    const groups = new Map();
+    allRows.forEach(r => {
+        const k = String(r.phone || '').replace(/\D/g, '').slice(-10);
+        if (k.length < 10) return;
+        if (!groups.has(k)) groups.set(k, []);
+        groups.get(k).push(r);
+    });
+    let extra = 0; const dupRows = [];
+    groups.forEach((list, k) => {
+        if (list.length < 2) return;
+        extra += list.length - 1;
+        list.slice().sort((a, b) => new Date(a.created_at) - new Date(b.created_at))
+            .forEach((r, i) => dupRows.push({ ...r, phone_key: k, copy: i === 0 ? 'first' : 'repeat ' + i }));
+    });
+    box.hidden = !extra;
+    if (!extra) return;
+    const people = allRows.length - extra;
+    $('insDupText').textContent = `${extra.toLocaleString()} registration${extra === 1 ? '' : 's'} reuse a phone number that had already registered, so the true number of people is about ${people.toLocaleString()}. New duplicates are blocked at sign-up.`;
+    $('insDupBtn').onclick = () => downloadCsv('fixnaija-duplicate-phones',
+        ['phone_key', 'copy', 'created_at', 'full_name', 'phone', 'whatsapp', 'email', 'state', 'lga', 'ward', 'group_name', 'id'], dupRows);
 }
 
 // ===== HELPERS =====
