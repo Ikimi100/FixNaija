@@ -11,1561 +11,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --green: #008751;
-            --charcoal: #1A1A2E;
-            --gold: #D4A017;
-            --white: #FFFFFF;
-            --light-gray: #F5F5F5;
-            --dark-overlay: rgba(26, 26, 46, 0.95);
-            --error: #E74C3C;
-            --success: #27AE60;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 80px;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--charcoal);
-            color: var(--white);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Archivo', sans-serif;
-        }
-
-        /* ===== STICKY NAVBAR ===== */
-        .navbar {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: rgba(26, 26, 46, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 0 40px;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .nav-left {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo-circle {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--green), #006b3f);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Archivo', sans-serif;
-            font-weight: 700;
-            font-size: 18px;
-            color: var(--white);
-            border: 2px solid rgba(212, 160, 23, 0.3);
-            box-shadow: 0 0 20px rgba(0, 135, 81, 0.3);
-        }
-
-        .logo-img {
-            width: 48px;
-            height: 48px;
-            object-fit: contain;
-            filter: drop-shadow(0 0 10px rgba(0, 135, 81, 0.3));
-        }
-
-        .brand-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .brand-name {
-            font-family: 'Archivo', sans-serif;
-            font-weight: 700;
-            font-size: 20px;
-            color: var(--white);
-            letter-spacing: -0.5px;
-        }
-
-        .brand-subline {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.6);
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--white);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -6px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--green);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-links a.active {
-            color: var(--green);
-        }
-
-        .nav-links a.active::after {
-            width: 100%;
-        }
-
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            gap: 5px;
-            width: 44px;
-            height: 44px;
-            background: rgba(0, 135, 81, 0.15);
-            border: 1px solid rgba(0, 135, 81, 0.4);
-            border-radius: 8px;
-            cursor: pointer;
-            padding: 0 10px;
-            flex-shrink: 0;
-        }
-
-        .menu-toggle span {
-            display: block;
-            height: 2px;
-            width: 100%;
-            background: var(--white);
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        .menu-toggle.open span:nth-child(1) {
-            transform: translateY(7px) rotate(45deg);
-        }
-
-        .menu-toggle.open span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .menu-toggle.open span:nth-child(3) {
-            transform: translateY(-7px) rotate(-45deg);
-        }
-
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 70px;
-            left: 0;
-            right: 0;
-            z-index: 999;
-            background: rgba(26, 26, 46, 0.98);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            flex-direction: column;
-            padding: 12px 20px 20px;
-        }
-
-        .mobile-menu.open {
-            display: flex;
-        }
-
-        .mobile-menu-link {
-            color: rgba(255, 255, 255, 0.85);
-            text-decoration: none;
-            font-family: 'Archivo', sans-serif;
-            font-weight: 600;
-            font-size: 16px;
-            padding: 14px 4px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        .mobile-menu-link:active {
-            color: var(--green);
-        }
-
-        .mobile-menu-register {
-            margin-top: 14px;
-            background: var(--green);
-            color: var(--white);
-            text-align: center;
-            border-radius: 10px;
-            border-bottom: none;
-            padding: 14px;
-            box-shadow: 0 4px 15px rgba(0, 135, 81, 0.3);
-        }
-
-        .register-btn {
-            background: var(--green);
-            color: var(--white);
-            border: none;
-            padding: 12px 28px;
-            border-radius: 8px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 135, 81, 0.3);
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .register-btn:hover {
-            background: #006b3f;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 135, 81, 0.4);
-        }
-
-        /* ===== HERO SECTION ===== */
-        .hero {
-            min-height: 50vh;
-            background: var(--charcoal);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            padding: 0 40px;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -20%;
-            left: -10%;
-            width: 60%;
-            height: 80%;
-            background: radial-gradient(ellipse, rgba(0, 135, 81, 0.15) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -10%;
-            right: -5%;
-            width: 50%;
-            height: 70%;
-            background: radial-gradient(ellipse, rgba(212, 160, 23, 0.1) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .hero-container {
-            max-width: 1400px;
-            width: 100%;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-            padding: 100px 0 60px;
-        }
-
-        .eyebrow-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(0, 135, 81, 0.1);
-            border: 1px solid rgba(0, 135, 81, 0.3);
-            padding: 8px 20px;
-            border-radius: 50px;
-            width: fit-content;
-            margin-bottom: 24px;
-        }
-
-        .pulse-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--green);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { 
-                transform: scale(1); 
-                opacity: 1; 
-                box-shadow: 0 0 0 0 rgba(0, 135, 81, 0.7);
-            }
-            50% { 
-                transform: scale(1.2); 
-                opacity: 0.8;
-                box-shadow: 0 0 0 8px rgba(0, 135, 81, 0);
-            }
-        }
-
-        .eyebrow-text {
-            font-family: 'Archivo', sans-serif;
-            font-weight: 600;
-            font-size: 13px;
-            color: var(--green);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .hero-headline {
-            font-family: 'Archivo', sans-serif;
-            font-weight: 700;
-            font-size: 52px;
-            line-height: 1.1;
-            color: var(--white);
-            letter-spacing: -1px;
-            max-width: 800px;
-            margin-bottom: 20px;
-        }
-
-        .hero-headline .highlight-green {
-            color: var(--green);
-        }
-
-        .hero-headline .highlight-gold {
-            color: var(--gold);
-        }
-
-        .hero-description {
-            font-size: 18px;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.7);
-            max-width: 640px;
-        }
-
-        /* ===== SAMPLE REPORTS CAROUSEL ===== */
-        .carousel-section {
-            background: var(--charcoal);
-            padding: 0 40px 80px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .carousel-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background:
-                linear-gradient(45deg, transparent 48%, rgba(0, 135, 81, 0.02) 49%, rgba(0, 135, 81, 0.02) 51%, transparent 52%),
-                linear-gradient(-45deg, transparent 48%, rgba(212, 160, 23, 0.01) 49%, rgba(212, 160, 23, 0.01) 51%, transparent 52%);
-            background-size: 30px 30px;
-            pointer-events: none;
-        }
-
-        .carousel-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .carousel-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .carousel-header .section-label {
-            justify-content: center;
-            margin-bottom: 16px;
-        }
-
-        .carousel-header .section-label::before,
-        .carousel-header .section-label::after {
-            display: none;
-        }
-
-        .carousel-headline {
-            font-family: 'Archivo', sans-serif;
-            font-weight: 700;
-            font-size: 36px;
-            color: var(--white);
-            letter-spacing: -1px;
-            margin-bottom: 12px;
-        }
-
-        .carousel-subheadline {
-            font-size: 16px;
-            color: rgba(255, 255, 255, 0.6);
-            max-width: 500px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        /* Carousel Wrapper */
-        .carousel-wrapper {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .carousel-track {
-            display: flex;
-            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .carousel-slide {
-            min-width: 100%;
-            position: relative;
-        }
-
-        .carousel-slide img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .carousel-slide-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 60px 40px 40px;
-            background: linear-gradient(to top, rgba(26, 26, 46, 0.95) 0%, rgba(26, 26, 46, 0.7) 50%, transparent 100%);
-        }
-
-        .carousel-slide-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--green);
-            color: var(--white);
-            padding: 6px 14px;
-            border-radius: 50px;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 12px;
-        }
-
-        .carousel-slide-tag .status-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--white);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        .carousel-slide-title {
-            font-family: 'Archivo', sans-serif;
-            font-weight: 700;
-            font-size: 28px;
-            color: var(--white);
-            margin-bottom: 8px;
-            letter-spacing: -0.5px;
-            max-width: 700px;
-        }
-
-        .carousel-slide-desc {
-            font-size: 15px;
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
-            max-width: 600px;
-        }
-
-        .carousel-slide-meta {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-top: 16px;
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .carousel-slide-meta span {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        /* Navigation Arrows */
-        .carousel-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 48px;
-            height: 48px;
-            background: rgba(26, 26, 46, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: var(--white);
-            font-size: 20px;
-            z-index: 10;
-            user-select: none;
-        }
-
-        .carousel-nav:hover {
-            background: var(--green);
-            border-color: var(--green);
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 4px 20px rgba(0, 135, 81, 0.4);
-        }
-
-        .carousel-nav.prev {
-            left: 20px;
-        }
-
-        .carousel-nav.next {
-            right: 20px;
-        }
-
-        /* Dots */
-        .carousel-dots {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 24px;
-        }
-
-        .carousel-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            padding: 0;
-        }
-
-        .carousel-dot:hover {
-            background: rgba(255, 255, 255, 0.4);
-        }
-
-        .carousel-dot.active {
-            background: var(--green);
-            width: 28px;
-            border-radius: 5px;
-            box-shadow: 0 0 12px rgba(0, 135, 81, 0.5);
-        }
-
-        /* Progress Bar */
-        .carousel-progress {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 3px;
-            background: var(--green);
-            transition: width 0.1s linear;
-            z-index: 10;
-            border-radius: 0 2px 2px 0;
-        }
-
-        /* ===== REPORT FORM SECTION ===== */
-        .report-section {
-            background: var(--light-gray);
-            padding: 80px 40px 120px;
-            position: relative;
-        }
-
-        .report-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .report-header {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-
-        .section-label {
-            font-family: 'Archivo', sans-serif;
-            font-weight: 700;
-            font-size: 13px;
-            color: var(--green);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .section-label::before {
-            content: '';
-            width: 40px;
-            height: 2px;
-            background: var(--green);
-        }
-
-        .section-label::after {
-            content: '';
-            width: 40px;
-            height: 2px;
-            background: var(--green);
-        }
-
-        .report-headline {
-            font-family: 'Archivo', sans-serif;
-            font-weight: 700;
-            font-size: 42px;
-            color: var(--charcoal);
-            letter-spacing: -1px;
-            margin-bottom: 16px;
-        }
-
-        .report-subheadline {
-            font-size: 17px;
-            color: rgba(26, 26, 46, 0.6);
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        .report-form {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 48px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-            border: 1px solid rgba(0, 0, 0, 0.06);
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            margin-bottom: 24px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .form-group.full-width {
-            grid-column: 1 / -1;
-        }
-
-        .form-section-label {
-            grid-column: 1 / -1;
-            font-family: 'Archivo', sans-serif;
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--gold);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 18px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-        }
-
-        .form-grid > .form-section-label:first-child {
-            margin-top: 0;
-        }
-
-        .form-label {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--charcoal);
-            letter-spacing: 0.3px;
-        }
-
-        .form-label .required {
-            color: var(--error);
-            margin-left: 2px;
-        }
-
-        .form-input,
-        .form-select,
-        .form-textarea {
-            padding: 14px 18px;
-            border-radius: 10px;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            background: var(--white);
-            color: var(--charcoal);
-            font-family: 'Poppins', sans-serif;
-            font-size: 15px;
-            outline: none;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        .form-input:focus,
-        .form-select:focus,
-        .form-textarea:focus {
-            border-color: var(--green);
-            box-shadow: 0 0 0 4px rgba(0, 135, 81, 0.1);
-        }
-
-        .form-input::placeholder,
-        .form-textarea::placeholder {
-            color: rgba(26, 26, 46, 0.4);
-        }
-
-        .form-textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .form-select {
-            cursor: pointer;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 14px center;
-            padding-right: 40px;
-        }
-
-        .form-select:disabled {
-            background-color: rgba(0, 0, 0, 0.03);
-            color: rgba(26, 26, 46, 0.4);
-            cursor: not-allowed;
-        }
-
-        .form-hint {
-            font-size: 12px;
-            color: rgba(26, 26, 46, 0.5);
-            margin-top: 4px;
-        }
-
-        .form-error {
-            font-size: 12px;
-            color: var(--error);
-            margin-top: 4px;
-            display: none;
-        }
-
-        .form-group.has-error .form-input,
-        .form-group.has-error .form-select,
-        .form-group.has-error .form-textarea {
-            border-color: var(--error);
-            box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.1);
-        }
-
-        .form-group.has-error .form-error {
-            display: block;
-        }
-
-        /* ===== VIDEO UPLOAD AREA ===== */
-        .video-upload-area {
-            grid-column: 1 / -1;
-            border: 2px dashed rgba(0, 135, 81, 0.3);
-            border-radius: 16px;
-            padding: 40px 24px;
-            text-align: center;
-            background: rgba(0, 135, 81, 0.02);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .video-upload-area:hover {
-            border-color: var(--green);
-            background: rgba(0, 135, 81, 0.04);
-        }
-
-        .video-upload-area.drag-over {
-            border-color: var(--green);
-            background: rgba(0, 135, 81, 0.08);
-            transform: scale(1.01);
-        }
-
-        .video-upload-area.has-file {
-            border-color: var(--success);
-            background: rgba(39, 174, 96, 0.04);
-        }
-
-        .video-upload-icon {
-            width: 64px;
-            height: 64px;
-            background: rgba(0, 135, 81, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 16px;
-            font-size: 28px;
-            transition: all 0.3s ease;
-        }
-
-        .video-upload-area:hover .video-upload-icon {
-            background: rgba(0, 135, 81, 0.15);
-            transform: translateY(-2px);
-        }
-
-        .video-upload-title {
-            font-family: 'Archivo', sans-serif;
-            font-weight: 700;
-            font-size: 18px;
-            color: var(--charcoal);
-            margin-bottom: 8px;
-        }
-
-        .video-upload-desc {
-            font-size: 14px;
-            color: rgba(26, 26, 46, 0.6);
-            margin-bottom: 16px;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .video-upload-btn {
-            display: inline-block;
-            padding: 10px 24px;
-            background: var(--green);
-            color: var(--white);
-            border-radius: 8px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-        }
-
-        .video-upload-btn:hover {
-            background: #006b3f;
-            transform: translateY(-2px);
-        }
-
-        .video-file-input {
-            display: none;
-        }
-
-        .video-preview {
-            display: none;
-            margin-top: 20px;
-            border-radius: 12px;
-            overflow: hidden;
-            background: var(--charcoal);
-            position: relative;
-        }
-
-        .video-preview.active {
-            display: block;
-        }
-
-        .video-preview video {
-            width: 100%;
-            max-height: 300px;
-            display: block;
-            border-radius: 12px;
-        }
-
-        .video-file-info {
-            display: none;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 16px;
-            padding: 12px 16px;
-            background: rgba(0, 135, 81, 0.08);
-            border-radius: 10px;
-            border: 1px solid rgba(0, 135, 81, 0.15);
-        }
-
-        .video-file-info.active {
-            display: flex;
-        }
-
-        .video-file-name {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--charcoal);
-            max-width: 300px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .video-file-meta {
-            font-size: 12px;
-            color: rgba(26, 26, 46, 0.5);
-        }
-
-        .video-remove-btn {
-            background: none;
-            border: none;
-            color: var(--error);
-            font-size: 20px;
-            cursor: pointer;
-            padding: 4px;
-            line-height: 1;
-            transition: transform 0.2s ease;
-        }
-
-        .video-remove-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .video-error {
-            display: none;
-            margin-top: 12px;
-            padding: 10px 16px;
-            background: rgba(231, 76, 60, 0.08);
-            border: 1px solid rgba(231, 76, 60, 0.2);
-            border-radius: 8px;
-            color: var(--error);
-            font-size: 13px;
-            font-weight: 500;
-        }
-
-        .video-error.active {
-            display: block;
-        }
-
-        /* ===== VIDEO UPLOAD PROGRESS ===== */
-        .video-progress {
-            display: none;
-            margin-top: 16px;
-        }
-        .video-progress.active {
-            display: block;
-        }
-        .video-progress-head {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--charcoal);
-            margin-bottom: 6px;
-        }
-        .video-progress.done .video-progress-head { color: var(--success); }
-        .video-progress.error .video-progress-head { color: var(--error); }
-        .video-progress-track {
-            width: 100%;
-            height: 10px;
-            background: rgba(0, 0, 0, 0.08);
-            border-radius: 6px;
-            overflow: hidden;
-        }
-        .video-progress-fill {
-            width: 0%;
-            height: 100%;
-            background: var(--green);
-            border-radius: 6px;
-            transition: width 0.2s ease;
-        }
-        .video-progress.done .video-progress-fill { background: var(--success); }
-        .video-progress.error .video-progress-fill { background: var(--error); }
-
-        /* ===== SUBMIT BUTTON ===== */
-        .form-submit {
-            width: 100%;
-            padding: 18px;
-            background: var(--green);
-            color: var(--white);
-            border: none;
-            border-radius: 12px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0, 135, 81, 0.3);
-            margin-top: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .form-submit:hover {
-            background: #006b3f;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(0, 135, 81, 0.4);
-        }
-
-        .form-submit:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .form-submit .spinner {
-            width: 20px;
-            height: 20px;
-            border: 2px solid rgba(255,255,255,0.3);
-            border-top-color: var(--white);
-            border-radius: 50%;
-            animation: spin 0.7s linear infinite;
-            display: none;
-        }
-
-        .form-submit.loading .spinner {
-            display: block;
-        }
-
-        .form-submit.loading .btn-text {
-            display: none;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* ===== SUCCESS MESSAGE ===== */
-        .form-success {
-            display: none;
-            background: rgba(0, 135, 81, 0.08);
-            border: 1px solid rgba(0, 135, 81, 0.2);
-            border-radius: 16px;
-            padding: 40px;
-            text-align: center;
-            margin-top: 24px;
-        }
-
-        .form-success.active {
-            display: block;
-            animation: fadeInUp 0.5s ease;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .form-success-icon {
-            width: 72px;
-            height: 72px;
-            background: var(--green);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            color: var(--white);
-            margin: 0 auto 20px;
-            box-shadow: 0 8px 24px rgba(0, 135, 81, 0.3);
-        }
-
-        .form-success h3 {
-            font-family: 'Archivo', sans-serif;
-            font-weight: 700;
-            font-size: 24px;
-            color: var(--charcoal);
-            margin-bottom: 10px;
-        }
-
-        .form-success p {
-            font-size: 15px;
-            color: rgba(26, 26, 46, 0.65);
-            line-height: 1.6;
-            max-width: 500px;
-            margin: 0 auto 20px;
-        }
-
-        .success-detail {
-            display: inline-block;
-            background: rgba(0, 135, 81, 0.1);
-            border: 1px solid rgba(0, 135, 81, 0.2);
-            border-radius: 8px;
-            padding: 10px 20px;
-            font-size: 14px;
-            color: var(--green);
-            font-weight: 600;
-        }
-
-        .success-actions {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            margin-top: 24px;
-        }
-
-        .success-btn {
-            padding: 12px 24px;
-            border-radius: 10px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .success-btn-primary {
-            background: var(--green);
-            color: var(--white);
-            border: none;
-            box-shadow: 0 4px 15px rgba(0, 135, 81, 0.3);
-        }
-
-        .success-btn-primary:hover {
-            background: #006b3f;
-            transform: translateY(-2px);
-        }
-
-        .success-btn-secondary {
-            background: transparent;
-            color: var(--charcoal);
-            border: 1px solid rgba(0, 0, 0, 0.15);
-        }
-
-        .success-btn-secondary:hover {
-            border-color: var(--green);
-            color: var(--green);
-            transform: translateY(-2px);
-        }
-
-        /* ===== HOW IT WORKS SECTION ===== */
-        .how-it-works {
-            background: var(--charcoal);
-            padding: 100px 40px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .how-it-works::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-                background:
-                linear-gradient(45deg, transparent 48%, rgba(0, 135, 81, 0.02) 49%, rgba(0, 135, 81, 0.02) 51%, transparent 52%),
-                linear-gradient(-45deg, transparent 48%, rgba(212, 160, 23, 0.01) 49%, rgba(212, 160, 23, 0.01) 51%, transparent 52%);
-            background-size: 30px 30px;
-            pointer-events: none;
-        }
-
-        .how-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .how-header {
-            text-align: center;
-            margin-bottom: 56px;
-        }
-
-        .how-header .section-label {
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .how-header .section-label::before,
-        .how-header .section-label::after {
-            display: none;
-        }
-
-        .how-headline {
-            font-family: 'Archivo', sans-serif;
-            font-weight: 700;
-            font-size: 42px;
-            color: var(--white);
-            letter-spacing: -1px;
-            margin-bottom: 16px;
-        }
-
-        .how-subheadline {
-            font-size: 17px;
-            color: rgba(255, 255, 255, 0.6);
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        .how-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-        }
-
-        .how-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 40px 32px;
-            text-align: center;
-            transition: all 0.4s ease;
-            position: relative;
-        }
-
-        .how-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(0, 135, 81, 0.3);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-        }
-
-        .how-step {
-            width: 48px;
-            height: 48px;
-            background: var(--green);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Archivo', sans-serif;
-            font-weight: 700;
-            font-size: 20px;
-            color: var(--white);
-            margin: 0 auto 20px;
-            box-shadow: 0 8px 24px rgba(0, 135, 81, 0.3);
-        }
-
-        .how-card-title {
-            font-family: 'Archivo', sans-serif;
-            font-weight: 700;
-            font-size: 20px;
-            color: var(--white);
-            margin-bottom: 12px;
-        }
-
-        .how-card-desc {
-            font-size: 15px;
-            color: rgba(255, 255, 255, 0.6);
-            line-height: 1.7;
-        }
-
-        /* ===== FOOTER ===== */
-        .contact-section {
-            background: var(--charcoal);
-            padding: 100px 40px 60px;
-            position: relative;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .contact-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr 1fr;
-            gap: 60px;
-            margin-bottom: 60px;
-        }
-
-        .contact-brand {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .contact-brand-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .contact-brand-logo .logo-circle {
-            width: 44px;
-            height: 44px;
-            font-size: 16px;
-        }
-
-        .contact-brand-name {
-            font-family: 'Archivo', sans-serif;
-            font-weight: 700;
-            font-size: 20px;
-            color: var(--white);
-        }
-
-        .contact-brand-desc {
-            font-size: 15px;
-            color: rgba(255, 255, 255, 0.5);
-            line-height: 1.7;
-            max-width: 320px;
-        }
-
-        .contact-socials {
-            display: flex;
-            gap: 12px;
-            margin-top: 8px;
-        }
-
-        .social-link {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.6);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 18px;
-        }
-
-        .social-link:hover {
-            background: var(--green);
-            border-color: var(--green);
-            color: var(--white);
-            transform: translateY(-3px);
-        }
-
-        .contact-column h4 {
-            font-family: 'Archivo', sans-serif;
-            font-weight: 700;
-            font-size: 14px;
-            color: var(--white);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 24px;
-        }
-
-        .contact-links {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .contact-links a {
-            color: rgba(255, 255, 255, 0.5);
-            text-decoration: none;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .contact-links a:hover {
-            color: var(--green);
-            transform: translateX(4px);
-        }
-
-        .contact-divider {
-            height: 1px;
-            background: rgba(255, 255, 255, 0.06);
-            margin-bottom: 32px;
-        }
-
-        .contact-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-
-        .contact-copyright {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.35);
-        }
-
-        .contact-copyright span {
-            color: var(--green);
-            font-weight: 600;
-        }
-
-        .contact-legal {
-            display: flex;
-            gap: 24px;
-        }
-
-        .contact-legal a {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.35);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .contact-legal a:hover {
-            color: var(--white);
-        }
-
-        /* ===== WARD LOADING ===== */
-        .ward-loading {
-            display: none;
-            align-items: center;
-            gap: 8px;
-            font-size: 13px;
-            color: rgba(26, 26, 46, 0.5);
-            margin-top: 8px;
-        }
-
-        .ward-loading.active {
-            display: flex;
-        }
-
-        .ward-loading-spinner {
-            width: 14px;
-            height: 14px;
-            border: 2px solid rgba(0, 135, 81, 0.3);
-            border-top-color: var(--green);
-            border-radius: 50%;
-            animation: spin 0.7s linear infinite;
-            flex-shrink: 0;
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 1024px) {
-            .carousel-slide img {
-                height: 400px;
-            }
-            .carousel-slide-title {
-                font-size: 22px;
-            }
-            .how-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .contact-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 40px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 0 20px;
-                height: 70px;
-            }
-            .nav-links {
-                display: none;
-            }
-            .menu-toggle {
-                display: flex;
-            }
-            .register-btn {
-                display: none;
-            }
-            .hero {
-                padding: 0 20px;
-            }
-            .hero-headline {
-                font-size: 36px;
-            }
-            .carousel-section,
-            .report-section,
-            .how-it-works,
-            .contact-section {
-                padding-left: 20px;
-                padding-right: 20px;
-            }
-            .carousel-slide img {
-                height: 300px;
-            }
-            .carousel-slide-overlay {
-                display: none;
-            }
-            .carousel-slide-title {
-                font-size: 20px;
-            }
-            .carousel-slide-desc {
-                font-size: 13px;
-            }
-            .carousel-nav {
-                width: 36px;
-                height: 36px;
-                font-size: 16px;
-            }
-            .carousel-nav.prev { left: 10px; }
-            .carousel-nav.next { right: 10px; }
-            .report-headline,
-            .how-headline,
-            .carousel-headline {
-                font-size: 32px;
-            }
-            .report-form {
-                padding: 32px 24px;
-            }
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-            .how-grid {
-                grid-template-columns: 1fr;
-            }
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            .contact-bottom {
-                flex-direction: column;
-                text-align: center;
-            }
-            .success-actions {
-                flex-direction: column;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-headline {
-                font-size: 28px;
-            }
-            .carousel-slide img {
-                height: 250px;
-            }
-            .carousel-slide-title {
-                font-size: 18px;
-            }
-            .video-upload-area {
-                padding: 24px 16px;
-            }
-        }
-    </style>
 <!-- SEO / social tags -->
 <meta name="description" content="Report a community issue — photograph and geotag failing public projects in your ward so FixNaija can push for accountability.">
 <link rel="canonical" href="https://www.fixnaijamovement.com.ng/report-issue.html">
@@ -1580,95 +25,220 @@
 <meta name="twitter:title" content="Report a Community Issue — FixNaija Movement">
 <meta name="twitter:description" content="Report a community issue — photograph and geotag failing public projects in your ward so FixNaija can push for accountability.">
 <meta name="twitter:image" content="https://www.fixnaijamovement.com.ng/images/logo.png">
+<meta name="theme-color" content="#00663a">
+<link rel="stylesheet" href="assets/fixnaija-menu.css">
+<link rel="stylesheet" href="assets/fixnaija-theme.css">
+<link rel="stylesheet" href="assets/fixnaija-inner.css">
+<style>
+  :root{--error:#b3261e;--success:#007a3d}
+  .section-label{display:inline-flex;align-items:center;gap:12px;font-family:var(--display);font-weight:700;font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--green)}
+  .section-label::before{content:"";width:34px;height:3px;flex:0 0 34px;background:linear-gradient(90deg,var(--green) 0 12px,transparent 12px 20px,var(--orange) 20px 34px);border-radius:2px}
+  .rp-head{text-align:center;max-width:720px;margin:0 auto 44px}
+  .rp-head h2{font-size:clamp(2rem,4.4vw,3.1rem);letter-spacing:-.04em;line-height:1.02;margin:16px 0 14px}
+  .rp-head p{color:var(--muted);font-size:1.04rem}
+  /* sample reports carousel */
+  .carousel-section{padding:clamp(64px,8vw,104px) 0;background:var(--paper)}
+  .carousel-container{width:min(100% - 2*var(--gut),1180px);margin:0 auto}
+  .carousel-wrapper{position:relative;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--rule);background:var(--ink)}
+  .carousel-track{display:flex;transition:transform .6s cubic-bezier(.25,.46,.45,.94)}
+  .carousel-slide{min-width:100%;position:relative}
+  .carousel-slide img{width:100%;height:520px;object-fit:cover;display:block}
+  .carousel-slide-overlay{position:absolute;bottom:0;left:0;right:0;padding:80px 40px 40px;background:linear-gradient(to top,rgba(13,20,15,.94) 0%,rgba(13,20,15,.6) 55%,transparent 100%)}
+  .carousel-slide-tag{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--ink);padding:7px 12px;border-radius:4px;font-family:var(--display);font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.16em;margin-bottom:14px}
+  .carousel-slide-tag .status-dot{width:7px;height:7px;background:var(--orange);border-radius:50%;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  .carousel-slide-title{font-family:var(--display);font-weight:800;font-size:clamp(1.4rem,3vw,2.1rem);color:#fff;margin-bottom:10px;letter-spacing:-.035em;line-height:1.1;max-width:720px}
+  .carousel-slide-desc{font-size:.95rem;color:rgba(255,255,255,.8);line-height:1.65;max-width:620px}
+  .carousel-slide-meta{display:flex;flex-wrap:wrap;gap:16px;margin-top:16px;font-size:.8rem;color:rgba(255,255,255,.62)}
+  .carousel-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;background:#fff;border:1px solid var(--rule);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,color .2s,transform .2s;color:var(--ink);font-size:1.4rem;z-index:10;user-select:none;box-shadow:0 8px 20px -8px rgba(13,20,15,.5)}
+  .carousel-nav:hover{background:var(--green);color:#fff;border-color:var(--green)}
+  .carousel-nav.prev{left:18px}.carousel-nav.next{right:18px}
+  .carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:22px}
+  .carousel-dot{width:10px;height:10px;border-radius:50%;background:var(--rule-2);border:none;cursor:pointer;transition:all .3s;padding:0}
+  .carousel-dot:hover{background:var(--faint)}
+  .carousel-dot.active{background:var(--green);width:30px;border-radius:5px}
+  .carousel-progress{position:absolute;bottom:0;left:0;height:4px;background:var(--orange);transition:width .1s linear;z-index:10}
+  @media(max-width:1024px){.carousel-slide img{height:420px}}
+  @media(max-width:768px){
+    .carousel-slide img{height:260px}
+    .carousel-slide-overlay{position:static;background:var(--ink);padding:22px 20px 26px}
+    .carousel-slide-desc{font-size:.88rem}
+    .carousel-nav{width:38px;height:38px;font-size:1.1rem;top:130px}
+    .carousel-nav.prev{left:10px}.carousel-nav.next{right:10px}
+  }
+  /* report form */
+  .report-section{background:var(--paper-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:clamp(64px,8vw,104px) 0}
+  .report-container{width:min(100% - 2*var(--gut),900px);margin:0 auto}
+  .report-form{background:#fff;border-radius:14px;padding:clamp(24px,4vw,48px);box-shadow:var(--shadow);border:1px solid var(--rule)}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px}
+  @media(max-width:640px){.form-grid{grid-template-columns:1fr}}
+  .form-group{display:flex;flex-direction:column;gap:8px;min-width:0}
+  .form-group.full-width{grid-column:1/-1}
+  .form-section-label{grid-column:1/-1;display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.22em;color:var(--green);margin-top:22px;padding-bottom:12px;border-bottom:1px solid var(--rule)}
+  .form-grid>.form-section-label:first-child{margin-top:0}
+  .form-label{font-family:var(--display);font-size:.84rem;font-weight:700;color:var(--ink)}
+  .form-label .required{color:var(--orange-2);margin-left:2px}
+  .form-hint{font-size:.76rem;color:var(--faint)!important;font-weight:400}
+  .form-input,.form-select,.form-textarea{height:54px;padding:0 16px;border-radius:8px;border:1px solid var(--rule-2);background:#fff;color:var(--ink);font-family:var(--text);font-size:.95rem;outline:none;transition:border-color .2s,box-shadow .2s;width:100%}
+  .form-textarea{height:auto;min-height:140px;padding:14px 16px;resize:vertical;line-height:1.6}
+  .form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--green);box-shadow:0 0 0 4px rgba(0,102,58,.12)}
+  .form-input::placeholder,.form-textarea::placeholder{color:var(--faint)}
+  .form-select{cursor:pointer;appearance:none;-webkit-appearance:none;padding-right:42px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23626b63' stroke-width='1.6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+  .form-select:disabled{background-color:var(--paper-2);color:var(--faint);cursor:not-allowed}
+  .form-error{font-size:.78rem;color:var(--error);display:none}
+  .form-group.has-error .form-input,.form-group.has-error .form-select,.form-group.has-error .form-textarea{border-color:var(--error);box-shadow:0 0 0 4px rgba(179,38,30,.1)}
+  .form-group.has-error .form-error{display:block}
+  .ward-loading{display:none;align-items:center;gap:8px;font-size:.8rem;color:var(--muted)}
+  .ward-loading.active{display:flex}
+  .ward-loading-spinner{width:14px;height:14px;border:2px solid rgba(0,102,58,.25);border-top-color:var(--green);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .video-upload-area{grid-column:1/-1;border:2px dashed #cfe5d8;border-radius:12px;padding:38px 22px;text-align:center;background:var(--paper-2);transition:border-color .2s,background .2s,transform .2s;cursor:pointer;position:relative;overflow:hidden}
+  .video-upload-area:hover{border-color:var(--green);background:var(--green-tint)}
+  .video-upload-area.drag-over{border-color:var(--green);background:var(--green-tint);transform:scale(1.01)}
+  .video-upload-area.has-file{border-color:var(--green);border-style:solid;background:#fff}
+  .video-upload-icon{width:64px;height:64px;background:#fff;border:1px solid var(--rule);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:1.6rem}
+  .video-upload-title{font-family:var(--display);font-weight:800;font-size:1.15rem;color:var(--ink);margin-bottom:8px}
+  .video-upload-desc{font-size:.86rem;color:var(--muted);margin:0 auto 18px;max-width:420px}
+  .video-upload-btn{display:inline-flex;align-items:center;height:44px;padding:0 20px;background:var(--ink);color:#fff;border-radius:6px;font-family:var(--text);font-weight:600;font-size:.86rem;cursor:pointer;transition:background .2s;border:none}
+  .video-upload-btn:hover{background:var(--green)}
+  .video-file-input{display:none}
+  .video-preview{display:none;margin-top:20px;border-radius:10px;overflow:hidden;background:var(--ink)}
+  .video-preview.active{display:block}
+  .video-preview video{width:100%;max-height:300px;display:block}
+  .video-file-info{display:none;align-items:center;justify-content:center;gap:12px;margin-top:16px;padding:12px 16px;background:var(--green-tint);border-radius:8px;border:1px solid #cfe5d8}
+  .video-file-info.active{display:flex}
+  .video-file-name{font-size:.88rem;font-weight:600;color:var(--ink);max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .video-file-meta{font-size:.76rem;color:var(--muted)}
+  .video-remove-btn{background:none;border:none;color:var(--error);font-size:1.3rem;cursor:pointer;padding:4px;line-height:1}
+  .video-error{display:none;margin-top:12px;padding:10px 16px;background:#fdecea;border:1px solid #f5c2bd;border-radius:8px;color:var(--error);font-size:.82rem;font-weight:500}
+  .video-error.active{display:block}
+  .video-progress{display:none;margin-top:16px;text-align:left}
+  .video-progress.active{display:block}
+  .video-progress-head{display:flex;align-items:center;justify-content:space-between;font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:6px}
+  .video-progress.done .video-progress-head{color:var(--success)}
+  .video-progress.error .video-progress-head{color:var(--error)}
+  .video-progress-track{width:100%;height:10px;background:var(--paper-3);border-radius:6px;overflow:hidden}
+  .video-progress-fill{width:0%;height:100%;background:var(--green);border-radius:6px;transition:width .2s ease}
+  .video-progress.done .video-progress-fill{background:var(--success)}
+  .video-progress.error .video-progress-fill{background:var(--error)}
+  .form-submit{width:100%;height:60px;background:var(--green);color:#fff;border:none;border-radius:8px;font-family:var(--text);font-weight:600;font-size:1.02rem;letter-spacing:.02em;cursor:pointer;transition:background .2s,transform .2s;box-shadow:0 16px 30px -14px rgba(0,102,58,.8);margin-top:8px;display:flex;align-items:center;justify-content:center;gap:10px}
+  .form-submit .btn-text::after{content:" →"}
+  .form-submit:hover{background:#00552f;transform:translateY(-1px)}
+  .form-submit:disabled{opacity:.65;cursor:not-allowed;transform:none}
+  .form-submit .spinner{width:20px;height:20px;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:none}
+  .form-submit.loading .spinner{display:block}
+  .form-submit.loading .btn-text{display:none}
+  .form-success{display:none;position:relative;overflow:hidden;background:var(--green-deep);color:#cfe0d5;border-radius:14px;padding:clamp(32px,5vw,52px);text-align:center;margin-top:24px}
+  .form-success::before{content:"";position:absolute;inset:0;background-image:var(--grain);opacity:.12;pointer-events:none}
+  .form-success::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,var(--green-3) 0 50%,var(--orange) 50% 100%)}
+  .form-success>*{position:relative}
+  .form-success.active{display:block;animation:fadeInUp .5s ease}
+  @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+  .form-success-icon{width:72px;height:72px;background:var(--green-3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;color:#fff;margin:0 auto 20px;box-shadow:0 0 0 8px rgba(0,166,81,.2)}
+  .form-success h3{font-size:clamp(1.5rem,3vw,2rem);letter-spacing:-.03em;color:#fff;margin-bottom:10px}
+  .form-success p{font-size:.95rem;color:rgba(255,255,255,.8);line-height:1.7;max-width:520px;margin:0 auto 20px}
+  .success-detail{display:inline-block;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:10px 18px;font-size:.88rem;color:#fff;font-weight:600}
+  .success-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+  .success-btn{display:inline-flex;align-items:center;height:48px;padding:0 20px;border-radius:6px;font-family:var(--text);font-weight:600;font-size:.88rem;text-decoration:none;transition:background .2s,border-color .2s}
+  .success-btn-primary{background:var(--orange);color:#fff}
+  .success-btn-primary:hover{background:var(--orange-2)}
+  .success-btn-secondary{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.35)}
+  .success-btn-secondary:hover{border-color:#fff}
+  /* how it works */
+  .how-it-works{padding:clamp(64px,8vw,104px) 0;background:var(--paper)}
+  .how-container{width:min(100% - 2*var(--gut),1180px);margin:0 auto}
+  .how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:900px){.how-grid{grid-template-columns:1fr}}
+  .how-card{background:#fff;border:1px solid var(--rule);border-radius:12px;padding:34px 30px;transition:transform .25s,box-shadow .25s}
+  .how-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+  .how-step{font-family:var(--display);font-weight:800;font-size:3rem;line-height:1;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1.4px var(--green);margin-bottom:18px}
+  .how-card:nth-child(2) .how-step{-webkit-text-stroke-color:var(--orange)}
+  .how-card-title{font-size:1.2rem;color:var(--ink);margin-bottom:10px;letter-spacing:-.02em}
+  .how-card-desc{font-size:.94rem;color:var(--muted);line-height:1.75}
+</style>
 </head>
-<body>
+<body class="fx-inner">
 
     <!-- ===== STICKY NAVBAR ===== -->
-    <nav class="navbar">
-        <div class="nav-left">
-            <a href="index.html" class="logo-container" style="text-decoration:none;">
-                <img src="images/logo.png" alt="FixNaija Movement logo" class="logo-img">
-                <div class="brand-info">
-                    <span class="brand-name">FixNaija Movement</span>
-                    <span class="brand-subline">People's Grassroots Network</span>
-                </div>
-            </a>
-        </div>
-
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="index.html#about">About</a></li>
-            <li><a href="index.html#events">Events</a></li>
-            <li><a href="index.html#news">News</a></li>
-            <li><a href="index.html#states">States & LGAs</a></li>
-            <li><a href="index.html#gallery">Gallery</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
-        </ul>
-
-        <a href="index.html#register" class="register-btn">Register</a>
-
-        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
-            <span></span><span></span><span></span>
-        </button>
-    </nav>
+    <nav class="navbar" id="navbar">
+  <div class="nav-in">
+    <div class="brand-group">
+      <a class="brand" href="index.html">
+        <span class="badge"><img src="images/logo.png" alt="FixNaija Movement logo" width="54" height="54"></span>
+        <span><span class="bn">FixNaija Movement</span><span class="bs">Adebayo · Bugaje · 2027</span></span>
+      </a>
+      <a class="brand-sdp" href="index.html#ticket" title="Social Democratic Party · Adebayo–Bugaje 2027"><img src="images/sdp-mark.png" alt="SDP — Social Democratic Party" width="52" height="28"></a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html#movement">Our Movement</a></li>
+      <li><a href="index.html#ticket">The Ticket</a></li>
+      <li><a href="index.html#blueprint">Blueprint</a></li>
+      <li><a href="index.html#answers">The Answers</a></li>
+      <li><a href="find-lga.html">States</a></li>
+      <li><a href="index.html#news">News</a></li>
+      <li><a href="events.html">Events</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="register.html" class="btn btn-green btn-sm">Register →</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
 
     <!-- ===== MOBILE MENU ===== -->
-    <link rel="stylesheet" href="assets/fixnaija-menu.css">
     <div class="mobile-menu" id="mobileMenu">
-        <div class="mm-head">
-            <a class="mm-brand" href="index.html"><img src="images/logo.png" alt="FixNaija logo"><span><span class="mm-bn">FixNaija Movement</span><span class="mm-bs">People's Grassroots Network</span></span></a>
-            <button class="mm-close" id="menuClose" aria-label="Close menu">&times;</button>
-        </div>
-        <div class="mm-body">
-            <div class="mm-label">Navigate</div>
-            <a class="mm-item" href="index.html#home"><span class="mm-ico">🏠</span><span class="mm-text"><b>Home</b><small>Welcome to FixNaija</small></span><span class="mm-arrow">›</span></a>
-            <a class="mm-item" href="about.html"><span class="mm-ico">📖</span><span class="mm-text"><b>About</b><small>Our story &amp; the six pillars</small></span><span class="mm-arrow">›</span></a>
-            <a class="mm-item" href="civic-resource.html"><span class="mm-ico">⚖️</span><span class="mm-text"><b>Civic Hub</b><small>Rights, PVC &amp; accountability</small></span><span class="mm-arrow">›</span></a>
-            <a class="mm-item" href="volunteer.html"><span class="mm-ico">🤝</span><span class="mm-text"><b>Volunteer</b><small>Lend your skills</small></span><span class="mm-arrow">›</span></a>
-            <a class="mm-item" href="leadership.html"><span class="mm-ico">👤</span><span class="mm-text"><b>Leadership</b><small>Meet the Convener</small></span><span class="mm-arrow">›</span></a>
-            <a class="mm-item" href="events.html"><span class="mm-ico">📅</span><span class="mm-text"><b>Upcoming Events</b><small>Town halls &amp; trainings</small></span><span class="mm-arrow">›</span></a>
-            <a class="mm-item" href="gallery.html"><span class="mm-ico">🖼️</span><span class="mm-text"><b>Media Gallery</b><small>Moments from the movement</small></span><span class="mm-arrow">›</span></a>
-            <a class="mm-item" href="find-lga.html"><span class="mm-ico">📍</span><span class="mm-text"><b>States &amp; LGAs</b><small>Find your community</small></span><span class="mm-arrow">›</span></a>
-            <a class="mm-item" href="ask-fixnaija.html"><span class="mm-ico">💬</span><span class="mm-text"><b>Ask FixNaija</b><small>Civic AI assistant</small></span><span class="mm-arrow">›</span></a>
-            <a class="mm-item" href="report-issue.html"><span class="mm-ico">📢</span><span class="mm-text"><b>Report an Issue</b><small>Flag a community problem</small></span><span class="mm-arrow">›</span></a>
-            <div class="mm-cta">
-                <span class="badge">✨ Join the movement</span>
-                <h4>Be part of the repair work.</h4>
-                <p>Find your LGA and take your seat at the table.</p>
-                <a class="mm-cta-btn" href="register.html">Register With FixNaija →</a>
-            </div>
-            <div class="mm-label">Follow FixNaija</div>
-            <div class="mm-social">
-                <a href="https://www.facebook.com/share/1dUGvvT1ph/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.5-1.5h1.4V5c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1V11H7.6v3H10v7h3.5z"/></svg></a>
-                <a href="https://www.instagram.com/fixnaijamovement?igsh=MWJlNHVycDh4cDJiMw==" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c2.7 0 3.1 0 4.1.1 1.1 0 1.8.2 2.4.5.7.2 1.2.6 1.8 1.1.5.6.9 1.1 1.1 1.8.3.6.5 1.3.5 2.4.1 1 .1 1.4.1 4.1s0 3.1-.1 4.1c0 1.1-.2 1.8-.5 2.4-.2.7-.6 1.2-1.1 1.8-.6.5-1.1.9-1.8 1.1-.6.3-1.3.5-2.4.5-1 .1-1.4.1-4.1.1s-3.1 0-4.1-.1c-1.1 0-1.8-.2-2.4-.5-.7-.2-1.2-.6-1.8-1.1-.5-.6-.9-1.1-1.1-1.8-.3-.6-.5-1.3-.5-2.4C2 15.1 2 14.7 2 12s0-3.1.1-4.1c0-1.1.2-1.8.5-2.4.2-.7.6-1.2 1.1-1.8.6-.5 1.1-.9 1.8-1.1.6-.3 1.3-.5 2.4-.5C8.9 2 9.3 2 12 2zm0 1.8c-2.7 0-3 0-4 .1-.9 0-1.4.2-1.7.3-.4.2-.7.4-1 .7-.3.3-.5.6-.7 1-.1.3-.3.8-.3 1.7-.1 1-.1 1.3-.1 4s0 3 .1 4c0 .9.2 1.4.3 1.7.2.4.4.7.7 1 .3.3.6.5 1 .7.3.1.8.3 1.7.3 1 .1 1.3.1 4 .1s3 0 4-.1c.9 0 1.4-.2 1.7-.3.4-.2.7-.4 1-.7.3-.3.5-.6.7-1 .1-.3.3-.8.3-1.7.1-1 .1-1.3.1-4s0-3-.1-4c0-.9-.2-1.4-.3-1.7-.2-.4-.4-.7-.7-1-.3-.3-.6-.5-1-.7-.3-.1-.8-.3-1.7-.3-1-.1-1.3-.1-4-.1zm0 3.1a5.1 5.1 0 1 1 0 10.2 5.1 5.1 0 0 1 0-10.2zm0 8.4a3.3 3.3 0 1 0 0-6.6 3.3 3.3 0 0 0 0 6.6zm6.5-8.6a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z"/></svg></a>
-                <a href="https://x.com/FixNaijaMVMT" target="_blank" rel="noopener" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.21-6.82-5.96 6.82H1.68l7.73-8.84L1.25 2.25H8.08l4.71 6.23 5.45-6.23zm-1.16 17.52h1.83L7.08 4.13H5.12l11.96 15.64z"/></svg></a>
-                <a href="https://www.tiktok.com/@fixnaijamovement_?_r=1&_t=ZS-97YDLA5zz53" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 1 1-2.59-2.59c.27 0 .53.04.78.12V9.79a5.7 5.7 0 0 0-.78-.06 5.69 5.69 0 1 0 5.69 5.69V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3a4.3 4.3 0 0 1-3.25-1.48z"/></svg></a>
-            </div>
-            <div class="mm-copy">© 2026 FixNaija Movement · One Nigeria. 774 Communities.</div>
-        </div>
+  <div class="mm-head">
+    <a class="mm-brand" href="index.html"><img src="images/logo.png" alt="FixNaija logo"><span><span class="mm-bn">FixNaija Movement</span><span class="mm-bs">People's Grassroots Network</span></span></a>
+    <button class="mm-close" id="menuClose" aria-label="Close menu">&times;</button>
+  </div>
+  <div class="mm-body">
+    <div class="mm-label">Navigate</div>
+    <a class="mm-item" href="index.html#home"><span class="mm-ico">🏠</span><span class="mm-text"><b>Home</b><small>Welcome to FixNaija</small></span><span class="mm-arrow">›</span></a>
+    <a class="mm-item" href="index.html#ticket"><span class="mm-ico"><img src="images/sdp-mark.png" alt=""></span><span class="mm-text"><b>The 2027 Ticket</b><small>Adebayo &amp; Bugaje · SDP</small></span><span class="mm-arrow">›</span></a>
+    <a class="mm-item" href="index.html#blueprint"><span class="mm-ico">✈️</span><span class="mm-text"><b>The Blueprint</b><small>Farewell to Poverty &amp; Insecurity</small></span><span class="mm-arrow">›</span></a>
+    <a class="mm-item" href="index.html#answers"><span class="mm-ico">🛠️</span><span class="mm-text"><b>The Answers</b><small>9 deep problems · the repair plan</small></span><span class="mm-arrow">›</span></a>
+    <a class="mm-item" href="about.html"><span class="mm-ico">📖</span><span class="mm-text"><b>About</b><small>Our story &amp; the pillars</small></span><span class="mm-arrow">›</span></a>
+    <a class="mm-item" href="civic-resource.html"><span class="mm-ico">⚖️</span><span class="mm-text"><b>Civic Hub</b><small>Rights, PVC &amp; accountability</small></span><span class="mm-arrow">›</span></a>
+    <a class="mm-item" href="volunteer.html"><span class="mm-ico">🤝</span><span class="mm-text"><b>Volunteer</b><small>Lend your skills</small></span><span class="mm-arrow">›</span></a>
+    <a class="mm-item" href="events.html"><span class="mm-ico">📅</span><span class="mm-text"><b>Upcoming Events</b><small>Town halls &amp; trainings</small></span><span class="mm-arrow">›</span></a>
+    <a class="mm-item" href="gallery.html"><span class="mm-ico">🖼️</span><span class="mm-text"><b>Media Gallery</b><small>Moments from the movement</small></span><span class="mm-arrow">›</span></a>
+    <a class="mm-item" href="find-lga.html"><span class="mm-ico">📍</span><span class="mm-text"><b>States &amp; LGAs</b><small>Find your community</small></span><span class="mm-arrow">›</span></a>
+    <a class="mm-item" href="ask-fixnaija.html"><span class="mm-ico">💬</span><span class="mm-text"><b>Ask FixNaija</b><small>Civic AI assistant</small></span><span class="mm-arrow">›</span></a>
+    <a class="mm-item" href="report-issue.html"><span class="mm-ico">📢</span><span class="mm-text"><b>Report an Issue</b><small>Flag a community problem</small></span><span class="mm-arrow">›</span></a>
+    <div class="mm-cta">
+      <span class="badge">✨ Join the movement</span>
+      <h4>Be part of the repair work.</h4>
+      <p>Find your LGA and take your seat at the table.</p>
+      <a class="mm-cta-btn" href="register.html">Register With FixNaija →</a>
     </div>
+    <div class="mm-label">Follow FixNaija</div>
+    <div class="mm-social">
+      <a href="https://www.facebook.com/share/18KhK4YqTC/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.5-1.5h1.4V5c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1V11H7.6v3H10v7h3.5z"/></svg></a>
+      <a href="https://www.instagram.com/fixnaijanowmovement?igsh=YXM1amNrbDB0c2k0" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c2.7 0 3.1 0 4.1.1 1.1 0 1.8.2 2.4.5.7.2 1.2.6 1.8 1.1.5.6.9 1.1 1.1 1.8.3.6.5 1.3.5 2.4.1 1 .1 1.4.1 4.1s0 3.1-.1 4.1c0 1.1-.2 1.8-.5 2.4-.2.7-.6 1.2-1.1 1.8-.6.5-1.1.9-1.8 1.1-.6.3-1.3.5-2.4.5-1 .1-1.4.1-4.1.1s-3.1 0-4.1-.1c-1.1 0-1.8-.2-2.4-.5-.7-.2-1.2-.6-1.8-1.1-.5-.6-.9-1.1-1.1-1.8-.3-.6-.5-1.3-.5-2.4C2 15.1 2 14.7 2 12s0-3.1.1-4.1c0-1.1.2-1.8.5-2.4.2-.7.6-1.2 1.1-1.8.6-.5 1.1-.9 1.8-1.1.6-.3 1.3-.5 2.4-.5C8.9 2 9.3 2 12 2z"/></svg></a>
+      <a href="https://x.com/fixnaijamvt?s=11" target="_blank" rel="noopener" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.21-6.82-5.96 6.82H1.68l7.73-8.84L1.25 2.25H8.08l4.71 6.23 5.45-6.23z"/></svg></a>
+      <a href="https://www.tiktok.com/@fixnaijamovement_?_r=1&amp;_d=f37d5akghflk68&amp;sec_uid=MS4wLjABAAAAQZbfswMQx9jeljh-L_JWSyhzo6KHjpviu5oRN9k3KNKiXDedWv6SiayaPZyuWjqO&amp;share_author_id=7503211640499356727&amp;sharer_language=en&amp;source=h5_m&amp;u_code=ek8j069gee7hml&amp;item_author_type=1&amp;utm_source=whatsapp_business&amp;share_enter_from=&amp;tt_from=whatsapp_business&amp;enable_checksum=1&amp;utm_medium=ios&amp;share_link_id=C455361D-1C2E-4204-BE7E-2E8951BCC8A1&amp;user_id=7503211640499356727&amp;sec_user_id=MS4wLjABAAAAQZbfswMQx9jeljh-L_JWSyhzo6KHjpviu5oRN9k3KNKiXDedWv6SiayaPZyuWjqO&amp;utm_campaign=client_share&amp;panel_source_v2=qrcode_panel&amp;ug_btm=b8727,b0&amp;social_share_type=5&amp;share_app_id=1233" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 1 1-2.59-2.59c.27 0 .53.04.78.12V9.79a5.7 5.7 0 0 0-.78-.06 5.69 5.69 0 1 0 5.69 5.69V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3a4.3 4.3 0 0 1-3.25-1.48z"/></svg></a>
+    </div>
+    <div class="mm-copy">© 2026 FixNaija Movement · One Nigeria. 774 Communities.</div>
+  </div>
+</div>
 
     <!-- ===== HERO SECTION ===== -->
-    <section class="hero">
-        <div class="hero-container">
-            <div class="eyebrow-badge">
-                <span class="pulse-dot"></span>
-                <span class="eyebrow-text">Community Reporting</span>
+    <header class="phero">
+        <div class="wrap">
+            <span class="eyebrow">Community reporting</span>
+            <h1>Report what needs <em>fixing</em> in your community.</h1>
+            <p class="lede">Is there a bad road, failed project, or public service that needs government attention? Tell us about it. Upload a video, share the details, and we'll push it to the right channels.</p>
+            <div class="phero-cta">
+                <a class="btn btn-primary" href="#report">Report an issue →</a>
+                <a class="btn btn-ghost" href="#samples">See sample reports</a>
             </div>
-            <h1 class="hero-headline">
-                Report What Needs <span class="highlight-green">Fixing</span> in Your <span class="highlight-gold">Community</span>
-            </h1>
-            <p class="hero-description">
-                Is there a bad road, failed project, or public service that needs government attention? 
-                Tell us about it. Upload a video, share the details, and we'll push it to the right channels.
-            </p>
         </div>
-    </section>
+    </header>
 
     <!-- ===== SAMPLE REPORTS CAROUSEL ===== -->
     <section class="carousel-section" id="samples">
         <div class="carousel-container">
-            <div class="carousel-header">
+            <div class="rp-head">
                 <span class="section-label">Sample Reports</span>
                 <h2 class="carousel-headline">See What Others Are Reporting</h2>
                 <p class="carousel-subheadline">
@@ -1855,7 +425,7 @@
     <!-- ===== REPORT FORM SECTION ===== -->
     <section class="report-section" id="report">
         <div class="report-container">
-            <div class="report-header">
+            <div class="rp-head">
                 <span class="section-label">Submit a Report</span>
                 <h2 class="report-headline">Tell Us What Needs Fixing</h2>
                 <p class="report-subheadline">
@@ -2022,7 +592,7 @@
     <!-- ===== HOW IT WORKS ===== -->
     <section class="how-it-works">
         <div class="how-container">
-            <div class="how-header">
+            <div class="rp-head">
                 <span class="section-label">How It Works</span>
                 <h2 class="how-headline">Three Simple Steps</h2>
                 <p class="how-subheadline">
@@ -2057,70 +627,20 @@
     </section>
 
     <!-- ===== FOOTER ===== -->
-    <section class="contact-section" id="contact">
-        <div class="contact-container">
-            <div class="contact-grid">
-                <div class="contact-brand">
-                    <div class="contact-brand-logo">
-                        <img src="images/logo.png" alt="FixNaija Movement logo" class="logo-img">
-                        <span class="contact-brand-name">FixNaija Movement</span>
-                    </div>
-                    <p class="contact-brand-desc">
-                        A nationwide grassroots network uniting all 774 LGAs across 36 states to build a stronger, more prosperous Nigeria for every citizen.
-                    </p>
-                    <div class="contact-socials">
-                        <a href="#" class="social-link" title="X (Twitter)">𝕏</a>
-                        <a href="https://www.facebook.com/share/1dUGvvT1ph/" target="_blank" rel="noopener" class="social-link" title="Facebook">f</a>
-                        <a href="https://www.instagram.com/fixnaijamovement?igsh=MWJlNHVycDh4cDJiMw==" target="_blank" rel="noopener" class="social-link" title="Instagram">📷</a>
-                        <a href="#" class="social-link" title="YouTube">▶</a>
-                    </div>
-                </div>
-
-                <div class="contact-column">
-                    <h4>Quick Links</h4>
-                    <ul class="contact-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="index.html#about">About Us</a></li>
-                        <li><a href="index.html#events">Events</a></li>
-                        <li><a href="index.html#news">News</a></li>
-                        <li><a href="index.html#gallery">Gallery</a></li>
-                    </ul>
-                </div>
-
-                <div class="contact-column">
-                    <h4>Get Involved</h4>
-                    <ul class="contact-links">
-                        <li><a href="index.html#register">Register</a></li>
-                        <li><a href="index.html#states">Find Your LGA</a></li>
-                        <li><a href="#">Volunteer</a></li>
-                        <li><a href="#">Donate</a></li>
-                        <li><a href="#">Partner With Us</a></li>
-                    </ul>
-                </div>
-
-                <div class="contact-column">
-                    <h4>Contact</h4>
-                    <ul class="contact-links">
-                        <li><a href="mailto:fixnaijamovement@gmail.com">fixnaijamovement@gmail.com</a></li>
-                        <li><a href="tel:+2349165255606">+234 916 525 5606</a></li>
-                        <li><a href="#">Abuja, FCT</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="contact-divider"></div>
-
-            <div class="contact-bottom">
-                <div class="contact-copyright">
-                    © 2026 <span>FixNaija Movement</span>. All rights reserved. Built for the people.
-                </div>
-                <div class="contact-legal">
-                    <a href="privacy.html">Privacy Policy</a>
-                    <a href="terms.html">Terms of Use</a>
-                </div>
-            </div>
-        </div>
-    </section>
+    <footer id="contact">
+  <div class="wrap foot-in">
+    <div class="foot-top">
+      <a class="b" href="index.html"><img src="images/logo.png" alt="FixNaija logo" width="44" height="44"><span><span class="bn">FixNaija Movement</span><span class="bs">Adebayo · Bugaje · 2027</span></span></a>
+      <div class="foot-links">
+        <a href="index.html">Home</a><a href="about.html">About</a><a href="leadership.html">Leadership</a><a href="civic-resource.html">Civic Hub</a><a href="volunteer.html">Volunteer</a><a href="events.html">Events</a><a href="gallery.html">Gallery</a><a href="ask-fixnaija.html">Ask FixNaija</a><a href="register.html">Register</a><a href="find-lga.html">Find your LGA</a><a href="report-issue.html">Report an issue</a><a href="mailto:fixnaijamovement@gmail.com">Contact</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 FixNaija Movement · One Nigeria. 774 Communities.</span>
+      <span><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a></span>
+    </div>
+  </div>
+</footer>
 
 <script>
 // ===== Mobile menu toggle =====

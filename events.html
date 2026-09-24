@@ -29,6 +29,13 @@
   .ev .cta{white-space:nowrap}
   .ev .cta.btn,.ev .cta .btn{height:44px;padding:0 18px}
   @media(max-width:680px){.ev{grid-template-columns:72px 1fr;gap:14px}.ev .cta{grid-column:1/-1;justify-self:start}}
+  .ev .date.soon .d{font-size:1.05rem;letter-spacing:.02em;text-transform:uppercase;padding-top:4px}
+  .ev .type{margin-right:6px}
+  .ev .date.soon .m{letter-spacing:.08em;white-space:nowrap}
+  .soon-tag{display:inline-block;margin:0 0 8px;font-family:var(--display);font-weight:700;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;padding:5px 9px;border-radius:4px;background:var(--green-tint);color:var(--green)}
+  .soon-tag::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green-3);margin-right:6px;vertical-align:1px;animation:soonpulse 1.6s ease-in-out infinite}
+  @keyframes soonpulse{0%,100%{opacity:1}50%{opacity:.25}}
+  @media(prefers-reduced-motion:reduce){.soon-tag::before{animation:none}}
   .ev-list{display:grid;gap:12px;max-width:940px;margin:0 auto}
   .host-card{max-width:760px;margin:0 auto;text-align:center;background:#fff;border:1px solid var(--rule);border-radius:12px;padding:40px 30px}
   .host-card h2,.host-card h3{color:var(--ink)}
@@ -124,9 +131,10 @@
 
 <section class="block" id="events">
   <div class="wrap reveal">
-    <div class="sec-head"><span class="eyebrow">What's coming up</span><h2>Find an event near you</h2><p>Sample upcoming gatherings. Dates and locations are confirmed by your state and LGA coordinators — register to get alerts for your area.</p></div>
+    <div class="sec-head"><span class="eyebrow">What's coming up</span><h2>Find an event near you</h2><p>Campaign and rally season is here. Dates and venues for every event below are <b>coming soon</b> — register and we'll alert you the moment one is announced near you.</p></div>
     <div class="filterbar">
       <button class="active" data-cat="all">All</button>
+      <button data-cat="rally">Rallies</button>
       <button data-cat="townhall">Town Halls</button>
       <button data-cat="training">Trainings</button>
       <button data-cat="monitor">Project Walkabouts</button>
@@ -134,29 +142,33 @@
     </div>
     <div class="ev-list" id="evList">
 
-      <div class="ev" data-cat="townhall"><div class="date"><div class="d">12</div><div class="m">Jul</div></div>
-        <div><span class="type">Town Hall</span><h3>South-West Community Town Hall</h3><p class="meta">📍 Ibadan, Oyo State · 10:00 AM · Open to all</p></div>
-        <a class="btn btn-gold cta" href="register.html">RSVP</a></div>
+      <div class="ev" data-cat="rally"><div class="date soon"><div class="d">Soon</div><div class="m">Date TBA</div></div>
+        <div><span class="type">Campaign Rally</span><span class="soon-tag">Coming soon</span><h3>Adebayo–Bugaje 2027 Campaign Rallies</h3><p class="meta">📍 Coming to your state · Date &amp; venue to be announced</p></div>
+        <a class="btn btn-gold cta" href="register.html">Notify me</a></div>
 
-      <div class="ev" data-cat="training"><div class="date"><div class="d">19</div><div class="m">Jul</div></div>
-        <div><span class="type">Training</span><h3>Civic Monitoring &amp; Reporting Workshop</h3><p class="meta">📍 Abuja Leadership Academy · 9:00 AM · For new volunteers</p></div>
-        <a class="btn btn-gold cta" href="volunteer.html">Join</a></div>
+      <div class="ev" data-cat="townhall"><div class="date soon"><div class="d">Soon</div><div class="m">Date TBA</div></div>
+        <div><span class="type">Town Hall</span><span class="soon-tag">Coming soon</span><h3>South-West Community Town Hall</h3><p class="meta">📍 South-West · Date &amp; venue to be announced</p></div>
+        <a class="btn btn-gold cta" href="register.html">Notify me</a></div>
 
-      <div class="ev" data-cat="monitor"><div class="date"><div class="d">26</div><div class="m">Jul</div></div>
-        <div><span class="type">Project Walkabout</span><h3>Track the LGA Road Projects</h3><p class="meta">📍 Your LGA · Morning · Bring a smartphone</p></div>
-        <a class="btn btn-gold cta" href="report-issue.html">Sign up</a></div>
+      <div class="ev" data-cat="training"><div class="date soon"><div class="d">Soon</div><div class="m">Date TBA</div></div>
+        <div><span class="type">Training</span><span class="soon-tag">Coming soon</span><h3>Civic Monitoring &amp; Reporting Workshop</h3><p class="meta">📍 For new volunteers · Date &amp; venue to be announced</p></div>
+        <a class="btn btn-gold cta" href="volunteer.html">Volunteer</a></div>
 
-      <div class="ev" data-cat="ward"><div class="date"><div class="d">02</div><div class="m">Aug</div></div>
-        <div><span class="type">Ward Meeting</span><h3>Ward Organisers' Monthly Meet</h3><p class="meta">📍 All active wards · Evening · Members only</p></div>
-        <a class="btn btn-gold cta" href="find-lga.html">Find mine</a></div>
+      <div class="ev" data-cat="monitor"><div class="date soon"><div class="d">Soon</div><div class="m">Date TBA</div></div>
+        <div><span class="type">Project Walkabout</span><span class="soon-tag">Coming soon</span><h3>Track the LGA Road Projects</h3><p class="meta">📍 Your LGA · bring a smartphone · Date &amp; venue to be announced</p></div>
+        <a class="btn btn-gold cta" href="report-issue.html">Report now</a></div>
 
-      <div class="ev" data-cat="training"><div class="date"><div class="d">09</div><div class="m">Aug</div></div>
-        <div><span class="type">Training</span><h3>Know Your Rights &amp; FOI Clinic</h3><p class="meta">📍 Online (Zoom) · 4:00 PM · Open to all</p></div>
-        <a class="btn btn-gold cta" href="register.html">Register</a></div>
+      <div class="ev" data-cat="ward"><div class="date soon"><div class="d">Soon</div><div class="m">Date TBA</div></div>
+        <div><span class="type">Ward Meeting</span><span class="soon-tag">Coming soon</span><h3>Ward Organisers' Monthly Meet</h3><p class="meta">📍 All active wards · members · Date &amp; venue to be announced</p></div>
+        <a class="btn btn-gold cta" href="find-lga.html">Find my ward</a></div>
 
-      <div class="ev" data-cat="townhall"><div class="date"><div class="d">16</div><div class="m">Aug</div></div>
-        <div><span class="type">Town Hall</span><h3>North-Central Citizens' Forum</h3><p class="meta">📍 Jos, Plateau State · 10:00 AM · Open to all</p></div>
-        <a class="btn btn-gold cta" href="register.html">RSVP</a></div>
+      <div class="ev" data-cat="training"><div class="date soon"><div class="d">Soon</div><div class="m">Date TBA</div></div>
+        <div><span class="type">Training</span><span class="soon-tag">Coming soon</span><h3>Know Your Rights &amp; FOI Clinic</h3><p class="meta">📍 Online · open to all · Date &amp; venue to be announced</p></div>
+        <a class="btn btn-gold cta" href="register.html">Notify me</a></div>
+
+      <div class="ev" data-cat="townhall"><div class="date soon"><div class="d">Soon</div><div class="m">Date TBA</div></div>
+        <div><span class="type">Town Hall</span><span class="soon-tag">Coming soon</span><h3>North-Central Citizens' Forum</h3><p class="meta">📍 North-Central · Date &amp; venue to be announced</p></div>
+        <a class="btn btn-gold cta" href="register.html">Notify me</a></div>
 
     </div>
   </div>
