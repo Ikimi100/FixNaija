@@ -21,9 +21,13 @@
 <meta property="og:title" content="FixNaija Movement — It's Time to Fix Nigeria">
 <meta property="og:description" content="A citizen-owned movement, convened by Prince Adewole Adebayo, repairing Nigeria ward by ward across all 774 communities.">
 <meta property="og:url" content="https://www.fixnaijamovement.com.ng/index.html">
-<meta property="og:image" content="https://www.fixnaijamovement.com.ng/images/logo.png">
+<meta property="og:image" content="https://www.fixnaijamovement.com.ng/images/og-fixnaija.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The New Nigeria Begins With Us — Adebayo and Bugaje, SDP 2027">
 <meta property="og:locale" content="en_NG">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.fixnaijamovement.com.ng/images/og-fixnaija.jpg">
 
 <style>
 /* =====================================================================
@@ -175,6 +179,13 @@ b,strong{font-weight:600;color:var(--ink)}
 .slide-arrows{display:flex;gap:8px}
 .slide-arrows button{width:42px;height:42px;border-radius:50%;border:1px solid var(--rule-2);background:#fff;color:var(--ink);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:border-color .18s,background .18s}
 .slide-arrows button:hover{border-color:var(--ink)}
+.slide-arrows button.pause{font-size:.72rem;letter-spacing:-.05em}
+.hero.paused .slide-dots button.active::after{animation-play-state:paused}
+.live-count{display:inline-flex;align-items:center;gap:10px;background:rgba(127,224,174,.1);border:1px solid rgba(127,224,174,.3);color:#d9f5e6;border-radius:999px;padding:8px 16px 8px 12px;font-size:.86rem;margin-bottom:18px}
+.live-count[hidden]{display:none}
+.live-count b{font-family:var(--display);font-weight:800;color:#fff;font-size:1rem;letter-spacing:-.01em}
+.live-count .pulse{width:9px;height:9px;border-radius:50%;background:#25D366;box-shadow:0 0 0 0 rgba(37,211,102,.6);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
 
 /* =====================================================================
    SECTION SHELL (label on the left, headline on the right)
@@ -461,7 +472,6 @@ html,body{overflow-x:clip}
 .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .t-card{position:relative;background:#fff;border:1px solid var(--rule);padding:32px 28px 26px}
 .t-card::before{content:"“";position:absolute;top:6px;right:22px;font-family:var(--display);font-weight:800;font-size:5rem;line-height:1;color:var(--green-tint)}
-.t-stars{color:var(--orange);letter-spacing:3px;margin-bottom:14px;font-size:.9rem}
 .t-card h3{position:relative;font-size:1.15rem;letter-spacing:-.02em;margin-bottom:10px}
 .t-card p{color:var(--body);font-size:.93rem;margin-bottom:18px}
 .t-who{font-family:var(--display);font-weight:700;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--green);padding-top:14px;border-top:1px solid var(--rule)}
@@ -827,12 +837,13 @@ footer::before{content:"";position:absolute;inset:0;background-image:var(--grain
       <div class="hero-stats">
         <div class="s"><b>36+1</b><span>States &amp; FCT</span></div>
         <div class="s"><b>774</b><span>Communities</span></div>
-        <div class="s"><b>200M+</b><span>Nigerians</span></div>
+        <div class="s"><b>220M+</b><span>Nigerians</span></div>
       </div>
       <div class="slide-ctrl">
         <span class="slide-count"><span id="slideNo">01</span> <em>/ 03</em></span>
         <div class="slide-dots" id="slideDots" aria-label="Slide navigation"></div>
         <div class="slide-arrows">
+          <button type="button" id="slidePause" class="pause" aria-label="Pause slideshow" aria-pressed="false">❚❚</button>
           <button type="button" id="slidePrev" aria-label="Previous slide">←</button>
           <button type="button" id="slideNext" aria-label="Next slide">→</button>
         </div>
@@ -1170,7 +1181,8 @@ footer::before{content:"";position:absolute;inset:0;background-image:var(--grain
 <section class="band" id="impact">
   <div class="wrap band-in">
     <div class="rv">
-      <span class="eyebrow light">Get Involved</span>
+      <div class="live-count" id="liveCount" hidden><span class="pulse"></span><span><b id="liveNum">0</b> Nigerians have registered — and counting.</span></div>
+      <span class="eyebrow light" style="display:flex">Get Involved</span>
       <h2>No LGA left behind. <em>No citizen without a voice.</em></h2>
       <p>This is the repair work of a generation. If you believe Nigeria can work — you already belong here. Lend your skills, organise your ward and take your seat at the table.</p>
       <div class="band-ctas">
@@ -1182,7 +1194,7 @@ footer::before{content:"";position:absolute;inset:0;background-image:var(--grain
       <div class="st"><span class="n" data-count="37">37</span><span class="l">States &amp; FCT</span></div>
       <div class="st"><span class="n" data-count="774">774</span><span class="l">Communities</span></div>
       <div class="st"><span class="n" data-count="9">9</span><span class="l">Repair plans</span></div>
-      <div class="st"><span class="n" data-count="200" data-suffix="M+">200M+</span><span class="l">Nigerians</span></div>
+      <div class="st"><span class="n" data-count="220" data-suffix="M+">220M+</span><span class="l">Nigerians</span></div>
     </div>
   </div>
 </section>
@@ -1204,7 +1216,7 @@ footer::before{content:"";position:absolute;inset:0;background-image:var(--grain
       </div>
       <div class="join-card rv">
         <h3>Get involved</h3>
-        <p class="hint">Join thousands of Nigerians building the change.</p>
+        <p class="hint" id="joinHint">Join thousands of Nigerians building the change.</p>
         <form id="joinForm">
           <div class="fld"><label for="jName">Full name</label><input type="text" id="jName" placeholder="Your name" required></div>
           <div class="fld"><label for="jEmail">Email address</label><input type="email" id="jEmail" placeholder="you@email.com" required></div>
@@ -1253,19 +1265,16 @@ footer::before{content:"";position:absolute;inset:0;background-image:var(--grain
     </div>
     <div class="testi-grid">
       <div class="t-card rv">
-        <div class="t-stars">★★★★★</div>
         <h3>FixNaija gives every citizen a voice</h3>
         <p>"For the first time, I feel ordinary residents have a platform to raise our concerns and help shape the future of our community. FixNaija truly puts the people first."</p>
         <div class="t-who">Community Volunteer · Lagos</div>
       </div>
       <div class="t-card rv">
-        <div class="t-stars">★★★★★</div>
         <h3>A movement that represents our communities</h3>
         <p>"FixNaija renewed my confidence in participation. It is encouraging to see organizers who listen, engage and care about the challenges facing our neighbourhoods."</p>
         <div class="t-who">Youth Organizer · Enugu</div>
       </div>
       <div class="t-card rv">
-        <div class="t-stars">★★★★★</div>
         <h3>Hope for a better Nigeria</h3>
         <p>"The FixNaija vision inspires hope for better roads, healthcare, education, security and opportunity for every Nigerian. Together, we can build the country we deserve."</p>
         <div class="t-who">Market Trader · Kano</div>
@@ -1431,7 +1440,7 @@ footer::before{content:"";position:absolute;inset:0;background-image:var(--grain
     </a>
     <div class="foot-bottom">
       <span>© 2026 FixNaija Movement · One Nigeria. 774 Communities.</span>
-      <span><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></span>
+      <span><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a></span>
     </div>
   </div>
 </footer>
@@ -1530,10 +1539,21 @@ const stateNames=[...STATES].map(s=>s[0]).sort();
   }
   function go(i){idx=(i+slideEls.length)%slideEls.length;render();start();}
   function next(){go(idx+1);}
-  function start(){clearInterval(timer);timer=setInterval(next,DUR);}
+  function start(){clearInterval(timer);if(!paused)timer=setInterval(next,DUR);}
   document.getElementById('slidePrev').addEventListener('click',()=>go(idx-1));
   document.getElementById('slideNext').addEventListener('click',next);
-  render();start();
+  /* pause / play (auto-moving content must be pausable) — starts paused for reduced-motion users */
+  let paused=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const pb=document.getElementById('slidePause');
+  function setPaused(v){
+    paused=v;slider.classList.toggle('paused',v);
+    pb.textContent=v?'►':'❚❚';pb.setAttribute('aria-pressed',v?'true':'false');
+    pb.setAttribute('aria-label',v?'Play slideshow':'Pause slideshow');
+    if(v)clearInterval(timer);else go(idx);
+  }
+  pb.addEventListener('click',()=>setPaused(!paused));
+  render();
+  if(paused)setPaused(true);else start();
   /* swipe on touch */
   let sx=null;
   slider.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;},{passive:true});
@@ -1783,6 +1803,22 @@ const ISSUE_SLUGS=['power','insecurity','corruption','jobs','cost-of-living','ed
         </div>
       </a>`).join('');
   }catch(_){/* keep static cards */}
+})();
+
+/* ===== Live registration counter (count only — needs registration_count() from supabase_security_hardening.sql) ===== */
+(async function(){
+  const box=document.getElementById('liveCount'),num=document.getElementById('liveNum');
+  if(!box||!num)return;
+  try{
+    const r=await fetch(`${SUPABASE_URL}/rest/v1/rpc/registration_count`,{method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_KEY,'Authorization':`Bearer ${SUPABASE_KEY}`},body:'{}'});
+    if(!r.ok)return;
+    const n=Number(await r.json());
+    if(!Number.isFinite(n)||n<100)return;            /* only show once it's a meaningful number */
+    const fmt=v=>v.toLocaleString('en-NG');
+    num.textContent=fmt(n);box.hidden=false;
+    const hint=document.getElementById('joinHint');
+    if(hint)hint.textContent='Join '+fmt(n)+' Nigerians already building the change.';
+  }catch(_){/* keep hidden */}
 })();
 </script>
 </body>

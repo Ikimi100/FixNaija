@@ -1701,6 +1701,12 @@
             padding-right: 40px;
         }
 
+        .form-consent {
+            display: flex; gap: 12px; align-items: flex-start;
+            margin: 8px 0 20px; font-size: .86rem; line-height: 1.55; color: var(--charcoal); cursor: pointer;
+        }
+        .form-consent input { width: 18px; height: 18px; flex: 0 0 18px; margin-top: 3px; accent-color: #008751; cursor: pointer; }
+        .form-consent a { color: #006b3f; text-decoration: underline; font-weight: 600; }
         .form-submit {
             width: 100%;
             padding: 18px;
@@ -2648,7 +2654,7 @@
 <meta property="og:title" content="Register — FixNaija Movement">
 <meta property="og:description" content="Register with the FixNaija Movement and join the grassroots network in your Local Government Area. Show up, speak up, fix Naija.">
 <meta property="og:url" content="https://www.fixnaijamovement.com.ng/register.html">
-<meta property="og:image" content="https://www.fixnaijamovement.com.ng/images/logo.png">
+<meta property="og:image" content="https://www.fixnaijamovement.com.ng/images/og-fixnaija.jpg">
 <meta property="og:locale" content="en_NG">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Register — FixNaija Movement">
@@ -2929,6 +2935,10 @@
                         <textarea class="form-textarea" id="regReason" placeholder="Tell us briefly why you want to be part of the movement..."></textarea>
                     </div>
                 </div>
+                <label class="form-consent" for="regConsent">
+                    <input type="checkbox" id="regConsent" required>
+                    <span>I agree that FixNaija Movement may store the details above — including my support for the movement and any religion or ethnic group I have shared — and contact me by phone, WhatsApp or email about the movement. I can withdraw at any time. Read our <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a> and <a href="terms.html" target="_blank" rel="noopener">Terms of Use</a>.</span>
+                </label>
                 <button type="submit" class="form-submit">Complete Registration</button>
                 <div class="form-success" id="formSuccess">
                     <div class="form-success-icon">✅</div>
@@ -2998,8 +3008,8 @@
                     &copy; 2026 <span>FixNaija Movement</span>. All rights reserved. Built for the people.
                 </div>
                 <div class="contact-legal">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Use</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Use</a>
                 </div>
             </div>
         </div>
