@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FixNaija Movement — It's Time to Fix Nigeria | Prince Adewole Adebayo</title>
 <meta name="description" content="FixNaija is a citizen-owned grassroots movement, convened by Prince Adewole Adebayo, repairing Nigeria from the ground up — ward by ward, LGA by LGA, across all 36 states and the FCT.">
+<meta name="theme-color" content="#00663a">
 <link rel="icon" type="image/png" href="images/logo.png">
 <link rel="apple-touch-icon" href="images/logo.png">
 
@@ -25,508 +26,304 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <style>
+/* =====================================================================
+   FIXNAIJA · "PAPER & GREEN" THEME
+   Light editorial layout (inspired by okmovement.org): white paper,
+   near-black ink, Nigerian green as the lead colour, SDP orange as the
+   second accent. Archivo 800 for display type, Poppins for everything else.
+   ===================================================================== */
 :root{
-  --green:#008751; --green-dark:#006b3f; --green-soft:#00a862;
-  --charcoal:#1A1A2E; --charcoal-2:#12121f; --charcoal-card:#1f1f36;
-  --gold:#D4A017; --gold-soft:#e8c25a;
-  --white:#fff; --muted:#b8b8c8; --line:rgba(255,255,255,.08);
+  --paper:#ffffff; --paper-2:#f8f6f0; --paper-3:#f1eee4;
+  --ink:#0d140f; --ink-2:#172019; --ink-3:#212b23;
+  --body:#2e372f; --muted:#626b63; --faint:#8b938c;
+  --rule:#e8e5dc; --rule-2:#d7d3c6;
+  --green:#00663a; --green-2:#008751; --green-3:#00a651; --green-tint:#e8f3ed; --green-deep:#063d25;
+  --orange:#f26a1b; --orange-2:#d9530b; --orange-tint:#fdf0e6;
+  --gold:#c9971c; --gold-soft:#e8c25a;
+  --gut:clamp(18px,4vw,56px);
+  --display:'Archivo',"Helvetica Neue",Arial,sans-serif;
+  --text:'Poppins',"Segoe UI",Arial,sans-serif;
+  --shadow:0 1px 2px rgba(13,20,15,.05),0 12px 32px -12px rgba(13,20,15,.18);
+  --shadow-lg:0 2px 4px rgba(13,20,15,.05),0 30px 60px -24px rgba(13,20,15,.28);
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:78px}
-body{font-family:'Poppins',sans-serif;background:var(--charcoal);color:var(--white);overflow-x:hidden;line-height:1.6}
-h1,h2,h3,h4,h5,h6{font-family:'Archivo',sans-serif;line-height:1.1}
-h1,h2{font-weight:800;letter-spacing:-.025em}
+html{scroll-behavior:smooth;scroll-padding-top:90px;-webkit-text-size-adjust:100%}
+body{font-family:var(--text);background:var(--paper);color:var(--body);overflow-x:hidden;line-height:1.65;font-size:16px;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,h5,h6{font-family:var(--display);color:var(--ink);line-height:1.08;font-weight:800;letter-spacing:-.02em}
 a{color:inherit}
-img{max-width:100%;display:block}
-/* page gutter shared by the header and the hero so their left edges line up on wide screens */
-:root{--edge:clamp(18px,4vw,72px)}
-.wrap{max-width:1320px;margin:0 auto;padding:0 clamp(18px,3vw,40px)}
-.eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:'Archivo',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
-.eyebrow::before{content:"";width:26px;height:2px;background:var(--gold)}
-.eyebrow.center{justify-content:center}
+img{max-width:100%;height:auto;display:block}
+b,strong{font-weight:600;color:var(--ink)}
+.wrap{width:min(100% - 2*var(--gut),1320px);margin:0 auto}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.anchor{position:relative;top:-90px;display:block;height:0;visibility:hidden}
+.g{color:var(--green)}
+.o{color:var(--orange-2)}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:4px}
 
-/* ============ NAVBAR (scrolling header) ============ */
-.navbar{position:sticky;top:0;z-index:1000;height:82px;display:flex;align-items:center;
-  background:rgba(26,26,46,.55);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
-  border-bottom:1px solid transparent;transition:height .3s,background .3s,border-color .3s,box-shadow .3s,transform .4s cubic-bezier(.4,0,.2,1)}
-.navbar.scrolled{height:66px;background:rgba(18,18,31,.92);border-bottom-color:var(--line);box-shadow:0 10px 34px rgba(0,0,0,.4)}
+/* ---------- eyebrow: two little flag dashes + tracked caps ---------- */
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-family:var(--display);font-weight:700;font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--green)}
+.eyebrow::before{content:"";width:34px;height:3px;flex:0 0 34px;background:linear-gradient(90deg,var(--green) 0 12px,transparent 12px 20px,var(--orange) 20px 34px);border-radius:2px}
+.eyebrow.light{color:#7fe0ae}
+.eyebrow.orange{color:var(--orange-2)}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 26px;border-radius:6px;font-family:var(--text);font-weight:600;font-size:.9rem;letter-spacing:.02em;text-decoration:none;border:1px solid transparent;cursor:pointer;white-space:nowrap;transition:background .18s,color .18s,border-color .18s,transform .18s,box-shadow .18s}
+.btn:hover{transform:translateY(-1px)}
+.btn .ar{transition:transform .18s}
+.btn:hover .ar{transform:translateX(3px)}
+.btn-green{background:var(--green);color:#fff;box-shadow:0 10px 22px -10px rgba(0,102,58,.7)}
+.btn-green:hover{background:#00552f}
+.btn-orange{background:var(--orange);color:#fff;box-shadow:0 10px 22px -10px rgba(242,106,27,.75)}
+.btn-orange:hover{background:var(--orange-2)}
+.btn-line{background:#fff;color:var(--ink);border-color:var(--rule-2)}
+.btn-line:hover{border-color:var(--ink)}
+.btn-ghost{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.28)}
+.btn-ghost:hover{background:rgba(255,255,255,.16)}
+.btn-white{background:#fff;color:var(--green-deep)}
+.btn-sm{height:40px;padding:0 18px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase}
+.link-arrow{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:.92rem;color:var(--green);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .18s,gap .18s}
+.link-arrow:hover{border-color:currentColor;gap:12px}
+
+/* =====================================================================
+   HEADER
+   ===================================================================== */
+.navbar{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.92);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);transition:transform .4s cubic-bezier(.4,0,.2,1),box-shadow .3s}
+.navbar::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:linear-gradient(90deg,var(--green) 0 34%,var(--rule) 34% 66%,var(--orange) 66% 100%)}
+.navbar.scrolled{box-shadow:0 10px 30px -18px rgba(13,20,15,.35)}
 .navbar.hide{transform:translateY(-100%)}
-.navbar .wrap{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:none;padding:0 var(--edge);gap:18px}
-.brand{display:flex;align-items:center;gap:13px;text-decoration:none}
-.brand img{width:46px;height:46px;object-fit:contain;filter:drop-shadow(0 0 10px rgba(0,135,81,.4));transition:width .3s,height .3s}
-.navbar.scrolled .brand img{width:38px;height:38px}
-.brand .bn{font-family:'Archivo',sans-serif;font-weight:700;font-size:1.06rem;display:block;line-height:1.05;white-space:nowrap}
-.brand .bs{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600;white-space:nowrap}
-.nav-links{display:flex;list-style:none;gap:2px;align-items:center}
-.nav-links a{text-decoration:none;color:rgba(255,255,255,.82);font-size:.88rem;font-weight:500;padding:9px 11px;border-radius:9px;transition:.2s;white-space:nowrap}
-.nav-links a:hover,.nav-links a.active{color:#fff;background:rgba(255,255,255,.08)}
+.nav-in{height:78px;display:flex;align-items:center;justify-content:space-between;gap:20px;width:min(100% - 2*var(--gut),1440px);margin:0 auto}
+.brand-group{display:flex;align-items:center;gap:16px;min-width:0}
+.brand{display:flex;align-items:center;gap:14px;text-decoration:none;min-width:0}
+.brand .badge{position:relative;flex:0 0 auto;width:62px;height:62px;margin:0;border-radius:50%;background:#fff;padding:4px;box-shadow:0 4px 12px -5px rgba(13,20,15,.3),0 0 0 1px var(--rule);transition:width .3s,height .3s,margin .3s}
+.brand .badge img{width:100%;height:100%;object-fit:contain;border-radius:50%}
+.navbar.scrolled .brand .badge{width:54px;height:54px}
+.brand .bn{font-family:var(--display);font-weight:800;font-size:1.12rem;letter-spacing:-.01em;color:var(--ink);display:block;line-height:1.1;white-space:nowrap}
+.brand .bs{display:flex;align-items:center;gap:7px;font-family:var(--display);font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--green);white-space:nowrap;margin-top:4px}
+.brand .bs::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green-3)}
+.brand-sdp{display:flex;align-items:center;padding-left:16px;border-left:1px solid var(--rule);text-decoration:none;transition:transform .2s}
+.brand-sdp img{height:28px;width:auto}
+.brand-sdp:hover{transform:rotate(-3deg)}
+.nav-links{display:flex;list-style:none;gap:26px;align-items:center}
+.nav-links a{position:relative;text-decoration:none;color:var(--ink);font-size:.82rem;font-weight:500;padding:8px 0;white-space:nowrap}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:2px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
 .nav-actions{display:flex;align-items:center;gap:10px}
-.btn-ai{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--gold-soft),var(--gold));color:var(--charcoal);font-family:'Archivo',sans-serif;font-weight:700;font-size:.85rem;text-decoration:none;padding:10px 16px;border-radius:999px;box-shadow:0 6px 18px rgba(212,160,23,.28);white-space:nowrap}
-.btn-join{background:linear-gradient(135deg,var(--green-soft),var(--green-dark));color:#fff;border:none;font-family:'Archivo',sans-serif;font-weight:700;font-size:.85rem;padding:10px 18px;border-radius:999px;cursor:pointer;text-decoration:none;box-shadow:0 6px 18px rgba(0,135,81,.32);white-space:nowrap}
-.menu-toggle{display:none;flex-direction:column;gap:5px;width:44px;height:44px;background:rgba(255,255,255,.08);border:1px solid var(--line);border-radius:12px;cursor:pointer;align-items:center;justify-content:center}
-.menu-toggle span{width:20px;height:2px;background:#fff;border-radius:2px;transition:.3s}
+.menu-toggle{display:none;flex-direction:column;gap:5px;width:46px;height:46px;background:#fff;border:1px solid var(--rule-2);border-radius:8px;cursor:pointer;align-items:center;justify-content:center}
+.menu-toggle span{width:20px;height:2px;background:var(--ink);border-radius:2px;transition:.3s}
 .menu-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .menu-toggle.open span:nth-child(2){opacity:0}
 .menu-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+#mobileMenu .mm-ico img{width:36px;height:auto}
+#mobileMenu{box-shadow:none;visibility:hidden;transition:transform .38s cubic-bezier(.4,0,.2,1),visibility 0s linear .38s}
+#mobileMenu.open{visibility:visible;box-shadow:-22px 0 60px rgba(13,20,15,.25);transition:transform .38s cubic-bezier(.4,0,.2,1)}
 
-/* ============ HERO SLIDER (auto-rotating, OK-Movement style) ============ */
-.hero-slider{position:relative;overflow:hidden;background:var(--charcoal-2)}
-.slides{display:flex;transition:transform .85s cubic-bezier(.65,0,.35,1)}
-.slide{position:relative;flex:0 0 100%;min-height:660px;display:flex;align-items:center;overflow:hidden}
-.slide-bg{position:absolute;inset:0;background-size:cover;background-position:right center;z-index:0;transform:scale(1.08);transition:transform 7s ease}
-.slide.is-active .slide-bg{transform:scale(1)}
-.slide-bg::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(90deg,var(--charcoal) 0%,rgba(8,26,18,.94) 28%,rgba(0,107,63,.6) 60%,rgba(0,135,81,.14) 100%)}
-.slide .wrap{position:relative;z-index:2;width:100%;max-width:none;padding:0 var(--edge)}
-.slide-inner{max-width:680px;padding:56px 0 118px}
-.badge-live{display:inline-flex;align-items:center;gap:9px;background:rgba(0,135,81,.2);border:1px solid rgba(0,168,98,.45);color:#8ff0c2;font-family:'Archivo',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;padding:7px 15px;border-radius:999px;margin-bottom:20px}
-.dot{width:9px;height:9px;border-radius:50%;background:#22e08a;box-shadow:0 0 0 0 rgba(34,224,138,.7);animation:pulse 2s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(34,224,138,.6)}70%{box-shadow:0 0 0 12px rgba(34,224,138,0)}100%{box-shadow:0 0 0 0 rgba(34,224,138,0)}}
-.slide h1{font-size:clamp(2.6rem,6vw,5.2rem);font-weight:800;letter-spacing:-.035em;line-height:1.02;margin-bottom:20px;color:#fff}
-.slide h1 .g{color:var(--gold)}
-.slide h1 .u{position:relative;white-space:nowrap}
-.slide h1 .u::after{content:"";position:absolute;left:0;right:0;bottom:-.12em;height:.09em;background:var(--green-soft);border-radius:3px}
-.slide p.lead{font-size:1.14rem;color:#e0eae4;max-width:540px;margin-bottom:28px}
-.slide p.lead b{color:#fff;font-weight:600}
-.hero-ctas{display:flex;flex-wrap:wrap;gap:13px}
-.cta{display:inline-flex;align-items:center;gap:9px;font-family:'Archivo',sans-serif;font-weight:700;font-size:.98rem;text-decoration:none;padding:15px 26px;border-radius:999px;transition:transform .18s,box-shadow .18s}
-.cta:hover{transform:translateY(-2px)}
-.cta-p{background:linear-gradient(135deg,var(--green-soft),var(--green-dark));color:#fff;box-shadow:0 12px 30px rgba(0,135,81,.4)}
-.cta-g{background:linear-gradient(135deg,var(--gold-soft),var(--gold));color:var(--charcoal);box-shadow:0 12px 30px rgba(212,160,23,.32)}
-.cta-o{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(6px)}
-/* inline hero signup (slide 1) */
-.hero-join{background:rgba(10,20,15,.5);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:22px;max-width:520px}
-.hero-join .hj-label{display:inline-flex;align-items:center;gap:8px;font-family:'Archivo',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
-.hero-join .hj-label .dot{background:var(--gold-soft);box-shadow:none;animation:none}
-.hero-join .row{display:flex;gap:10px;margin-bottom:10px}
-.hero-join input,.hero-join select{padding:14px 14px;border-radius:11px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.96);color:#12121f;font-family:'Poppins',sans-serif;font-size:.95rem;min-width:0}
-.hero-join input{flex:1}
-.hero-join select{flex:0 0 40%}
-.hero-join input:focus,.hero-join select:focus{outline:none;border-color:var(--green-soft);box-shadow:0 0 0 3px rgba(0,168,98,.3)}
-.hero-join .hj-btn{width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,var(--green-soft),var(--green-dark));color:#fff;font-family:'Archivo',sans-serif;font-weight:700;font-size:1rem;padding:15px;border-radius:11px;box-shadow:0 10px 26px rgba(0,135,81,.4);transition:transform .18s}
-.hero-join .hj-btn:hover{transform:translateY(-2px)}
-.hero-join .hj-note{color:#cfe6d8;font-size:.78rem;margin-top:11px;display:flex;align-items:center;gap:7px}
-.hero-join .hj-ok{display:none;color:#a9f4cf;font-size:.9rem;margin-top:9px}
-.hero-join .hj-err{display:none;color:#ffb3b3;font-size:.85rem;margin-top:9px}
-.slide-foot{display:flex;align-items:center;gap:15px;margin-top:24px;font-size:.9rem;color:#bfe9d3;flex-wrap:wrap}
-.slide-foot a{color:#fff;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:7px}
-.slide-foot a:hover{color:var(--gold-soft)}
-.slide-foot .vdiv{width:1px;height:16px;background:rgba(255,255,255,.3)}
-/* slide dots */
-.slide-dots{position:absolute;bottom:100px;right:6%;z-index:6;display:flex;gap:9px}
-.slide-dots button{width:26px;height:6px;border-radius:999px;border:none;background:rgba(255,255,255,.35);cursor:pointer;transition:.25s;padding:0}
-.slide-dots button.active{background:var(--green-soft);width:42px}
-/* stats bar pinned to hero bottom */
-.hero-statbar{position:absolute;left:0;right:0;bottom:0;z-index:5;background:linear-gradient(180deg,transparent,rgba(6,12,10,.9));border-top:1px solid rgba(255,255,255,.08);backdrop-filter:blur(6px)}
-.hero-statbar .in{max-width:1200px;margin:0 auto;padding:20px 28px;display:flex;justify-content:center;flex-wrap:wrap}
-.hero-statbar .s{display:flex;align-items:baseline;gap:9px;padding:0 30px;position:relative}
-.hero-statbar .s+.s::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:1px;height:26px;background:rgba(255,255,255,.16)}
-.hero-statbar .n{font-family:'Archivo',sans-serif;font-weight:700;font-size:1.7rem;color:#fff}
-.hero-statbar .l{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-/* per-slide content entrance */
-.slide-inner>*{opacity:0;transform:translateY(24px)}
+/* =====================================================================
+   HERO SLIDER
+   ===================================================================== */
+.hero{position:relative;overflow:hidden;background:radial-gradient(900px 600px at 78% 40%,#fff7ef 0,rgba(255,247,239,0) 60%),radial-gradient(700px 500px at 20% 110%,var(--green-tint) 0,rgba(232,243,237,0) 60%),var(--paper);border-bottom:1px solid var(--rule)}
+.slides{display:flex;transition:transform .9s cubic-bezier(.65,0,.35,1)}
+.slide{position:relative;flex:0 0 100%;min-height:clamp(620px,calc(100vh - 78px),860px);display:flex;align-items:center}
+.slide .wrap{position:relative;z-index:2;width:min(100% - 2*var(--gut),1440px)}
+.slide-inner{max-width:640px;padding:56px 0 150px}
+.slide h1{font-size:clamp(2.8rem,min(6.2vw,10.5vh),5.6rem);line-height:.92;letter-spacing:-.04em;margin:20px 0 24px}
+.slide h1 .g{color:var(--green)}
+.slide h1 .o{color:var(--orange)}
+.slide .lead{font-size:1.1rem;color:var(--body);max-width:520px;margin-bottom:34px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px}
+/* media on the right: photos fade into the paper; the ticket slide uses cut-outs */
+.slide-media{position:absolute;top:0;right:0;bottom:0;width:58%;z-index:1;overflow:hidden}
+.slide-media.photo img{width:100%;height:100%;object-fit:cover;object-position:center 30%;transform:scale(1.06);transition:transform 7s ease;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 26%);mask-image:linear-gradient(90deg,transparent 0,#000 26%)}
+.slide.is-active .slide-media.photo img{transform:scale(1)}
+.slide-media.photo::after{content:"";position:absolute;inset:auto 0 0 0;height:40%;background:linear-gradient(0deg,var(--paper),transparent)}
+.slide-media.cut{display:flex;align-items:flex-end;justify-content:center}
+.slide-media.cut::before{content:"";position:absolute;width:74%;aspect-ratio:1;right:9%;bottom:-14%;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff 0,var(--green-tint) 45%,#cfe8da 100%);box-shadow:inset 0 0 0 26px rgba(242,106,27,.07)}
+.slide-media.cut::after{content:"";position:absolute;width:74%;aspect-ratio:1;right:9%;bottom:-14%;border-radius:50%;border:2px dashed rgba(242,106,27,.45);transform:scale(1.07)}
+.slide-media.cut img{position:relative;z-index:1;height:min(90%,780px);width:auto;max-width:100%;object-fit:contain;object-position:bottom;margin-right:1%;transform:translateY(24px);opacity:0;transition:transform 1s cubic-bezier(.2,.8,.2,1) .15s,opacity .8s ease .15s}
+.slide.is-active .slide-media.cut img{transform:none;opacity:1}
+.cut-tag{position:absolute;z-index:2;display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--rule);border-radius:10px;padding:10px 14px;box-shadow:var(--shadow);font-size:.78rem;line-height:1.25;color:var(--muted)}
+.cut-tag b{display:block;font-family:var(--display);font-weight:800;font-size:.95rem;color:var(--ink)}
+.cut-tag i{width:10px;height:10px;border-radius:50%;flex:0 0 10px;background:var(--green)}
+.cut-tag.vp i{background:var(--orange)}
+.cut-tag.p{left:12%;bottom:30%}
+.cut-tag.vp{right:6%;bottom:22%}
+.cut-sdp{position:absolute;z-index:2;right:8%;top:16%;width:120px;border-radius:12px;overflow:hidden;border:3px solid #fff;box-shadow:var(--shadow-lg);transform:rotate(4deg)}
+/* entrance */
+.slide-inner>*{opacity:0;transform:translateY(22px)}
 .slide.is-active .slide-inner>*{opacity:1;transform:none;transition:opacity .7s ease,transform .7s ease}
-.slide.is-active .slide-inner>*:nth-child(2){transition-delay:.09s}
-.slide.is-active .slide-inner>*:nth-child(3){transition-delay:.18s}
-.slide.is-active .slide-inner>*:nth-child(4){transition-delay:.27s}
-.slide.is-active .slide-inner>*:nth-child(5){transition-delay:.36s}
+.slide.is-active .slide-inner>*:nth-child(2){transition-delay:.08s}
+.slide.is-active .slide-inner>*:nth-child(3){transition-delay:.16s}
+.slide.is-active .slide-inner>*:nth-child(4){transition-delay:.24s}
+/* stats + controls pinned to the bottom of the hero */
+.hero-foot{position:absolute;left:0;right:0;bottom:0;z-index:5;pointer-events:none}
+.hero-foot .wrap{width:min(100% - 2*var(--gut),1440px);display:flex;align-items:flex-end;justify-content:flex-start;gap:48px;padding-bottom:30px}
+.hero-stats{display:flex;pointer-events:auto;background:rgba(255,255,255,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid var(--rule);padding-top:18px}
+.hero-stats .s{padding-right:34px;margin-right:34px;border-right:1px solid var(--rule)}
+.hero-stats .s:last-child{border-right:none;margin-right:0}
+.hero-stats b{display:block;font-family:var(--display);font-weight:800;font-size:2rem;letter-spacing:-.03em;line-height:1;color:var(--ink)}
+.hero-stats span{font-family:var(--display);font-weight:700;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.slide-ctrl{display:flex;align-items:center;gap:16px;pointer-events:auto}
+.slide-count{font-family:var(--display);font-weight:700;font-size:.8rem;letter-spacing:.14em;color:var(--ink)}
+.slide-count em{font-style:normal;color:var(--faint)}
+.slide-dots{display:flex;gap:6px}
+.slide-dots button{position:relative;width:34px;height:3px;border:none;border-radius:2px;background:var(--rule-2);cursor:pointer;padding:0;overflow:hidden}
+.slide-dots button::after{content:"";position:absolute;inset:0;background:var(--green);transform:scaleX(0);transform-origin:left}
+.slide-dots button.active{width:56px}
+.slide-dots button.active::after{animation:dotfill 6.5s linear forwards}
+@keyframes dotfill{to{transform:scaleX(1)}}
+.slide-arrows{display:flex;gap:8px}
+.slide-arrows button{width:42px;height:42px;border-radius:50%;border:1px solid var(--rule-2);background:#fff;color:var(--ink);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:border-color .18s,background .18s}
+.slide-arrows button:hover{border-color:var(--ink)}
 
-/* ============ WHATSAPP BAR ============ */
-.wa-bar{background:linear-gradient(135deg,#075E54,#128C7E)}
-.wa-bar .in{max-width:1100px;margin:0 auto;padding:18px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;justify-content:center;text-align:center}
-.wa-ic{flex:0 0 auto;width:50px;height:50px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center}
-.wa-tx{text-align:left;min-width:220px}
-.wa-tx b{font-family:'Archivo',sans-serif;font-weight:700;color:#fff;font-size:1.12rem;display:block}
-.wa-tx span{color:rgba(255,255,255,.88);font-size:.92rem}
-.wa-btn{background:#fff;color:#075E54;font-family:'Archivo',sans-serif;font-weight:700;text-decoration:none;padding:12px 24px;border-radius:999px;white-space:nowrap;box-shadow:0 8px 20px rgba(0,0,0,.25)}
+/* =====================================================================
+   SECTION SHELL (label on the left, headline on the right)
+   ===================================================================== */
+.sec{position:relative;padding:clamp(72px,9vw,128px) 0;overflow-x:clip}
+html,body{overflow-x:clip}
+.sec.sunk{background:var(--paper-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.shead{display:grid;grid-template-columns:minmax(170px,230px) 1fr;gap:28px 48px;align-items:start;padding-top:26px;border-top:1px solid var(--rule);margin-bottom:clamp(40px,5vw,64px)}
+.shead .eyebrow{margin-top:10px}
+.shead h2{font-size:clamp(2.2rem,5.2vw,4.1rem);line-height:.98;letter-spacing:-.035em;max-width:900px}
+.shead .lead{font-size:1.06rem;color:var(--muted);max-width:640px;margin-top:18px}
+.shead .lead b{color:var(--ink)}
+.watermark{position:absolute;pointer-events:none;opacity:.05;filter:grayscale(1);z-index:0}
+.sec>.wrap{position:relative;z-index:1}
 
-/* ============ SECTION SHELL ============ */
-section.blk{padding:88px 0}
-.sec-head{text-align:center;max-width:720px;margin:0 auto 50px}
-.sec-head h2{font-size:clamp(1.9rem,3.6vw,2.9rem);font-weight:800;letter-spacing:-.03em;margin-bottom:14px}
-.sec-head h2 .g{color:var(--gold)}
-.sec-head p{color:var(--muted);font-size:1.05rem}
+/* ---------- OUR MOVEMENT ---------- */
+.mv{display:grid;grid-template-columns:1.25fr 1fr;border-radius:4px;overflow:hidden;box-shadow:var(--shadow-lg)}
+.mv-photo{position:relative;min-height:460px}
+.mv-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.mv-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(13,20,15,.78),rgba(13,20,15,0) 55%)}
+.mv-cap{position:absolute;left:28px;right:28px;bottom:26px;z-index:1;color:#fff}
+.mv-cap b{display:block;font-family:var(--display);font-weight:800;font-size:1.5rem;letter-spacing:-.02em;color:#fff;line-height:1.15}
+.mv-cap span{font-size:.86rem;color:#d6e6dc}
+.mv-panel{position:relative;background:var(--green);color:#fff;padding:44px 40px;overflow:hidden}
+.mv-panel::before{content:"";position:absolute;inset:0;background-image:var(--grain);opacity:.12;mix-blend-mode:overlay;pointer-events:none}
+.mv-panel h3{color:#fff;font-size:2rem;letter-spacing:-.03em;margin:16px 0 22px}
+.mv-list{list-style:none;border-top:1px solid rgba(255,255,255,.2);margin-bottom:28px}
+.mv-list li{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.2);font-size:.86rem;color:#d9ecdf;line-height:1.5}
+.mv-list li b{color:#fff;font-weight:600}
+.mv-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:34px}
+.mv-tags span{background:#fff;border:1px solid var(--rule);border-radius:999px;padding:8px 15px;font-size:.82rem;font-weight:500;color:var(--ink)}
 
-/* ============ INTERACTIVE MAP ============ */
-.map-blk{background:radial-gradient(800px 500px at 50% 0%,rgba(0,135,81,.12),transparent 60%),var(--charcoal-2)}
-.map-wrap{display:grid;grid-template-columns:1.35fr .65fr;gap:40px;align-items:center;max-width:1080px;margin:0 auto}
-.map-grid{display:grid;grid-template-columns:repeat(9,1fr);grid-auto-rows:1fr;gap:8px;aspect-ratio:9/7}
-.tile{position:relative;cursor:pointer;border-radius:9px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.07);color:#cfeede;font-family:'Archivo',sans-serif;font-weight:700;font-size:clamp(.42rem,.85vw,.66rem);letter-spacing:.02em;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .16s,background .16s,box-shadow .16s,color .16s;overflow:hidden}
-.tile::before{content:"";position:absolute;left:0;right:0;top:0;height:34%;background:var(--green);opacity:0;transition:opacity .16s}
-.tile::after{content:"";position:absolute;left:0;right:0;bottom:0;height:34%;background:var(--green);opacity:0;transition:opacity .16s}
-.tile span{position:relative;z-index:2}
-.tile:hover,.tile:focus,.tile.lit{background:#fff;color:var(--green-dark);transform:translateY(-3px) scale(1.06);box-shadow:0 12px 26px rgba(0,0,0,.45);z-index:5}
-.tile:hover::before,.tile:focus::before,.tile.lit::before,.tile:hover::after,.tile:focus::after,.tile.lit::after{opacity:1}
-.map-side .eyebrow{margin-bottom:14px}
-.map-side h3{font-size:1.75rem;margin-bottom:10px}
-.map-readout{background:var(--charcoal-card);border:1px solid var(--line);border-radius:18px;padding:22px;margin:18px 0}
-.map-readout .rs-state{font-family:'Archivo',sans-serif;font-weight:700;font-size:1.5rem;color:#fff;transition:.15s}
-.map-readout .rs-sub{color:var(--gold-soft);font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em}
-.map-progress{height:9px;border-radius:999px;background:rgba(255,255,255,.1);overflow:hidden;margin-top:16px}
-.map-progress i{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--green-soft),var(--gold))}
-.map-count{font-family:'Archivo',sans-serif;font-weight:700;font-size:1rem;margin-top:10px}
-.map-count b{color:var(--gold)}
-.map-side .cta{margin-top:8px}
-.map-ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
-.ng-map{width:100%}
-.ng-map svg{width:100%;height:auto;display:block;overflow:visible}
-.ng-map path{fill:rgba(255,255,255,.055);stroke:rgba(0,168,98,.4);stroke-width:.9;cursor:pointer;transition:fill .18s,filter .18s;outline:none}
-.ng-map path:hover,.ng-map path:focus,.ng-map path.lit{fill:var(--green-soft);stroke:#fff;filter:drop-shadow(0 5px 12px rgba(0,168,98,.55))}
+/* ---------- THE TICKET / PRINCIPALS ---------- */
+.pr-grid{display:grid;grid-template-columns:1fr 1fr .78fr;gap:28px;align-items:start}
+.pr-card{position:relative;background:#fff;border:1px solid var(--rule);box-shadow:var(--shadow);transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
+.pr-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.pr-card:nth-child(2){margin-top:48px}
+.pr-ph{position:relative;aspect-ratio:4/4.3;overflow:hidden;background:var(--paper-3)}
+.pr-ph img{width:100%;height:100%;object-fit:cover;object-position:center 12%;transition:transform .8s ease}
+.pr-card:hover .pr-ph img{transform:scale(1.04)}
+.pr-ph::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,var(--green) 0 40%,transparent 40% 60%,var(--orange) 60%)}
+.pr-no{position:absolute;top:14px;left:14px;z-index:1;font-family:var(--display);font-weight:800;font-size:.72rem;letter-spacing:.14em;color:#fff;background:rgba(13,20,15,.6);backdrop-filter:blur(4px);padding:6px 10px;border-radius:4px}
+.pr-role{position:absolute;top:14px;right:14px;z-index:1;font-family:var(--display);font-weight:700;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:#fff;background:var(--green);padding:7px 11px;border-radius:4px}
+.pr-role.vp{background:var(--orange)}
+.pr-body{padding:26px 26px 28px}
+.pr-body h3{font-size:1.65rem;letter-spacing:-.03em}
+.pr-tags{font-family:var(--display);font-weight:700;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green);margin:8px 0 14px}
+.pr-body p{font-size:.92rem;color:var(--muted);margin-bottom:18px}
+.pr-body p b{color:var(--ink)}
+.pr-quote{font-family:var(--display);font-weight:700;font-size:1.02rem;line-height:1.35;color:var(--ink);border-left:3px solid var(--orange);padding:4px 0 4px 14px;margin:0 0 18px}
+.ballot{position:sticky;top:110px;background:var(--ink);color:#fff;padding:30px 26px;overflow:hidden;box-shadow:var(--shadow-lg)}
+.ballot::before{content:"";position:absolute;inset:0;background-image:var(--grain);opacity:.1;pointer-events:none}
+.ballot>*{position:relative}
+.ballot .seal{border-radius:10px;overflow:hidden;border:3px solid #fff;transform:rotate(-2deg);box-shadow:0 18px 40px -14px rgba(242,106,27,.6);margin-bottom:24px}
+.ballot .names{font-family:var(--display);font-weight:800;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:#fff}
+.ballot .names i{font-style:normal;color:var(--orange);margin:0 .4em}
+.ballot .yr{display:block;font-family:var(--display);font-weight:800;font-size:4.2rem;letter-spacing:-.05em;line-height:1;margin:6px 0 10px;background:linear-gradient(90deg,var(--orange),var(--gold-soft) 55%,var(--green-3));-webkit-background-clip:text;background-clip:text;color:transparent}
+.ballot p{font-size:.86rem;color:#b8c4bb;margin-bottom:20px}
+.ballot p b{color:#fff}
+.ballot .btn{width:100%}
 
-/* ============ PRINCE BIO ============ */
-.bio-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:52px;align-items:center;max-width:1120px;margin:0 auto}
-.bio-img{position:relative;border-radius:24px;overflow:hidden;border:1px solid var(--line);box-shadow:0 26px 60px rgba(0,0,0,.5)}
-.bio-img img{width:100%;height:520px;object-fit:cover;object-position:top center}
-.bio-img .fb{position:absolute;bottom:18px;left:18px;right:18px;background:rgba(18,18,31,.82);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:14px 18px}
-.bio-img .fb b{font-family:'Archivo',sans-serif;color:var(--gold);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase}
-.bio-img .fb p{color:#e7e7f0;font-size:.95rem;margin-top:3px}
-.bio-txt h2{font-size:clamp(1.9rem,3.6vw,2.7rem);margin-bottom:8px}
-.bio-txt .role{color:var(--gold-soft);font-weight:600;font-family:'Archivo',sans-serif;margin-bottom:18px;display:block}
-.bio-txt p{color:var(--muted);margin-bottom:16px;font-size:1.03rem}
-.bio-txt p b{color:#fff;font-weight:600}
-.bio-txt .cta{margin-top:8px}
-
-/* ============ ANSWERS EXPLORER ============ */
-.ans-blk{background:radial-gradient(900px 520px at 100% 10%,rgba(0,135,81,.10),transparent 60%),radial-gradient(700px 420px at 0% 90%,rgba(212,160,23,.07),transparent 60%),var(--charcoal-2)}
-.ans-wrap{display:grid;grid-template-columns:.95fr 1.05fr;gap:24px;max-width:1140px;margin:0 auto;align-items:start}
-.ans-list{display:flex;flex-direction:column;gap:8px}
-.ans-item{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:var(--charcoal-card);border:1px solid var(--line);border-radius:14px;padding:12px 15px;cursor:pointer;color:#fff;font-family:'Poppins',sans-serif;transition:transform .16s,border-color .16s,background .16s}
-.ans-item:hover{transform:translateX(4px);border-color:rgba(0,168,98,.5)}
-.ans-item .ic{flex:0 0 42px;width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;background:linear-gradient(135deg,rgba(0,168,98,.16),rgba(212,160,23,.14))}
-.ans-item .tx b{font-family:'Archivo',sans-serif;font-size:.98rem;display:block;line-height:1.2}
-.ans-item .tx small{color:var(--muted);font-size:.78rem;display:block;margin-top:2px}
-.ans-item .ar{margin-left:auto;color:#6f6f88;font-size:1.3rem;transition:.16s}
-.ans-item.active{background:linear-gradient(135deg,rgba(0,135,81,.22),rgba(212,160,23,.10));border-color:rgba(212,160,23,.6);transform:translateX(4px)}
-.ans-item.active .ar{color:var(--gold);transform:translateX(3px)}
-.ans-panel{position:sticky;top:96px;background:var(--charcoal-card);border:1px solid var(--line);border-radius:22px;padding:30px 32px;box-shadow:0 26px 60px rgba(0,0,0,.45);overflow:hidden}
-.ans-body{transition:opacity .22s ease,transform .22s ease}
-.ans-body.swap{opacity:0;transform:translateY(10px)}
-.ans-stat{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:18px}
-.ans-stat .n{font-family:'Archivo',sans-serif;font-weight:700;font-size:clamp(2.2rem,4.5vw,3rem);color:var(--gold);letter-spacing:-.02em;line-height:1}
-.ans-stat .l{color:var(--muted);font-size:.92rem;max-width:340px}
-.ans-h{font-family:'Archivo',sans-serif;font-weight:700;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:8px;margin-bottom:10px}
-.ans-h::before{content:"";width:20px;height:2px;background:var(--gold)}
-.ans-h.green{color:#22e08a}
-.ans-h.green::before{background:#22e08a}
-.ans-prob{color:var(--muted);font-size:.98rem;margin-bottom:20px}
-.ans-sol{list-style:none;margin-bottom:22px}
-.ans-sol li{display:flex;gap:11px;color:#e7e7f0;font-size:.95rem;margin-bottom:11px}
-.ans-sol li i{flex:0 0 22px;width:22px;height:22px;border-radius:50%;background:rgba(0,168,98,.2);color:#22e08a;display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:700;font-size:.78rem;margin-top:2px}
-.ans-act{display:flex;flex-wrap:wrap;gap:10px;align-items:center;border-top:1px solid var(--line);padding-top:18px}
-.ans-act .cta{padding:12px 20px;font-size:.88rem}
-.ans-src{color:#8a8a9c;font-size:.76rem;margin-top:14px}
-@media(max-width:960px){
-  /* phones/tablets: show ONLY the issue pills — tapping one opens its own detail page */
-  .ans-wrap{grid-template-columns:1fr}
-  .ans-panel{display:none}
-  .ans-list{flex-direction:column;gap:10px}
-  .ans-item:hover,.ans-item.active{transform:none;background:var(--charcoal-card);border-color:var(--line)}
-  .ans-item.active .ar{color:#6f6f88;transform:none}
-}
-
-/* ============ STATEMENT BAND ============ */
-.band{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--green-dark),var(--green));padding:70px 0}
-.band::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.08) 1px,transparent 1px);background-size:24px 24px;opacity:.6}
-.band .wrap{position:relative;text-align:center}
-.band .q{font-family:'Archivo',sans-serif;font-weight:700;font-size:clamp(1.7rem,3.7vw,2.8rem);letter-spacing:-.01em;max-width:960px;margin:0 auto 12px;color:#fff}
-.band .q em{color:var(--gold-soft);font-style:normal}
-.band .sub{color:rgba(255,255,255,.85);font-size:1.05rem;margin-bottom:26px}
-.band .cta-g{background:#fff;color:var(--green-dark)}
-
-/* ============ EXPLORE SECTIONS ============ */
-.explore-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px;max-width:1120px;margin:0 auto}
-.ex-card{display:flex;align-items:center;gap:16px;background:var(--charcoal-card);border:1px solid var(--line);border-radius:16px;padding:18px 18px;text-decoration:none;color:#fff;transition:transform .18s,border-color .18s,background .18s}
-.ex-card:hover{transform:translateY(-3px);border-color:rgba(0,168,98,.55);background:#242440}
-.ex-ic{flex:0 0 50px;width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;background:linear-gradient(135deg,rgba(0,168,98,.18),rgba(212,160,23,.16))}
-.ex-tx b{font-family:'Archivo',sans-serif;font-size:1.02rem;display:block}
-.ex-tx small{color:var(--muted);font-size:.82rem}
-.ex-ar{margin-left:auto;color:#6f6f88;font-size:1.4rem;transition:.18s}
-.ex-card:hover .ex-ar{color:var(--gold);transform:translateX(3px)}
-
-/* ============ EMAIL SIGNUP ============ */
-.join-blk{background:radial-gradient(700px 400px at 100% 0,rgba(212,160,23,.12),transparent 60%),var(--charcoal-2)}
-.join-wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;max-width:1080px;margin:0 auto}
-.join-left h2{font-size:clamp(1.9rem,3.6vw,2.7rem);margin-bottom:14px}
-.join-left h2 .g{color:var(--gold)}
-.join-left p{color:var(--muted);font-size:1.05rem;margin-bottom:22px}
-.join-perks{list-style:none}
-.join-perks li{display:flex;align-items:center;gap:12px;margin-bottom:12px;color:#e7e7f0}
-.join-perks li i{flex:0 0 26px;width:26px;height:26px;border-radius:50%;background:rgba(0,168,98,.2);color:#22e08a;display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:700}
-.join-card{background:var(--charcoal-card);border:1px solid var(--line);border-radius:22px;padding:32px;box-shadow:0 26px 60px rgba(0,0,0,.5)}
-.join-card h3{font-size:1.4rem;margin-bottom:6px}
-.join-card .hint{color:var(--muted);font-size:.9rem;margin-bottom:20px}
-.fld{margin-bottom:15px}
-.fld label{display:block;font-size:.82rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
-.fld input,.fld select{width:100%;padding:14px 15px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:#fff;font-family:'Poppins',sans-serif;font-size:.98rem}
-.fld input:focus,.fld select:focus{outline:none;border-color:var(--green-soft);box-shadow:0 0 0 3px rgba(0,168,98,.2)}
-.fld select option{background:#1f1f36;color:#fff}
-.join-submit{width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,var(--green-soft),var(--green-dark));color:#fff;font-family:'Archivo',sans-serif;font-weight:700;font-size:1.02rem;padding:16px;border-radius:999px;box-shadow:0 12px 30px rgba(0,135,81,.4);transition:transform .18s}
-.join-submit:hover{transform:translateY(-2px)}
-.join-submit:disabled{opacity:.6;cursor:default;transform:none}
-.privacy{color:#8a8a9c;font-size:.8rem;text-align:center;margin-top:14px}
-.join-ok{display:none;background:rgba(0,168,98,.14);border:1px solid rgba(0,168,98,.45);border-radius:14px;padding:18px;color:#a9f4cf;text-align:center;font-size:.95rem;margin-top:16px}
-.join-err{display:none;background:rgba(224,60,60,.12);border:1px solid rgba(224,60,60,.4);border-radius:14px;padding:14px;color:#ffb3b3;text-align:center;font-size:.9rem;margin-top:12px}
-
-/* ============ FOOTER ============ */
-footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58px 0 28px}
-.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:36px}
-.foot-brand .b{display:flex;align-items:center;gap:12px;margin-bottom:16px}
-.foot-brand img{width:44px;height:44px}
-.foot-brand .bn{font-family:'Archivo',sans-serif;font-weight:700;font-size:1.1rem}
-.foot-brand p{color:var(--muted);font-size:.92rem;max-width:320px;margin-bottom:16px}
-.foot-social{display:flex;gap:10px}
-.foot-social a{width:40px;height:40px;border-radius:11px;background:rgba(255,255,255,.06);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;transition:.18s}
-.foot-social a:hover{background:var(--green);border-color:var(--green)}
-.foot-social svg{width:19px;height:19px}
-.foot-col h4{font-family:'Archivo',sans-serif;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
-.foot-col ul{list-style:none}
-.foot-col li{margin-bottom:10px}
-.foot-col a{color:var(--muted);text-decoration:none;font-size:.92rem;transition:.15s}
-.foot-col a:hover{color:#fff}
-.foot-bottom{border-top:1px solid var(--line);margin-top:40px;padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:#7f7f92;font-size:.85rem}
-.foot-bottom a{color:#7f7f92;text-decoration:none;margin-left:18px}
-.foot-bottom a:hover{color:#fff}
-
-/* ============ FLOATING AI ============ */
-.fab-ai{position:fixed;right:22px;bottom:22px;z-index:900;display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,var(--gold-soft),var(--gold));color:var(--charcoal);font-family:'Archivo',sans-serif;font-weight:700;text-decoration:none;padding:14px 20px;border-radius:999px;box-shadow:0 14px 34px rgba(212,160,23,.45)}
-
-/* ============ IMPACT STRIP ============ */
-.impact-blk{background:radial-gradient(800px 460px at 50% 0,rgba(0,135,81,.10),transparent 60%),var(--charcoal-2)}
-.impact-tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:-14px auto 44px;max-width:880px}
-.impact-tags span{background:var(--charcoal-card);border:1px solid var(--line);border-radius:999px;padding:9px 18px;font-family:'Archivo',sans-serif;font-weight:600;font-size:.9rem;color:#e7e7f0}
-.impact-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:1020px;margin:0 auto}
-.ist{background:var(--charcoal-card);border:1px solid var(--line);border-radius:18px;padding:28px 18px;text-align:center;transition:transform .18s,border-color .18s}
-.ist:hover{transform:translateY(-3px);border-color:rgba(0,168,98,.5)}
-.ist .n{display:block;font-family:'Archivo',sans-serif;font-weight:700;font-size:2.5rem;color:var(--gold);letter-spacing:-.02em;line-height:1.15}
-.ist .l{color:var(--muted);font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
-
-/* ============ MOVEMENT VALUES ============ */
-.values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:1120px;margin:0 auto}
-.val-card{background:var(--charcoal-card);border:1px solid var(--line);border-radius:18px;padding:26px 22px;transition:transform .18s,border-color .18s}
-.val-card:hover{transform:translateY(-3px);border-color:rgba(212,160,23,.5)}
-.v-ic,.p-ic{display:flex;width:52px;height:52px;border-radius:14px;align-items:center;justify-content:center;font-size:1.5rem;background:linear-gradient(135deg,rgba(0,168,98,.18),rgba(212,160,23,.16));margin-bottom:16px}
-.val-card h3{font-size:1.06rem;margin-bottom:9px}
-.val-card p{color:var(--muted);font-size:.9rem}
-
-/* ============ DECLARATION ============ */
-.decl-blk{background:radial-gradient(900px 520px at 50% 0,rgba(0,135,81,.12),transparent 62%),radial-gradient(600px 380px at 100% 100%,rgba(212,160,23,.07),transparent 60%),var(--charcoal-2)}
-.d-hl{color:var(--green-soft)}
-/* two-column editorial layout: the stance (sticky, left) + the declaration in articles (right) */
-.dc{display:grid;grid-template-columns:.82fr 1.18fr;gap:64px;max-width:1160px;margin:0 auto;align-items:start}
+/* ---------- DECLARATION ---------- */
+.dc{display:grid;grid-template-columns:.82fr 1.18fr;gap:64px;align-items:start}
 .dc-side{align-self:stretch}
-.dc-sticky{position:sticky;top:104px}
-.dc-side h2{font-size:clamp(2rem,3.8vw,3.1rem);font-weight:800;letter-spacing:-.03em;line-height:1.05}
-.dc-side h2 .g{color:var(--gold);display:block}
-/* the "Not with…" list — each line gets struck through as the section scrolls in */
-.dc-not{list-style:none;margin:26px 0 26px}
-.dc-not li{display:flex;align-items:flex-start;gap:13px;font-family:'Archivo',sans-serif;font-weight:600;font-size:1.06rem;line-height:1.4;color:#9b9bb2;padding:10px 0;border-bottom:1px dashed rgba(255,255,255,.09)}
-.dc-not li::before{content:"✕";flex:0 0 26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(224,60,60,.15);color:#ff8f8f;font-size:.75rem;font-weight:700;margin-top:-1px}
-.dc-not s{text-decoration:none;background:linear-gradient(#ff8f8f,#ff8f8f) no-repeat 0 58%/100% 2px;-webkit-box-decoration-break:clone;box-decoration-break:clone;transition:background-size .7s ease}
+.dc-sticky{position:sticky;top:110px}
+.dc-side h2{font-size:clamp(2.3rem,4.4vw,3.6rem);line-height:.96;letter-spacing:-.04em;margin-top:18px}
+.dc-side h2 .g{display:block}
+.dc-not{list-style:none;margin:26px 0}
+.dc-not li{display:flex;align-items:flex-start;gap:13px;font-family:var(--display);font-weight:700;font-size:1.04rem;line-height:1.4;color:var(--faint);padding:11px 0;border-bottom:1px dashed var(--rule-2)}
+.dc-not li::before{content:"✕";flex:0 0 26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#fdecec;color:#d14343;font-size:.72rem;font-weight:700}
+.dc-not s{text-decoration:none;background:linear-gradient(#d14343,#d14343) no-repeat 0 58%/100% 2px;-webkit-box-decoration-break:clone;box-decoration-break:clone;transition:background-size .7s ease}
 .js-anim .dc-not s{background-size:0 2px}
 .js-anim .dc.in .dc-not s{background-size:100% 2px}
 .dc.in .dc-not li:nth-child(2) s{transition-delay:.3s}
 .dc.in .dc-not li:nth-child(3) s{transition-delay:.6s}
-.dc-not li.yes{color:#fff;font-size:1.32rem;border-bottom:none;padding-top:16px}
-.dc-not li.yes::before{content:"✓";background:linear-gradient(135deg,var(--green-soft),var(--green-dark));color:#fff;font-size:.85rem;margin-top:3px}
-.dc-not li.yes small{display:block;font-family:'Poppins',sans-serif;font-weight:400;font-size:.92rem;color:var(--muted);margin-top:3px}
-/* date card + CTA */
-.dc-date{display:flex;gap:18px;align-items:center;background:var(--charcoal-card);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:18px}
-.dc-cal{flex:0 0 78px;border-radius:14px;overflow:hidden;text-align:center;background:#fff;color:var(--charcoal);box-shadow:0 10px 24px rgba(0,0,0,.35)}
-.dc-cal .m{display:block;background:linear-gradient(135deg,var(--green-soft),var(--green-dark));color:#fff;font-family:'Archivo',sans-serif;font-weight:700;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;padding:5px 0}
-.dc-cal .d{display:block;font-family:'Archivo',sans-serif;font-weight:700;font-size:2.1rem;line-height:1.1;padding-top:4px}
-.dc-cal .y{display:block;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6a6a7a;padding:0 0 7px}
-.dc-date p{font-family:'Archivo',sans-serif;font-weight:700;font-size:1.04rem;line-height:1.35;color:#fff;margin-bottom:5px}
-.dc-date p.sm{font-family:'Poppins',sans-serif;font-weight:400;font-size:.9rem;color:var(--muted);margin:0}
-.dc-date p.sm b{color:var(--gold)}
-/* the declaration body */
-.dc-art{display:grid;grid-template-columns:62px 1fr;gap:18px;padding:30px 0;border-top:1px solid var(--line)}
-.dc-art:first-child{border-top:none;padding-top:6px}
-.dc-no{font-family:'Archivo',sans-serif;font-weight:700;font-size:2.5rem;line-height:1;color:transparent;-webkit-text-stroke:1.3px rgba(212,160,23,.75)}
-.dc-art h3{font-size:1.28rem;color:#fff;margin:4px 0 12px}
-.dc-art p{color:#cfcfdc;font-size:1.04rem;line-height:1.72;margin-bottom:14px}
+.dc-not li.yes{color:var(--ink);font-size:1.34rem;border-bottom:none;padding-top:16px;font-weight:800}
+.dc-not li.yes::before{content:"✓";background:var(--green);color:#fff;font-size:.85rem;margin-top:3px}
+.dc-not li.yes small{display:block;font-family:var(--text);font-weight:400;font-size:.9rem;color:var(--muted);margin-top:3px}
+.dc-date{display:flex;gap:18px;align-items:center;background:var(--paper-2);border:1px solid var(--rule);border-radius:6px;padding:18px;margin-bottom:18px}
+.dc-cal{flex:0 0 78px;border-radius:8px;overflow:hidden;text-align:center;background:#fff;border:1px solid var(--rule);box-shadow:var(--shadow)}
+.dc-cal .m{display:block;background:var(--green);color:#fff;font-family:var(--display);font-weight:700;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;padding:5px 0}
+.dc-cal .d{display:block;font-family:var(--display);font-weight:800;font-size:2.1rem;line-height:1.1;padding-top:4px;color:var(--ink)}
+.dc-cal .y{display:block;font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:0 0 7px}
+.dc-date p{font-family:var(--display);font-weight:800;font-size:1.02rem;line-height:1.3;color:var(--ink);margin-bottom:5px}
+.dc-date p.sm{font-family:var(--text);font-weight:400;font-size:.88rem;color:var(--muted);margin:0}
+.dc-date p.sm b{color:var(--green)}
+.dc-art{display:grid;grid-template-columns:70px 1fr;gap:18px;padding:32px 0;border-top:1px solid var(--rule)}
+.dc-art:first-child{border-top:none;padding-top:4px}
+.dc-no{font-family:var(--display);font-weight:800;font-size:2.7rem;line-height:1;color:transparent;-webkit-text-stroke:1.4px var(--green);letter-spacing:-.02em}
+.dc-art h3{font-size:1.45rem;letter-spacing:-.03em;margin:2px 0 12px}
+.dc-art p{font-size:1.02rem;line-height:1.75;margin-bottom:14px}
 .dc-art p:last-child{margin-bottom:0}
-.dc-art p b{color:#fff;font-weight:600}
-.dc-art p em,.dc-says em{color:var(--gold-soft);font-style:normal;font-weight:600}
+.dc-art p em,.dc-says em{color:var(--green);font-style:normal;font-weight:600}
 .dc-people{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:4px 0 18px}
-.dc-people div{background:var(--charcoal-card);border:1px solid var(--line);border-radius:14px;padding:14px;font-size:.9rem;line-height:1.45;color:#d7d7e3}
+.dc-people div{background:var(--paper-2);border:1px solid var(--rule);border-radius:6px;padding:15px;font-size:.88rem;line-height:1.5}
 .dc-people div i{display:block;font-style:normal;font-size:1.35rem;margin-bottom:6px}
-.dc-people div b{color:#fff}
-.dc-pull{margin:6px 0 0;padding:18px 22px;border-left:3px solid var(--gold);background:linear-gradient(90deg,rgba(212,160,23,.11),rgba(212,160,23,0));border-radius:0 14px 14px 0;font-family:'Archivo',sans-serif;font-weight:700;font-size:1.28rem;line-height:1.35;color:#fff}
-.dc-pull em{color:var(--gold-soft);font-style:normal}
+.dc-pull{margin:6px 0 0;padding:18px 22px;border-left:4px solid var(--orange);background:var(--orange-tint);font-family:var(--display);font-weight:800;font-size:1.3rem;line-height:1.3;letter-spacing:-.015em;color:var(--ink)}
+.dc-pull em{color:var(--orange-2);font-style:normal}
 .dc-says{list-style:none;margin:2px 0 0}
-.dc-says li{position:relative;padding:12px 0 12px 30px;color:#d7d7e3;font-size:1rem;line-height:1.6;border-top:1px dashed rgba(255,255,255,.08)}
-.dc-says li::before{content:"";position:absolute;left:4px;top:21px;width:10px;height:10px;border-radius:3px;background:var(--green-soft);transform:rotate(45deg)}
-/* closing statement */
-.dc-close{position:relative;overflow:hidden;margin-top:12px;border-radius:22px;padding:34px 34px 30px;background:linear-gradient(135deg,rgba(0,135,81,.22),rgba(212,160,23,.1));border:1px solid rgba(0,168,98,.35)}
-.dc-close::after{content:"2027";position:absolute;right:-10px;bottom:-34px;font-family:'Archivo',sans-serif;font-weight:700;font-size:8.5rem;letter-spacing:-.05em;line-height:1;color:rgba(255,255,255,.04);pointer-events:none}
-.dc-big{position:relative;font-family:'Archivo',sans-serif;font-weight:700;font-size:clamp(1.45rem,2.6vw,1.95rem);line-height:1.25;color:#fff;margin-bottom:22px}
-.dc-sign{position:relative;display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:22px}
-.dc-sign img{width:40px;height:40px}
-.dc-sign b{display:block;font-family:'Archivo',sans-serif;font-size:1rem;color:#fff}
-.dc-sign small{display:block;color:var(--muted);font-size:.8rem}
+.dc-says li{position:relative;padding:12px 0 12px 30px;font-size:1rem;line-height:1.6;border-top:1px dashed var(--rule-2)}
+.dc-says li::before{content:"";position:absolute;left:4px;top:21px;width:10px;height:10px;border-radius:2px;background:var(--green);transform:rotate(45deg)}
+.dc-close{position:relative;overflow:hidden;margin-top:14px;padding:36px 36px 32px;background:var(--ink);color:#fff}
+.dc-close::before{content:"";position:absolute;inset:0;background-image:var(--grain);opacity:.1;pointer-events:none}
+.dc-close::after{content:"2027";position:absolute;right:-8px;bottom:-40px;font-family:var(--display);font-weight:800;font-size:9rem;letter-spacing:-.06em;line-height:1;color:rgba(255,255,255,.05);pointer-events:none}
+.dc-big{position:relative;font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,2.7vw,2.1rem);line-height:1.15;letter-spacing:-.03em;color:#fff;margin-bottom:22px}
+.dc-big span{color:#7fe0ae}
+.dc-sign{position:relative;display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.dc-sign img{width:42px;height:42px;border-radius:50%;background:#fff;padding:2px}
+.dc-sign b{display:block;font-family:var(--display);font-weight:800;color:#fff}
+.dc-sign small{display:block;color:#a9b8ad;font-size:.8rem}
 .dc-close .ctas{position:relative;display:flex;gap:10px;flex-wrap:wrap}
-.cta-wa{background:#25D366;color:#073b1f;box-shadow:0 12px 26px rgba(37,211,102,.28)}
-@media(max-width:960px){
-  .dc{grid-template-columns:1fr;gap:34px}
-  .dc-sticky{position:static}
-}
-@media(max-width:620px){
-  .dc-art{grid-template-columns:1fr;gap:6px;padding:26px 0}
-  .dc-no{font-size:1.9rem}
-  .dc-people{grid-template-columns:1fr}
-  .dc-people div{display:flex;gap:12px;align-items:flex-start}
-  .dc-people div i{margin:0}
-  .dc-close{padding:26px 20px 22px}
-  .dc-close .ctas{flex-direction:column}
-  .dc-close .cta{justify-content:center}
-  .dc-pull{font-size:1.14rem}
-}
-@media(prefers-reduced-motion:reduce){.dc-not s{transition:none}}
+.btn-wa{background:#25D366;color:#063d20}
+.btn-wa:hover{background:#1fbd5a}
 
-/* ============ CHALLENGES ============ */
-.chal-blk{background:radial-gradient(700px 420px at 100% 0,rgba(212,160,23,.08),transparent 60%),var(--charcoal-2)}
-.chal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:1120px;margin:0 auto 36px}
-.chal-card{background:var(--charcoal-card);border:1px solid var(--line);border-left:3px solid var(--green-soft);border-radius:14px;padding:20px}
-.chal-card h4{font-size:1rem;margin-bottom:8px}
-.chal-card p{color:var(--muted);font-size:.87rem}
-.commit-box{max-width:860px;margin:0 auto;text-align:center;background:linear-gradient(135deg,rgba(0,135,81,.16),rgba(212,160,23,.10));border:1px solid rgba(0,168,98,.35);border-radius:22px;padding:36px 30px}
-.commit-box h3{font-size:1.45rem;margin-bottom:10px;color:var(--gold-soft)}
-.commit-box p{color:#e0eae4;font-size:.98rem;margin-bottom:22px}
-.commit-box p a{color:var(--gold-soft)}
-
-/* ============ PROGRAMMES ============ */
-.prog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1020px;margin:0 auto}
-.prog-card{display:flex;flex-direction:column;background:var(--charcoal-card);border:1px solid var(--line);border-radius:18px;padding:28px 24px;text-decoration:none;color:#fff;transition:transform .18s,border-color .18s}
-.prog-card:hover{transform:translateY(-4px);border-color:rgba(0,168,98,.55)}
-.prog-card h3{font-size:1.15rem;margin-bottom:9px}
-.prog-card p{color:var(--muted);font-size:.92rem;margin-bottom:16px}
-.p-link{margin-top:auto;color:var(--gold-soft);font-family:'Archivo',sans-serif;font-weight:700;font-size:.9rem}
-
-/* ============ TESTIMONIALS ============ */
-.testi-blk{background:radial-gradient(700px 400px at 0 0,rgba(212,160,23,.08),transparent 60%),var(--charcoal-2)}
-.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1080px;margin:0 auto}
-.t-card{background:var(--charcoal-card);border:1px solid var(--line);border-radius:18px;padding:26px}
-.t-stars{color:var(--gold);letter-spacing:2px;margin-bottom:12px;font-size:.9rem}
-.t-card h3{font-size:1.02rem;margin-bottom:10px}
-.t-card p{color:var(--muted);font-size:.92rem;font-style:italic;margin-bottom:14px}
-.t-who{color:var(--gold-soft);font-size:.82rem;font-weight:600}
-
-/* ============ GALLERY PREVIEW ============ */
-.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:1080px;margin:0 auto 32px}
-.gal-item{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);display:block}
-.gal-item img{width:100%;height:220px;object-fit:cover;transition:transform .35s}
-.gal-item:hover img{transform:scale(1.06)}
-.gal-item span{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 12px;background:linear-gradient(180deg,transparent,rgba(10,10,18,.92));font-family:'Archivo',sans-serif;font-weight:600;font-size:.88rem;color:#fff}
-.gal-cta{text-align:center}
-
-/* ============ LATEST NEWS ============ */
-.news-blk{background:var(--charcoal-2)}
-.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1080px;margin:0 auto}
-.news-card{display:flex;flex-direction:column;background:var(--charcoal-card);border:1px solid var(--line);border-radius:18px;overflow:hidden;text-decoration:none;color:#fff;transition:transform .18s,border-color .18s}
-.news-card:hover{transform:translateY(-4px);border-color:rgba(0,168,98,.55)}
-.nc-img img{width:100%;height:180px;object-fit:cover}
-.nc-body{padding:20px;display:flex;flex-direction:column;flex:1}
-.nc-meta{display:flex;justify-content:space-between;align-items:center;font-size:.76rem;color:var(--muted);margin-bottom:10px}
-.nc-meta .cat{background:rgba(0,168,98,.16);color:#8ff0c2;border-radius:999px;padding:4px 11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:.68rem}
-.nc-body h3{font-size:1.04rem;margin-bottom:8px}
-.nc-body p{color:var(--muted);font-size:.88rem;margin-bottom:14px}
-.nc-more{margin-top:auto;color:var(--gold-soft);font-family:'Archivo',sans-serif;font-weight:700;font-size:.88rem}
-
-/* =====================================================================
-   SDP 2027 TICKET · FAREWELL BLUEPRINT · RUNNING MATE
-   (party orange lives here; FixNaija green stays the site's base colour)
-   ===================================================================== */
-:root{--sdp:#F26A1B;--sdp-soft:#ff8c3a;--sdp-deep:#d9530b}
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-
-/* Farewell wordmark (inline SVG symbol #fwMark, recoloured with CSS) */
+/* ---------- BLUEPRINT (deep green) + BOARDING PASS ---------- */
+.bp-blk{background:radial-gradient(900px 520px at 0% 0%,rgba(0,166,81,.28),transparent 60%),radial-gradient(700px 480px at 100% 100%,rgba(242,106,27,.18),transparent 60%),var(--green-deep);color:#d5e7dc;overflow:hidden}
+.bp-blk::before{content:"";position:absolute;inset:0;background-image:var(--grain);opacity:.09;pointer-events:none}
+.bp-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center}
 .fw-logo{display:block;width:100%;height:auto;fill:#fff;overflow:visible}
 .fw-logo.sheen{fill:url(#fwSheen)}
-
-/* navbar co-brand: FixNaija | SDP */
-.brand-group{display:flex;align-items:center;gap:14px;min-width:0}
-.brand-sdp{display:flex;align-items:center;padding-left:14px;border-left:1px solid rgba(255,255,255,.16);text-decoration:none;transition:transform .2s}
-.brand-sdp img{height:30px;width:auto;filter:drop-shadow(0 3px 8px rgba(242,106,27,.35));transition:height .3s}
-.navbar.scrolled .brand-sdp img{height:26px}
-.brand-sdp:hover{transform:translateY(-1px) rotate(-2deg)}
-#mobileMenu .mm-ico img{width:36px;height:auto}
-
-/* ---------- THE 2027 TICKET ---------- */
-.ticket-blk{position:relative;overflow:hidden;background:
-  radial-gradient(700px 420px at 10% 18%,rgba(242,106,27,.13),transparent 60%),
-  radial-gradient(760px 460px at 90% 82%,rgba(0,135,81,.16),transparent 60%),var(--charcoal)}
-.ticket-blk .sec-head{margin-bottom:40px}
-.ticket-blk .sec-head p b{color:#fff;font-weight:600}
-.tk{position:relative;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 290px 1fr;gap:30px;align-items:center;
-  background:linear-gradient(160deg,rgba(255,255,255,.055),rgba(255,255,255,.015));border:1px solid var(--line);border-radius:30px;padding:58px 40px 40px;
-  -webkit-mask:radial-gradient(circle 20px at 0 50%,#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 20px at 100% 50%,#0000 98%,#000) right/51% 100% no-repeat;
-          mask:radial-gradient(circle 20px at 0 50%,#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 20px at 100% 50%,#0000 98%,#000) right/51% 100% no-repeat}
-.tk-strip{position:absolute;top:22px;left:0;right:0;text-align:center;font-family:'Archivo',sans-serif;font-weight:700;font-size:.66rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.42)}
-.tk-strip i{font-style:normal;color:var(--sdp-soft);margin:0 .7em}
-.tk-card{position:relative;margin:0;border-radius:22px;overflow:hidden;aspect-ratio:4/5;background:#2a2a40;box-shadow:0 30px 60px rgba(0,0,0,.45);isolation:isolate;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
-.tk-card::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:2px;background:linear-gradient(160deg,var(--sdp),rgba(255,255,255,.08) 42%,var(--green-soft));
-  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;z-index:3;pointer-events:none}
-.tk-card img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .8s ease}
-.tk-card:hover{transform:translateY(-6px)}
-.tk-card:hover img{transform:scale(1.04)}
-.tk-card figcaption{position:absolute;left:0;right:0;bottom:0;padding:80px 22px 22px;background:linear-gradient(180deg,transparent,rgba(10,12,20,.8) 48%,rgba(10,12,20,.96));z-index:2}
-.tk-role{display:inline-flex;align-items:center;font-family:'Archivo',sans-serif;font-weight:700;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;padding:7px 12px;border-radius:999px;background:linear-gradient(135deg,var(--gold-soft),var(--gold));color:var(--charcoal);margin-bottom:10px}
-.tk-role.vp{background:linear-gradient(135deg,var(--green-soft),var(--green-dark));color:#fff}
-.tk-card figcaption b{display:block;font-family:'Archivo',sans-serif;font-size:clamp(1.12rem,2vw,1.42rem);line-height:1.15;color:#fff}
-.tk-card figcaption small{display:block;color:#cfd3dd;font-size:.84rem;margin-top:5px;line-height:1.35}
-.tk-mid{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px}
-.tk-seal{width:100%;max-width:270px;border-radius:18px;overflow:hidden;border:4px solid #fff;background:#fff;box-shadow:0 24px 50px rgba(242,106,27,.3),0 10px 24px rgba(0,0,0,.45);transform:rotate(-3deg);animation:tkFloat 6s ease-in-out infinite}
-.tk-seal img{width:100%;height:auto}
-@keyframes tkFloat{0%,100%{transform:rotate(-3deg) translateY(0)}50%{transform:rotate(-1.5deg) translateY(-8px)}}
-.tk-names{font-family:'Archivo',sans-serif;font-weight:700;font-size:.95rem;letter-spacing:.16em;text-transform:uppercase;color:#fff;margin-top:6px}
-.tk-names i{font-style:normal;color:var(--sdp-soft);margin:0 .35em}
-.tk-year{display:block;font-family:'Archivo',sans-serif;font-weight:700;font-size:3.4rem;line-height:.95;letter-spacing:-.04em;background:linear-gradient(90deg,var(--sdp-soft),var(--gold-soft) 50%,var(--green-soft));-webkit-background-clip:text;background-clip:text;color:transparent}
-.tk-vote{font-size:.86rem;color:var(--muted);line-height:1.45}
-.tk-vote b{color:#fff}
-.tk-foot{max-width:1100px;margin:28px auto 0;display:grid;grid-template-columns:200px 1fr auto;gap:30px;align-items:center;padding:24px 30px;border-radius:22px;background:linear-gradient(135deg,#0a5c38,#006b3f 55%,#07472b);border:1px solid rgba(255,255,255,.1);box-shadow:0 20px 44px rgba(0,0,0,.35)}
-.tk-foot p{color:#dff3e8;font-size:.98rem;margin:0}
-.tk-foot p b{color:#fff}
-.tk-foot .ctas{display:flex;gap:10px;flex-wrap:wrap}
-.tk-foot .cta{white-space:nowrap;padding:13px 22px;font-size:.92rem}
-.tk-foot .cta-o{background:rgba(255,255,255,.1)}
-
-/* ---------- FAREWELL BLUEPRINT · BOARDING PASS ---------- */
-.bp-blk{position:relative;overflow:hidden;background:
-  radial-gradient(900px 520px at 0% 0%,rgba(0,135,81,.18),transparent 60%),
-  radial-gradient(700px 480px at 100% 100%,rgba(242,106,27,.12),transparent 60%),var(--charcoal)}
-.bp-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center;max-width:1160px;margin:0 auto}
-.bp-left .fw-logo{max-width:430px;margin:2px 0 18px;filter:drop-shadow(0 10px 30px rgba(0,0,0,.35))}
-.bp-kicker{font-family:'Archivo',sans-serif;font-weight:600;color:var(--gold-soft);font-size:1.02rem;line-height:1.35;margin-bottom:14px}
-.bp-left p{color:var(--muted);font-size:1.02rem;margin-bottom:22px}
-.bp-left p b{color:#fff;font-weight:600}
+.fw-logo.ink{fill:var(--ink)}
+.bp-left .fw-logo{max-width:440px;margin:22px 0 20px;filter:drop-shadow(0 12px 30px rgba(0,0,0,.3))}
+.bp-kicker{font-family:var(--display);font-weight:700;color:var(--gold-soft);font-size:1.02rem;line-height:1.35;margin-bottom:14px}
+.bp-left p{color:#c4dccd;font-size:1rem;margin-bottom:24px}
+.bp-left p b{color:#fff}
 .bp-pillars{display:flex;flex-wrap:wrap;gap:8px}
-.bp-pillars span{background:var(--charcoal-card);border:1px solid var(--line);border-radius:999px;padding:7px 13px;font-size:.82rem;font-weight:600;color:#e7e7f0}
+.bp-pillars span{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:7px 13px;font-size:.8rem;font-weight:500;color:#eaf5ee}
 .bp-right{display:flex;flex-direction:column;gap:26px}
 .bp-ctas{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
-
-.pass{--paper:#fbf8f1;--ink:#1A1A2E;--lbl:#7a7a8c;position:relative;display:grid;grid-template-columns:1fr 158px;color:var(--ink);filter:drop-shadow(0 30px 44px rgba(0,0,0,.5));transform:rotate(1.2deg);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.pass{--pp:#fbf8f1;--pi:#1A1A2E;--lbl:#7a7a8c;position:relative;display:grid;grid-template-columns:1fr 158px;color:var(--pi);filter:drop-shadow(0 34px 44px rgba(0,0,0,.45));transform:rotate(1.2deg);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
 .pass:hover{transform:rotate(0) translateY(-4px)}
-.pass small{display:block;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--lbl);font-weight:700;line-height:1.3}
-.pass-main,.pass-stub{background:var(--paper);position:relative}
-.pass-main{border-radius:22px 0 0 22px;
-  -webkit-mask:radial-gradient(circle 13px at 100% 0,#0000 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 13px at 100% 100%,#0000 98%,#000) bottom/100% 51% no-repeat;
-          mask:radial-gradient(circle 13px at 100% 0,#0000 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 13px at 100% 100%,#0000 98%,#000) bottom/100% 51% no-repeat}
-.pass-stub{border-radius:0 22px 22px 0;border-left:2px dashed rgba(26,26,46,.22);display:flex;flex-direction:column;padding:0 18px 18px;
-  -webkit-mask:radial-gradient(circle 13px at 0 0,#0000 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 13px at 0 100%,#0000 98%,#000) bottom/100% 51% no-repeat;
-          mask:radial-gradient(circle 13px at 0 0,#0000 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 13px at 0 100%,#0000 98%,#000) bottom/100% 51% no-repeat}
-.pass-head{display:flex;align-items:center;gap:12px;height:58px;padding:0 24px;background:linear-gradient(135deg,var(--green-dark),var(--green));color:#fff;border-radius:22px 0 0 0}
+.pass small{display:block;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--lbl);font-weight:600;line-height:1.3}
+.pass b{color:inherit}
+.pass-main,.pass-stub{background:var(--pp);position:relative}
+.pass-main{border-radius:14px 0 0 14px;-webkit-mask:radial-gradient(circle 13px at 100% 0,#0000 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 13px at 100% 100%,#0000 98%,#000) bottom/100% 51% no-repeat;mask:radial-gradient(circle 13px at 100% 0,#0000 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 13px at 100% 100%,#0000 98%,#000) bottom/100% 51% no-repeat}
+.pass-stub{border-radius:0 14px 14px 0;border-left:2px dashed rgba(26,26,46,.22);display:flex;flex-direction:column;padding:0 18px 18px;-webkit-mask:radial-gradient(circle 13px at 0 0,#0000 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 13px at 0 100%,#0000 98%,#000) bottom/100% 51% no-repeat;mask:radial-gradient(circle 13px at 0 0,#0000 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 13px at 0 100%,#0000 98%,#000) bottom/100% 51% no-repeat}
+.pass-head{display:flex;align-items:center;gap:12px;height:58px;padding:0 24px;background:var(--green);color:#fff;border-radius:14px 0 0 0}
 .pass-head img{height:26px;width:auto}
-.ph-t{font-family:'Archivo',sans-serif;font-weight:700;letter-spacing:.22em;text-transform:uppercase;font-size:.76rem}
-.ph-f{margin-left:auto;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.8);white-space:nowrap}
-.ph-f b{font-family:'Archivo',sans-serif;color:#fff;letter-spacing:.06em;font-size:.82rem}
-.stub-head{height:58px;margin:0 -18px 16px;background:linear-gradient(135deg,var(--sdp-soft),var(--sdp-deep));border-radius:0 22px 0 0;display:flex;align-items:center;justify-content:center;font-family:'Archivo',sans-serif;font-weight:700;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:#fff}
+.ph-t{font-family:var(--display);font-weight:800;letter-spacing:.22em;text-transform:uppercase;font-size:.74rem}
+.ph-f{margin-left:auto;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.8);white-space:nowrap}
+.ph-f b{font-family:var(--display);color:#fff;letter-spacing:.06em;font-size:.82rem}
+.stub-head{height:58px;margin:0 -18px 16px;background:var(--orange);border-radius:0 14px 0 0;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:#fff}
 .pass-route{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;padding:24px 24px 14px}
-.pr-pt b{display:block;font-family:'Archivo',sans-serif;font-size:2.6rem;line-height:1;letter-spacing:-.02em;margin:4px 0}
-.pr-pt span{display:block;font-size:.78rem;color:#55556a;line-height:1.3;max-width:118px}
+.pr-pt b{display:block;font-family:var(--display);font-weight:800;font-size:2.6rem;line-height:1;letter-spacing:-.03em;margin:4px 0}
+.pr-pt span{display:block;font-size:.76rem;color:#55556a;line-height:1.3;max-width:118px}
 .pr-pt.from b{color:#9a9aab;text-decoration:line-through;text-decoration-thickness:3px;text-decoration-color:rgba(217,83,11,.75)}
 .pr-pt.to{text-align:right}
 .pr-pt.to b{color:var(--green)}
-.pr-pt.to span{margin-left:auto;color:var(--green-dark);font-weight:700}
+.pr-pt.to span{margin-left:auto;color:var(--green);font-weight:700}
 .pr-line{position:relative;height:62px;border-radius:999px;background:linear-gradient(90deg,rgba(242,106,27,.2),rgba(212,160,23,.16) 50%,rgba(0,135,81,.22));overflow:hidden}
 .pr-line::before{content:"";position:absolute;left:18px;right:22px;bottom:13px;border-top:2px dashed rgba(26,26,46,.28)}
 .pr-line::after{content:"";position:absolute;right:12px;bottom:8px;border:6px solid transparent;border-left:10px solid var(--green)}
@@ -537,90 +334,328 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
 .pass-grid{display:grid;grid-template-columns:repeat(4,1fr);margin:0 24px;border-top:1px solid rgba(26,26,46,.1);border-bottom:1px solid rgba(26,26,46,.1)}
 .pass-grid div{padding:13px 10px 13px 0;min-width:0}
 .pass-grid div+div{padding-left:12px;border-left:1px solid rgba(26,26,46,.08)}
-.pass-grid b{font-family:'Archivo',sans-serif;font-size:.96rem;line-height:1.2;display:block;margin-top:3px}
+.pass-grid b{font-family:var(--display);font-weight:800;font-size:.95rem;line-height:1.2;display:block;margin-top:3px}
 .pass-itin{padding:16px 24px 22px}
 .pass-itin ol{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px;position:relative}
-.pass-itin ol::before{content:"";position:absolute;left:7px;right:14px;top:6px;height:2px;background:linear-gradient(90deg,var(--sdp),var(--gold),var(--green-soft))}
+.pass-itin ol::before{content:"";position:absolute;left:7px;right:14px;top:6px;height:2px;background:linear-gradient(90deg,var(--orange),var(--gold),var(--green-3))}
 .pass-itin li{position:relative;padding-top:22px}
-.pass-itin li::before{content:"";position:absolute;top:0;left:0;width:14px;height:14px;border-radius:50%;background:var(--paper);border:3px solid var(--green);box-sizing:border-box}
-.pass-itin li:first-child::before{border-color:var(--sdp)}
-.pass-itin li b{display:block;font-family:'Archivo',sans-serif;font-size:.9rem}
-.pass-itin li span{display:block;font-size:.75rem;color:#5a5a6e;line-height:1.35;margin-top:2px}
+.pass-itin li::before{content:"";position:absolute;top:0;left:0;width:14px;height:14px;border-radius:50%;background:var(--pp);border:3px solid var(--green)}
+.pass-itin li:first-child::before{border-color:var(--orange)}
+.pass-itin li b{display:block;font-family:var(--display);font-weight:800;font-size:.9rem}
+.pass-itin li span{display:block;font-size:.74rem;color:#5a5a6e;line-height:1.35;margin-top:2px}
 .stub-f{margin-bottom:12px}
-.stub-f b{display:block;font-family:'Archivo',sans-serif;font-size:1rem;line-height:1.2;margin-top:3px}
+.stub-f b{display:block;font-family:var(--display);font-weight:800;font-size:1rem;line-height:1.2;margin-top:3px}
 .stub-f b.green{color:var(--green)}
-.stub-count b{font-size:1.9rem;letter-spacing:-.02em;color:var(--sdp-deep);line-height:1}
-.stub-count b span{font-size:.8rem;letter-spacing:0;color:var(--ink);margin-left:3px}
-.barcode{margin-top:auto;height:52px;border-radius:2px;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 4px,var(--ink) 4px 5px,transparent 5px 8px,var(--ink) 8px 11px,transparent 11px 12px,var(--ink) 12px 13px,transparent 13px 16px)}
-.stub-note{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--lbl);text-align:center;margin-top:7px;font-weight:700}
+.stub-count b{font-size:1.9rem;letter-spacing:-.02em;color:var(--orange-2);line-height:1}
+.stub-count b span{font-size:.8rem;letter-spacing:0;color:var(--pi);margin-left:3px}
+.barcode{margin-top:auto;height:52px;border-radius:2px;background:repeating-linear-gradient(90deg,var(--pi) 0 2px,transparent 2px 4px,var(--pi) 4px 5px,transparent 5px 8px,var(--pi) 8px 11px,transparent 11px 12px,var(--pi) 12px 13px,transparent 13px 16px)}
+.stub-note{font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--lbl);text-align:center;margin-top:7px;font-weight:600}
 
-/* ---------- RUNNING MATE (inside Meet the Candidate) ---------- */
-.rm{display:grid;grid-template-columns:1.1fr .9fr;gap:52px;align-items:center;max-width:1120px;margin:70px auto 0;padding-top:62px;border-top:1px solid var(--line)}
-.rm .bio-img{max-width:430px;justify-self:end;width:100%}
-.rm .bio-img img{height:500px;object-position:center 8%}
-.rm .bio-img .fb b{color:var(--green-soft)}
-.bio-txt h3{font-size:clamp(1.8rem,3.4vw,2.5rem);margin-bottom:8px}
-.rm-quote{margin:4px 0 22px;padding:16px 20px;border-left:3px solid var(--sdp);background:rgba(242,106,27,.08);border-radius:0 14px 14px 0;font-family:'Archivo',sans-serif;font-weight:600;font-size:1.12rem;color:#fff;line-height:1.4}
-.rm-quote cite{display:block;font-family:'Poppins',sans-serif;font-style:normal;font-weight:500;font-size:.8rem;color:var(--muted);margin-top:8px}
-.rm-src{color:#8a8a9c;font-size:.76rem;margin-top:-4px}
+/* ---------- THE ANSWERS ---------- */
+.ans-wrap{display:grid;grid-template-columns:.95fr 1.05fr;gap:28px;align-items:start}
+.ans-list{display:flex;flex-direction:column;gap:8px}
+.ans-item{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px 16px;cursor:pointer;color:var(--ink);font-family:var(--text);transition:transform .16s,border-color .16s,background .16s,box-shadow .16s}
+.ans-item:hover{transform:translateX(4px);border-color:var(--green)}
+.ans-item .ic{flex:0 0 42px;width:42px;height:42px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;background:var(--paper-2);border:1px solid var(--rule)}
+.ans-item .tx b{font-family:var(--display);font-weight:800;font-size:1rem;letter-spacing:-.01em;display:block;line-height:1.2}
+.ans-item .tx small{color:var(--muted);font-size:.78rem;display:block;margin-top:2px}
+.ans-item .ar{margin-left:auto;color:var(--faint);font-size:1.3rem;transition:.16s}
+.ans-item.active{background:var(--green);border-color:var(--green);color:#fff;transform:translateX(4px);box-shadow:0 12px 26px -14px rgba(0,102,58,.8)}
+.ans-item.active .tx b{color:#fff}
+.ans-item.active .tx small{color:#cfe7d8}
+.ans-item.active .ic{background:rgba(255,255,255,.14);border-color:transparent}
+.ans-item.active .ar{color:#fff;transform:translateX(3px)}
+.ans-panel{position:sticky;top:110px;background:#fff;border:1px solid var(--rule);border-top:4px solid var(--green);padding:32px 34px;box-shadow:var(--shadow-lg)}
+.ans-body{transition:opacity .22s ease,transform .22s ease}
+.ans-body.swap{opacity:0;transform:translateY(10px)}
+.ans-stat{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--rule);padding-bottom:18px;margin-bottom:18px}
+.ans-stat .n{font-family:var(--display);font-weight:800;font-size:clamp(2.4rem,4.6vw,3.3rem);color:var(--orange-2);letter-spacing:-.04em;line-height:1}
+.ans-stat .l{color:var(--muted);font-size:.9rem;max-width:340px}
+.ans-h{font-family:var(--display);font-weight:700;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--orange-2);display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.ans-h::before{content:"";width:20px;height:2px;background:currentColor}
+.ans-h.green{color:var(--green)}
+.ans-prob{color:var(--body);font-size:.96rem;margin-bottom:20px}
+.ans-sol{list-style:none;margin-bottom:22px}
+.ans-sol li{display:flex;gap:11px;font-size:.94rem;margin-bottom:11px}
+.ans-sol li i{flex:0 0 22px;width:22px;height:22px;border-radius:50%;background:var(--green-tint);color:var(--green);display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:700;font-size:.74rem;margin-top:2px}
+.ans-act{display:flex;flex-wrap:wrap;gap:10px;align-items:center;border-top:1px solid var(--rule);padding-top:18px}
+.ans-act .btn{height:46px}
+.ans-src{color:var(--faint);font-size:.74rem;margin-top:14px}
 
-/* ---------- FOOTER TICKET STRIP ---------- */
-.foot-ticket{display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap;margin-top:40px;padding:18px 24px;border-radius:18px;background:linear-gradient(90deg,rgba(242,106,27,.12),rgba(0,135,81,.15));border:1px solid var(--line);text-decoration:none}
-.foot-ticket img{height:32px;width:auto}
-.ft-names{font-family:'Archivo',sans-serif;font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.88rem;color:#fff}
-.ft-names i{font-style:normal;color:var(--sdp-soft);margin:0 .3em}
-.foot-ticket .fw-logo{width:112px}
-.foot-ticket .vdiv{width:1px;height:30px;background:rgba(255,255,255,.18)}
+/* ---------- CHALLENGES ---------- */
+.chal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule);margin-bottom:40px;background:#fff}
+.chal-card{padding:26px 24px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);transition:background .2s}
+.chal-card:hover{background:var(--green-tint)}
+.chal-card .ic{font-size:1.5rem;margin-bottom:14px;display:block}
+.chal-card h4{font-size:1.1rem;letter-spacing:-.02em;margin-bottom:8px}
+.chal-card p{color:var(--muted);font-size:.86rem;line-height:1.6}
+.commit{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center;background:var(--green-tint);border:1px solid #cfe5d8;border-left:4px solid var(--green);padding:30px 34px}
+.commit h3{font-size:1.5rem;letter-spacing:-.03em;margin-bottom:8px}
+.commit p{color:var(--body);font-size:.95rem;max-width:760px}
+.commit p a{color:var(--green);font-weight:600}
 
+/* ---------- MAP ---------- */
+.map-wrap{display:grid;grid-template-columns:1.35fr .65fr;gap:48px;align-items:center}
+.ng-map svg{width:100%;height:auto;display:block;overflow:visible}
+.ng-map path{fill:#dfe7e1;stroke:#fff;stroke-width:1.2;cursor:pointer;transition:fill .18s,filter .18s;outline:none}
+.ng-map path:nth-child(3n){fill:#d4dfd7}
+.ng-map path:nth-child(5n){fill:#e8ede9}
+.ng-map path:hover,.ng-map path:focus,.ng-map path.lit{fill:var(--green);filter:drop-shadow(0 6px 10px rgba(0,102,58,.35))}
+.map-readout{background:#fff;border:1px solid var(--rule);border-top:4px solid var(--orange);padding:24px;margin:18px 0 20px;box-shadow:var(--shadow)}
+.map-readout .rs-state{font-family:var(--display);font-weight:800;font-size:1.6rem;letter-spacing:-.03em;color:var(--ink)}
+.map-readout .rs-sub{color:var(--green);font-size:.74rem;font-weight:600;text-transform:uppercase;letter-spacing:.14em}
+.map-progress{height:6px;border-radius:999px;background:var(--rule);overflow:hidden;margin-top:18px}
+.map-progress i{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--green),var(--orange))}
+.map-count{font-family:var(--display);font-weight:800;font-size:1rem;margin-top:10px;color:var(--ink)}
+.map-count b{color:var(--orange-2)}
+.map-ctas{display:flex;flex-wrap:wrap;gap:10px}
+
+/* ---------- DARK "GET INVOLVED" BAND ---------- */
+.band{position:relative;background:var(--ink-2);color:#c9d4cc;overflow:hidden}
+.band::before{content:"";position:absolute;inset:0;background-image:var(--grain);opacity:.1;pointer-events:none}
+.band::after{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--green) 0 34%,transparent 34% 66%,var(--orange) 66%)}
+.band-in{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;padding:clamp(64px,8vw,104px) 0}
+.band h2{color:#fff;font-size:clamp(2.2rem,4.6vw,3.7rem);line-height:.98;letter-spacing:-.04em;margin:18px 0 20px}
+.band h2 em{font-style:normal;color:#7fe0ae}
+.band p{font-size:1.02rem;max-width:560px;margin-bottom:30px}
+.band-ctas{display:flex;gap:12px;flex-wrap:wrap}
+.band-stats{display:grid;grid-template-columns:1fr 1fr;border-left:1px solid rgba(255,255,255,.12)}
+.band-stats .st{padding:26px 30px;border-bottom:1px solid rgba(255,255,255,.12)}
+.band-stats .st:nth-child(odd){border-right:1px solid rgba(255,255,255,.12)}
+.band-stats .st:nth-last-child(-n+2){border-bottom:none}
+.band-stats .n{display:block;font-family:var(--display);font-weight:800;font-size:clamp(2.4rem,4vw,3.3rem);letter-spacing:-.04em;line-height:1;color:#fff}
+.band-stats .l{font-family:var(--display);font-weight:700;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:#8fa596;margin-top:8px;display:block}
+
+/* ---------- JOIN FORM ---------- */
+.join-wrap{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.join-left h2{font-size:clamp(2.2rem,4.4vw,3.4rem);line-height:.98;letter-spacing:-.04em;margin:18px 0 16px}
+.join-left p{color:var(--muted);font-size:1.02rem;margin-bottom:24px}
+.join-perks{list-style:none}
+.join-perks li{display:flex;align-items:center;gap:12px;margin-bottom:12px;color:var(--ink);font-weight:500}
+.join-perks li i{flex:0 0 26px;width:26px;height:26px;border-radius:50%;background:var(--green-tint);color:var(--green);display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:700;font-size:.8rem}
+.join-card{background:#fff;border:1px solid var(--rule);border-top:4px solid var(--green);padding:36px;box-shadow:var(--shadow-lg)}
+.join-card h3{font-size:1.6rem;letter-spacing:-.03em;margin-bottom:6px}
+.join-card .hint{color:var(--muted);font-size:.9rem;margin-bottom:22px}
+.fld{margin-bottom:16px}
+.fld label{display:block;font-family:var(--display);font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.fld input,.fld select{width:100%;height:52px;padding:0 15px;border-radius:6px;border:1px solid var(--rule-2);background:var(--paper-2);color:var(--ink);font-family:var(--text);font-size:.96rem;transition:border-color .18s,box-shadow .18s,background .18s}
+.fld input:focus,.fld select:focus{outline:none;border-color:var(--green);background:#fff;box-shadow:0 0 0 4px rgba(0,102,58,.12)}
+.join-submit{width:100%}
+.join-submit:disabled{opacity:.6;cursor:default;transform:none}
+.privacy{color:var(--faint);font-size:.78rem;text-align:center;margin-top:14px}
+.join-ok{display:none;background:var(--green-tint);border:1px solid #bfe0cc;padding:16px;color:var(--green);text-align:center;font-size:.92rem;margin-top:16px}
+.join-err{display:none;background:#fdecec;border:1px solid #f3c2c2;padding:14px;color:#b43131;text-align:center;font-size:.9rem;margin-top:12px}
+
+/* ---------- PROGRAMMES ---------- */
+.prog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.prog-card{position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid var(--rule);padding:30px 28px;text-decoration:none;color:var(--body);transition:transform .2s,box-shadow .2s,border-color .2s;overflow:hidden}
+.prog-card::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.prog-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.prog-card:hover::after{transform:scaleX(1)}
+.p-ic{display:flex;width:54px;height:54px;border-radius:8px;align-items:center;justify-content:center;font-size:1.5rem;background:var(--green-tint);margin-bottom:20px}
+.prog-card h3{font-size:1.35rem;letter-spacing:-.03em;margin-bottom:10px}
+.prog-card p{color:var(--muted);font-size:.92rem;margin-bottom:22px}
+.prog-card .link-arrow{margin-top:auto}
+
+/* ---------- VOICES ---------- */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.t-card{position:relative;background:#fff;border:1px solid var(--rule);padding:32px 28px 26px}
+.t-card::before{content:"“";position:absolute;top:6px;right:22px;font-family:var(--display);font-weight:800;font-size:5rem;line-height:1;color:var(--green-tint)}
+.t-stars{color:var(--orange);letter-spacing:3px;margin-bottom:14px;font-size:.9rem}
+.t-card h3{position:relative;font-size:1.15rem;letter-spacing:-.02em;margin-bottom:10px}
+.t-card p{color:var(--body);font-size:.93rem;margin-bottom:18px}
+.t-who{font-family:var(--display);font-weight:700;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--green);padding-top:14px;border-top:1px solid var(--rule)}
+
+/* ---------- GALLERY ---------- */
+.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:230px;gap:12px;margin-bottom:34px}
+.gal-item{position:relative;overflow:hidden;display:block;background:var(--paper-3)}
+.gal-item:nth-child(1){grid-column:span 2;grid-row:span 2}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.gal-item:hover img{transform:scale(1.06)}
+.gal-item span{position:absolute;left:0;right:0;bottom:0;padding:34px 16px 14px;background:linear-gradient(180deg,transparent,rgba(13,20,15,.82));font-weight:600;font-size:.86rem;color:#fff}
+.center{text-align:center}
+
+/* ---------- NEWS ---------- */
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.news-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--rule);overflow:hidden;text-decoration:none;color:var(--body);transition:transform .2s,box-shadow .2s}
+.news-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.nc-img{overflow:hidden;background:var(--paper-3)}
+.nc-img img{width:100%;height:200px;object-fit:cover;transition:transform .5s}
+.news-card:hover .nc-img img{transform:scale(1.05)}
+.nc-body{padding:22px;display:flex;flex-direction:column;flex:1}
+.nc-meta{display:flex;justify-content:space-between;align-items:center;font-size:.76rem;color:var(--faint);margin-bottom:12px}
+.nc-meta .cat{font-family:var(--display);font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:.62rem;color:var(--green);background:var(--green-tint);padding:5px 9px;border-radius:3px}
+.nc-body h3{font-size:1.18rem;letter-spacing:-.02em;margin-bottom:8px}
+.nc-body p{color:var(--muted);font-size:.88rem;margin-bottom:16px}
+.nc-more{margin-top:auto;color:var(--green);font-weight:600;font-size:.88rem}
+
+/* ---------- EXPLORE ---------- */
+.explore-grid{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.ex-card{display:flex;flex-direction:column;gap:12px;padding:24px 22px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);text-decoration:none;color:var(--ink);background:#fff;transition:background .2s}
+.ex-card:hover{background:var(--green-tint)}
+.ex-ic{font-size:1.5rem}
+.ex-tx b{font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:-.02em;display:block}
+.ex-tx small{color:var(--muted);font-size:.82rem}
+.ex-ar{color:var(--green);font-weight:700;transition:transform .2s}
+.ex-card:hover .ex-ar{transform:translateX(4px)}
+
+/* ---------- WHATSAPP / SUPPORT BAND ---------- */
+.wa-band{position:relative;background:var(--ink-2);color:#c9d4cc;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.06)}
+.wa-band::before{content:"";position:absolute;inset:0;background-image:var(--grain);opacity:.1;pointer-events:none}
+.wa-band::after{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--green) 0 34%,transparent 34% 66%,var(--orange) 66%)}
+.wa-in{position:relative;display:grid;grid-template-columns:1.3fr auto;gap:40px;align-items:center;padding:clamp(56px,7vw,88px) 0}
+.wa-in h2{color:#fff;font-size:clamp(2rem,4vw,3.2rem);line-height:1;letter-spacing:-.04em;margin:16px 0 14px}
+.wa-in h2 em{font-style:normal;color:#25D366}
+.wa-in p{max-width:560px}
+.wa-side{text-align:right}
+.wa-side small{display:block;color:#8fa596;font-size:.76rem;margin-top:10px}
+
+/* ---------- FOOTER ---------- */
+footer{position:relative;background:var(--ink);color:#aab6ad;overflow:hidden}
+footer::before{content:"";position:absolute;inset:0;background-image:var(--grain);opacity:.1;pointer-events:none}
+.foot-in{position:relative;padding:64px 0 28px}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px}
+.foot-brand .b{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.foot-brand img{width:46px;height:46px;border-radius:50%;background:#fff;padding:2px}
+.foot-brand .bn{font-family:var(--display);font-weight:800;font-size:1.15rem;color:#fff;display:block;line-height:1.1}
+.foot-brand .bs{font-family:var(--display);font-weight:700;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:#7fe0ae}
+.foot-brand p{font-size:.9rem;max-width:340px;margin-bottom:18px}
+.foot-social{display:flex;gap:8px}
+.foot-social a{width:40px;height:40px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;transition:.18s}
+.foot-social a:hover{background:var(--green);border-color:var(--green)}
+.foot-social svg{width:18px;height:18px}
+.foot-col h4{font-family:var(--display);font-weight:700;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:#fff;margin-bottom:18px}
+.foot-col ul{list-style:none}
+.foot-col li{margin-bottom:10px}
+.foot-col a{color:#aab6ad;text-decoration:none;font-size:.88rem;transition:.15s;display:inline-flex;gap:8px}
+.foot-col a::before{content:"—";color:#4d5a50}
+.foot-col a:hover{color:#fff}
+.foot-ticket{display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap;margin-top:44px;padding:18px 24px;border:1px solid rgba(255,255,255,.1);border-radius:6px;text-decoration:none;background:rgba(255,255,255,.03)}
+.foot-ticket img{height:30px;width:auto}
+.ft-names{font-family:var(--display);font-weight:800;letter-spacing:.16em;text-transform:uppercase;font-size:.84rem;color:#fff}
+.ft-names i{font-style:normal;color:var(--orange);margin:0 .3em}
+.foot-ticket .fw-logo{width:110px}
+.foot-ticket .vdiv{width:1px;height:30px;background:rgba(255,255,255,.16)}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.1);margin-top:34px;padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:#77857b;font-size:.8rem}
+.foot-bottom a{color:#77857b;text-decoration:none;margin-left:18px}
+.foot-bottom a:hover{color:#fff}
+
+/* ---------- FLOATING "ASK" PILL ---------- */
+.fab-ai{position:fixed;right:22px;bottom:22px;z-index:900;display:inline-flex;align-items:center;gap:12px;background:var(--green-3);color:#fff;text-decoration:none;padding:8px 8px 8px 18px;border-radius:999px;box-shadow:0 16px 34px -10px rgba(0,166,81,.7);transition:transform .2s}
+.fab-ai:hover{transform:translateY(-2px)}
+.fab-ai .t b{display:block;font-family:var(--display);font-weight:800;font-size:.95rem;line-height:1.1;color:#fff}
+.fab-ai .t small{display:block;font-size:.66rem;opacity:.9}
+.fab-ai .ai{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;font-size:.72rem}
+
+/* ---------- scroll reveal ---------- */
+.js-anim .rv{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.js-anim .rv.in{opacity:1;transform:none}
+
+/* =====================================================================
+   RESPONSIVE
+   ===================================================================== */
+@media(max-width:1240px){
+  .nav-links,.nav-actions .btn{display:none}
+  .menu-toggle{display:flex}
+  .explore-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:1080px){
+  .pr-grid{grid-template-columns:1fr 1fr}
+  .ballot{grid-column:1/-1;position:static;display:grid;grid-template-columns:220px 1fr;gap:28px;align-items:center}
+  .ballot .seal{margin:0}
+  .chal-grid{grid-template-columns:repeat(2,1fr)}
+}
 @media(max-width:960px){
-  .tk{grid-template-columns:1fr 1fr;gap:18px;padding:54px 22px 26px}
-  .tk-mid{grid-column:1/-1;order:-1;flex-direction:row;justify-content:center;gap:22px;text-align:left}
-  .tk-seal{max-width:200px;flex:0 0 200px}
-  .tk-mid .tk-meta{display:flex;flex-direction:column;gap:6px}
-  .tk-foot{grid-template-columns:1fr;text-align:center;justify-items:center;gap:16px}
-  .tk-foot .fw-logo{width:190px}
-  .tk-foot .ctas{justify-content:center}
-  .bp-wrap{grid-template-columns:1fr;gap:40px}
-  .bp-left{text-align:center}
-  .bp-left .fw-logo{margin:2px auto 18px}
-  .bp-left .eyebrow{justify-content:center}
-  .bp-pillars{justify-content:center}
+  .slide{min-height:auto;flex-direction:column;align-items:stretch}
+  .slide-inner{padding:56px 0 34px;max-width:none}
+  .slide-media{position:relative;width:100%;height:380px;order:2}
+  .slide-media.photo img{-webkit-mask-image:none;mask-image:none}
+  .slide-media.photo::after{height:30%}
+  .slide-media.cut::before,.slide-media.cut::after{width:90%;right:5%;bottom:-40%}
+  .cut-tag.p{left:4%;bottom:18%}
+  .cut-tag.vp{right:4%;bottom:10%}
+  .cut-sdp{width:84px;top:8%;right:6%}
+  .hero-foot{position:relative}
+  .hero-foot .wrap{flex-direction:column;align-items:stretch;padding:18px 0 26px}
+  .hero-stats{justify-content:space-between;background:none;backdrop-filter:none}
+  .hero-stats .s{padding-right:0;margin-right:0;border-right:none;flex:1}
+  .shead{grid-template-columns:1fr;gap:14px}
+  .mv,.dc,.bp-wrap,.ans-wrap,.map-wrap,.band-in,.join-wrap,.wa-in{grid-template-columns:1fr}
+  .dc-sticky{position:static}
+  .mv-photo{min-height:340px}
+  .ans-panel{display:none}
+  .ans-item:hover,.ans-item.active{transform:none;background:#fff;border-color:var(--rule);color:var(--ink);box-shadow:none}
+  .ans-item.active .tx b{color:var(--ink)}.ans-item.active .tx small{color:var(--muted)}.ans-item.active .ic{background:var(--paper-2);border-color:var(--rule)}.ans-item.active .ar{color:var(--faint)}
   .pass{transform:none;max-width:640px;margin:0 auto;width:100%}
-  .pass:hover{transform:translateY(-3px)}
-  .rm{grid-template-columns:1fr;gap:30px;margin-top:54px;padding-top:48px}
-  .rm .bio-img{justify-self:center}
+  .bp-left{text-align:center}
+  .bp-left .fw-logo{margin:22px auto 20px}
+  .bp-pillars{justify-content:center}
+  .band-stats{border-left:none;border-top:1px solid rgba(255,255,255,.12)}
+  .prog-grid,.testi-grid,.news-grid{grid-template-columns:1fr}
+  .gal-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:180px}
+  .gal-item:nth-child(6){grid-column:span 2}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .wa-side{text-align:left}
+  .commit{grid-template-columns:1fr}
 }
 @media(max-width:620px){
-  .tk{padding:50px 14px 18px;gap:12px;border-radius:24px;-webkit-mask:none;mask:none;align-items:stretch}
-  .tk-strip{top:18px;font-size:.56rem;letter-spacing:.2em}
-  .tk-mid{flex-direction:column;text-align:center;gap:12px}
-  .tk-seal{max-width:210px;flex:none}
-  .tk-year{font-size:2.6rem}
-  .tk-hide-sm{display:none}
-  .tk-card{border-radius:16px;aspect-ratio:auto;display:flex;flex-direction:column;background:var(--charcoal-card)}
-  .tk-card img{aspect-ratio:4/5;height:auto}
-  .tk-card figcaption{position:relative;padding:12px 12px 14px;background:none;flex:1}
-  .tk-role{font-size:.54rem;letter-spacing:.12em;padding:6px 9px;margin-bottom:7px}
-  .tk-card figcaption b{font-size:.98rem}
-  .tk-card figcaption small{font-size:.72rem}
-  .tk-foot{padding:22px 18px}
-  .tk-foot .ctas{flex-direction:column;width:100%}
-  .tk-foot .cta{justify-content:center}
+  .nav-in{height:66px}
+  .brand .badge{width:50px;height:50px;padding:3px}
+  .navbar.scrolled .brand .badge{width:46px;height:46px}
+  .brand .bn{font-size:1rem}
+  .brand .bs{font-size:.52rem;letter-spacing:.14em}
+  .brand-sdp{padding-left:10px}
+  .brand-sdp img{height:22px}
+  .brand-group{gap:10px}
+  .slide h1{font-size:clamp(2.6rem,12vw,3.4rem)}
+  .slide .lead{font-size:1rem}
+  .hero-ctas .btn{flex:1}
+  .slide-media{height:300px}
+  .cut-tag{padding:7px 10px;font-size:.66rem}
+  .cut-tag b{font-size:.8rem}
+  .hero-stats b{font-size:1.5rem}
+  .hero-stats span{font-size:.54rem;letter-spacing:.12em}
+  .slide-arrows{display:none}
+  .mv-panel{padding:32px 24px}
+  .mv-list li{grid-template-columns:1fr;gap:2px}
+  .pr-grid{grid-template-columns:1fr}
+  .pr-card:nth-child(2){margin-top:0}
+  .ballot{grid-template-columns:1fr}
+  .dc-art{grid-template-columns:1fr;gap:6px}
+  .dc-no{font-size:2rem}
+  .dc-people{grid-template-columns:1fr}
+  .dc-people div{display:flex;gap:12px;align-items:flex-start}
+  .dc-people div i{margin:0}
+  .dc-close{padding:28px 22px}
+  .dc-close .ctas,.band-ctas,.map-ctas,.bp-ctas{flex-direction:column}
+  .dc-close .btn,.band-ctas .btn,.map-ctas .btn,.bp-ctas .btn{width:100%}
+  .chal-grid{grid-template-columns:1fr 1fr}
+  .chal-card{padding:18px 14px}
+  .chal-card h4{font-size:.98rem}
+  .chal-card p{font-size:.78rem}
+  .band-stats .st{padding:20px 18px}
+  .join-card{padding:26px 20px}
+  .gal-grid{grid-template-columns:1fr 1fr;grid-auto-rows:150px}
+  .gal-item:nth-child(1){grid-column:span 2;grid-row:span 1}
+  .explore-grid{grid-template-columns:1fr 1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .foot-bottom{flex-direction:column}
+  .foot-bottom a{margin:0 16px 0 0}
+  .foot-ticket .vdiv{display:none}
+  .fab-ai{padding:6px;right:14px;bottom:14px}
+  .fab-ai .t{display:none}
+  /* boarding pass stacks: stub drops below the main part */
   .pass{grid-template-columns:1fr}
-  .pass-main{border-radius:20px 20px 0 0;
-    -webkit-mask:radial-gradient(circle 13px at 0 100%,#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 13px at 100% 100%,#0000 98%,#000) right/51% 100% no-repeat;
-            mask:radial-gradient(circle 13px at 0 100%,#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 13px at 100% 100%,#0000 98%,#000) right/51% 100% no-repeat}
-  .pass-stub{border-radius:0 0 20px 20px;border-left:none;border-top:2px dashed rgba(26,26,46,.22);padding:16px 18px 18px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px 12px;align-items:start;
-    -webkit-mask:radial-gradient(circle 13px at 0 0,#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 13px at 100% 0,#0000 98%,#000) right/51% 100% no-repeat;
-            mask:radial-gradient(circle 13px at 0 0,#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 13px at 100% 0,#0000 98%,#000) right/51% 100% no-repeat}
-  .pass-head{border-radius:20px 20px 0 0;padding:0 16px;gap:10px}
-  .ph-t{font-size:.66rem;letter-spacing:.16em}
+  .pass-main{border-radius:14px 14px 0 0;-webkit-mask:radial-gradient(circle 13px at 0 100%,#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 13px at 100% 100%,#0000 98%,#000) right/51% 100% no-repeat;mask:radial-gradient(circle 13px at 0 100%,#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 13px at 100% 100%,#0000 98%,#000) right/51% 100% no-repeat}
+  .pass-stub{border-radius:0 0 14px 14px;border-left:none;border-top:2px dashed rgba(26,26,46,.22);padding:16px 18px 18px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px 12px;align-items:start;-webkit-mask:radial-gradient(circle 13px at 0 0,#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 13px at 100% 0,#0000 98%,#000) right/51% 100% no-repeat;mask:radial-gradient(circle 13px at 0 0,#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 13px at 100% 0,#0000 98%,#000) right/51% 100% no-repeat}
+  .pass-head{border-radius:14px 14px 0 0;padding:0 16px;gap:10px}
+  .ph-t{font-size:.64rem;letter-spacing:.16em}
   .stub-head{display:none}
   .barcode,.stub-note{grid-column:1/-1}
   .barcode{height:40px;margin-top:6px}
   .pass-route{padding:20px 16px 12px;gap:10px}
   .pr-pt b{font-size:1.9rem}
-  .pr-pt span{font-size:.7rem;max-width:86px}
+  .pr-pt span{font-size:.68rem;max-width:86px}
   .pr-line{height:52px}
   .pr-horse{width:62px;bottom:9px}
   @keyframes gallop{0%{left:4px;opacity:0}10%{opacity:1}82%{opacity:1}100%{left:calc(100% - 74px);opacity:0}}
@@ -630,74 +665,23 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
   .pass-itin{padding:14px 16px 18px}
   .pass-itin ol{grid-template-columns:1fr 1fr;row-gap:14px}
   .pass-itin ol::before{display:none}
-  .rm .bio-img img{height:400px}
-  .foot-ticket{gap:14px}
-  .foot-ticket .vdiv{display:none}
 }
-@media(max-width:440px){
-  .navbar .wrap{gap:8px}
-  .brand{gap:10px}
-  .brand img{width:40px;height:40px}
-  .brand .bn{font-size:.98rem}
-  .brand .bs{font-size:.5rem;letter-spacing:.07em}
-  .brand-sdp{padding-left:10px}
-  .brand-sdp img{height:24px}
-  .brand-group{gap:10px}
-}
-@media(max-width:374px){
+@media(max-width:380px){
   .brand .bs{display:none}
+  .brand{gap:10px}
+  .brand .bn{font-size:.9rem}
+  .brand-group{gap:8px}
+  .brand-sdp{padding-left:8px}
+  .brand-sdp img{height:20px}
+}
+@media(max-width:340px){
+  .brand .badge,.navbar.scrolled .brand .badge{width:42px;height:42px}
+  .brand .bn{font-size:.8rem}
+  .menu-toggle{width:42px;height:42px}
 }
 @media(prefers-reduced-motion:reduce){
-  .tk-seal,.pr-horse,.pr-horse img{animation:none}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
   .pr-horse{left:calc(50% - 40px)}
-}
-
-/* ============ RESPONSIVE ============ */
-@media(max-width:1240px){
-  .nav-links,.nav-actions .btn-ai,.nav-actions .btn-join{display:none}
-  .menu-toggle{display:flex}
-}
-@media(max-width:960px){
-  .slide{min-height:600px}
-  .slide-bg::after{background:linear-gradient(90deg,var(--charcoal) 0%,rgba(8,26,18,.92) 45%,rgba(0,107,63,.55) 85%,rgba(0,135,81,.2) 100%)}
-  .slide-bg{background-position:72% center}
-  .map-wrap,.bio-wrap,.join-wrap{grid-template-columns:1fr}
-  .bio-img{order:-1;max-width:460px;margin:0 auto}
-  .foot-grid{grid-template-columns:1fr 1fr}
-  .impact-stats,.values-grid,.chal-grid,.gal-grid{grid-template-columns:repeat(2,1fr)}
-  .prog-grid,.testi-grid,.news-grid{grid-template-columns:1fr}
-}
-@media(max-width:620px){
-  .wrap{padding:0 18px}
-  section.blk{padding:60px 0}
-  .slide{min-height:560px}
-  .slide-inner{padding:36px 0 130px}
-  .slide-bg::after{background:linear-gradient(180deg,rgba(8,20,14,.72) 0%,rgba(6,16,11,.86) 60%,rgba(0,107,63,.4) 100%)}
-  .slide-bg{background-position:60% 18%}
-  .hero-join .row{flex-direction:column}
-  .hero-join select{flex:1}
-  .slide-dots{bottom:auto;top:20px;right:18px}
-  .hero-statbar .in{padding:12px 8px;flex-wrap:nowrap;justify-content:space-around;gap:0}
-  .hero-statbar .s{flex-direction:column;align-items:center;text-align:center;gap:2px;padding:0 8px;flex:1;min-width:0}
-  .hero-statbar .n{font-size:1.15rem}
-  .hero-statbar .l{font-size:.58rem;letter-spacing:.08em;white-space:nowrap}
-  .bio-img img{height:400px}
-  .map-ctas{justify-content:center}
-  .map-ctas .cta{flex:1;justify-content:center;min-width:140px;padding:15px 14px}
-  .bio-img .fb p{display:none}
-  .bio-img .fb{text-align:center}
-  .foot-grid{grid-template-columns:1fr;text-align:center}
-  footer{text-align:center}
-  .foot-brand .b{justify-content:center}
-  .foot-brand p{margin-left:auto;margin-right:auto}
-  .foot-social{justify-content:center}
-  .foot-col h4{margin-top:6px}
-  .foot-bottom{justify-content:center;text-align:center;flex-direction:column;gap:8px}
-  .foot-bottom a{margin:0 9px}
-  .fab-ai span{display:none}
-  .values-grid,.chal-grid,.gal-grid{grid-template-columns:1fr}
-  .ist .n{font-size:1.9rem}
-  .gal-item img{height:190px}
 }
 </style>
 </head>
@@ -715,29 +699,27 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
   <symbol id="fwMark" viewBox="0 0 2736 1677"><g transform="translate(0,1677) scale(1,-1)"><path d="M366 1663 c-5 -5 -2 -10 7 -11 9 -1 15 -5 18 -10 2 -6 4 -242 1 -251 -2 -7 -7 -12 -15 -15 -7 -2 -10 -4 -10 -7 0 -5 1 -5 39 -4 26 0 39 0 44 -1 9 -1 12 0 12 3 0 3 -3 7 -7 8 -12 2 -16 5 -20 13 l-2 6 -1 50 c-1 28 -1 52 -2 54 -1 9 3 12 13 10 3 -1 12 -1 20 -1 17 0 19 -1 24 -7 5 -7 7 -12 8 -23 2 -13 2 -14 6 -15 2 0 3 0 4 2 2 2 2 4 1 32 0 20 0 35 1 49 1 18 1 19 -1 21 -4 5 -9 0 -11 -11 -2 -14 -9 -23 -19 -26 -2 -1 -12 -1 -21 -1 -17 0 -18 0 -21 2 l-2 3 0 33 c1 43 0 60 -1 67 -1 6 0 9 3 11 3 1 56 0 62 -2 13 -4 23 -18 26 -34 3 -15 4 -17 10 -16 5 1 5 5 4 21 -1 9 -2 21 -3 28 0 15 0 17 -3 18 -2 1 -20 1 -65 2 -50 0 -66 0 -75 2 -22 2 -22 2 -24 0z"/> <path d="M622 1662 c-1 -1 -4 -9 -6 -16 -2 -7 -7 -20 -10 -29 -2 -9 -7 -23 -10 -32 -11 -33 -15 -46 -22 -66 -4 -11 -9 -27 -12 -35 -2 -8 -9 -30 -16 -50 -6 -20 -12 -37 -12 -39 -3 -8 -13 -19 -18 -19 -2 0 -7 -5 -7 -8 0 -4 4 -5 14 -4 9 2 33 1 46 -1 7 -1 11 0 11 4 0 4 -2 5 -8 6 -10 2 -18 9 -19 17 0 5 3 17 10 37 2 8 5 17 6 21 2 9 3 12 5 13 1 0 20 0 40 0 45 0 40 1 45 -13 1 -5 5 -16 7 -24 12 -36 12 -42 -5 -49 -9 -3 -11 -6 -7 -10 2 -2 2 -2 18 -1 12 1 24 1 40 1 31 -2 33 -2 64 -1 20 1 31 1 39 0 13 -1 16 -1 16 3 0 3 -3 6 -9 6 -7 1 -14 6 -18 13 l-2 5 -1 38 c0 20 0 44 0 52 l-1 15 2 2 c4 3 13 4 17 1 4 -1 5 -3 9 -11 9 -21 31 -65 39 -79 4 -7 10 -18 12 -23 2 -4 5 -11 7 -15 4 -8 6 -9 15 -7 5 1 44 0 46 -1 0 -1 5 0 11 0 14 1 131 2 142 1 11 -1 12 -1 14 10 1 8 11 48 13 52 2 7 0 12 -5 10 -3 0 -5 -4 -10 -15 -4 -12 -10 -20 -17 -26 -10 -11 -20 -13 -55 -13 -21 0 -22 1 -25 3 -8 5 -8 4 -8 57 -1 35 -1 48 -2 53 l-1 6 2 3 3 2 27 0 c29 -1 30 -1 36 -7 4 -5 7 -12 8 -23 1 -10 3 -14 6 -14 6 0 6 1 5 28 -1 16 -1 29 0 43 1 23 1 29 -3 32 -3 3 -4 3 -6 0 -2 -2 -3 -4 -3 -11 -1 -14 -5 -21 -13 -25 -4 -2 -6 -3 -28 -3 -26 0 -29 0 -31 5 -1 2 -2 13 -1 54 0 50 0 52 2 54 2 2 4 2 26 2 45 1 51 -1 59 -21 2 -4 3 -11 4 -15 2 -12 2 -13 5 -15 3 -2 3 -2 6 -1 5 2 5 5 4 24 -1 9 -2 21 -2 27 0 11 -1 15 -5 17 -1 1 -28 1 -81 2 l-79 0 -2 -2 c-4 -4 -1 -8 9 -10 13 -3 16 -7 17 -23 1 -16 1 -228 0 -232 -3 -10 -11 -15 -21 -15 -14 0 -23 6 -35 23 -7 11 -10 16 -21 38 -3 6 -9 16 -12 22 -3 5 -8 15 -12 21 -3 6 -7 14 -9 17 -4 7 -3 9 7 14 10 3 21 11 26 17 16 18 22 53 14 80 -7 22 -25 39 -50 47 l-9 2 -54 1 c-48 1 -54 1 -55 -1 -4 -3 -1 -7 7 -9 10 -2 15 -5 17 -10 2 -4 2 -7 2 -125 1 -131 1 -127 -5 -132 -13 -13 -33 -8 -42 12 -4 7 -15 41 -16 49 -2 6 -7 22 -14 43 -20 59 -37 113 -49 150 -4 13 -8 25 -9 26 -2 3 -6 2 -7 0z m217 -24 c15 -7 23 -19 27 -40 9 -46 -14 -80 -52 -80 -15 -1 -13 -5 -13 53 1 35 1 51 0 56 -2 13 0 15 19 15 12 0 13 -1 19 -4z m-220 -53 c1 -1 3 -7 4 -13 1 -7 4 -16 6 -22 1 -7 5 -18 7 -25 2 -7 5 -18 7 -23 4 -12 4 -16 4 -19 -1 -5 -5 -5 -34 -5 -28 1 -28 1 -30 3 -3 3 -2 4 1 13 1 3 4 13 6 21 2 7 7 22 11 33 3 11 7 23 8 28 3 12 6 14 10 9z"/> <path d="M2303 1659 c-30 -4 -56 -28 -77 -66 -13 -27 -20 -57 -20 -92 0 -44 17 -91 42 -115 17 -17 28 -23 47 -27 40 -9 83 13 106 55 24 43 31 112 16 158 -16 49 -47 80 -85 87 -7 1 -21 1 -29 0z m33 -17 c10 -5 23 -19 30 -32 10 -21 16 -60 16 -104 0 -80 -24 -131 -61 -134 -27 -1 -44 10 -55 38 -6 13 -12 37 -13 49 -1 6 -2 18 -3 26 -2 24 0 65 6 91 7 35 26 62 48 68 10 3 23 2 32 -2z"/> <path d="M1123 1657 c-7 -3 -5 -8 4 -12 11 -5 13 -8 22 -44 15 -54 17 -64 21 -77 6 -20 11 -40 17 -62 2 -11 6 -25 8 -31 4 -14 11 -40 15 -56 3 -15 5 -18 9 -18 4 0 6 2 11 23 2 11 6 23 7 28 2 4 4 12 5 17 1 5 4 14 5 20 4 11 12 41 19 66 4 18 6 21 10 13 2 -3 13 -45 20 -74 1 -3 3 -11 5 -18 2 -8 7 -27 10 -43 5 -18 8 -29 9 -30 3 -3 6 -3 8 0 2 2 8 23 13 48 2 9 5 18 6 20 3 6 9 30 16 58 14 55 20 76 23 86 2 6 5 16 7 23 2 6 5 18 7 26 4 15 5 18 11 21 8 6 17 6 25 2 7 -3 7 -5 8 -22 1 -25 1 -224 0 -229 -3 -11 -9 -18 -19 -19 -6 -1 -9 -3 -9 -6 0 -5 3 -6 19 -5 11 1 128 1 141 0 4 0 7 2 8 8 1 3 3 11 5 19 3 7 5 16 6 18 1 2 2 8 4 13 3 10 2 14 -2 15 -3 1 -5 -2 -13 -16 -17 -35 -24 -38 -66 -38 -26 0 -28 0 -33 7 -5 8 -5 11 -5 57 1 27 0 44 0 48 -1 6 -1 9 2 11 4 1 52 0 57 -2 8 -3 12 -13 14 -28 1 -8 1 -10 3 -11 3 -3 6 -2 8 2 1 2 1 92 -1 96 -1 3 -5 4 -8 1 -1 -2 -2 -4 -2 -11 -1 -14 -7 -23 -18 -26 -5 -1 -47 -1 -50 0 -4 2 -5 5 -5 15 0 4 0 27 0 51 l0 44 2 3 c6 4 65 2 73 -2 8 -5 14 -16 16 -34 2 -10 4 -13 8 -13 4 0 7 4 7 9 -3 23 -4 37 -5 46 -1 14 -2 16 -10 14 -3 0 -51 0 -107 0 -108 -1 -104 0 -104 -6 0 -2 3 -5 7 -5 5 0 12 -4 14 -7 3 -5 3 -8 -2 -24 -4 -16 -5 -19 -14 -53 -3 -15 -7 -31 -9 -36 -1 -6 -4 -17 -6 -24 -6 -20 -10 -37 -11 -42 0 -3 -1 -6 -3 -8 -3 -4 -4 -2 -7 13 -2 6 -5 20 -8 30 -3 9 -6 23 -8 29 -3 15 -12 44 -14 49 -1 3 -5 21 -11 45 -5 19 -4 22 9 28 7 2 8 3 8 5 0 6 -3 6 -42 6 -36 0 -40 0 -41 -4 -2 -3 2 -6 7 -7 11 -4 16 -9 18 -22 1 -4 3 -9 4 -13 1 -3 4 -12 6 -19 1 -7 4 -16 6 -20 3 -8 3 -10 -2 -24 -6 -16 -17 -53 -26 -89 -5 -18 -10 -17 -12 2 -2 10 -15 67 -20 82 -1 3 -2 8 -3 11 -1 4 -3 13 -6 20 -4 16 -12 52 -12 59 0 8 4 12 16 14 5 1 5 7 0 9 -5 2 -72 2 -75 0z"/> <path d="M1604 1657 c-9 -2 -6 -12 4 -12 5 0 10 -2 14 -6 l3 -4 0 -51 c2 -91 1 -194 -1 -199 -3 -5 -8 -10 -14 -11 -9 -3 -11 -6 -9 -11 2 -2 4 -2 14 -1 17 2 120 1 137 -1 12 -2 12 -2 23 40 10 39 10 39 3 39 -4 0 -5 -2 -10 -15 -10 -23 -17 -32 -28 -38 -9 -4 -15 -5 -39 -5 -25 0 -28 0 -32 6 -4 5 -4 8 -4 94 0 46 0 84 0 84 -1 0 0 15 0 33 1 28 1 33 3 36 2 6 8 10 17 11 9 2 13 6 8 9 -2 2 -85 3 -89 2z"/> <path d="M2032 1657 c-3 -2 -4 -5 -7 -31 -1 -14 -2 -28 -3 -31 0 -6 2 -10 6 -10 4 0 8 4 8 10 3 18 5 25 13 33 6 7 9 8 29 8 10 1 18 1 19 0 2 -2 3 -5 3 -13 -1 -4 -1 -59 -1 -121 -1 -101 -1 -114 -3 -118 -3 -7 -9 -12 -18 -13 -5 -1 -8 -4 -8 -8 0 -4 1 -5 10 -3 14 2 30 3 52 2 32 -2 32 -2 33 0 1 5 -3 9 -9 9 -7 0 -14 5 -17 12 l-2 4 -1 122 c0 74 0 123 0 125 2 3 4 3 24 3 18 -1 20 -1 26 -6 7 -7 11 -15 12 -31 1 -13 2 -16 6 -17 3 -1 7 1 8 4 1 3 1 19 -1 36 -1 6 -2 15 -2 20 0 6 0 8 -2 10 l-2 3 -25 -1 c-25 0 -137 1 -142 2 -2 1 -4 1 -6 0z"/> <path d="M1785 1656 c-4 -1 -7 -6 -4 -9 1 0 5 -1 8 -2 8 -1 11 -3 14 -7 3 -4 4 -48 4 -164 l0 -84 -3 -5 c-3 -6 -7 -9 -14 -11 -9 -3 -12 -8 -8 -12 2 -2 3 -2 6 -2 15 3 143 4 153 1 6 -1 7 0 16 42 2 9 5 19 6 24 2 9 2 9 1 11 -5 5 -8 2 -14 -11 -6 -18 -11 -27 -19 -34 -12 -11 -13 -12 -45 -11 -33 0 -37 1 -40 12 -1 5 -2 174 -1 209 0 22 1 29 2 32 3 5 8 9 18 10 9 2 13 5 8 9 -1 2 -8 2 -44 2 -23 0 -43 0 -44 0z"/> <path d="M545 1287 c-16 -2 -36 -9 -50 -16 -31 -17 -45 -28 -71 -59 -24 -28 -50 -81 -58 -118 0 -4 -2 -10 -3 -12 0 -2 -2 -9 -2 -15 -1 -6 -3 -15 -4 -21 -5 -29 -5 -96 1 -131 8 -55 28 -107 55 -147 12 -17 39 -44 57 -56 40 -26 52 -31 92 -34 25 -2 62 4 82 14 36 18 72 51 92 84 30 50 44 84 50 124 8 52 8 46 7 87 0 49 -1 62 -12 106 -8 32 -10 38 -22 65 -4 7 -21 35 -29 46 -10 14 -26 31 -37 40 -30 24 -54 36 -84 43 -10 2 -52 3 -64 0z m46 -28 c11 -2 17 -4 27 -9 14 -8 22 -14 32 -26 11 -13 14 -18 24 -39 15 -30 21 -51 30 -104 11 -60 11 -146 0 -205 -5 -25 -9 -44 -14 -58 -2 -4 -4 -12 -6 -16 -18 -51 -50 -83 -90 -92 -10 -2 -34 -1 -45 1 -39 9 -65 39 -87 101 -11 29 -23 86 -25 119 -3 46 -4 77 -2 92 0 5 2 17 2 28 8 86 35 157 73 187 23 17 54 25 81 21z"/> <path d="M17 1280 c-3 -1 -5 -9 -2 -14 l1 -3 10 0 c11 0 19 -2 27 -9 5 -4 11 -16 14 -26 3 -13 3 -35 3 -246 0 -213 0 -234 -3 -247 -4 -16 -22 -29 -40 -29 -11 0 -16 -5 -15 -13 2 -5 5 -6 12 -3 3 1 9 1 67 1 34 0 73 0 86 0 26 -1 27 -1 27 6 0 7 -3 8 -14 9 -24 3 -35 11 -42 34 -6 19 -6 21 -7 117 -1 59 -1 89 -2 94 -2 13 0 15 16 10 39 -13 88 -9 124 10 13 7 14 8 28 24 24 28 30 40 42 79 4 12 6 35 6 49 -1 14 -8 48 -11 57 -15 40 -40 66 -83 85 -25 11 -42 14 -81 15 -40 0 -162 1 -163 0z m183 -38 c29 -7 46 -23 58 -56 17 -43 17 -110 1 -145 -21 -44 -51 -61 -95 -52 -14 3 -18 5 -20 10 -2 4 -4 128 -3 185 1 25 1 37 0 42 -2 11 -1 13 10 16 17 3 34 4 49 0z"/> <path d="M770 1277 c-6 -2 -7 -11 -1 -16 2 -2 3 -2 8 -2 17 0 33 -10 41 -26 5 -10 63 -180 72 -212 5 -18 5 -19 25 -80 9 -28 19 -58 22 -66 2 -9 7 -25 10 -34 4 -10 11 -32 17 -49 5 -17 12 -37 14 -44 3 -7 6 -18 7 -23 5 -16 12 -39 14 -44 5 -11 16 -8 19 4 10 36 14 49 23 78 12 37 13 40 19 59 8 23 13 43 15 51 2 7 10 31 16 52 3 7 7 19 9 27 2 8 5 18 7 23 2 5 6 18 10 29 3 11 10 30 14 44 4 13 10 31 13 41 4 14 8 25 21 68 2 4 4 13 6 20 10 35 24 63 35 71 11 7 25 12 35 10 17 -1 26 -12 29 -36 1 -7 2 -57 2 -236 l0 -227 -3 -13 c-3 -21 -8 -29 -21 -36 -6 -3 -16 -5 -23 -5 -11 0 -19 -8 -14 -14 2 -2 9 -2 169 -2 189 0 169 -1 170 8 2 16 4 25 16 74 2 8 5 21 6 28 1 6 3 14 4 18 4 12 2 17 -5 17 -6 0 -8 -3 -13 -17 -22 -59 -40 -82 -76 -92 l-10 -2 -57 0 -57 0 -4 2 c-5 4 -9 11 -11 23 -1 8 -1 21 -1 110 0 86 0 101 -1 107 -2 8 -1 11 2 13 3 1 104 -1 110 -2 17 -5 26 -15 31 -37 3 -10 4 -18 6 -38 1 -11 6 -15 13 -10 6 4 6 6 5 40 -1 18 -1 57 0 93 0 34 0 64 0 66 1 14 -15 11 -16 -3 -5 -43 -12 -59 -30 -68 -10 -5 -14 -5 -66 -5 l-49 0 -2 2 c-3 3 -3 4 -3 26 -1 31 -1 140 0 158 0 8 0 20 0 26 -2 16 -2 15 21 16 29 2 109 0 116 -2 14 -3 27 -12 34 -23 7 -12 15 -38 17 -55 1 -12 2 -16 7 -17 6 -1 10 3 10 11 0 2 0 30 0 60 -1 53 -1 57 -3 58 -1 2 -11 2 -221 2 -153 1 -220 0 -222 0 -6 -2 -8 -9 -4 -14 2 -2 4 -2 11 -3 19 -1 31 -13 35 -34 2 -11 1 -23 -5 -45 -17 -60 -27 -94 -33 -115 -3 -10 -8 -24 -10 -31 -2 -8 -7 -23 -10 -33 -7 -25 -15 -48 -22 -73 -3 -11 -10 -32 -15 -46 -8 -27 -12 -41 -13 -49 -1 -2 -2 -5 -3 -6 -3 -3 -5 -1 -10 14 -2 6 -5 18 -8 26 -2 7 -5 16 -5 20 -1 3 -6 17 -10 31 -5 14 -12 35 -15 46 -6 20 -22 67 -31 96 -6 16 -12 36 -20 62 -2 7 -6 20 -9 28 -22 65 -24 85 -10 100 6 7 18 11 31 11 4 0 6 1 8 2 3 4 2 11 -3 13 -3 1 -177 2 -180 1z"/> <path d="M1571 1274 c-2 -2 -3 -4 -3 -8 0 -7 2 -9 8 -9 14 1 23 0 30 -5 10 -7 14 -15 17 -33 2 -14 3 -466 0 -477 -4 -25 -15 -35 -40 -37 -11 -1 -13 -2 -15 -8 -3 -9 1 -13 10 -11 5 2 15 2 88 2 82 1 82 1 84 3 1 1 1 4 1 6 0 5 -3 7 -9 7 -22 0 -37 9 -43 24 -6 16 -6 15 -7 117 0 51 0 98 -1 103 -1 10 0 15 4 15 1 0 9 0 19 0 20 1 18 2 24 -12 6 -15 19 -40 67 -131 7 -14 16 -31 20 -40 11 -21 17 -31 21 -38 7 -13 15 -28 19 -35 2 -5 5 -11 7 -14 l3 -6 6 0 c15 1 99 1 104 -1 5 -1 5 -1 8 1 4 5 2 14 -3 16 -1 0 -5 1 -9 2 -16 3 -35 14 -46 29 -17 22 -29 43 -54 93 -12 22 -24 45 -27 51 -3 6 -13 24 -22 40 -8 15 -16 30 -17 32 -6 10 -12 21 -12 24 0 4 2 5 10 7 26 7 54 31 70 58 7 14 16 37 20 53 2 13 2 50 -1 66 -5 28 -20 58 -37 75 -16 17 -50 34 -76 37 -30 5 -32 5 -126 6 l-90 0 -2 -2z m186 -35 c23 -6 34 -14 49 -38 13 -24 20 -55 19 -88 -4 -76 -36 -113 -104 -119 -16 -2 -21 -1 -25 3 l-3 3 0 110 c0 60 0 112 -1 116 -1 8 2 11 13 12 3 1 11 2 17 2 14 2 25 1 35 -1z"/> <path d="M1932 1274 c-4 -4 -4 -4 -5 -49 -1 -21 -1 -48 -2 -61 0 -19 0 -22 1 -24 2 -4 5 -4 10 -2 5 2 7 7 8 17 2 15 12 50 18 57 3 6 13 13 21 17 10 5 18 6 51 7 16 0 31 0 33 0 5 1 8 -3 8 -9 -3 -19 -3 -33 -2 -238 0 -226 0 -226 -4 -252 -2 -13 -10 -25 -20 -29 -5 -2 -16 -4 -24 -4 -8 0 -12 -3 -13 -10 0 -9 4 -12 11 -8 5 2 52 3 121 2 29 0 54 0 55 0 2 1 4 6 3 9 -1 5 -4 6 -17 7 -23 2 -36 12 -41 34 -2 13 -3 53 -3 267 0 114 0 213 -1 219 0 11 1 13 6 13 1 0 16 0 34 -1 36 -1 41 -2 53 -8 9 -5 19 -15 24 -23 5 -9 14 -37 17 -58 3 -12 8 -16 14 -9 l3 3 0 17 c-2 35 -4 76 -5 84 -2 18 5 19 21 3 6 -7 11 -15 18 -30 2 -5 7 -13 9 -18 8 -14 28 -52 31 -61 5 -10 17 -36 36 -75 14 -28 27 -56 32 -67 1 -3 8 -17 15 -31 l14 -26 0 -88 c0 -103 -1 -116 -7 -127 -5 -11 -19 -18 -38 -18 -10 0 -13 -3 -15 -12 -1 -7 3 -10 10 -7 6 3 116 5 160 3 17 -1 17 -1 19 3 4 8 0 12 -15 13 -27 2 -39 12 -43 39 -2 14 -1 203 1 208 10 18 15 29 21 40 3 7 8 18 10 23 3 6 5 10 5 11 0 0 5 10 11 23 13 26 21 41 28 58 7 15 49 98 54 107 16 25 39 44 55 44 6 0 9 10 5 14 -3 2 -6 2 -71 2 -38 1 -70 1 -71 0 -4 -1 -5 -11 -2 -16 1 -2 4 -3 7 -1 9 5 28 -5 33 -17 3 -8 3 -26 0 -37 -5 -19 -25 -66 -42 -99 -9 -19 -21 -44 -27 -56 -5 -12 -12 -27 -15 -33 -3 -6 -7 -15 -8 -18 -3 -9 -4 -10 -7 -10 -2 0 -3 2 -4 4 -1 2 -5 11 -10 20 -4 9 -17 35 -28 59 -30 60 -31 62 -47 97 -17 37 -20 47 -20 58 0 19 11 32 30 33 12 0 13 1 15 5 1 4 0 9 -3 11 -1 0 -103 1 -248 1 -135 1 -251 1 -258 2 -13 0 -13 0 -15 -2z"/> <path d="M1132 650 c-2 -2 -5 -8 -9 -20 -2 -5 -6 -17 -10 -26 -3 -10 -8 -24 -10 -30 -4 -11 -12 -34 -17 -44 -1 -2 -4 -6 -7 -9 -10 -10 -8 -11 10 -11 7 0 13 0 14 1 2 1 1 4 -1 8 -4 4 -4 9 -1 16 2 2 3 7 4 10 4 9 4 9 27 10 27 0 25 1 31 -18 l4 -13 -3 -5 c-4 -9 -3 -10 7 -10 5 1 11 1 14 1 8 1 10 3 6 10 -5 9 -7 13 -13 29 -10 30 -18 52 -21 60 -6 16 -9 23 -11 30 -5 13 -9 16 -14 11z m4 -34 c1 -1 3 -8 5 -15 2 -7 6 -17 7 -21 3 -8 3 -8 2 -10 -3 -4 -5 -4 -19 -4 -16 1 -19 3 -14 14 3 7 8 20 8 25 2 12 6 16 11 11z"/> <path d="M1358 650 c-9 0 -16 -1 -17 -1 -2 -2 -1 -5 4 -8 3 -2 5 -4 6 -5 1 -2 1 -99 0 -107 0 -5 0 -5 -6 -9 -4 -3 -5 -5 -5 -7 0 -3 3 -5 8 -4 2 0 15 0 29 1 23 0 26 0 34 2 22 5 35 19 42 43 6 19 4 49 -5 66 -6 11 -22 23 -36 27 -6 2 -31 3 -54 2z m36 -12 c19 -1 28 -7 36 -23 9 -16 9 -54 1 -70 -8 -15 -25 -23 -46 -23 -11 0 -11 0 -14 2 l-2 3 0 53 c1 56 1 55 6 58 4 1 4 1 19 0z"/> <path d="M1210 649 c-3 -3 -3 -4 1 -10 l4 -5 0 -54 0 -55 -3 -5 c-7 -9 -5 -10 11 -11 11 0 13 0 14 2 2 2 1 3 -4 8 -2 3 -4 6 -5 8 -1 5 -1 83 1 84 4 2 7 -1 25 -30 8 -12 17 -25 21 -30 10 -14 22 -31 25 -36 3 -6 5 -7 8 -6 5 1 5 4 6 65 l0 59 3 6 c4 6 4 6 1 9 -4 4 -22 2 -23 -2 -1 -1 0 -3 2 -6 3 -4 5 -11 4 -15 -1 -1 0 -17 0 -35 1 -27 1 -33 -1 -35 -3 -5 -7 -2 -14 11 -2 4 -7 12 -11 18 -4 5 -9 14 -12 19 -9 14 -29 42 -33 45 -4 2 -17 3 -20 1z"/> <path d="M30 571 c-3 -2 -4 -6 -1 -7 1 -1 162 -1 507 -1 492 0 504 0 506 2 2 1 2 2 1 4 -2 2 66 2 -536 2 -393 1 -475 1 -477 0z"/> <path d="M1496 570 c-2 -3 -1 -5 2 -7 2 0 111 -1 422 -2 603 -1 573 -1 575 1 1 3 0 6 -3 6 -4 1 -221 2 -619 3 -342 0 -376 0 -377 -1z"/> <path d="M593 471 c-23 -4 -38 -13 -54 -33 -20 -25 -29 -54 -28 -88 3 -50 31 -92 89 -130 29 -19 54 -42 64 -57 14 -22 19 -54 12 -78 -7 -22 -18 -37 -36 -45 l-8 -4 -14 0 c-14 0 -15 0 -23 3 -25 9 -42 24 -52 46 -9 18 -18 49 -18 63 0 6 -3 10 -8 10 -7 0 -8 -4 -7 -19 0 -6 1 -35 1 -63 1 -59 1 -59 5 -62 4 -3 9 2 13 13 4 14 13 14 32 2 21 -14 53 -20 77 -15 46 9 77 44 87 96 5 27 1 68 -9 86 -16 32 -25 41 -99 97 -43 33 -53 44 -59 70 -4 16 -2 42 4 55 13 25 42 36 68 26 24 -10 38 -26 50 -55 4 -9 12 -39 13 -48 0 -9 2 -14 4 -15 6 -3 11 1 11 8 0 3 0 13 -1 24 -1 12 -1 34 -1 63 1 49 1 48 -5 48 -4 0 -4 0 -10 -9 -8 -12 -14 -13 -31 -3 -22 14 -45 18 -67 14z"/> <path d="M1151 471 c-26 -4 -55 -18 -74 -36 -36 -35 -59 -83 -70 -149 -3 -22 -4 -72 -1 -91 6 -35 16 -72 23 -87 29 -56 65 -86 114 -93 30 -5 54 -1 79 12 24 12 54 45 63 69 1 4 4 10 6 13 1 3 3 7 3 8 0 4 -4 9 -7 10 -5 1 -6 -1 -15 -19 -18 -34 -38 -54 -65 -63 -13 -5 -37 -5 -49 -1 -24 7 -40 19 -54 38 -22 29 -37 80 -40 130 -4 62 3 120 20 166 18 49 56 76 99 70 27 -3 58 -28 73 -58 7 -14 16 -42 17 -54 2 -12 4 -15 10 -15 6 0 6 1 5 25 -1 32 -2 103 0 106 1 2 0 2 8 0 4 -2 9 -3 11 -3 11 -2 18 -7 22 -17 l3 -4 0 -145 0 -145 4 -20 c9 -44 20 -63 45 -83 22 -16 57 -26 88 -23 57 4 94 38 108 99 8 34 8 41 8 175 0 133 0 140 7 150 9 13 45 16 56 5 4 -3 7 -10 8 -19 2 -11 0 -360 -1 -367 -4 -11 -11 -18 -22 -20 -12 -3 -14 -4 -16 -6 -3 -3 -3 -7 1 -10 2 -1 3 -1 17 0 32 4 84 3 110 -2 6 -1 11 5 8 11 -1 3 -5 5 -12 5 -17 2 -28 10 -31 24 -1 3 -1 27 -1 80 -1 42 -1 78 -1 80 -1 7 -1 7 14 8 14 1 17 0 18 -3 0 -1 2 -6 4 -10 1 -4 8 -17 14 -29 18 -35 27 -54 32 -65 3 -7 7 -15 10 -19 2 -5 4 -8 4 -9 0 0 7 -14 16 -30 8 -17 16 -32 17 -34 2 -8 6 -10 12 -6 4 2 11 2 78 1 6 0 29 0 51 0 25 0 42 0 49 -1 12 -1 16 -1 18 3 1 5 -4 9 -11 9 -5 0 -16 3 -21 5 -4 3 -9 10 -11 18 l-2 8 0 176 c0 110 0 179 1 183 3 17 8 22 24 26 9 2 14 0 15 -5 0 -4 -1 -32 -4 -61 -2 -24 -1 -29 5 -29 7 0 9 3 10 16 1 20 8 41 17 51 9 10 16 11 50 11 32 0 30 1 28 -11 -1 -7 -1 -50 -1 -175 0 -185 0 -191 -7 -200 -4 -8 -11 -11 -24 -13 -10 -1 -15 -6 -12 -12 1 -3 5 -3 11 -2 20 4 77 6 108 2 19 -2 21 -2 23 2 3 5 -1 8 -13 10 -18 3 -25 7 -31 21 -4 9 -4 15 -4 195 0 144 0 170 -1 175 l-1 5 2 3 c3 2 4 2 11 2 5 -1 16 -1 26 -2 19 0 26 -2 34 -7 13 -8 21 -27 24 -56 1 -10 3 -15 6 -16 3 0 8 3 9 7 1 3 0 31 -3 65 -2 21 -1 23 5 23 6 0 18 -8 25 -18 6 -8 48 -94 48 -99 0 0 5 -10 11 -23 6 -12 12 -25 14 -29 2 -4 6 -14 11 -21 4 -8 11 -22 15 -31 l9 -16 0 -74 c0 -83 0 -80 -7 -91 -6 -8 -16 -13 -27 -13 -7 0 -11 -3 -11 -9 0 -4 3 -5 18 -4 20 2 98 2 109 0 8 -1 12 -1 14 2 5 4 0 10 -9 11 -20 3 -25 7 -32 22 l-2 6 -1 77 -1 77 5 7 c2 5 5 11 7 15 3 9 42 93 54 117 6 11 13 27 17 35 18 41 31 57 50 60 10 1 12 3 12 8 0 5 -1 5 -57 5 -29 1 -53 0 -54 0 -3 -1 -4 -6 -3 -9 1 -4 4 -5 10 -4 16 4 28 -13 24 -34 -2 -9 -16 -41 -36 -84 -5 -11 -12 -27 -16 -35 -4 -9 -9 -19 -11 -22 -1 -3 -4 -9 -6 -13 -3 -10 -6 -13 -10 -10 -1 1 -2 3 -3 4 0 3 -14 32 -30 65 -4 10 -11 24 -14 32 -4 7 -8 17 -10 21 -4 9 -13 31 -17 40 -7 23 -1 34 21 36 10 1 13 2 13 7 0 6 3 6 -72 7 -38 0 -70 0 -71 0 -2 0 -89 0 -194 0 -148 -1 -190 -1 -191 -2 -3 -2 -3 -6 -2 -9 1 -2 2 -3 11 -3 17 -1 23 -6 27 -23 l2 -8 0 -173 c0 -97 0 -175 -1 -180 -1 -12 -4 -18 -8 -23 -8 -10 -15 -10 -32 -2 -17 9 -24 17 -53 72 -7 12 -19 34 -27 49 -8 15 -18 33 -22 41 -4 8 -9 18 -11 21 -10 14 -9 16 7 21 16 5 37 22 47 39 6 9 12 24 15 37 5 18 4 57 -1 72 -9 28 -35 54 -65 64 -20 6 -31 7 -136 7 -51 0 -103 0 -116 0 -24 0 -28 0 -29 -5 -3 -6 2 -9 11 -9 6 0 8 -1 14 -4 8 -4 11 -7 15 -17 l3 -7 0 -119 c0 -136 0 -155 -5 -175 -5 -22 -14 -44 -22 -55 -8 -9 -25 -21 -38 -26 -36 -12 -73 -1 -91 27 -7 10 -14 30 -17 46 -4 22 -4 30 -4 170 0 128 0 134 1 140 4 13 16 21 30 20 10 0 13 2 13 7 -1 7 1 7 -66 7 -56 0 -61 0 -64 -1 -6 -3 -7 -2 -9 0 -3 4 -7 6 -11 5 -3 0 -6 -4 -8 -12 -5 -15 -11 -17 -25 -8 -19 13 -31 19 -44 23 -12 3 -35 4 -48 2z m600 -36 c11 -2 23 -7 30 -14 10 -8 15 -21 21 -49 6 -29 4 -52 -6 -81 -9 -24 -30 -39 -60 -43 -12 -2 -21 -1 -25 2 l-2 2 0 89 c0 48 0 89 0 89 0 5 27 8 42 5z"/> <path d="M31 462 c-4 -2 -5 -5 -3 -9 2 -4 4 -4 15 -4 15 -1 20 -4 25 -18 5 -12 5 -25 4 -209 l-1 -163 -2 -6 c-5 -13 -10 -17 -26 -20 -10 -2 -13 -4 -13 -9 0 -5 3 -6 12 -5 9 2 75 3 95 2 20 -2 41 -2 59 0 22 1 54 1 68 -1 14 -3 17 -2 17 4 0 4 -3 6 -12 8 -20 3 -29 12 -33 30 -1 3 -1 53 -2 133 0 111 0 130 -2 143 -2 22 -2 28 1 29 3 0 4 -1 11 -13 5 -11 24 -42 32 -55 3 -4 8 -14 13 -21 4 -7 10 -18 13 -23 6 -10 16 -27 33 -53 6 -9 14 -23 19 -31 8 -13 23 -38 29 -47 1 -2 8 -14 15 -25 7 -12 18 -30 24 -40 7 -10 15 -23 18 -30 6 -13 9 -17 13 -17 3 0 7 2 8 4 0 2 1 27 0 67 0 35 0 64 0 66 0 1 0 62 0 135 1 146 1 141 6 152 6 8 18 14 28 13 8 -1 12 5 9 11 -2 4 -6 4 -31 3 -14 -1 -36 -1 -51 0 -27 0 -29 0 -31 -4 -2 -7 3 -10 11 -9 8 1 16 -2 22 -7 5 -6 11 -22 12 -37 0 -5 1 -64 0 -131 0 -67 0 -122 0 -123 0 -2 -3 -1 -5 1 -1 1 -4 6 -6 11 -6 11 -14 25 -23 38 -8 13 -21 35 -29 51 -7 12 -28 46 -37 60 -5 7 -13 19 -24 36 -3 5 -11 19 -18 30 -11 19 -22 36 -34 56 -3 4 -7 10 -10 14 -5 8 -9 13 -11 14 -2 0 -48 0 -104 0 -93 0 -102 0 -104 -1z m140 -14 c15 -3 25 -13 34 -32 l3 -6 0 -165 c0 -169 0 -178 -4 -190 -6 -20 -25 -28 -51 -21 -17 4 -20 8 -25 30 -2 11 -2 346 0 361 2 16 5 19 21 23 13 2 12 2 22 0z"/> <path d="M737 461 c-3 -1 -5 -6 -3 -9 1 -2 3 -3 14 -3 13 -1 21 -7 25 -19 3 -12 3 -42 3 -201 0 -151 0 -166 -3 -175 -3 -12 -14 -19 -32 -22 -7 0 -10 -3 -10 -8 1 -5 4 -6 17 -5 21 2 51 3 85 3 114 -1 148 0 149 1 1 0 2 4 2 8 6 26 11 50 15 63 1 3 3 9 3 13 1 4 2 9 3 12 4 10 0 16 -9 12 -3 -2 -3 -3 -10 -19 -17 -44 -35 -61 -67 -65 -11 -1 -66 -1 -73 0 -6 1 -12 5 -15 11 l-2 5 0 79 c-1 44 -1 82 -2 86 -1 10 -3 10 46 9 47 -1 48 -1 54 -9 6 -8 12 -32 12 -45 0 -8 1 -11 4 -14 4 -2 8 -1 9 3 2 3 1 33 -1 64 0 6 0 19 1 29 2 44 3 60 0 63 -5 5 -13 0 -12 -8 1 -7 -3 -30 -7 -37 -5 -10 -14 -17 -27 -18 -4 -1 -22 -1 -40 -1 l-32 0 -3 2 -2 3 0 77 c0 42 -1 79 -1 82 -2 10 -4 9 46 9 58 0 65 -1 74 -13 8 -9 17 -32 18 -46 1 -11 3 -14 9 -14 6 0 7 4 6 14 -1 7 -3 61 -2 72 0 8 -1 11 -3 11 -4 2 -237 2 -239 0z"/></g></symbol>
 </svg>
 
-<!-- ===== SCROLLING HEADER ===== -->
+<!-- ===== HEADER ===== -->
 <nav class="navbar" id="navbar">
-  <div class="wrap">
+  <div class="nav-in">
     <div class="brand-group">
       <a class="brand" href="index.html">
-        <img src="images/logo.png" alt="FixNaija Movement logo">
-        <span><span class="bn">FixNaija Movement</span><span class="bs">People's Grassroots Network</span></span>
+        <span class="badge"><img src="images/logo.png" alt="FixNaija Movement logo" width="74" height="74"></span>
+        <span><span class="bn">FixNaija Movement</span><span class="bs">Adebayo · Bugaje · 2027</span></span>
       </a>
-      <a class="brand-sdp" href="#ticket" title="Social Democratic Party · Adebayo–Bugaje 2027"><img src="images/sdp-mark.png" alt="SDP — Social Democratic Party" width="56" height="30"></a>
+      <a class="brand-sdp" href="#ticket" title="Social Democratic Party · Adebayo–Bugaje 2027"><img src="images/sdp-mark.png" alt="SDP — Social Democratic Party" width="52" height="28"></a>
     </div>
     <ul class="nav-links">
-      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#movement">Our Movement</a></li>
       <li><a href="#ticket">The Ticket</a></li>
+      <li><a href="#blueprint">Blueprint</a></li>
       <li><a href="#answers">The Answers</a></li>
       <li><a href="#map">States</a></li>
-      <li><a href="#explore">Explore</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="events.html">Events</a></li>
       <li><a href="#news">News</a></li>
-      <li><a href="#join">Join</a></li>
+      <li><a href="events.html">Events</a></li>
     </ul>
     <div class="nav-actions">
-      <a href="register.html" class="btn-join">Register</a>
+      <a href="register.html" class="btn btn-green btn-sm">Register <span class="ar">→</span></a>
       <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -780,164 +762,170 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
   </div>
 </div>
 
+
 <!-- ===== HERO SLIDER ===== -->
-<section class="hero-slider" id="home" aria-label="Featured highlights">
+<section class="hero" id="home" aria-label="Featured highlights">
   <div class="slides" id="heroSlides">
 
-    <!-- Slide 1 · The Candidate + signup -->
+    <!-- Slide 1 · the slogan + the ticket, cut out -->
     <div class="slide is-active">
-      <div class="slide-bg" style="background-image:url('images/candidate.jpg')"></div>
+      <div class="slide-media cut" aria-hidden="true">
+        <img src="images/hero-ticket.webp" alt="" width="1149" height="837">
+        <div class="cut-tag p"><i></i><span><b>Prince Adewole Adebayo</b>For President</span></div>
+        <div class="cut-tag vp"><i></i><span><b>Usman M. Bugaje</b>For Vice President</span></div>
+        <div class="cut-sdp"><img src="images/sdp-logo.jpg" alt="" width="1074" height="844"></div>
+      </div>
       <div class="wrap">
         <div class="slide-inner">
-          <span class="badge-live"><span class="dot"></span> SDP · Presidential Campaign · 2027</span>
-          <h1>The New Nigeria<br><span class="u">Begins With Us.</span></h1>
-          <p class="lead">Not with Aso Rock. Not with godfathers. Not with the same faces recycling the same failures. <b>With us — the people.</b> The 68 million who refused to be fooled. Change does not trickle down from power; <b>it rises from the ground up.</b></p>
+          <span class="eyebrow">SDP · Presidential Campaign · 2027</span>
+          <h1>The New<br>Nigeria<br><span class="g">Begins<br>With Us.</span></h1>
+          <p class="lead">Not with Aso Rock. Not with godfathers. Change does not trickle down from power — <b>it rises from the ground up.</b></p>
           <div class="hero-ctas">
-            <a href="register.html" class="cta cta-p">Get Involved →</a>
-            <a href="#declaration" class="cta cta-o">Read Our Declaration</a>
+            <a href="register.html" class="btn btn-green">Get involved <span class="ar">→</span></a>
+            <a href="#declaration" class="btn btn-line">Read our declaration</a>
           </div>
-          <div class="slide-foot"><span>The New Nigeria begins the day we decide it does. <b>That day is 16 January 2027.</b></span></div>
         </div>
       </div>
     </div>
 
-    <!-- Slide 2 · Meet the Candidate -->
+    <!-- Slide 2 · the candidate -->
     <div class="slide">
-      <div class="slide-bg" style="background-image:url('images/candidate-rally.jpg');background-position:center 22%"></div>
+      <div class="slide-media photo" aria-hidden="true"><img src="images/candidate.jpg" alt="" loading="lazy"></div>
       <div class="wrap">
         <div class="slide-inner">
-          <span class="badge-live"><span class="dot"></span> Meet the Candidate</span>
-          <h1>The Right Man.<br><span class="g">The Right Time.</span></h1>
-          <p class="lead"><b>Prince Adewole Adebayo</b> is not asking to lead a country — <b>he is asking to serve a movement.</b> A lawyer, employer and builder who has spent decades creating jobs, backing education and lifting communities across Nigeria — <b>long before seeking any office.</b> Now he brings that record to the national stage as <b>SDP Presidential Candidate</b>.</p>
+          <span class="eyebrow">Meet the Candidate</span>
+          <h1>The right<br>man. <span class="g">The<br>right time.</span></h1>
+          <p class="lead"><b>Prince Adewole Adebayo</b> is not asking to lead a country — he is asking to serve a movement. A lawyer, employer and builder, now the <b>SDP Presidential Candidate</b>.</p>
           <div class="hero-ctas">
-            <a href="leadership.html" class="cta cta-g">Read His Story →</a>
-            <a href="about.html" class="cta cta-o">Our Vision</a>
+            <a href="leadership.html" class="btn btn-green">Read his story <span class="ar">→</span></a>
+            <a href="#ticket" class="btn btn-line">Meet the ticket</a>
           </div>
-          <div class="slide-foot"><span>Character · Competence · Compassion · Capacity · Commitment.</span></div>
         </div>
       </div>
     </div>
 
-    <!-- Slide 3 · Your PVC / civic action -->
+    <!-- Slide 3 · your PVC -->
     <div class="slide">
-      <div class="slide-bg" style="background-image:url('images/gallery-1.jpg')"></div>
+      <div class="slide-media photo" aria-hidden="true"><img src="images/gallery-1.jpg" alt="" loading="lazy"></div>
       <div class="wrap">
         <div class="slide-inner">
-          <span class="badge-live"><span class="dot"></span> Your Vote · Your Power · 2027</span>
-          <h1>Have You Got Your<br><span class="u">PVC?</span></h1>
+          <span class="eyebrow orange">Your Vote · Your Power · 2027</span>
+          <h1>Have you<br>got your<br><span class="o">PVC?</span></h1>
           <p class="lead">Your Permanent Voter Card is your power to secure the Nigeria we all desire. <b>Find your LGA</b>, take your seat at the table, and stand with the movement.</p>
           <div class="hero-ctas">
-            <a href="find-lga.html" class="cta cta-p">Find Your LGA →</a>
-            <a href="register.html" class="cta cta-g">Register</a>
+            <a href="find-lga.html" class="btn btn-green">Find your LGA <span class="ar">→</span></a>
+            <a href="register.html" class="btn btn-line">Register</a>
           </div>
-          <div class="slide-foot"><span>Your PVC, your voice, your power!</span></div>
         </div>
       </div>
     </div>
 
   </div>
 
-  <div class="slide-dots" id="slideDots" aria-label="Slide navigation"></div>
-
-  <div class="hero-statbar">
-    <div class="in">
-      <div class="s"><span class="n">36+1</span><span class="l">States &amp; FCT</span></div>
-      <div class="s"><span class="n">774</span><span class="l">Communities</span></div>
-      <div class="s"><span class="n">200M+</span><span class="l">Nigerians</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== THE 2027 TICKET · ADEBAYO + BUGAJE ===== -->
-<section class="blk ticket-blk" id="ticket">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow center">SDP · The 2027 Presidential Ticket</span>
-      <h2>Two Servants. <span class="g">One&nbsp;Ticket.</span></h2>
-      <p>A lawyer and builder from Ondo. A former federal lawmaker from Katsina. South and North on one ballot, carrying one blueprint to say <b>farewell to poverty and insecurity</b>.</p>
-    </div>
-
-    <div class="tk">
-      <div class="tk-strip" aria-hidden="true">Admit one nation<span class="tk-hide-sm"><i>✦</i>SDP Presidential Ticket</span><i>✦</i>2027–2031</div>
-
-      <figure class="tk-card">
-        <img src="images/ticket-adebayo.jpg" alt="Prince Adewole Adebayo, SDP presidential candidate" width="600" height="750" loading="lazy">
-        <figcaption>
-          <span class="tk-role">For President</span>
-          <b>Prince Adewole Adebayo</b>
-          <small>Lawyer · Entrepreneur · Ondo State</small>
-        </figcaption>
-      </figure>
-
-      <div class="tk-mid">
-        <div class="tk-seal"><img src="images/sdp-logo.jpg" alt="Social Democratic Party (SDP) logo — …Progress!" width="1074" height="844" loading="lazy"></div>
-        <div class="tk-meta">
-          <div class="tk-names">Adebayo<i>✦</i>Bugaje</div>
-          <span class="tk-year">2027</span>
-          <div class="tk-vote">Presidential election<br><b>Saturday, 16 January 2027</b></div>
+  <div class="hero-foot">
+    <div class="wrap">
+      <div class="hero-stats">
+        <div class="s"><b>36+1</b><span>States &amp; FCT</span></div>
+        <div class="s"><b>774</b><span>Communities</span></div>
+        <div class="s"><b>200M+</b><span>Nigerians</span></div>
+      </div>
+      <div class="slide-ctrl">
+        <span class="slide-count"><span id="slideNo">01</span> <em>/ 03</em></span>
+        <div class="slide-dots" id="slideDots" aria-label="Slide navigation"></div>
+        <div class="slide-arrows">
+          <button type="button" id="slidePrev" aria-label="Previous slide">←</button>
+          <button type="button" id="slideNext" aria-label="Next slide">→</button>
         </div>
       </div>
-
-      <figure class="tk-card">
-        <img src="images/ticket-bugaje.jpg" alt="Usman M. Bugaje, SDP vice-presidential candidate" width="600" height="750" loading="lazy">
-        <figcaption>
-          <span class="tk-role vp">For Vice President</span>
-          <b>Usman M. Bugaje</b>
-          <small>Former Member, House of Reps · Katsina State</small>
-        </figcaption>
-      </figure>
-    </div>
-
-    <div class="tk-foot">
-      <svg class="fw-logo" viewBox="0 0 2736 1677" role="img" aria-label="Farewell to Poverty and Insecurity"><use href="#fwMark"/></svg>
-      <p><b>The SDP blueprint for 2027–2031.</b> Unveiled in Abuja on 8 September 2026 — the plan this ticket is asking every Nigerian to board.</p>
-      <div class="ctas">
-        <a href="#blueprint" class="cta cta-g">See the Blueprint →</a>
-        <a href="#running-mate" class="cta cta-o">Meet the Running Mate</a>
-      </div>
     </div>
   </div>
 </section>
 
-<!-- ===== IMPACT STRIP ===== -->
-<section class="blk impact-blk" id="impact">
+<!-- ===== OUR MOVEMENT ===== -->
+<section class="sec" id="movement">
+  <span id="about" class="anchor"></span>
+  <img class="watermark" src="images/logo.png" alt="" style="width:min(560px,70vw);right:-140px;top:30px">
   <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow center">Beyond Politics</span>
-      <h2>Driving Change Across <span class="g">Nigeria</span></h2>
-      <p>Our impact is measured by the people we engage, the communities we reach and the repairs we champion. Through collaboration, advocacy and citizen participation, FixNaija is building momentum for lasting transformation.</p>
+    <div class="shead rv">
+      <span class="eyebrow">Our Movement</span>
+      <div>
+        <h2>A people-powered repair of <span class="g">Nigeria.</span></h2>
+        <p class="lead">FixNaija is a citizen-owned grassroots movement dedicated to restoring trust in governance and ensuring that every Nigerian — in every ward, LGA and state — has access to quality services, infrastructure, opportunity and representation.</p>
+      </div>
     </div>
-    <div class="impact-tags">
+    <div class="mv rv">
+      <div class="mv-photo">
+        <img src="images/candidate-rally.jpg" alt="Prince Adewole Adebayo with supporters and SDP members at a rally" loading="lazy">
+        <div class="mv-cap"><b>36 states + FCT. 774 communities.<br>One movement.</b><span>Organised ward by ward — and growing every day.</span></div>
+      </div>
+      <div class="mv-panel">
+        <span class="eyebrow light">What we stand for</span>
+        <h3>Beyond politics.</h3>
+        <ul class="mv-list">
+          <li><b>Accountability</b><span>Leaders and institutions answer for their promises and their stewardship of public resources.</span></li>
+          <li><b>Participation</b><span>Residents take an active role in governance and decision-making — ward by ward.</span></li>
+          <li><b>Transparency</b><span>Open decisions, public access to information, leadership that earns trust.</span></li>
+          <li><b>Sustainability</b><span>Repairs built to outlive any one administration.</span></li>
+        </ul>
+        <a href="about.html" class="btn btn-white">Read our story <span class="ar">→</span></a>
+      </div>
+    </div>
+    <div class="mv-tags rv">
       <span>🏛 Governance</span><span>🛡 Security</span><span>⚡ Power</span><span>📚 Education</span><span>🏥 Healthcare</span><span>🛣 Infrastructure</span><span>💼 Jobs</span>
     </div>
-    <div class="impact-stats">
-      <div class="ist"><span class="n" data-count="37">0</span><span class="l">🗺 States &amp; FCT</span></div>
-      <div class="ist"><span class="n" data-count="774">0</span><span class="l">🏘 Communities</span></div>
-      <div class="ist"><span class="n" data-count="9">0</span><span class="l">🛠 Repair Plans</span></div>
-      <div class="ist"><span class="n" data-count="200" data-suffix="M+">0</span><span class="l">👥 Nigerians</span></div>
-    </div>
   </div>
 </section>
 
-<!-- ===== MOVEMENT VALUES ===== -->
-<section class="blk" id="movement">
+<!-- ===== THE 2027 TICKET · PRINCIPALS ===== -->
+<section class="sec sunk" id="ticket">
   <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow center">Who We Are</span>
-      <h2>A Movement Built Around <span class="g">the People</span></h2>
-      <p>FixNaija is a citizen-owned grassroots movement dedicated to restoring trust in governance and ensuring that every Nigerian — in every ward, LGA and state — has access to quality services, infrastructure, opportunity and representation.</p>
+    <div class="shead rv">
+      <span class="eyebrow">The 2027 Ticket</span>
+      <div>
+        <h2>Two servants. <span class="g">One ticket.</span></h2>
+        <p class="lead">A lawyer and builder from Ondo. A former federal lawmaker from Katsina. South and North on one ballot, carrying one blueprint to say <b>farewell to poverty and insecurity</b>.</p>
+      </div>
     </div>
-    <div class="values-grid">
-      <div class="val-card"><span class="v-ic">⚖️</span><h3>Accountability to the People</h3><p>Leaders and public institutions must answer for their actions, their promises and their stewardship of public resources.</p></div>
-      <div class="val-card"><span class="v-ic">🗳️</span><h3>Citizen Participation</h3><p>We organize residents to take an active role in governance, community development, policy discussion and public decision-making — ward by ward.</p></div>
-      <div class="val-card"><span class="v-ic">🔍</span><h3>Transparency in Governance</h3><p>We demand open decision-making, public access to information and leadership that earns the trust of citizens.</p></div>
-      <div class="val-card"><span class="v-ic">🌱</span><h3>Sustainable Development</h3><p>We champion repairs that last — institutions, infrastructure and opportunity built to outlive any one administration.</p></div>
+    <div class="pr-grid">
+      <article class="pr-card rv" id="leader">
+        <div class="pr-ph">
+          <span class="pr-no">01</span><span class="pr-role">For President</span>
+          <img src="images/ticket-adebayo.jpg" alt="Prince Adewole Adebayo, SDP presidential candidate" width="600" height="750" loading="lazy">
+        </div>
+        <div class="pr-body">
+          <h3>Prince Adewole Adebayo</h3>
+          <div class="pr-tags">Lawyer · Builder · Ondo State</div>
+          <p>Born on <b>8 January 1972 in Ondo City</b>, a prince of the Ondo Kingdom, lawyer and entrepreneur whose career has been defined by <b>building institutions rather than chasing office</b>.</p>
+          <a class="link-arrow" href="leadership.html">Read his full story <span>↗</span></a>
+        </div>
+      </article>
+      <article class="pr-card rv" id="running-mate">
+        <div class="pr-ph">
+          <span class="pr-no">02</span><span class="pr-role vp">For Vice President</span>
+          <img src="images/ticket-bugaje.jpg" alt="Usman M. Bugaje, SDP vice-presidential candidate" width="600" height="750" loading="lazy">
+        </div>
+        <div class="pr-body">
+          <h3>Usman M. Bugaje</h3>
+          <div class="pr-tags">Reformer · Former Rep · Katsina State</div>
+          <p>Represented <b>Jibia/Kaita</b> in the House of Representatives (2003–2007) and served as <b>Special Adviser (Political) to the Vice President</b>. He describes himself as an Almajiri, and chaired the SDP's 2026 convention planning committee.</p>
+          <blockquote class="pr-quote">“We are not going to do the usual politics, which is the politics of big men.”</blockquote>
+        </div>
+      </article>
+      <aside class="ballot rv">
+        <div class="seal"><img src="images/sdp-logo.jpg" alt="Social Democratic Party (SDP) logo — …Progress!" width="1074" height="844" loading="lazy"></div>
+        <div>
+          <div class="names">Adebayo<i>✦</i>Bugaje</div>
+          <span class="yr">2027</span>
+          <p>Presidential election<br><b>Saturday, 16 January 2027</b></p>
+          <a class="btn btn-orange" href="find-lga.html">Find your polling unit <span class="ar">→</span></a>
+        </div>
+      </aside>
     </div>
   </div>
 </section>
 
 <!-- ===== OUR DECLARATION ===== -->
-<section class="blk decl-blk" id="declaration">
+<section class="sec" id="declaration">
   <div class="wrap">
     <div class="dc">
 
@@ -959,13 +947,13 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
               <p class="sm">That day is <b>16 January 2027</b>. That decision is <b>yours</b>.</p>
             </div>
           </div>
-          <a href="register.html" class="cta cta-g">Count Me In →</a>
+          <a href="register.html" class="btn btn-green">Count me in <span class="ar">→</span></a>
         </div>
       </aside>
 
       <!-- RIGHT · the declaration, article by article -->
       <div class="dc-body">
-        <article class="dc-art">
+        <article class="dc-art rv">
           <span class="dc-no">01</span>
           <div>
             <h3>We stopped waiting.</h3>
@@ -973,7 +961,7 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
           </div>
         </article>
 
-        <article class="dc-art">
+        <article class="dc-art rv">
           <span class="dc-no">02</span>
           <div>
             <h3>Change rises from the ground up.</h3>
@@ -987,7 +975,7 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
           </div>
         </article>
 
-        <article class="dc-art">
+        <article class="dc-art rv">
           <span class="dc-no">03</span>
           <div>
             <h3>A candidate who serves.</h3>
@@ -1000,7 +988,7 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
           </div>
         </article>
 
-        <article class="dc-art">
+        <article class="dc-art rv">
           <span class="dc-no">04</span>
           <div>
             <h3>We are the movement.</h3>
@@ -1009,15 +997,15 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
           </div>
         </article>
 
-        <div class="dc-close">
-          <p class="dc-big">2027 is different. The candidate is different.<br>And this time — <span class="d-hl">we show up.</span></p>
+        <div class="dc-close rv">
+          <p class="dc-big">2027 is different. The candidate is different.<br>And this time — <span>we show up.</span></p>
           <div class="dc-sign">
-            <img src="images/logo.png" alt="" width="40" height="40">
+            <img src="images/logo.png" alt="" width="42" height="42">
             <span><b>— The FixNaija Movement</b><small>36 States + FCT · 774 Communities</small></span>
           </div>
           <div class="ctas">
-            <a href="register.html" class="cta cta-p">Add My Name →</a>
-            <a href="https://wa.me/?text=The%20New%20Nigeria%20begins%20with%20us.%20Read%20the%20FixNaija%20Declaration%3A%20https%3A%2F%2Fwww.fixnaijamovement.com.ng%2F%23declaration" class="cta cta-wa" target="_blank" rel="noopener">Share on WhatsApp</a>
+            <a href="register.html" class="btn btn-green">Add my name <span class="ar">→</span></a>
+            <a href="https://wa.me/?text=The%20New%20Nigeria%20begins%20with%20us.%20Read%20the%20FixNaija%20Declaration%3A%20https%3A%2F%2Fwww.fixnaijamovement.com.ng%2F%23declaration" class="btn btn-wa" target="_blank" rel="noopener">Share on WhatsApp</a>
           </div>
         </div>
       </div>
@@ -1027,11 +1015,11 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
 </section>
 
 <!-- ===== FAREWELL BLUEPRINT · BOARDING PASS ===== -->
-<section class="blk bp-blk" id="blueprint">
+<section class="sec bp-blk" id="blueprint">
   <div class="wrap">
     <div class="bp-wrap">
-      <div class="bp-left">
-        <span class="eyebrow">The SDP Blueprint · 2027–2031</span>
+      <div class="bp-left rv">
+        <span class="eyebrow light">The SDP Blueprint · 2027–2031</span>
         <h2 class="sr-only">Farewell to Poverty and Insecurity</h2>
         <svg class="fw-logo sheen" viewBox="0 0 2736 1677" role="img" aria-label="Farewell to Poverty and Insecurity"><use href="#fwMark"/></svg>
         <p class="bp-kicker">Governance &amp; Accelerated Development Blueprint of a New Nigeria</p>
@@ -1041,7 +1029,7 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
         </div>
       </div>
 
-      <div class="bp-right">
+      <div class="bp-right rv">
         <div class="pass" role="img" aria-label="Boarding pass: from Poverty and Insecurity to Progress. Passenger: every Nigerian. Departs 16 January 2027 from your polling unit. Seat: your PVC.">
           <div class="pass-main">
             <div class="pass-head">
@@ -1080,8 +1068,8 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
           </div>
         </div>
         <div class="bp-ctas">
-          <a href="register.html" class="cta cta-p">Board Now — Register →</a>
-          <a href="#answers" class="cta cta-o">See the Repair Plan</a>
+          <a href="register.html" class="btn btn-orange">Board now — Register <span class="ar">→</span></a>
+          <a href="#answers" class="btn btn-ghost">See the repair plan</a>
         </div>
       </div>
     </div>
@@ -1089,12 +1077,14 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
 </section>
 
 <!-- ===== THE ANSWERS · PROBLEM → SOLUTION EXPLORER ===== -->
-<section class="blk ans-blk" id="answers">
+<section class="sec" id="answers">
   <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow center">The FixNaija Agenda</span>
-      <h2>Deep Problems. <span class="g">Deeper Answers.</span></h2>
-      <p>The FixNaija Agenda is a practical blueprint for a functional, inclusive and thriving Nigeria. Every Nigerian knows what is broken — here is the repair plan, issue by issue, drawn from Prince Adebayo's public programme. Pick a problem.</p>
+    <div class="shead rv">
+      <span class="eyebrow">The FixNaija Agenda</span>
+      <div>
+        <h2>Deep problems. <span class="g">Deeper answers.</span></h2>
+        <p class="lead">Every Nigerian knows what is broken — here is the repair plan, issue by issue, drawn from Prince Adebayo's public programme. <b>Pick a problem.</b></p>
+      </div>
     </div>
     <div class="ans-wrap">
       <div class="ans-list" id="ansList" role="tablist" aria-label="National issues"></div>
@@ -1106,8 +1096,8 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
           <div class="ans-h green">The FixNaija Answer</div>
           <ul class="ans-sol" id="ansSol"></ul>
           <div class="ans-act">
-            <a class="cta cta-p" id="ansCta" href="#">Take Action →</a>
-            <a class="cta cta-o" href="register.html">Join the Repair Work</a>
+            <a class="btn btn-green" id="ansCta" href="#">Take Action →</a>
+            <a class="btn btn-line" href="register.html">Join the repair work</a>
           </div>
           <p class="ans-src">Drawn from Prince Adewole Adebayo's public statements, debates and the SDP programme for 2027.</p>
         </div>
@@ -1116,68 +1106,114 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
   </div>
 </section>
 
-<!-- ===== INTERACTIVE MAP ===== -->
-<section class="blk map-blk" id="map">
+<!-- ===== CHALLENGES ===== -->
+<section class="sec sunk" id="challenges">
   <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow center">One Movement · One Nigeria</span>
-      <h2>36 States. <span class="g">774 Communities.</span> One Voice.</h2>
-      <p>Hover any state to light it up in our colours — then find your Local Government Area and take your seat at the table.</p>
+    <div class="shead rv">
+      <span class="eyebrow">Why We Organise</span>
+      <div>
+        <h2>The challenges facing <span class="g">Nigerians.</span></h2>
+        <p class="lead">Across all 36 states and the FCT, families confront the same daily struggles — and FixNaija exists to repair them.</p>
+      </div>
+    </div>
+    <div class="chal-grid rv">
+      <div class="chal-card"><span class="ic">⚡</span><h4>Power &amp; Energy</h4><p>A national grid of barely ~5,500MW for over 220 million people keeps homes dark and factories running on generators.</p></div>
+      <div class="chal-card"><span class="ic">🛡</span><h4>Insecurity</h4><p>Kidnapping, banditry and insurgency keep farmers off their fields and travellers afraid of their own highways.</p></div>
+      <div class="chal-card"><span class="ic">⚖️</span><h4>Corruption</h4><p>Trillions of naira leak from public coffers every year — the hospital never built, the road never tarred, the teacher never paid.</p></div>
+      <div class="chal-card"><span class="ic">💼</span><h4>Unemployment</h4><p>Millions of capable young Nigerians are idle or underemployed, and the most talented are leaving in droves.</p></div>
+      <div class="chal-card"><span class="ic">💰</span><h4>Cost of Living</h4><p>Inflation has eaten salaries and savings, with roughly 63% of Nigerians living below the national poverty line.</p></div>
+      <div class="chal-card"><span class="ic">🎓</span><h4>Education</h4><p>Around 20 million Nigerian children are out of school — the highest number anywhere in the world.</p></div>
+      <div class="chal-card"><span class="ic">🏥</span><h4>Healthcare</h4><p>Hospitals without medicine, clinics without doctors, and a brain-drain shipping our best medics abroad.</p></div>
+      <div class="chal-card"><span class="ic">🛣</span><h4>Infrastructure</h4><p>Roughly 70% of the road network is unpaved or in disrepair — raising the price of everything that moves.</p></div>
+    </div>
+    <div class="commit rv">
+      <div>
+        <h3>Our commitment</h3>
+        <p>Every challenge is an invitation to repair. Through transparent governance, active citizen participation and the plans in <a href="#answers">the FixNaija Agenda</a>, we are committed to a Nigeria that is safe, prosperous, inclusive and resilient — built ward by ward.</p>
+      </div>
+      <a href="#answers" class="btn btn-green">See the repair plan <span class="ar">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INTERACTIVE MAP ===== -->
+<section class="sec" id="map">
+  <span id="states" class="anchor"></span>
+  <div class="wrap">
+    <div class="shead rv">
+      <span class="eyebrow">One Movement · One Nigeria</span>
+      <div>
+        <h2>36 states. <span class="g">774 communities.</span> One voice.</h2>
+        <p class="lead">Hover any state to light it up — then find your Local Government Area and take your seat at the table.</p>
+      </div>
     </div>
     <div class="map-wrap">
-      <div class="ng-map"><svg viewBox="0 0 744 600" id="ngMap" preserveAspectRatio="xMidYMid meet" role="group" aria-label="Interactive map of Nigeria — 36 states and the FCT"></svg></div>
-      <div class="map-side">
+      <div class="ng-map rv"><svg viewBox="0 0 744 600" id="ngMap" preserveAspectRatio="xMidYMid meet" role="group" aria-label="Interactive map of Nigeria — 36 states and the FCT"></svg></div>
+      <div class="map-side rv">
         <span class="eyebrow">Your State</span>
         <div class="map-readout">
           <div class="rs-state" id="rsState">All 36 States &amp; FCT</div>
-          <div class="rs-sub" id="rsSub">Organized &amp; growing</div>
+          <div class="rs-sub" id="rsSub">Organised &amp; growing</div>
           <div class="map-progress"><i></i></div>
-          <div class="map-count"><b id="rsCount">37</b> / 37 states &amp; FCT organized</div>
+          <div class="map-count"><b id="rsCount">37</b> / 37 states &amp; FCT organised</div>
         </div>
         <div class="map-ctas">
-          <a href="find-lga.html" class="cta cta-p">Find My LGA →</a>
-          <a href="register.html" class="cta cta-g">Register to Join →</a>
+          <a href="find-lga.html" class="btn btn-green">Find my LGA <span class="ar">→</span></a>
+          <a href="register.html" class="btn btn-line">Register to join</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== STATEMENT BAND ===== -->
-<section class="band">
-  <div class="wrap">
-    <div class="q">No LGA left behind. No citizen without a voice.<br>This is the <em>repair work of a generation.</em></div>
-    <p class="sub">FixNaija belongs to no party but the Nigerian people. If you believe Nigeria can work — you already belong here.</p>
-    <a href="volunteer.html" class="cta cta-g">Stand With Us →</a>
+<!-- ===== GET INVOLVED BAND (dark) ===== -->
+<section class="band" id="impact">
+  <div class="wrap band-in">
+    <div class="rv">
+      <span class="eyebrow light">Get Involved</span>
+      <h2>No LGA left behind. <em>No citizen without a voice.</em></h2>
+      <p>This is the repair work of a generation. If you believe Nigeria can work — you already belong here. Lend your skills, organise your ward and take your seat at the table.</p>
+      <div class="band-ctas">
+        <a href="volunteer.html" class="btn btn-green">Stand with us <span class="ar">→</span></a>
+        <a href="register.html" class="btn btn-ghost">Register</a>
+      </div>
+    </div>
+    <div class="band-stats rv">
+      <div class="st"><span class="n" data-count="37">37</span><span class="l">States &amp; FCT</span></div>
+      <div class="st"><span class="n" data-count="774">774</span><span class="l">Communities</span></div>
+      <div class="st"><span class="n" data-count="9">9</span><span class="l">Repair plans</span></div>
+      <div class="st"><span class="n" data-count="200" data-suffix="M+">200M+</span><span class="l">Nigerians</span></div>
+    </div>
   </div>
 </section>
 
-<!-- ===== EMAIL SIGNUP ===== -->
-<section class="blk join-blk" id="join">
+<!-- ===== JOIN (email signup → registration) ===== -->
+<section class="sec" id="join">
+  <span id="register" class="anchor"></span>
   <div class="wrap">
     <div class="join-wrap">
-      <div class="join-left">
+      <div class="join-left rv">
         <span class="eyebrow">Join the Movement</span>
-        <h2>Add Your Voice to a <span class="g">New Nigeria</span></h2>
-        <p>Get updates, action alerts and organizing opportunities in your state — straight to your inbox. It takes ten seconds and it puts you on the map.</p>
+        <h2>Add your voice to a <span class="g">new Nigeria.</span></h2>
+        <p>Get updates, action alerts and organising opportunities in your state. It takes ten seconds — and it puts you on the map.</p>
         <ul class="join-perks">
           <li><i>✓</i> Action alerts &amp; town halls near you</li>
           <li><i>✓</i> First to hear movement news &amp; wins</li>
-          <li><i>✓</i> Ways to organize in your own LGA</li>
+          <li><i>✓</i> Ways to organise in your own LGA</li>
         </ul>
       </div>
-      <div class="join-card">
-        <h3>Get Involved</h3>
+      <div class="join-card rv">
+        <h3>Get involved</h3>
         <p class="hint">Join thousands of Nigerians building the change.</p>
         <form id="joinForm">
-          <div class="fld"><label for="jName">Full Name</label><input type="text" id="jName" placeholder="Your name" required></div>
-          <div class="fld"><label for="jEmail">Email Address</label><input type="email" id="jEmail" placeholder="you@email.com" required></div>
-          <div class="fld"><label for="jState">Your State</label>
+          <div class="fld"><label for="jName">Full name</label><input type="text" id="jName" placeholder="Your name" required></div>
+          <div class="fld"><label for="jEmail">Email address</label><input type="email" id="jEmail" placeholder="you@email.com" required></div>
+          <div class="fld"><label for="jState">Your state</label>
             <select id="jState" required>
               <option value="">Select your state…</option>
             </select>
           </div>
-          <button type="submit" class="join-submit" id="joinSubmit">Count Me In →</button>
+          <button type="submit" class="btn btn-green join-submit" id="joinSubmit">Count me in →</button>
           <div class="join-ok" id="joinOk">🎉 You're in! Welcome to the movement — we'll be in touch.</div>
           <div class="join-err" id="joinErr">Something went wrong. Please try again.</div>
           <p class="privacy">Your details are private. We never sell or share your information.</p>
@@ -1187,125 +1223,68 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
   </div>
 </section>
 
-<!-- ===== CHALLENGES ===== -->
-<section class="blk chal-blk" id="challenges">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow center">Why We Organize</span>
-      <h2>The Challenges Facing <span class="g">Nigerians</span></h2>
-      <p>Building a better Nigeria begins with understanding the realities facing its people. Across all 36 states and the FCT, families confront the same daily struggles — and FixNaija exists to repair them.</p>
-    </div>
-    <div class="chal-grid">
-      <div class="chal-card"><h4>⚡ Power &amp; Energy</h4><p>A national grid of barely ~5,500MW for over 220 million people keeps homes dark and factories running on generators.</p></div>
-      <div class="chal-card"><h4>🛡 Insecurity</h4><p>Kidnapping, banditry and insurgency keep farmers off their fields and travellers afraid of their own highways.</p></div>
-      <div class="chal-card"><h4>⚖️ Corruption</h4><p>Trillions of naira leak from public coffers every year — the hospital never built, the road never tarred, the teacher never paid.</p></div>
-      <div class="chal-card"><h4>💼 Unemployment</h4><p>Millions of capable young Nigerians are idle or underemployed, and the most talented are leaving in droves.</p></div>
-      <div class="chal-card"><h4>💰 Cost of Living</h4><p>Inflation has eaten salaries and savings, with roughly 63% of Nigerians living below the national poverty line.</p></div>
-      <div class="chal-card"><h4>🎓 Education</h4><p>Around 20 million Nigerian children are out of school — the highest number anywhere in the world.</p></div>
-      <div class="chal-card"><h4>🏥 Healthcare</h4><p>Hospitals without medicine, clinics without doctors, and a brain-drain shipping our best medics abroad.</p></div>
-      <div class="chal-card"><h4>🛣 Infrastructure</h4><p>Roughly 70% of the road network is unpaved or in disrepair — raising the price of everything that moves.</p></div>
-    </div>
-    <div class="commit-box">
-      <h3>Our Commitment</h3>
-      <p>At FixNaija, every challenge is an invitation to repair. Through transparent governance, active citizen participation and the plans in <a href="#answers">the FixNaija Agenda</a>, we are committed to a Nigeria that is safe, prosperous, inclusive and resilient — built ward by ward, hand in hand with residents, community leaders and partners.</p>
-      <a href="#answers" class="cta cta-p">See the Repair Plan →</a>
-    </div>
-  </div>
-</section>
-
 <!-- ===== PROGRAMMES ===== -->
-<section class="blk prog-blk" id="programmes">
+<section class="sec sunk" id="programmes">
   <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow center">Our Programmes</span>
-      <h2>Driving Change Through <span class="g">Action</span></h2>
-      <p>FixNaija turns ideas into measurable results — programmes designed to strengthen communities, empower citizens and improve everyday life across the federation.</p>
+    <div class="shead rv">
+      <span class="eyebrow">Our Programmes</span>
+      <div>
+        <h2>Driving change through <span class="g">action.</span></h2>
+        <p class="lead">Programmes designed to strengthen communities, empower citizens and improve everyday life across the federation.</p>
+      </div>
     </div>
     <div class="prog-grid">
-      <a class="prog-card" href="report-issue.html"><span class="p-ic">📢</span><h3>Issue Watch</h3><p>Report and track community problems — bad roads, failing clinics, power cuts — so nothing broken stays hidden.</p><span class="p-link">Report an Issue →</span></a>
-      <a class="prog-card" href="civic-resource.html"><span class="p-ic">⚖️</span><h3>Citizens' Civic Hub</h3><p>Know your rights, get your PVC and engage directly with governance through our civic resource centre.</p><span class="p-link">Open the Civic Hub →</span></a>
-      <a class="prog-card" href="volunteer.html"><span class="p-ic">🤝</span><h3>Volunteer Corps</h3><p>Skills, organizing and youth empowerment — lend your talent to the repair work in your own LGA.</p><span class="p-link">Volunteer →</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- ===== MEET THE CANDIDATE ===== -->
-<section class="blk" id="leader">
-  <div class="wrap">
-    <div class="bio-wrap">
-      <div class="bio-img">
-        <img src="images/about-movement.jpg" alt="Prince Adewole Adebayo with supporters at a grassroots gathering">
-        <div class="fb"><b>SDP Presidential Candidate</b><p>Repairing Nigeria is the work of a generation — and it starts in the community.</p></div>
-      </div>
-      <div class="bio-txt">
-        <span class="eyebrow">Meet the Candidate</span>
-        <h2>Prince Adewole Adebayo</h2>
-        <span class="role">SDP Presidential Candidate · Prince of Ondo Kingdom · Lawyer</span>
-        <p>Born on <b>8 January 1972 in Ondo City</b>, Prince Adewole Adebayo is a prince of the Ondo Kingdom, a lawyer, and an entrepreneur whose career has been defined by <b>building institutions rather than chasing office</b>. As the <b>SDP Presidential Candidate</b>, he now carries that record onto the national stage.</p>
-        <p>From founding his own legal practice to backing education, enterprise and social causes, his life's work has centred on lasting structures that outlive any one person. FixNaija channels those decades of institution-building into a <b>citizen-owned movement to repair Nigeria across all 774 LGAs</b> — grounded in accountability, competence and service to the ordinary Nigerian.</p>
-        <a href="leadership.html" class="cta cta-g">Read His Full Story →</a>
-      </div>
-    </div>
-
-    <!-- The Running Mate -->
-    <div class="rm" id="running-mate">
-      <div class="bio-txt">
-        <span class="eyebrow">The Running Mate</span>
-        <h3>Usman M. Bugaje</h3>
-        <span class="role">SDP Vice-Presidential Candidate · Katsina State</span>
-        <p>A former federal lawmaker who describes himself as an <b>Almajiri</b>, Usman M. Bugaje represented <b>Jibia/Kaita Federal Constituency</b> in the House of Representatives (2003–2007) and served as <b>Special Adviser (Political) to the Vice President</b>.</p>
-        <p>In 2026 he chaired the planning committee of the SDP national convention in Bauchi, and was then nominated to stand beside Prince Adebayo — completing a <b>South–North ticket</b> committed to cutting the cost of governance.</p>
-        <blockquote class="rm-quote">“We are not going to do the usual politics, which is the politics of big men.”<cite>— Usman M. Bugaje, SDP running mate</cite></blockquote>
-        <a href="#ticket" class="cta cta-p">See the Full Ticket →</a>
-      </div>
-      <div class="bio-img">
-        <img src="images/usman-bugaje.jpg" alt="Usman M. Bugaje, SDP vice-presidential candidate" width="714" height="982" loading="lazy">
-        <div class="fb"><b>SDP Vice-Presidential Candidate</b><p>Reducing the cost of governance — service, not spectacle.</p></div>
-      </div>
+      <a class="prog-card rv" href="report-issue.html"><span class="p-ic">📢</span><h3>Issue Watch</h3><p>Report and track community problems — bad roads, failing clinics, power cuts — so nothing broken stays hidden.</p><span class="link-arrow">Report an issue →</span></a>
+      <a class="prog-card rv" href="civic-resource.html"><span class="p-ic">⚖️</span><h3>Citizens' Civic Hub</h3><p>Know your rights, get your PVC and engage directly with governance through our civic resource centre.</p><span class="link-arrow">Open the Civic Hub →</span></a>
+      <a class="prog-card rv" href="volunteer.html"><span class="p-ic">🤝</span><h3>Volunteer Corps</h3><p>Skills, organising and youth empowerment — lend your talent to the repair work in your own LGA.</p><span class="link-arrow">Volunteer →</span></a>
     </div>
   </div>
 </section>
 
 <!-- ===== VOICES OF THE PEOPLE ===== -->
-<section class="blk testi-blk" id="voices">
+<section class="sec" id="voices">
   <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow center">Voices of the People</span>
-      <h2>What Nigerians Are <span class="g">Saying</span></h2>
-      <p>The strength of FixNaija is the people who carry it. Hear from residents, volunteers and community stakeholders who share our vision of an accountable, inclusive and prosperous Nigeria.</p>
+    <div class="shead rv">
+      <span class="eyebrow">Voices of the People</span>
+      <div>
+        <h2>What Nigerians are <span class="g">saying.</span></h2>
+        <p class="lead">The strength of FixNaija is the people who carry it — residents, volunteers and community stakeholders who share our vision.</p>
+      </div>
     </div>
     <div class="testi-grid">
-      <div class="t-card">
-        <div class="t-stars">⭐⭐⭐⭐⭐</div>
+      <div class="t-card rv">
+        <div class="t-stars">★★★★★</div>
         <h3>FixNaija gives every citizen a voice</h3>
         <p>"For the first time, I feel ordinary residents have a platform to raise our concerns and help shape the future of our community. FixNaija truly puts the people first."</p>
-        <div class="t-who">— Community Volunteer, Lagos</div>
+        <div class="t-who">Community Volunteer · Lagos</div>
       </div>
-      <div class="t-card">
-        <div class="t-stars">⭐⭐⭐⭐⭐</div>
+      <div class="t-card rv">
+        <div class="t-stars">★★★★★</div>
         <h3>A movement that represents our communities</h3>
         <p>"FixNaija renewed my confidence in participation. It is encouraging to see organizers who listen, engage and care about the challenges facing our neighbourhoods."</p>
-        <div class="t-who">— Youth Organizer, Enugu</div>
+        <div class="t-who">Youth Organizer · Enugu</div>
       </div>
-      <div class="t-card">
-        <div class="t-stars">⭐⭐⭐⭐⭐</div>
+      <div class="t-card rv">
+        <div class="t-stars">★★★★★</div>
         <h3>Hope for a better Nigeria</h3>
         <p>"The FixNaija vision inspires hope for better roads, healthcare, education, security and opportunity for every Nigerian. Together, we can build the country we deserve."</p>
-        <div class="t-who">— Market Trader, Kano</div>
+        <div class="t-who">Market Trader · Kano</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ===== GALLERY PREVIEW ===== -->
-<section class="blk" id="gallery">
+<section class="sec sunk" id="gallery">
   <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow center">Gallery</span>
-      <h2>Moments From the <span class="g">Movement</span></h2>
-      <p>Explore memorable moments from the FixNaija journey — community engagement, advocacy, volunteers and events across the federation.</p>
+    <div class="shead rv">
+      <span class="eyebrow">Gallery</span>
+      <div>
+        <h2>Moments from the <span class="g">movement.</span></h2>
+        <p class="lead">Community engagement, advocacy, volunteers and events across the federation.</p>
+      </div>
     </div>
-    <div class="gal-grid">
+    <div class="gal-grid rv">
       <a href="gallery.html" class="gal-item"><img src="images/gallery-1.jpg" alt="Community engagement" loading="lazy"><span>📸 Community Engagement</span></a>
       <a href="gallery.html" class="gal-item"><img src="images/gallery-2.jpg" alt="Leadership and advocacy" loading="lazy"><span>🏛 Leadership &amp; Advocacy</span></a>
       <a href="gallery.html" class="gal-item"><img src="images/gallery-3.jpg" alt="Volunteer activities" loading="lazy"><span>🤝 Volunteer Activities</span></a>
@@ -1313,26 +1292,28 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
       <a href="gallery.html" class="gal-item"><img src="images/gallery-5.jpg" alt="Community development" loading="lazy"><span>🌱 Community Development</span></a>
       <a href="gallery.html" class="gal-item"><img src="images/gallery-6.jpg" alt="Movement highlights" loading="lazy"><span>🎉 Movement Highlights</span></a>
     </div>
-    <div class="gal-cta"><a class="cta cta-o" href="gallery.html">View the Full Gallery →</a></div>
+    <div class="center"><a class="btn btn-line" href="gallery.html">View the full gallery <span class="ar">→</span></a></div>
   </div>
 </section>
 
 <!-- ===== LATEST NEWS ===== -->
-<section class="blk news-blk" id="news">
+<section class="sec" id="news">
   <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow center">Recent Posts</span>
-      <h2>Latest From the <span class="g">Movement</span></h2>
-      <p>News, community outreach, leadership engagements and stories of the repair work happening across Nigeria.</p>
+    <div class="shead rv">
+      <span class="eyebrow">Recent Posts</span>
+      <div>
+        <h2>Latest from the <span class="g">movement.</span></h2>
+        <p class="lead">News, community outreach, leadership engagements and stories of the repair work happening across Nigeria.</p>
+      </div>
     </div>
-    <div class="news-grid" id="newsGrid">
+    <div class="news-grid rv" id="newsGrid">
       <a class="news-card" href="news-article.html?slug=community-project-tracking">
         <div class="nc-img"><img src="images/news-project-tracking.jpg" alt="" loading="lazy"></div>
         <div class="nc-body">
           <div class="nc-meta"><span class="cat">Accountability</span><span>Jun 10, 2026</span></div>
           <h3>Community Project Tracking Begins</h3>
           <p>Our new digital platform lets citizens photograph, geotag, and report on local government projects — bringing transparency to every ward in Nigeria.</p>
-          <span class="nc-more">Read More →</span>
+          <span class="nc-more">Read more →</span>
         </div>
       </a>
       <a class="news-card" href="news-article.html?slug=youth-leaders-abuja">
@@ -1341,7 +1322,7 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
           <div class="nc-meta"><span class="cat">Training</span><span>Jun 8, 2026</span></div>
           <h3>Youth Leaders Trained in Abuja</h3>
           <p>Over 300 young community organizers completed intensive training on civic monitoring, digital advocacy, and peaceful mobilization at our Abuja leadership academy.</p>
-          <span class="nc-more">Read More →</span>
+          <span class="nc-more">Read more →</span>
         </div>
       </a>
       <a class="news-card" href="news-article.html?slug=774-lga-network">
@@ -1350,7 +1331,7 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
           <div class="nc-meta"><span class="cat">Milestone</span><span>Jun 5, 2026</span></div>
           <h3>FixNaija Launches 774 LGA Network</h3>
           <p>We have officially activated grassroots coordinators in all 774 Local Government Areas, creating the largest citizen-led accountability network in Nigeria's history.</p>
-          <span class="nc-more">Read More →</span>
+          <span class="nc-more">Read more →</span>
         </div>
       </a>
     </div>
@@ -1358,56 +1339,65 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
 </section>
 
 <!-- ===== EXPLORE SECTIONS ===== -->
-<section class="blk" id="explore">
+<section class="sec sunk" id="explore">
+  <span id="events" class="anchor"></span>
   <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow center">Explore the Movement</span>
-      <h2>Everywhere You Can <span class="g">Take Action</span></h2>
-      <p>One tap to every corner of FixNaija — learn, organize, report and get involved.</p>
+    <div class="shead rv">
+      <span class="eyebrow">Explore the Movement</span>
+      <div>
+        <h2>Everywhere you can <span class="g">take action.</span></h2>
+      </div>
     </div>
-    <div class="explore-grid">
-      <a class="ex-card" href="about.html"><span class="ex-ic">📖</span><span class="ex-tx"><b>About Us</b><small>Our story &amp; pillars</small></span><span class="ex-ar">›</span></a>
-      <a class="ex-card" href="leadership.html"><span class="ex-ic">👤</span><span class="ex-tx"><b>Leadership</b><small>Meet the Candidate</small></span><span class="ex-ar">›</span></a>
-      <a class="ex-card" href="civic-resource.html"><span class="ex-ic">⚖️</span><span class="ex-tx"><b>Civic Hub</b><small>Rights, PVC &amp; power</small></span><span class="ex-ar">›</span></a>
-      <a class="ex-card" href="find-lga.html"><span class="ex-ic">📍</span><span class="ex-tx"><b>States &amp; LGAs</b><small>Find your community</small></span><span class="ex-ar">›</span></a>
-      <a class="ex-card" href="volunteer.html"><span class="ex-ic">🤝</span><span class="ex-tx"><b>Volunteer</b><small>Lend your skills</small></span><span class="ex-ar">›</span></a>
-      <a class="ex-card" href="events.html"><span class="ex-ic">📅</span><span class="ex-tx"><b>Events</b><small>Town halls &amp; trainings</small></span><span class="ex-ar">›</span></a>
-      <a class="ex-card" href="gallery.html"><span class="ex-ic">🖼️</span><span class="ex-tx"><b>Media Gallery</b><small>Moments &amp; movement</small></span><span class="ex-ar">›</span></a>
-      <a class="ex-card" href="report-issue.html"><span class="ex-ic">📢</span><span class="ex-tx"><b>Report an Issue</b><small>Flag a problem</small></span><span class="ex-ar">›</span></a>
-      <a class="ex-card" href="ask-fixnaija.html"><span class="ex-ic">💬</span><span class="ex-tx"><b>Ask FixNaija AI</b><small>Civic assistant</small></span><span class="ex-ar">›</span></a>
-      <a class="ex-card" href="register.html"><span class="ex-ic">✍️</span><span class="ex-tx"><b>Register</b><small>Take your seat</small></span><span class="ex-ar">›</span></a>
+    <div class="explore-grid rv">
+      <a class="ex-card" href="about.html"><span class="ex-ic">📖</span><span class="ex-tx"><b>About Us</b><small>Our story &amp; pillars</small></span><span class="ex-ar">→</span></a>
+      <a class="ex-card" href="leadership.html"><span class="ex-ic">👤</span><span class="ex-tx"><b>Leadership</b><small>Meet the candidate</small></span><span class="ex-ar">→</span></a>
+      <a class="ex-card" href="civic-resource.html"><span class="ex-ic">⚖️</span><span class="ex-tx"><b>Civic Hub</b><small>Rights, PVC &amp; power</small></span><span class="ex-ar">→</span></a>
+      <a class="ex-card" href="find-lga.html"><span class="ex-ic">📍</span><span class="ex-tx"><b>States &amp; LGAs</b><small>Find your community</small></span><span class="ex-ar">→</span></a>
+      <a class="ex-card" href="volunteer.html"><span class="ex-ic">🤝</span><span class="ex-tx"><b>Volunteer</b><small>Lend your skills</small></span><span class="ex-ar">→</span></a>
+      <a class="ex-card" href="events.html"><span class="ex-ic">📅</span><span class="ex-tx"><b>Events</b><small>Town halls &amp; trainings</small></span><span class="ex-ar">→</span></a>
+      <a class="ex-card" href="gallery.html"><span class="ex-ic">🖼️</span><span class="ex-tx"><b>Media Gallery</b><small>Moments &amp; movement</small></span><span class="ex-ar">→</span></a>
+      <a class="ex-card" href="report-issue.html"><span class="ex-ic">📢</span><span class="ex-tx"><b>Report an Issue</b><small>Flag a problem</small></span><span class="ex-ar">→</span></a>
+      <a class="ex-card" href="ask-fixnaija.html"><span class="ex-ic">💬</span><span class="ex-tx"><b>Ask FixNaija AI</b><small>Civic assistant</small></span><span class="ex-ar">→</span></a>
+      <a class="ex-card" href="register.html"><span class="ex-ic">✍️</span><span class="ex-tx"><b>Register</b><small>Take your seat</small></span><span class="ex-ar">→</span></a>
     </div>
   </div>
 </section>
 
-<!-- ===== WHATSAPP BAR ===== -->
-<section class="wa-bar">
-  <div class="in">
-    <span class="wa-ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.97L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 1.8c2.16 0 4.18.84 5.71 2.37a8.03 8.03 0 0 1 2.37 5.71c0 4.46-3.63 8.09-8.09 8.09a8.1 8.1 0 0 1-4.12-1.13l-.3-.18-3.12.82.83-3.04-.19-.31a8.04 8.04 0 0 1-1.24-4.3c0-4.46 3.63-8.09 8.1-8.09zm4.43 10.16c-.24-.12-1.43-.71-1.65-.79-.22-.08-.38-.12-.54.12-.16.24-.62.79-.76.95-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.4-.54-.41l-.46-.01c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.69 2.58 4.1 3.62.57.24 1.02.39 1.37.5.58.18 1.1.16 1.51.1.46-.07 1.43-.59 1.63-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28z"/></svg></span>
-    <div class="wa-tx"><b>We're now on WhatsApp! 🎉</b><span>Join the official FixNaija Channel for updates, alerts &amp; ways to take action.</span></div>
-    <a class="wa-btn" href="https://whatsapp.com/channel/0029VbDCNnk2v1J2LgfvCm06" target="_blank" rel="noopener">Join the Channel →</a>
+<!-- ===== WHATSAPP BAND ===== -->
+<section class="wa-band">
+  <div class="wrap wa-in">
+    <div class="rv">
+      <span class="eyebrow light">Stay Close to the Movement</span>
+      <h2>We're on WhatsApp. <em>Join the channel.</em></h2>
+      <p>Updates, action alerts and ways to take action — straight from the FixNaija team to your phone.</p>
+    </div>
+    <div class="wa-side rv">
+      <a class="btn btn-wa" href="https://whatsapp.com/channel/0029VbDCNnk2v1J2LgfvCm06" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.97L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm4.43 11.96c-.24-.12-1.43-.71-1.65-.79-.22-.08-.38-.12-.54.12-.16.24-.62.79-.76.95-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.4-.54-.41l-.46-.01c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.69 2.58 4.1 3.62.57.24 1.02.39 1.37.5.58.18 1.1.16 1.51.1.46-.07 1.43-.59 1.63-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28z"/></svg>
+        Join the channel <span class="ar">→</span>
+      </a>
+      <small>Official FixNaija Movement channel</small>
+    </div>
   </div>
 </section>
 
 <!-- ===== FOOTER ===== -->
-<footer>
-  <div class="wrap">
+<footer id="contact">
+  <div class="wrap foot-in">
     <div class="foot-grid">
       <div class="foot-brand">
-        <div class="b"><img src="images/logo.png" alt="FixNaija logo"><span class="bn">FixNaija Movement</span></div>
+        <div class="b"><img src="images/logo.png" alt="FixNaija logo"><span><span class="bn">FixNaija Movement</span><span class="bs">Adebayo · Bugaje · 2027</span></span></div>
         <p>A citizen-owned grassroots movement repairing Nigeria from the ground up — ward by ward, across all 774 communities. Rallying behind Prince Adewole Adebayo, SDP Presidential Candidate, and his running mate Usman M. Bugaje.</p>
-        <div class="foot-social">
-          <a href="https://www.facebook.com/share/18KhK4YqTC/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.5-1.5h1.4V5c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1V11H7.6v3H10v7h3.5z"/></svg></a>
+        <div class="foot-social"><a href="https://www.facebook.com/share/18KhK4YqTC/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.5-1.5h1.4V5c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1V11H7.6v3H10v7h3.5z"/></svg></a>
           <a href="https://www.instagram.com/fixnaijanowmovement?igsh=YXM1amNrbDB0c2k0" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c2.7 0 3.1 0 4.1.1 1.1 0 1.8.2 2.4.5.7.2 1.2.6 1.8 1.1.5.6.9 1.1 1.1 1.8.3.6.5 1.3.5 2.4.1 1 .1 1.4.1 4.1s0 3.1-.1 4.1c0 1.1-.2 1.8-.5 2.4-.2.7-.6 1.2-1.1 1.8-.6.5-1.1.9-1.8 1.1-.6.3-1.3.5-2.4.5-1 .1-1.4.1-4.1.1s-3.1 0-4.1-.1c-1.1 0-1.8-.2-2.4-.5-.7-.2-1.2-.6-1.8-1.1-.5-.6-.9-1.1-1.1-1.8-.3-.6-.5-1.3-.5-2.4C2 15.1 2 14.7 2 12s0-3.1.1-4.1c0-1.1.2-1.8.5-2.4.2-.7.6-1.2 1.1-1.8.6-.5 1.1-.9 1.8-1.1.6-.3 1.3-.5 2.4-.5C8.9 2 9.3 2 12 2z"/></svg></a>
           <a href="https://x.com/fixnaijamvt?s=11" target="_blank" rel="noopener" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.21-6.82-5.96 6.82H1.68l7.73-8.84L1.25 2.25H8.08l4.71 6.23 5.45-6.23z"/></svg></a>
-          <a href="https://www.tiktok.com/@fixnaijamovement_?_r=1&amp;_d=f37d5akghflk68&amp;sec_uid=MS4wLjABAAAAQZbfswMQx9jeljh-L_JWSyhzo6KHjpviu5oRN9k3KNKiXDedWv6SiayaPZyuWjqO&amp;share_author_id=7503211640499356727&amp;sharer_language=en&amp;source=h5_m&amp;u_code=ek8j069gee7hml&amp;item_author_type=1&amp;utm_source=whatsapp_business&amp;share_enter_from=&amp;tt_from=whatsapp_business&amp;enable_checksum=1&amp;utm_medium=ios&amp;share_link_id=C455361D-1C2E-4204-BE7E-2E8951BCC8A1&amp;user_id=7503211640499356727&amp;sec_user_id=MS4wLjABAAAAQZbfswMQx9jeljh-L_JWSyhzo6KHjpviu5oRN9k3KNKiXDedWv6SiayaPZyuWjqO&amp;utm_campaign=client_share&amp;panel_source_v2=qrcode_panel&amp;ug_btm=b8727,b0&amp;social_share_type=5&amp;share_app_id=1233" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 1 1-2.59-2.59c.27 0 .53.04.78.12V9.79a5.7 5.7 0 0 0-.78-.06 5.69 5.69 0 1 0 5.69 5.69V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3a4.3 4.3 0 0 1-3.25-1.48z"/></svg></a>
-        </div>
+          <a href="https://www.tiktok.com/@fixnaijamovement_?_r=1&amp;_d=f37d5akghflk68&amp;sec_uid=MS4wLjABAAAAQZbfswMQx9jeljh-L_JWSyhzo6KHjpviu5oRN9k3KNKiXDedWv6SiayaPZyuWjqO&amp;share_author_id=7503211640499356727&amp;sharer_language=en&amp;source=h5_m&amp;u_code=ek8j069gee7hml&amp;item_author_type=1&amp;utm_source=whatsapp_business&amp;share_enter_from=&amp;tt_from=whatsapp_business&amp;enable_checksum=1&amp;utm_medium=ios&amp;share_link_id=C455361D-1C2E-4204-BE7E-2E8951BCC8A1&amp;user_id=7503211640499356727&amp;sec_user_id=MS4wLjABAAAAQZbfswMQx9jeljh-L_JWSyhzo6KHjpviu5oRN9k3KNKiXDedWv6SiayaPZyuWjqO&amp;utm_campaign=client_share&amp;panel_source_v2=qrcode_panel&amp;ug_btm=b8727,b0&amp;social_share_type=5&amp;share_app_id=1233" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 1 1-2.59-2.59c.27 0 .53.04.78.12V9.79a5.7 5.7 0 0 0-.78-.06 5.69 5.69 0 1 0 5.69 5.69V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3a4.3 4.3 0 0 1-3.25-1.48z"/></svg></a></div>
       </div>
       <div class="foot-col">
         <h4>Explore</h4>
         <ul>
           <li><a href="#home">Home</a></li>
-          <li><a href="about.html">About Us</a></li>
+          <li><a href="about.html">About us</a></li>
           <li><a href="leadership.html">Leadership</a></li>
           <li><a href="events.html">Events</a></li>
           <li><a href="gallery.html">Gallery</a></li>
@@ -1417,9 +1407,9 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
         <h4>Take Action</h4>
         <ul>
           <li><a href="register.html">Register</a></li>
-          <li><a href="find-lga.html">Find Your LGA</a></li>
+          <li><a href="find-lga.html">Find your LGA</a></li>
           <li><a href="volunteer.html">Volunteer</a></li>
-          <li><a href="report-issue.html">Report an Issue</a></li>
+          <li><a href="report-issue.html">Report an issue</a></li>
           <li><a href="civic-resource.html">Civic Hub</a></li>
         </ul>
       </div>
@@ -1427,13 +1417,13 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
         <h4>Contact</h4>
         <ul>
           <li><a href="mailto:fixnaijamovement@gmail.com">fixnaijamovement@gmail.com</a></li>
-          <li><a href="#">Abuja, FCT · Nigeria</a></li>
+          <li><a href="#map">Abuja, FCT · Nigeria</a></li>
           <li><a href="ask-fixnaija.html">Ask FixNaija AI</a></li>
         </ul>
       </div>
     </div>
     <a class="foot-ticket" href="#ticket" aria-label="SDP · Adebayo–Bugaje 2027 · Farewell to Poverty and Insecurity">
-      <img src="images/sdp-mark.png" alt="SDP" width="60" height="32">
+      <img src="images/sdp-mark.png" alt="SDP" width="56" height="30">
       <span class="vdiv"></span>
       <span class="ft-names">Adebayo<i>✦</i>Bugaje 2027</span>
       <span class="vdiv"></span>
@@ -1446,9 +1436,8 @@ footer{background:var(--charcoal-2);border-top:1px solid var(--line);padding:58p
   </div>
 </footer>
 
-<a href="ask-fixnaija.html" class="fab-ai" aria-label="Ask FixNaija AI">✨ <span>Ask FixNaija</span></a>
+<a href="ask-fixnaija.html" class="fab-ai" aria-label="Ask FixNaija AI"><span class="t"><b>Ask FixNaija</b><small>Civic questions, answered</small></span><span class="ai">AI</span></a>
 
-<!-- Nigeria state geometry (loads locally, no fetch needed) -->
 <script src="data/nigeria-states.js"></script>
 <script>
 /* ===== Scrolling header (OK-Movement style: condense + smart hide/reveal) ===== */
@@ -1514,15 +1503,18 @@ const stateNames=[...STATES].map(s=>s[0]).sort();
   stateNames.forEach(n=>{const o=document.createElement('option');o.value=n;o.textContent=n;sel.appendChild(o);});
 });
 
-/* ===== HERO SLIDER (auto-rotating "moving slide") ===== */
+/* ===== HERO SLIDER (auto-rotating, counter + arrows + progress dashes) ===== */
 (function(){
   const slider=document.getElementById('home');
   const track=document.getElementById('heroSlides');
   const slideEls=[...track.querySelectorAll('.slide')];
   const dotsWrap=document.getElementById('slideDots');
+  const noEl=document.getElementById('slideNo');
+  const DUR=6500;
   let idx=0,timer;
   slideEls.forEach((s,i)=>{
     const b=document.createElement('button');
+    b.type='button';
     b.setAttribute('aria-label','Go to slide '+(i+1));
     b.addEventListener('click',()=>go(i));
     dotsWrap.appendChild(b);
@@ -1530,15 +1522,18 @@ const stateNames=[...STATES].map(s=>s[0]).sort();
   const dots=[...dotsWrap.children];
   function render(){
     track.style.transform='translateX(-'+(idx*100)+'%)';
-    slideEls.forEach((s,i)=>s.classList.toggle('is-active',i===idx));
-    dots.forEach((d,i)=>d.classList.toggle('active',i===idx));
+    slideEls.forEach((s,i)=>{s.classList.toggle('is-active',i===idx);s.setAttribute('aria-hidden',i===idx?'false':'true');});
+    dots.forEach(d=>d.classList.remove('active'));
+    void dotsWrap.offsetWidth;               /* restart the progress-dash animation */
+    dots[idx].classList.add('active');
+    if(noEl)noEl.textContent=String(idx+1).padStart(2,'0');
   }
   function go(i){idx=(i+slideEls.length)%slideEls.length;render();start();}
   function next(){go(idx+1);}
-  function start(){clearInterval(timer);timer=setInterval(next,6500);}
+  function start(){clearInterval(timer);timer=setInterval(next,DUR);}
+  document.getElementById('slidePrev').addEventListener('click',()=>go(idx-1));
+  document.getElementById('slideNext').addEventListener('click',next);
   render();start();
-  slider.addEventListener('mouseenter',()=>clearInterval(timer));
-  slider.addEventListener('mouseleave',start);
   /* swipe on touch */
   let sx=null;
   slider.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;},{passive:true});
@@ -1571,13 +1566,25 @@ io.observe(document.querySelector('.map-readout'));
 if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){
   const a=document.getElementById('fwSheenAnim');if(a)a.remove();
 }
-/* ===== Declaration: strike through the "Not with…" lines as the section scrolls in ===== */
+/* ===== Scroll reveal (.rv) + declaration strike-through ===== */
 (function(){
-  const dc=document.querySelector('.dc');
-  if(!dc||!('IntersectionObserver' in window))return;
+  if(!('IntersectionObserver' in window))return;
   if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   document.documentElement.classList.add('js-anim');
-  new IntersectionObserver((es,o)=>{es.forEach(e=>{if(e.isIntersecting){dc.classList.add('in');o.disconnect();}});},{threshold:.25}).observe(dc.querySelector('.dc-not'));
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+  const dc=document.querySelector('.dc');
+  if(dc){new IntersectionObserver((es,o)=>{es.forEach(e=>{if(e.isIntersecting){dc.classList.add('in');o.disconnect();}});},{threshold:.25}).observe(dc.querySelector('.dc-not'));}
+})();
+/* ===== Nav: underline the section you're reading ===== */
+(function(){
+  const links=[...document.querySelectorAll('.nav-links a[href^="#"]')];
+  if(!links.length||!('IntersectionObserver' in window))return;
+  const map=new Map(links.map(a=>[a.getAttribute('href').slice(1),a]));
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{
+    if(e.isIntersecting){links.forEach(a=>a.classList.remove('active'));const a=map.get(e.target.id);if(a)a.classList.add('active');}
+  });},{rootMargin:'-45% 0px -50% 0px'});
+  map.forEach((a,id)=>{const s=document.getElementById(id);if(s)io.observe(s);});
 })();
 
 /* ===== Email signup → Supabase (registrations) — shared by both forms ===== */
@@ -1734,7 +1741,7 @@ const ISSUE_SLUGS=['power','insecurity','corruption','jobs','cost-of-living','ed
 
 /* ===== Impact stats count-up ===== */
 (function(){
-  const els=document.querySelectorAll('.impact-stats .n');
+  const els=document.querySelectorAll('.band-stats .n');
   if(!els.length)return;
   function run(el){
     const target=parseInt(el.dataset.count,10)||0,suf=el.dataset.suffix||'';
