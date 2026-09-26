@@ -75,6 +75,8 @@
 .form-group.full-width{grid-column:1/-1}
 .form-label{font-size:.82rem;font-weight:600;color:var(--ink)}
 .form-optional{font-weight:400;color:var(--faint);font-size:.78rem}
+.rg-same{align-self:flex-start;display:inline-block;margin-top:-1px;padding:0;background:none;border:0;font:inherit;font-size:.78rem;font-weight:600;color:var(--green);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.rg-same:hover{color:var(--green-deep)}
 .form-input,.form-select,.form-textarea{width:100%;height:54px;padding:0 16px;border:1.5px solid var(--rule-2);border-radius:8px;background:#fff;color:var(--ink);font-family:var(--text);font-size:.96rem;transition:border-color .18s,box-shadow .18s,background-color .18s;-webkit-appearance:none;appearance:none}
 .form-textarea{height:auto;min-height:120px;padding:14px 16px;resize:vertical;line-height:1.55}
 .form-select{padding-right:44px;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2300663a' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
@@ -133,7 +135,7 @@
 .rg-stats span{display:block;font-size:.72rem;line-height:1.35;margin-top:6px}
 .rg-privacy{font-size:.8rem;margin-bottom:10px}
 .rg-privacy a{color:#fff;font-weight:600}
-.rg-pair{display:block;width:108%;max-width:none;margin:10px -4% 0;height:auto}
+.rg-pair{display:block;width:108%;max-width:none;margin:10px -4% 44px;height:auto}
 .rg-names{position:absolute;left:18px;right:18px;bottom:16px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
 .rg-names span{display:inline-flex;align-items:center;gap:7px;background:#fff;color:var(--ink);border-radius:6px;padding:6px 10px;font-size:.7rem;font-weight:600;box-shadow:0 8px 20px -10px rgba(0,0,0,.5)}
 .rg-names i{width:8px;height:8px;border-radius:50%;background:var(--green)}
@@ -151,7 +153,7 @@
 @media(max-width:700px){
   .rg-aside{order:1}
   .rg-aside-in{display:block;padding:28px 22px 0}
-  .rg-pair{width:100%;margin:6px 0 0}
+  .rg-pair{width:100%;margin:6px 0 44px}
   .rg-names{display:flex}
   .form-grid{grid-template-columns:1fr}
   .rg-progress{top:66px;padding:16px 18px 12px}
@@ -197,7 +199,7 @@
         <span class="badge"><img src="images/logo.png" alt="FixNaija Movement logo" width="54" height="54"></span>
         <span><span class="bn">FixNaija Movement</span><span class="bs">Adebayo · Bugaje · 2027</span></span>
       </a>
-      <a class="brand-sdp" href="index.html#ticket" title="Social Democratic Party · Adebayo–Bugaje 2027"><img src="images/sdp-mark.png" alt="SDP — Social Democratic Party" width="52" height="28"></a>
+      <a class="brand-sdp" href="index.html#ticket" title="Social Democratic Party · Adebayo–Bugaje 2027"><img src="images/sdp-logo-header.webp" alt="SDP — Social Democratic Party logo" width="64" height="50"></a>
     </div>
     <ul class="nav-links">
       <li><a href="index.html#movement">Our Movement</a></li>
@@ -305,8 +307,9 @@
                         <input type="tel" class="form-input" id="regPhone" placeholder="+234 800 000 0000" required>
                     </div>
 <div class="form-group">
-                        <label class="form-label" for="regWhatsApp">WhatsApp Number <span class="form-optional">(optional)</span></label>
-                        <input type="tel" class="form-input" id="regWhatsApp" placeholder="+234 80X XXX XXXX">
+                        <label class="form-label" for="regWhatsApp">WhatsApp Number</label>
+                        <input type="tel" class="form-input" id="regWhatsApp" placeholder="+234 80X XXX XXXX" required>
+                        <button type="button" class="rg-same" id="rgSameWa">Same as my phone number</button>
                     </div>
             </div>
           </section>
@@ -544,7 +547,7 @@
           <div id="rgCountBox" hidden><b id="rgCount">0</b><span>Nigerians registered so far</span></div>
         </div>
         <p class="rg-privacy">🔒 Your details are private and never sold. <a href="privacy.html">How we protect your data</a></p>
-        <img class="rg-pair" src="images/hero-ticket.webp" alt="Prince Adewole Adebayo and Usman M. Bugaje" width="1149" height="837" loading="lazy">
+        <img class="rg-pair" src="images/hero-ticket.webp" alt="Prince Adewole Adebayo and Usman M. Bugaje" width="1280" height="942" loading="lazy">
         <div class="rg-names"><span><i></i>Adebayo · For President</span><span><i class="o"></i>Bugaje · For Vice President</span></div>
       </div>
     </aside>
@@ -1117,5 +1120,13 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
 })();
 </script>
 <script src="assets/fixnaija-guard.js" defer></script>
+<script>
+/* WhatsApp is required: one tap copies the phone number across */
+(function(){var b=document.getElementById('rgSameWa'),p=document.getElementById('regPhone'),w=document.getElementById('regWhatsApp');
+  if(!b||!p||!w)return;
+  b.addEventListener('click',function(){if(!p.value.trim()){p.focus();p.reportValidity&&p.reportValidity();return;}
+    w.value=p.value.trim();w.dispatchEvent(new Event('input',{bubbles:true}));w.dispatchEvent(new Event('change',{bubbles:true}));});
+})();
+</script>
 </body>
 </html>

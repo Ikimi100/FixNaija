@@ -106,7 +106,7 @@ b,strong{font-weight:600;color:var(--ink)}
 .brand .bs{display:flex;align-items:center;gap:7px;font-family:var(--display);font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--green);white-space:nowrap;margin-top:4px}
 .brand .bs::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green-3)}
 .brand-sdp{display:flex;align-items:center;padding-left:16px;border-left:1px solid var(--rule);text-decoration:none;transition:transform .2s}
-.brand-sdp img{height:28px;width:auto}
+.brand-sdp img{height:50px;width:auto;flex:none;border-radius:6px;box-shadow:0 0 0 1px rgba(13,20,15,.06),0 6px 14px -8px rgba(13,20,15,.45)}
 .brand-sdp:hover{transform:rotate(-3deg)}
 .nav-links{display:flex;list-style:none;gap:26px;align-items:center}
 .nav-links a{position:relative;text-decoration:none;color:var(--ink);font-size:.82rem;font-weight:500;padding:8px 0;white-space:nowrap}
@@ -141,17 +141,20 @@ b,strong{font-weight:600;color:var(--ink)}
   -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 26%);mask-image:linear-gradient(90deg,transparent 0,#000 26%)}
 .slide.is-active .slide-media.photo img{transform:scale(1)}
 .slide-media.photo::after{content:"";position:absolute;inset:auto 0 0 0;height:40%;background:linear-gradient(0deg,var(--paper),transparent)}
-.slide-media.cut{display:flex;align-items:flex-end;justify-content:center}
+.slide-media.cut{display:flex;align-items:flex-end;justify-content:center;container-type:size}
 .slide-media.cut::before{content:"";position:absolute;width:74%;aspect-ratio:1;right:9%;bottom:-14%;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff 0,var(--green-tint) 45%,#cfe8da 100%);box-shadow:inset 0 0 0 26px rgba(242,106,27,.07)}
 .slide-media.cut::after{content:"";position:absolute;width:74%;aspect-ratio:1;right:9%;bottom:-14%;border-radius:50%;border:2px dashed rgba(242,106,27,.45);transform:scale(1.07)}
-.slide-media.cut img{position:relative;z-index:1;height:min(90%,780px);width:auto;max-width:100%;object-fit:contain;object-position:bottom;margin-right:1%;transform:translateY(24px);opacity:0;transition:transform 1s cubic-bezier(.2,.8,.2,1) .15s,opacity .8s ease .15s}
+.cut-fig{position:relative;z-index:1;width:min(100%,1060px);width:min(99cqw,calc(88cqh * 1280 / 942),1060px);aspect-ratio:1280/942;margin:0 1% clamp(24px,9cqh,80px) 0}
+@media(max-width:1240px){.slide-media.cut{justify-content:flex-end}.cut-fig{width:min(90%,760px);width:min(90cqw,calc(80cqh * 1280 / 942),760px)}}
+@media(max-width:960px){.slide-media.cut{justify-content:center}.cut-fig{width:min(100%,520px);width:min(99cqw,calc(96cqh * 1280 / 942));margin-bottom:0}}
+.slide-media.cut img{display:block;width:100%;height:100%;object-fit:contain;object-position:bottom;transform:translateY(24px);opacity:0;transition:transform 1s cubic-bezier(.2,.8,.2,1) .15s,opacity .8s ease .15s}
 .slide.is-active .slide-media.cut img{transform:none;opacity:1}
 .cut-tag{position:absolute;z-index:2;display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--rule);border-radius:10px;padding:10px 14px;box-shadow:var(--shadow);font-size:.78rem;line-height:1.25;color:var(--muted)}
 .cut-tag b{display:block;font-family:var(--display);font-weight:800;font-size:.95rem;color:var(--ink)}
 .cut-tag i{width:10px;height:10px;border-radius:50%;flex:0 0 10px;background:var(--green)}
 .cut-tag.vp i{background:var(--orange)}
-.cut-tag.p{left:12%;bottom:30%}
-.cut-tag.vp{right:6%;bottom:22%}
+.cut-tag.p{left:2%;bottom:15%}
+.cut-tag.vp{right:2%;top:5%}
 /* entrance */
 .slide-inner>*{opacity:0;transform:translateY(22px)}
 .slide.is-active .slide-inner>*{opacity:1;transform:none;transition:opacity .7s ease,transform .7s ease}
@@ -581,8 +584,8 @@ footer::before{content:"";position:absolute;inset:0;background-image:var(--grain
   .slide-media.photo img{-webkit-mask-image:none;mask-image:none}
   .slide-media.photo::after{height:30%}
   .slide-media.cut::before,.slide-media.cut::after{width:90%;right:5%;bottom:-40%}
-  .cut-tag.p{left:4%;bottom:18%}
-  .cut-tag.vp{right:4%;bottom:10%}
+  .cut-tag.p{left:1%;bottom:12%}
+  .cut-tag.vp{right:1%;top:3%}
   .hero-foot{position:relative}
   .hero-foot .wrap{flex-direction:column;align-items:stretch;padding:18px 0 26px}
   .hero-stats{justify-content:space-between;background:none;backdrop-filter:none}
@@ -613,7 +616,7 @@ footer::before{content:"";position:absolute;inset:0;background-image:var(--grain
   .brand .bn{font-size:1rem}
   .brand .bs{font-size:.52rem;letter-spacing:.14em}
   .brand-sdp{padding-left:10px}
-  .brand-sdp img{height:22px}
+  .brand-sdp img{height:40px;border-radius:5px}
   .brand-group{gap:10px}
   .slide h1{font-size:clamp(2.6rem,12vw,3.4rem)}
   .slide .lead{font-size:1rem}
@@ -680,12 +683,13 @@ footer::before{content:"";position:absolute;inset:0;background-image:var(--grain
   .brand .bn{font-size:.9rem}
   .brand-group{gap:8px}
   .brand-sdp{padding-left:8px}
-  .brand-sdp img{height:20px}
+  .brand-sdp img{height:34px}
 }
 @media(max-width:340px){
   .brand .badge,.navbar.scrolled .brand .badge{width:42px;height:42px}
   .brand .bn{font-size:.8rem}
   .menu-toggle{width:42px;height:42px}
+  .brand-sdp img{height:28px;border-radius:4px}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
@@ -715,7 +719,7 @@ footer::before{content:"";position:absolute;inset:0;background-image:var(--grain
         <span class="badge"><img src="images/logo.png" alt="FixNaija Movement logo" width="74" height="74"></span>
         <span><span class="bn">FixNaija Movement</span><span class="bs">Adebayo · Bugaje · 2027</span></span>
       </a>
-      <a class="brand-sdp" href="#ticket" title="Social Democratic Party · Adebayo–Bugaje 2027"><img src="images/sdp-mark.png" alt="SDP — Social Democratic Party" width="52" height="28"></a>
+      <a class="brand-sdp" href="#ticket" title="Social Democratic Party · Adebayo–Bugaje 2027"><img src="images/sdp-logo-header.webp" alt="SDP — Social Democratic Party logo" width="64" height="50"></a>
     </div>
     <ul class="nav-links">
       <li><a href="#movement">Our Movement</a></li>
@@ -779,9 +783,11 @@ footer::before{content:"";position:absolute;inset:0;background-image:var(--grain
     <!-- Slide 1 · the slogan + the ticket, cut out -->
     <div class="slide is-active">
       <div class="slide-media cut" aria-hidden="true">
-        <img src="images/hero-ticket.webp" alt="" width="1149" height="837">
+        <div class="cut-fig">
+        <img src="images/hero-ticket.webp" alt="" width="1280" height="942">
         <div class="cut-tag p"><i></i><span><b>Prince Adewole Adebayo</b>For President</span></div>
         <div class="cut-tag vp"><i></i><span><b>Usman M. Bugaje</b>For Vice President</span></div>
+        </div>
       </div>
       <div class="wrap">
         <div class="slide-inner">
