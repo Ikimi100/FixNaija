@@ -314,8 +314,10 @@ html,body{overflow-x:clip}
 .bp-left p{color:#c4dccd;font-size:1rem;margin-bottom:24px}
 .bp-left p b{color:#fff}
 .bp-pillars{display:flex;flex-wrap:wrap;gap:8px}
-.bp-pillars span{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:7px 13px;font-size:.8rem;font-weight:500;color:#eaf5ee}
+.bp-pillars span,.bp-pillars a{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:7px 13px;font-size:.8rem;font-weight:500;color:#eaf5ee}
 .bp-right{display:flex;flex-direction:column;gap:26px}
+.bp-pillars a{text-decoration:none;transition:background .2s,border-color .2s}
+.bp-pillars a:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.4)}
 .bp-ctas{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
 .pass{--pp:#fbf8f1;--pi:#1A1A2E;--lbl:#7a7a8c;position:relative;display:grid;grid-template-columns:1fr 158px;color:var(--pi);filter:drop-shadow(0 34px 44px rgba(0,0,0,.45));transform:rotate(1.2deg);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
 .pass:hover{transform:rotate(0) translateY(-4px)}
@@ -394,6 +396,7 @@ html,body{overflow-x:clip}
 .ans-act{display:flex;flex-wrap:wrap;gap:10px;align-items:center;border-top:1px solid var(--rule);padding-top:18px}
 .ans-act .btn{height:46px}
 .ans-src{color:var(--faint);font-size:.74rem;margin-top:14px}
+.ans-src a{color:var(--green);font-weight:600}
 
 /* ---------- CHALLENGES ---------- */
 .chal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule);margin-bottom:40px;background:#fff}
@@ -724,7 +727,7 @@ footer::before{content:"";position:absolute;inset:0;background-image:var(--grain
     <ul class="nav-links">
       <li><a href="#movement">Our Movement</a></li>
       <li><a href="#ticket">The Ticket</a></li>
-      <li><a href="#blueprint">Blueprint</a></li>
+      <li><a href="blueprint.html">Blueprint</a></li>
       <li><a href="#answers">The Answers</a></li>
       <li><a href="#map">States</a></li>
       <li><a href="#news">News</a></li>
@@ -747,7 +750,7 @@ footer::before{content:"";position:absolute;inset:0;background-image:var(--grain
     <div class="mm-label">Navigate</div>
     <a class="mm-item" href="#home"><span class="mm-ico">🏠</span><span class="mm-text"><b>Home</b><small>Welcome to FixNaija</small></span><span class="mm-arrow">›</span></a>
     <a class="mm-item" href="#ticket"><span class="mm-ico"><img src="images/sdp-mark.png" alt=""></span><span class="mm-text"><b>The 2027 Ticket</b><small>Adebayo &amp; Bugaje · SDP</small></span><span class="mm-arrow">›</span></a>
-    <a class="mm-item" href="#blueprint"><span class="mm-ico">✈️</span><span class="mm-text"><b>The Blueprint</b><small>Farewell to Poverty &amp; Insecurity</small></span><span class="mm-arrow">›</span></a>
+    <a class="mm-item" href="blueprint.html"><span class="mm-ico">✈️</span><span class="mm-text"><b>The Blueprint</b><small>Farewell to Poverty &amp; Insecurity</small></span><span class="mm-arrow">›</span></a>
     <a class="mm-item" href="#answers"><span class="mm-ico">🛠️</span><span class="mm-text"><b>The Answers</b><small>9 deep problems · the repair plan</small></span><span class="mm-arrow">›</span></a>
     <a class="mm-item" href="about.html"><span class="mm-ico">📖</span><span class="mm-text"><b>About</b><small>Our story &amp; the pillars</small></span><span class="mm-arrow">›</span></a>
     <a class="mm-item" href="civic-resource.html"><span class="mm-ico">⚖️</span><span class="mm-text"><b>Civic Hub</b><small>Rights, PVC &amp; accountability</small></span><span class="mm-arrow">›</span></a>
@@ -910,7 +913,7 @@ footer::before{content:"";position:absolute;inset:0;background-image:var(--grain
         <div class="pr-body">
           <h3>Prince Adewole Adebayo</h3>
           <div class="pr-tags">Lawyer · Builder · Ondo State</div>
-          <p>Born on <b>8 January 1972 in Ondo City</b>, a prince of the Ondo Kingdom, lawyer and entrepreneur whose career has been defined by <b>building institutions rather than chasing office</b>.</p>
+          <p>Born on <b>8 January 1972 in Ondo City</b>, a prince of the Ondo Kingdom — a lawyer, arbitrator and entrepreneur who served on Liberia's Truth and Reconciliation Commission, founded KAFTAN TV and wrote the <b>Farewell to Poverty and Insecurity</b> blueprint.</p>
           <a class="link-arrow" href="leadership.html">Read his full story <span>↗</span></a>
         </div>
       </article>
@@ -1038,9 +1041,9 @@ footer::before{content:"";position:absolute;inset:0;background-image:var(--grain
         <h2 class="sr-only">Farewell to Poverty and Insecurity</h2>
         <svg class="fw-logo sheen" viewBox="0 0 2736 1677" role="img" aria-label="Farewell to Poverty and Insecurity"><use href="#fwMark"/></svg>
         <p class="bp-kicker">Governance &amp; Accelerated Development Blueprint of a New Nigeria</p>
-        <p>Presented by Prince Adewole Adebayo at the Shehu Musa Yar'Adua Centre, Abuja, on <b>8 September 2026</b>. A four-year plan to move Nigeria <b>from importing to producing</b>, and from fear to safety — with a delivery office in the first 100 days and an audited scorecard at the end.</p>
+        <p>Presented by Prince Adewole Adebayo at the Shehu Musa Yar'Adua Centre, Abuja, on <b>8 September 2026</b>. Twelve presidential missions anchored on <b>Security, Productivity and Prosperity</b> — from <b>75,000MW of power</b> and <b>three million affordable homes</b> to court cases decided within a year — with a delivery office in the first 100 days and a public scorecard at the end.</p>
         <div class="bp-pillars">
-          <span>🛡️ Security</span><span>🌾 Agriculture</span><span>⚡ Electricity</span><span>🏥 Healthcare</span><span>🎓 Education → Jobs</span><span>🏭 Industry</span><span>🚆 Transport</span><span>🏠 Housing</span><span>🤲 Social Protection</span><span>🏛️ Public-Sector Reform</span>
+          <a href="blueprint.html#security">🛡️ Security</a><a href="blueprint.html#food">🌾 Agriculture</a><a href="blueprint.html#power">⚡ Electricity</a><a href="blueprint.html#health">🏥 Healthcare</a><a href="blueprint.html#education">🎓 Education → Jobs</a><a href="blueprint.html#economy">🏭 Industry</a><a href="blueprint.html#infrastructure">🚆 Transport</a><a href="blueprint.html#housing">🏠 Housing</a><a href="blueprint.html#poverty">🤲 Social Protection</a><a href="blueprint.html#governance">🏛️ Public-Sector Reform</a>
         </div>
       </div>
 
@@ -1067,9 +1070,9 @@ footer::before{content:"";position:absolute;inset:0;background-image:var(--grain
               <small>Itinerary · 2027–2031</small>
               <ol>
                 <li><b>Day 100</b><span>Delivery &amp; Performance Office</span></li>
-                <li><b>Year 1</b><span>Urgent reforms</span></li>
-                <li><b>Years 2–3</b><span>Infrastructure build-out</span></li>
-                <li><b>Year 4</b><span>Audited scorecard</span></li>
+                <li><b>Year 1</b><span>Stabilise &amp; mobilise</span></li>
+                <li><b>Years 2–3</b><span>Build &amp; scale</span></li>
+                <li><b>Year 4</b><span>Public scorecard</span></li>
               </ol>
             </div>
           </div>
@@ -1084,7 +1087,7 @@ footer::before{content:"";position:absolute;inset:0;background-image:var(--grain
         </div>
         <div class="bp-ctas">
           <a href="register.html" class="btn btn-orange">Board now — Register <span class="ar">→</span></a>
-          <a href="#answers" class="btn btn-ghost">See the repair plan</a>
+          <a href="blueprint.html" class="btn btn-ghost">Read the full blueprint</a>
         </div>
       </div>
     </div>
@@ -1098,7 +1101,7 @@ footer::before{content:"";position:absolute;inset:0;background-image:var(--grain
       <span class="eyebrow">The FixNaija Agenda</span>
       <div>
         <h2>Deep problems. <span class="g">Deeper answers.</span></h2>
-        <p class="lead">Every Nigerian knows what is broken — here is the repair plan, issue by issue, drawn from Prince Adebayo's public programme. <b>Pick a problem.</b></p>
+        <p class="lead">Every Nigerian knows what is broken — here is the repair plan, issue by issue, drawn from Prince Adebayo's 2027–2031 blueprint. <b>Pick a problem.</b></p>
       </div>
     </div>
     <div class="ans-wrap">
@@ -1114,7 +1117,7 @@ footer::before{content:"";position:absolute;inset:0;background-image:var(--grain
             <a class="btn btn-green" id="ansCta" href="#">Take Action →</a>
             <a class="btn btn-line" href="register.html">Join the repair work</a>
           </div>
-          <p class="ans-src">Drawn from Prince Adewole Adebayo's public statements, debates and the SDP programme for 2027.</p>
+          <p class="ans-src">Drawn from <a href="blueprint.html">Farewell to Poverty and Insecurity</a>, Prince Adewole Adebayo's 2027–2031 blueprint.</p>
         </div>
       </div>
     </div>
@@ -1413,6 +1416,7 @@ footer::before{content:"";position:absolute;inset:0;background-image:var(--grain
           <li><a href="#home">Home</a></li>
           <li><a href="about.html">About us</a></li>
           <li><a href="leadership.html">Leadership</a></li>
+          <li><a href="blueprint.html">The Blueprint</a></li>
           <li><a href="events.html">Events</a></li>
           <li><a href="gallery.html">Gallery</a></li>
         </ul>
@@ -1659,57 +1663,57 @@ document.getElementById('joinForm').addEventListener('submit',function(e){
 const ISSUES=[
  {ic:"⚡",name:"Power & Energy",tag:"~5,500MW for 220M people",n:"~5,500MW",l:"peak grid output for over 220 million Nigerians — homes and factories run on generators instead",
   prob:"Six decades after independence, the national grid still delivers only a few thousand megawatts. Businesses burn trillions of naira on diesel, manufacturers close or relocate, and every blackout taxes the poorest hardest.",
-  sol:["Get every refinery working and end dependence on imported fuel — until Nigeria becomes a net exporter of refined products.",
-       "Decentralise generation so states, cities and industry can produce and distribute power without waiting on Abuja.",
-       "Expand energy alternatives and efficient public transport to cut what families and firms burn on fuel."],
+  sol:["Generate and distribute 75,000MW by all means possible within four years — 2027 to 2031 — instead of waiting on the national grid alone.",
+       "A National Distributed Electricity Initiative and a Bank of Electricity with long-term, single-digit loans, so states, communities, schools, hospitals and markets can run their own power.",
+       "No paying for electricity that was never supplied — and local refining that measurably raises petrol, diesel and jet-fuel output within 18 months."],
   cta:["Report a Power Problem →","report-issue.html"]},
  {ic:"🛡️",name:"Insecurity",tag:"Policing that protects elites",n:"774",l:"LGAs — and every single one deserves policing that answers to its own community",
   prob:"Security in Nigeria has too often meant protecting the political elite, while kidnapping became an industry and security votes became an enterprise. Farmers can't reach their fields; travellers fear their own highways.",
-  sol:["Establish state police — communities policed by people who know them, under proper regulation. A position Adebayo championed years before it became national consensus.",
-       "Redefine security as the protection of the ordinary citizen, not the convoy of the powerful.",
-       "End the profiteering: transparent security spending, and strengthened, accountable operations against insurgency and banditry."],
+  sol:["Rebuild the Police as the main internal-security force, with constitutionally grounded state policing under strong safeguards.",
+       "A National Anti-Kidnapping and Banditry Command: every kidnapping gets a case file, a victim-recovery plan and an investigation of the money trail.",
+       "Secure farms, schools, markets and highways — and prosecute ghost workers, fuel diversion and ammunition theft, sending the savings to frontline welfare."],
   cta:["Report an Incident →","report-issue.html"]},
  {ic:"⚖️",name:"Corruption",tag:"Trillions leak every year",n:"₦ Trillions",l:"leak from public coffers every year through theft, waste and unblocked loopholes",
   prob:"Corruption is not just stolen money — it is the hospital never built, the road never tarred, the teacher never paid. Worse, politicians facing trial learn that defecting to the ruling party buys forgiveness.",
-  sol:["Anti-graft agencies that are truly independent: law enforcement investigates, the judiciary adjudicates, and sanctions apply without political coloration.",
-       "No amnesty by defection — your party card is not a pardon.",
-       "Block revenue losses and fix collection first, instead of piling new taxes on citizens already struggling."],
+  sol:["Truly independent EFCC and ICPC with security of tenure — no one may direct them to start, stop or suppress a case for partisan purposes.",
+       "All 774 Local Governments publish every naira received and spent online, every quarter, alongside open procurement and digital public finance.",
+       "Court cases decided within 12 months, save for genuinely exceptional matters — so justice is no longer delayed or denied."],
   cta:["Know Your Rights →","civic-resource.html"]},
- {ic:"💼",name:"Jobs & the Economy",tag:"Target: 30 million jobs",n:"30M",l:"jobs — the target of a full-employment economy built on agriculture, industry and innovation",
+ {ic:"💼",name:"Jobs & the Economy",tag:"Jobs: the central test",n:"Millions",l:"of sustainable jobs targeted within four years — employment becomes the central test of economic policy",
   prob:"Millions of capable young Nigerians are idle or underemployed, and the most talented are japa-ing abroad. An economy that cannot employ its youth is an economy running out of future.",
-  sol:["Create 30 million jobs through agriculture, manufacturing, digital innovation and enterprise development.",
-       "A nationwide jobs and public-works initiative — with a target of cutting unemployment to 4% within two years.",
-       "Back small businesses with credit, infrastructure and markets so enterprise, not government, becomes the biggest employer."],
+  sol:["A National Employment Guarantee: anyone willing and able to work who can’t find a job gets temporary, productive public work, with training and a route into private jobs.",
+       "A National Skills Revolution for millions of young Nigerians, incubation centres in all six zones and an SME fund for small businesses.",
+       "Industrial clusters in every zone and Nigerian-made goods first in government buying — from vehicles to technology."],
   cta:["Volunteer Your Skills →","volunteer.html"]},
  {ic:"💰",name:"Cost of Living",tag:"63% below the poverty line",n:"63%",l:"of Nigerians live below the national poverty line — roughly 130 million people",
   prob:"Inflation has eaten salaries, savings and dignity. Subsidy removal without a cushion, plus policy missteps on top, left ordinary families paying the bill for decisions they never made.",
-  sol:["Fix the sequencing: working refineries and cheaper transport first, so fuel and food prices fall for real.",
-       "Plug government leakages and improve revenue collection instead of squeezing struggling households with new taxes.",
-       "An 18-month emergency poverty-reduction programme — with the declared target of cutting poverty to 2%."],
+  sol:["Cut multidimensional poverty by at least half in the first term, through a National Poverty Elimination Strategy run directly from the Presidency.",
+       "Bring energy costs down: more crude for local refineries, more local petrol and diesel within 18 months, and action against collusion and artificial scarcity.",
+       "Grow and process more food at home — cut rice, wheat, sugar, dairy and poultry imports within four years — so prices fall for real."],
   cta:["Join a Town Hall →","events.html"]},
  {ic:"🎓",name:"Education",tag:"~20M children out of school",n:"~20M",l:"Nigerian children are out of school — the highest number anywhere in the world",
   prob:"A country that leaves 20 million children outside the classroom is writing its own crisis 20 years in advance. And for those who do graduate, a student-loan burden Adebayo calls unconstitutional awaits.",
-  sol:["Free and compulsory education from primary to tertiary — because education is a right, not a loan.",
-       "Enrol the 20 million out-of-school children, and don't stop at graduation: education ends when the graduate is employed.",
-       "Entrepreneurship incubation centres nationwide and 5 million young people trained in green technology."],
+  sol:["Free Universal Basic Education, in line with Chapter II of the Constitution — and far fewer children out of school.",
+       "Hands-on vocational and enterprise training from secondary school, matched to each area’s economy, with school farms in rural schools.",
+       "Technical and vocational education given equal standing with university, and better recruitment, training and welfare for teachers."],
   cta:["Explore the Civic Hub →","civic-resource.html"]},
  {ic:"🏥",name:"Healthcare",tag:"Doctors leaving in droves",n:"110/1,000",l:"Nigerian children die before their fifth birthday, while our doctors japa abroad",
   prob:"Hospitals without medicine, clinics without doctors, and a brain-drain that ships our best medics to London and Toronto. Nigerians deserve better than 'go and manage it'.",
-  sol:["Free medical check-ups four times a year for every Nigerian — catch illness before it becomes catastrophe.",
-       "Prevention-first health policy: primary care, immunisation and clean water before billion-naira teaching-hospital contracts.",
-       "Pay, equip and respect health workers so staying home becomes the smarter career move."],
+  sol:["Rebuild primary health centres and expand Universal Health Insurance, with special protection for children, pregnant women, the elderly and persons with disabilities.",
+       "Guaranteed housemanship for every eligible medical graduate, automatic residency for qualified doctors, and better pay to cut the brain drain.",
+       "A malaria programme of about US$4.5 billion with vaccines made in Nigeria — targeting 80% fewer cases and 90% fewer deaths by 2031."],
   cta:["Report a Failing Clinic →","report-issue.html"]},
  {ic:"🛣️",name:"Infrastructure & Roads",tag:"Bad roads tax everything",n:"~70%",l:"of the road network is unpaved or in disrepair — raising the price of everything that moves",
   prob:"Every pothole is a tax. Poor roads, rail and logistics drive up transport costs, which drive up food prices, which drive up hunger. The IMF itself ties Nigeria's inflation to its infrastructure gap.",
-  sol:["Infrastructure-first economics: roads, rail and logistics that cut transport costs — and with them, the price of food.",
-       "A national public-works programme that doubles as the jobs engine, rebuilding communities with local hands.",
-       "Working ports and power so made-in-Nigeria goods can compete at home and abroad."],
+  sol:["Federal highways linking every zone, state capital, industrial cluster, port and border corridor.",
+       "Metro rail for 21 priority cities, river ports on the Niger and Benue, and aircraft maintenance hubs that make flying affordable.",
+       "Big projects carry local jobs, apprenticeships and technology-transfer obligations written into the contract."],
   cta:["Report a Bad Road →","report-issue.html"]},
  {ic:"🌾",name:"Food Security",tag:"Food inflation peaked ~40%",n:"~40%",l:"where food inflation peaked — the cruellest tax, paid heaviest by the poorest households",
   prob:"A nation blessed with arable land now struggles to feed itself. Conflict keeps farmers off their fields, bad roads rot harvests before market, and imports drain scarce dollars.",
-  sol:["Modernise agriculture as both the food engine and the jobs engine — mechanisation, storage and extension services.",
-       "Rural roads and storage so harvests reach markets instead of rotting in villages.",
-       "Secure farmland — the security plan and the food plan are the same plan."],
+  sol:["Improved seeds, fertiliser, irrigation and mechanisation for farmers, with agro-processing hubs in every geopolitical zone.",
+       "Cut or end imports of rice, wheat, sugar, dairy and poultry within four years, and build strategic food reserves.",
+       "Secure farmland with seasonal security plans, and protection and compensation so displaced farmers can return."],
   cta:["Find Your LGA →","find-lga.html"]}
 ];
 const ISSUE_SLUGS=['power','insecurity','corruption','jobs','cost-of-living','education','healthcare','infrastructure','food-security'];
