@@ -29,7 +29,7 @@ const TABLES: Record<string, TableRule> = {
       "full_name", "email", "phone", "whatsapp", "group_name", "state", "lga", "ward",
       "polling_unit", "delimitation", "membership_status", "gender", "marital_status",
       "age_group", "religion", "occupation", "ethnic_group", "digital_skills",
-      "mobilization_skills", "reason",
+      "mobilization_skills", "reason", "referral_code",
     ],
   },
   community_reports: {

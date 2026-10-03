@@ -596,6 +596,30 @@ td.mono { font-family: 'Archivo', sans-serif; font-size: 0.8rem; white-space: no
 .btn-line-dark{background:#fff;color:var(--charcoal);border:1.5px solid var(--border);padding:8px 14px;font-size:.85rem}
 .btn-line-dark:hover{border-color:var(--charcoal)}
 .btn[disabled]{opacity:.6;cursor:wait}
+/* ===== REFERRAL LINKS ===== */
+.ref-form{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1.1fr 1fr auto;gap:10px;align-items:end}
+@media(max-width:1180px){.ref-form{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:640px){.ref-form{grid-template-columns:1fr}}
+.ref-form label{display:flex;flex-direction:column;gap:5px;min-width:0;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.ref-form input,.ref-form select{padding:10px 11px;border:1.5px solid var(--border);border-radius:8px;font:inherit;font-size:.88rem;text-transform:none;letter-spacing:0;font-weight:400;color:var(--charcoal);background:#fff;min-width:0;width:100%}
+.ref-form input:focus,.ref-form select:focus{outline:none;border-color:var(--green)}
+.ref-form .btn{white-space:nowrap}
+.ref-msg{margin-top:12px;font-size:.88rem;line-height:1.6;display:none}
+.ref-msg.ok,.ref-msg.err{display:block}
+.ref-msg.ok{color:var(--charcoal);background:#eef7f1;border:1px solid #cfe5d8;border-radius:8px;padding:10px 12px}
+.ref-msg.err{color:#b42318}
+.ref-code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.8rem;background:#f4f2ec;border-radius:5px;padding:2px 6px;word-break:break-all}
+.ref-acts{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
+.ref-btn{display:inline-flex;align-items:center;padding:4px 10px;border-radius:999px;border:1px solid var(--border);background:#fff;font:inherit;font-size:.74rem;font-weight:700;color:var(--green-dark,#00663a);cursor:pointer;text-decoration:none;white-space:nowrap}
+.ref-btn:hover{border-color:var(--green)}
+.ref-btn.wa{color:#0b7a3e}
+.ref-n{font-weight:800;color:var(--charcoal)}
+.ref-off td{opacity:.55}
+.ref-toggle{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;cursor:pointer;white-space:nowrap}
+.ref-how{margin:0 0 14px;color:var(--muted);font-size:.86rem;line-height:1.6}
+.ref-pad{padding:16px 22px 22px}
+@media(max-width:1180px){.topbar .who{display:none}}
+@media(max-width:1000px){.topbar-right{flex-wrap:wrap;justify-content:flex-end;row-gap:6px}}
 </style>
 </head>
 <body>
@@ -624,6 +648,7 @@ td.mono { font-family: 'Archivo', sans-serif; font-size: 0.8rem; white-space: no
         <div class="brand">Fix<span>Naija</span> · Command Room</div>
         <div class="topbar-right">
             <span class="who" id="whoAmI"></span>
+            <a class="btn btn-ghost vol-link" href="#referrals" style="text-decoration:none;" title="Jump to coordinator referral links">Referrals</a>
             <a class="btn btn-ghost vol-link" href="#agents" style="text-decoration:none;" title="Jump to polling unit agents">Agents<span class="nav-count" id="agBadge" hidden></span></a>
             <a class="btn btn-ghost vol-link" href="#volunteers" style="text-decoration:none;" title="Jump to volunteer applications">Volunteers<span class="nav-count" id="volBadge" hidden></span></a>
             <a class="btn btn-ghost" href="form-options.html" style="text-decoration:none;" title="Add or edit groups and other form choices">Form options</a>
@@ -929,6 +954,49 @@ td.mono { font-family: 'Archivo', sans-serif; font-size: 0.8rem; white-space: no
                 </div>
             </div>
         </div>
+
+        <!-- ===== REFERRAL LINKS (coordinators) ===== -->
+        <section class="vol" id="referrals" aria-label="Coordinator referral links">
+            <div class="ins-head">
+                <h2>Referral links</h2>
+                <p>Give each coordinator a personal registration link &middot; everyone who registers through it is credited to them</p>
+            </div>
+            <div class="ins-kpis" id="refKpis"></div>
+            <div class="panel">
+                <div class="panel-head"><h2>Create a link</h2></div>
+                <div class="panel-body ref-pad">
+                    <p class="ref-how">The link looks like <code class="ref-code">fixnaijamovement.com.ng/register.html?ref=ada-482</code>. Send it to the coordinator; they share it on WhatsApp. People who open it (or any page with <code class="ref-code">?ref=</code>) and register within 30 days are counted for them.</p>
+                    <form class="ref-form" id="refForm" autocomplete="off">
+                        <label>Coordinator name<input id="refName" required maxlength="120" placeholder="e.g. Ada Obi"></label>
+                        <label>Phone (WhatsApp)<input id="refPhone" maxlength="32" placeholder="0803 000 0000"></label>
+                        <label>State<input id="refState" list="refStateList" maxlength="80" placeholder="e.g. LAGOS"></label>
+                        <label>LGA<input id="refLga" maxlength="120" placeholder="e.g. IKEJA"></label>
+                        <label>Role<select id="refRole"><option value="">—</option><option>State coordinator</option><option>LGA coordinator</option><option>Ward organiser</option><option>Group leader</option><option>Volunteer</option></select></label>
+                        <label>Code<input id="refCode" required maxlength="24" placeholder="ada-482"></label>
+                        <button class="btn btn-gold" id="refCreate" type="submit">Create link</button>
+                    </form>
+                    <datalist id="refStateList"></datalist>
+                    <div class="ref-msg" id="refMsg" role="status"></div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-head">
+                    <h2>Leaderboard <span class="filter-status" id="refCount"></span></h2>
+                    <div class="table-tools">
+                        <input type="search" class="search-input" id="refSearch" placeholder="Search name, code, LGA…">
+                        <button class="btn btn-gold" id="refExportBtn" type="button">Export CSV</button>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="table-scroll" style="max-height:640px;overflow:auto">
+                        <table>
+                            <thead><tr><th>#</th><th>Coordinator</th><th>Where</th><th>Link</th><th>Registered</th><th>Last 7 days</th><th>Last sign-up</th><th>Status</th></tr></thead>
+                            <tbody id="refTableBody"><tr><td colspan="8" class="loading-note">Loading…</td></tr></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- ===== PROTECT THE VOTE (polling unit agents) ===== -->
         <section class="vol" id="agents" aria-label="Polling unit agents">
@@ -1592,6 +1660,7 @@ function showDash(email) {
     loadReports();
     loadVolunteers();
     loadAgents();
+    loadReferrals();
     loadBackupStatus();
     renderLocalBackup();
 }
@@ -1902,6 +1971,7 @@ async function loadData() {
     }
     const beforeDedupe = allRows.length;
     allRows = dedupeById(allRows);
+    if (typeof refRows !== 'undefined') fxSafe(() => loadReferrals());
     if (beforeDedupe !== allRows.length) {
         console.warn('[FixNaija] Dropped ' + (beforeDedupe - allRows.length) + ' duplicate row(s) from paginated fetch.');
     }
@@ -2682,6 +2752,163 @@ $('bkDownload').addEventListener('click', async () => {
     }
     btn.disabled = false; btn.textContent = label;
 });
+
+// =====================================================================
+// REFERRAL LINKS — coordinators' personal registration links
+// Needs database/supabase_referrals_setup.sql (table coordinators,
+// column registrations.referral_code, RPC referral_leaderboard).
+// =====================================================================
+const SITE_URL = 'https://www.fixnaijamovement.com.ng';
+const REF_RE = /^[a-z0-9-]{3,24}$/;
+let refRows = [];
+let refCodeTouched = false;
+const refLink = code => `${SITE_URL}/register.html?ref=${encodeURIComponent(code)}`;
+const refMissing = err => /(could not find|does not exist|schema cache)/i.test((err && err.message) || '');
+
+function refSlug(name) {
+    const first = String(name || '').trim().split(/\s+/)[0].toLowerCase()
+        .normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]/g, '').slice(0, 14) || 'coord';
+    return first + '-' + String(Math.floor(100 + Math.random() * 900));
+}
+function refWaPhone(p) {
+    let d = String(p || '').replace(/\D/g, '');
+    if (d.startsWith('0') && d.length === 11) d = '234' + d.slice(1);
+    return d.length >= 10 ? d : '';
+}
+function refWaHref(row) {
+    const first = String(row.full_name || '').trim().split(/\s+/)[0];
+    const msg = `Hello ${first}, this is your personal FixNaija registration link. Everyone who registers through it is credited to you on the leaderboard:\n${refLink(row.code)}`;
+    const ph = refWaPhone(row.phone);
+    return `https://wa.me/${ph}?text=${encodeURIComponent(msg)}`;
+}
+async function refCopy(text, btn) {
+    try { await navigator.clipboard.writeText(text); }
+    catch (_) { const t = document.createElement('textarea'); t.value = text; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); } catch (__) {} t.remove(); }
+    if (btn) { const o = btn.textContent; btn.textContent = 'Copied ✓'; setTimeout(() => { btn.textContent = o; }, 1600); }
+}
+
+async function loadReferrals() {
+    const body = $('refTableBody'); if (!body) return;
+    const states = [...new Set((typeof allRows !== 'undefined' ? allRows : []).map(r => FX.normState(r.state)).filter(Boolean))].sort();
+    const dl = $('refStateList'); if (dl && !dl.children.length) states.forEach(s => { const o = document.createElement('option'); o.value = s; dl.appendChild(o); });
+    let res;
+    try { res = await sb.rpc('referral_leaderboard'); } catch (e) { res = { error: e }; }
+    if (res.error) {
+        $('refKpis').innerHTML = '';
+        body.innerHTML = `<tr><td colspan="8" class="empty-note">${refMissing(res.error)
+            ? 'Referral links will start working once you run <b>database/supabase_referrals_setup.sql</b> in Supabase.'
+            : 'Could not load referral links: ' + escapeHtml(res.error.message)}</td></tr>`;
+        return;
+    }
+    refRows = res.data || [];
+    renderReferrals();
+}
+
+function filteredReferrals() {
+    const q = ($('refSearch').value || '').trim().toLowerCase();
+    if (!q) return refRows;
+    return refRows.filter(r => [r.full_name, r.code, r.phone, r.state, r.lga, r.role].some(x => String(x || '').toLowerCase().includes(q)));
+}
+
+function renderReferrals() {
+    const all = refRows, rows = filteredReferrals();
+    const total = (typeof allRows !== 'undefined' && allRows.length) ? allRows.length : 0;
+    const via = all.reduce((a, r) => a + Number(r.registrations || 0), 0);
+    const wk = all.reduce((a, r) => a + Number(r.last_7_days || 0), 0);
+    const k = $('refKpis'); k.textContent = '';
+    const kpi = (l, v, s, meter) => {
+        const c = FX.el('div', 'kpi'); c.append(FX.el('div', 'l', l), FX.el('div', 'v', v), FX.el('div', 's', s));
+        if (meter != null) { const m = FX.el('div', 'meter'); const i = FX.el('i'); i.style.width = Math.max(meter > 0 ? 1 : 0, Math.min(100, meter)) + '%'; m.appendChild(i); c.appendChild(m); }
+        k.appendChild(c);
+    };
+    kpi('Coordinators with links', FX.fmt(all.filter(r => r.active).length), `${FX.fmt(all.length)} created in total`);
+    kpi('Registered through links', FX.fmt(via), total ? `${(via / total * 100).toFixed(1)}% of ${FX.fmt(total)} registrations` : 'all time', total ? via / total * 100 : null);
+    kpi('Through links, last 7 days', FX.fmt(wk), 'new registrations credited');
+    const top = all.find(r => Number(r.registrations) > 0);
+    kpi('Top coordinator', top ? top.full_name : '—', top ? `${FX.fmt(top.registrations)} registrations` : 'no sign-ups yet');
+
+    $('refCount').textContent = `${rows.length} shown`;
+    const body = $('refTableBody');
+    if (!rows.length) { body.innerHTML = `<tr><td colspan="8" class="empty-note">${all.length ? 'No coordinators match your search.' : 'No referral links yet — create the first one above.'}</td></tr>`; return; }
+    const tc = s => String(s || '').toLowerCase().replace(/(^|[\s\-\/])\w/g, c => c.toUpperCase());
+    body.innerHTML = rows.map((r, i) => {
+        const where = [tc(r.lga), tc(r.state)].filter(Boolean).join(', ') || '—';
+        const last = r.last_signup ? new Date(r.last_signup).toLocaleDateString('en-NG', { day: '2-digit', month: 'short' }) : '—';
+        return `<tr class="${r.active ? '' : 'ref-off'}">
+            <td class="mono">${i + 1}</td>
+            <td><b>${escapeHtml(r.full_name)}</b><div class="rep-secondary">${escapeHtml(r.role || '')}${r.phone ? ' · ' + escapeHtml(r.phone) : ''}</div></td>
+            <td>${escapeHtml(where)}</td>
+            <td><code class="ref-code">${escapeHtml(r.code)}</code><div class="ref-acts"><button type="button" class="ref-btn" data-copy="${escapeHtml(r.code)}">Copy link</button><a class="ref-btn wa" target="_blank" rel="noopener" href="${escapeHtml(refWaHref(r))}">WhatsApp</a></div></td>
+            <td class="mono ref-n">${FX.fmt(r.registrations || 0)}</td>
+            <td class="mono">${FX.fmt(r.last_7_days || 0)}</td>
+            <td class="mono">${last}</td>
+            <td><label class="ref-toggle"><input type="checkbox" data-active="${escapeHtml(r.code)}" ${r.active ? 'checked' : ''}> <span>${r.active ? 'Active' : 'Paused'}</span></label></td>
+        </tr>`;
+    }).join('');
+}
+
+async function createReferral(e) {
+    e.preventDefault();
+    const msg = $('refMsg'); msg.className = 'ref-msg'; msg.textContent = '';
+    const row = {
+        full_name: $('refName').value.trim(),
+        phone: $('refPhone').value.trim() || null,
+        state: $('refState').value.trim() || null,
+        lga: $('refLga').value.trim() || null,
+        role: $('refRole').value || null,
+        code: $('refCode').value.trim().toLowerCase()
+    };
+    if (row.full_name.length < 2) { msg.classList.add('err'); msg.textContent = 'Enter the coordinator’s name.'; return; }
+    if (!REF_RE.test(row.code)) { msg.classList.add('err'); msg.textContent = 'The code can only use small letters, numbers and dashes (3–24 characters), e.g. ada-482.'; return; }
+    const btn = $('refCreate'); btn.disabled = true; btn.textContent = 'Creating…';
+    const { error } = await sb.from('coordinators').insert(row);
+    btn.disabled = false; btn.textContent = 'Create link';
+    if (error) {
+        msg.classList.add('err');
+        msg.textContent = /duplicate|unique|23505/i.test(error.message + ' ' + (error.code || ''))
+            ? 'That code is already taken — try another one.'
+            : refMissing(error) ? 'Run database/supabase_referrals_setup.sql in Supabase first.' : 'Could not create the link: ' + error.message;
+        return;
+    }
+    msg.classList.add('ok');
+    msg.innerHTML = `Link created for <b>${escapeHtml(row.full_name)}</b>: <code class="ref-code">${escapeHtml(refLink(row.code))}</code> <button type="button" class="ref-btn" data-copy="${escapeHtml(row.code)}">Copy link</button> <a class="ref-btn wa" target="_blank" rel="noopener" href="${escapeHtml(refWaHref(row))}">Send on WhatsApp</a>`;
+    $('refForm').reset(); refCodeTouched = false;
+    loadReferrals();
+}
+
+async function toggleReferral(input) {
+    const code = input.dataset.active, active = input.checked;
+    input.disabled = true;
+    const { error } = await sb.from('coordinators').update({ active }).eq('code', code);
+    input.disabled = false;
+    if (error) { input.checked = !active; alert('Could not update: ' + error.message); return; }
+    const r = refRows.find(x => x.code === code); if (r) r.active = active;
+    renderReferrals();
+}
+
+function exportReferralsCSV() {
+    const rows = filteredReferrals();
+    const cols = ['full_name', 'role', 'phone', 'state', 'lga', 'code', 'link', 'registrations', 'last_7_days', 'last_signup', 'active', 'created_at'];
+    const safe = v => { let s = v == null ? '' : String(v); if (/^[=+\-@\t\r]/.test(s)) s = "'" + s; return '"' + s.replace(/"/g, '""') + '"'; };
+    const csv = [cols.join(',')].concat(rows.map(r => cols.map(c => safe(c === 'link' ? refLink(r.code) : r[c])).join(','))).join('\n');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+    a.download = `fixnaija-referrals-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+}
+
+(function wireReferrals() {
+    const form = $('refForm'); if (!form) return;
+    form.addEventListener('submit', createReferral);
+    $('refName').addEventListener('input', () => { if (!refCodeTouched) $('refCode').value = $('refName').value.trim() ? refSlug($('refName').value) : ''; });
+    $('refCode').addEventListener('input', () => { refCodeTouched = true; });
+    $('refSearch').addEventListener('input', renderReferrals);
+    $('refExportBtn').addEventListener('click', exportReferralsCSV);
+    document.getElementById('referrals').addEventListener('click', e => {
+        const c = e.target.closest('[data-copy]'); if (c) refCopy(refLink(c.dataset.copy), c);
+    });
+    $('refTableBody').addEventListener('change', e => { const t = e.target.closest('[data-active]'); if (t) toggleReferral(t); });
+})();
 
 // ===== HELPERS =====
 function pretty(str) {

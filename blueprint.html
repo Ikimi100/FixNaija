@@ -165,7 +165,49 @@
   .bp-contact a i{font-style:normal;font-size:1.2rem}
   .bp-contact a small{display:block;font-weight:400;color:var(--muted);font-size:.8rem}
   .bp-src{margin-top:28px;text-align:center;color:var(--faint);font-size:.82rem}
+  .bp-num-ft{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px}
+  .bp-num-ft .pg{margin:0}
+  .bp-share{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--rule-2);border-radius:999px;padding:7px 14px;font-family:var(--display);font-weight:700;font-size:.78rem;color:var(--green);cursor:pointer;transition:border-color .2s,background .2s}
+  .bp-share:hover,.bp-share:focus-visible{border-color:var(--green);background:var(--green-tint)}
 </style>
+<script src="assets/fixnaija-ref.js"></script>
+<!-- Visitor counts: Vercel Web Analytics (no cookies, no personal data) -->
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Book",
+ "@id": "https://www.fixnaijamovement.com.ng/blueprint.html#book",
+ "name": "Farewell to Poverty and Insecurity",
+ "alternativeHeadline": "Governance & Accelerated Development Blueprint of a New Nigeria, 2027–2031",
+ "author": {
+  "@type": "Person",
+  "@id": "https://www.fixnaijamovement.com.ng/leadership.html#adebayo",
+  "name": "Adewole Adebayo",
+  "honorificPrefix": "Prince",
+  "url": "https://www.fixnaijamovement.com.ng/leadership.html"
+ },
+ "copyrightHolder": {
+  "@type": "Person",
+  "@id": "https://www.fixnaijamovement.com.ng/leadership.html#adebayo",
+  "name": "Adewole Adebayo",
+  "honorificPrefix": "Prince",
+  "url": "https://www.fixnaijamovement.com.ng/leadership.html"
+ },
+ "copyrightYear": 2026,
+ "inLanguage": "en",
+ "description": "Prince Adewole Adebayo's 2027–2031 programme anchored on Security, Productivity and Prosperity: 12 presidential missions, 75,000MW of power, 3 million affordable homes, and a public scorecard.",
+ "about": [
+  "Nigeria",
+  "Security",
+  "Poverty reduction",
+  "Economic development",
+  "Public policy"
+ ],
+ "mainEntityOfPage": "https://www.fixnaijamovement.com.ng/blueprint.html"
+}
+</script>
 </head>
 <body class="fx-inner">
 
@@ -220,6 +262,8 @@
       <p>Find your LGA and take your seat at the table.</p>
       <a class="mm-cta-btn" href="register.html">Register With FixNaija →</a>
     </div>
+    <div class="mm-label">Read in your language</div>
+    <div class="mm-langs"><a href="hausa.html" lang="ha">Hausa</a><a href="yoruba.html" lang="yo">Yorùbá</a><a href="igbo.html" lang="ig">Igbo</a><a href="pidgin.html" lang="pcm">Pidgin</a></div>
     <div class="mm-label">Follow FixNaija</div>
     <div class="mm-social">
       <a href="https://www.facebook.com/share/18KhK4YqTC/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.5-1.5h1.4V5c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1V11H7.6v3H10v7h3.5z"/></svg></a>
@@ -296,7 +340,7 @@
 <!-- BIG COMMITMENTS -->
 <section class="block" id="commitments">
   <div class="wrap reveal">
-    <div class="sec-head"><span class="eyebrow">In black and white</span><h2>The headline commitments</h2><p>The specific numbers and deadlines written into the blueprint.</p></div>
+    <div class="sec-head"><span class="eyebrow">In black and white</span><h2>The headline commitments</h2><p>The specific numbers and deadlines written into the blueprint. Tap <b>Share</b> on any of them to post it as an image.</p></div>
     <div class="bp-nums">
       <div class="bp-num"><div class="n">75,000<small>MW</small></div><div class="l">of electricity generated and distributed “by all means possible” within four years, 2027–2031.</div><span class="pg">p.20</span></div>
       <div class="bp-num"><div class="n">3<small>million</small></div><div class="l">affordable housing units facilitated across the federation within four years.</div><span class="pg">p.75</span></div>
@@ -702,6 +746,7 @@
         <a href="index.html">Home</a><a href="about.html">About</a><a href="leadership.html">Leadership</a><a href="blueprint.html">Blueprint</a><a href="civic-resource.html">Civic Hub</a><a href="volunteer.html">Volunteer</a><a href="events.html">Events</a><a href="gallery.html">Gallery</a><a href="ask-fixnaija.html">Ask FixNaija</a><a href="register.html">Register</a><a href="find-lga.html">Find your LGA</a><a href="report-issue.html">Report an issue</a><a href="protect-the-vote.html">Protect the vote</a><a href="mailto:fixnaijamovement@gmail.com">Contact</a>
       </div>
     </div>
+    <div class="foot-langs"><span>Read in:</span><a href="hausa.html" lang="ha">Hausa</a><a href="yoruba.html" lang="yo">Yorùbá</a><a href="igbo.html" lang="ig">Igbo</a><a href="pidgin.html" lang="pcm">Pidgin</a></div>
     <div class="foot-bottom">
       <span>© 2026 FixNaija Movement · One Nigeria. 774 Communities.</span>
       <span><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a></span>
@@ -731,6 +776,40 @@
     var io=new IntersectionObserver(function(es){es.forEach(function(en){ if(en.isIntersecting) mark(en.target.id); });},{rootMargin:'-30% 0px -60% 0px'});
     secs.forEach(function(d){io.observe(d);});
   }
+})();
+</script>
+<script src="assets/fixnaija-promise-card.js"></script>
+<script>
+/* "Share this promise": a Share button on every headline commitment */
+(function(){
+  if(!window.FXPromise)return;
+  var BASE='https://www.fixnaijamovement.com.ng/blueprint.html#';
+  var P=[
+    {n:'75,000',unit:'MW',label:'of electricity generated and distributed within four years, 2027–2031.',pg:'p.20',a:'power',wa:'75,000MW of electricity within four years'},
+    {n:'3 million',label:'affordable homes across the federation within four years.',pg:'p.75',a:'housing',wa:'3 million affordable homes in four years'},
+    {n:'50%',label:'minimum cut in multidimensional poverty during the first presidential term.',pg:'p.56',a:'poverty',wa:'At least a 50% cut in multidimensional poverty in the first term'},
+    {n:'50%',label:'minimum share of women in cabinet-level appointments — and from boards to ambassadors.',pg:'p.63',a:'inclusion',wa:'At least half of cabinet appointments for women'},
+    {n:'90%',label:'fewer malaria deaths by 2031 — and 80% fewer malaria cases.',pg:'p.108',a:'health',wa:'90% fewer malaria deaths by 2031'},
+    {n:'12',unit:'months',label:'for court cases to reach final judgment, save for genuinely exceptional matters.',pg:'p.113',a:'governance',wa:'Court cases decided within 12 months'},
+    {n:'774',label:'Local Governments publishing every naira received and spent, online, every quarter.',pg:'p.116',a:'governance',wa:'All 774 Local Governments publishing their accounts every quarter'},
+    {n:'18',unit:'months',label:'to measurably raise local output of petrol, diesel and jet fuel.',pg:'p.14',a:'power',wa:'More local petrol, diesel and jet fuel within 18 months'}
+  ];
+  var tiles=document.querySelectorAll('.bp-num');
+  tiles.forEach(function(t,i){
+    var d=P[i]; if(!d)return;
+    var pg=t.querySelector('.pg'), ft=document.createElement('div'); ft.className='bp-num-ft';
+    if(pg) ft.appendChild(pg);
+    var b=document.createElement('button'); b.type='button'; b.className='bp-share';
+    b.innerHTML='<span aria-hidden="true">↗</span> Share';
+    b.setAttribute('aria-label','Share this promise: '+d.wa);
+    b.addEventListener('click',function(){
+      FXPromise.open({n:d.n,unit:d.unit||'',label:d.label,color:i%2?'orange':'green',
+        source:'Farewell to Poverty and Insecurity · '+d.pg,
+        wa:d.wa+' — that’s in the Adebayo–Bugaje blueprint, “Farewell to Poverty and Insecurity”. Read the plan: '+BASE+d.a,
+        file:'fixnaija-promise-'+(i+1)+'.png', alt:d.n+(d.unit?' '+d.unit:'')+' '+d.label});
+    });
+    ft.appendChild(b); t.appendChild(ft);
+  });
 })();
 </script>
 </body>

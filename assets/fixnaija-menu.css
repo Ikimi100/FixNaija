@@ -33,3 +33,8 @@
 #mobileMenu .mm-social a:hover{border-color:#008751;color:#008751}
 #mobileMenu .mm-social svg{width:22px;height:22px}
 #mobileMenu .mm-copy{text-align:center;color:#9a9aa8;font-size:.76rem;margin-top:20px;padding:0 4px}
+
+/* language links in the drawer */
+.mm-langs{display:flex;flex-wrap:wrap;gap:8px;padding:0 4px;margin-bottom:22px}
+.mm-langs a{flex:1 1 auto;text-align:center;padding:12px 10px;border-radius:12px;background:#fff;border:1px solid rgba(26,26,46,.08);text-decoration:none;color:#1A1A2E;font-weight:600;font-size:.9rem}
+.mm-langs a:hover{border-color:#008751;color:#008751}

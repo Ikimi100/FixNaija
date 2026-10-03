@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/:page(blueprint|register|hausa|yoruba|igbo|pidgin|volunteer|events|protect-the-vote)",
+      "destination": "/:page.html",
+      "permanent": true
+    }
+  ]
+}

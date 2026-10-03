@@ -15,12 +15,17 @@
 <link rel="stylesheet" href="assets/fixnaija-menu.css">
 
 <!-- SEO / social -->
-<link rel="canonical" href="https://www.fixnaijamovement.com.ng/index.html">
+<link rel="canonical" href="https://www.fixnaijamovement.com.ng/">
+<link rel="alternate" hreflang="ha" href="https://www.fixnaijamovement.com.ng/hausa.html">
+<link rel="alternate" hreflang="yo" href="https://www.fixnaijamovement.com.ng/yoruba.html">
+<link rel="alternate" hreflang="ig" href="https://www.fixnaijamovement.com.ng/igbo.html">
+<link rel="alternate" hreflang="en" href="https://www.fixnaijamovement.com.ng/">
+<link rel="alternate" hreflang="x-default" href="https://www.fixnaijamovement.com.ng/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="FixNaija Movement">
 <meta property="og:title" content="FixNaija Movement — It's Time to Fix Nigeria">
 <meta property="og:description" content="A citizen-owned movement, convened by Prince Adewole Adebayo, repairing Nigeria ward by ward across all 774 communities.">
-<meta property="og:url" content="https://www.fixnaijamovement.com.ng/index.html">
+<meta property="og:url" content="https://www.fixnaijamovement.com.ng/">
 <meta property="og:image" content="https://www.fixnaijamovement.com.ng/images/og-fixnaija.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -480,6 +485,9 @@ html,body{overflow-x:clip}
 .t-card h3{position:relative;font-size:1.15rem;letter-spacing:-.02em;margin-bottom:10px}
 .t-card p{color:var(--body);font-size:.93rem;margin-bottom:18px}
 .t-who{font-family:var(--display);font-weight:700;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--green);padding-top:14px;border-top:1px solid var(--rule)}
+.t-who a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+.voices-cta{margin-top:26px;text-align:center;color:var(--muted);font-size:.92rem}
+.voices-cta a{color:var(--green);font-weight:600}
 
 /* ---------- GALLERY ---------- */
 .gal-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:230px;gap:12px;margin-bottom:34px}
@@ -698,7 +706,73 @@ footer::before{content:"";position:absolute;inset:0;background-image:var(--grain
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
   .pr-horse{left:calc(50% - 40px)}
 }
+
+/* ===== language band + footer language links ===== */
+.lang-band{background:var(--paper-2,#f3f1ea);border-bottom:1px solid var(--rule,#e8e5dc)}
+.lang-band .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:10px 24px;padding:16px 0}
+.lang-band .lb-k{font-family:var(--display);font-weight:700;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green,#00663a);margin-right:4px}
+.lang-band a{font-weight:600;font-size:.92rem;color:var(--ink,#0d140f);text-decoration:none;border-bottom:1px solid var(--rule-2,#d6d1c4);padding-bottom:1px;transition:color .2s,border-color .2s}
+.lang-band a:hover{color:var(--green,#00663a);border-color:var(--green,#00663a)}
+@media(max-width:600px){.lang-band .wrap{gap:8px 16px;padding:14px 0}.lang-band .lb-k{width:100%}.lang-band a{font-size:.86rem}}
+.foot-langs{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;margin-top:30px;font-size:.84rem}
+.foot-langs span{color:#77857b}
+.foot-langs a{color:#aab6ad;text-decoration:none}
+.foot-langs a:hover{color:#fff}
 </style>
+<script src="assets/fixnaija-ref.js"></script>
+<!-- Visitor counts: Vercel Web Analytics (no cookies, no personal data) -->
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://www.fixnaijamovement.com.ng/#org",
+   "name": "FixNaija Movement",
+   "alternateName": "FixNaija",
+   "url": "https://www.fixnaijamovement.com.ng/",
+   "logo": "https://www.fixnaijamovement.com.ng/images/logo.png",
+   "email": "fixnaijamovement@gmail.com",
+   "description": "A citizen-owned grassroots movement repairing Nigeria from the ground up — ward by ward, across all 774 communities — rallying behind Prince Adewole Adebayo, SDP presidential candidate, and his running mate Usman M. Bugaje.",
+   "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Abuja",
+    "addressRegion": "FCT",
+    "addressCountry": "NG"
+   },
+   "areaServed": {
+    "@type": "Country",
+    "name": "Nigeria"
+   },
+   "sameAs": [
+    "https://www.facebook.com/share/18KhK4YqTC/",
+    "https://www.instagram.com/fixnaijanowmovement",
+    "https://x.com/fixnaijamvt",
+    "https://www.tiktok.com/@fixnaijamovement_",
+    "https://whatsapp.com/channel/0029VbDCNnk2v1J2LgfvCm06"
+   ]
+  },
+  {
+   "@type": "WebSite",
+   "@id": "https://www.fixnaijamovement.com.ng/#website",
+   "url": "https://www.fixnaijamovement.com.ng/",
+   "name": "FixNaija Movement",
+   "publisher": {
+    "@id": "https://www.fixnaijamovement.com.ng/#org"
+   },
+   "inLanguage": [
+    "en",
+    "ha",
+    "yo",
+    "ig",
+    "pcm"
+   ]
+  }
+ ]
+}
+</script>
 </head>
 <body>
 <!-- Brand sprite: "Farewell to Poverty and Insecurity" wordmark (vectorised from the campaign artwork) -->
@@ -767,6 +841,8 @@ footer::before{content:"";position:absolute;inset:0;background-image:var(--grain
       <p>Find your LGA and take your seat at the table.</p>
       <a class="mm-cta-btn" href="register.html">Register With FixNaija →</a>
     </div>
+    <div class="mm-label">Read in your language</div>
+    <div class="mm-langs"><a href="hausa.html" lang="ha">Hausa</a><a href="yoruba.html" lang="yo">Yorùbá</a><a href="igbo.html" lang="ig">Igbo</a><a href="pidgin.html" lang="pcm">Pidgin</a></div>
     <div class="mm-label">Follow FixNaija</div>
     <div class="mm-social">
       <a href="https://www.facebook.com/share/18KhK4YqTC/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.5-1.5h1.4V5c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1V11H7.6v3H10v7h3.5z"/></svg></a>
@@ -858,6 +934,17 @@ footer::before{content:"";position:absolute;inset:0;background-image:var(--grain
     </div>
   </div>
 </section>
+
+<!-- ===== READ IN YOUR LANGUAGE ===== -->
+<nav class="lang-band" aria-label="Read FixNaija in your language">
+  <div class="wrap">
+    <span class="lb-k"><span aria-hidden="true">🌐</span> Read in your language</span>
+    <a href="hausa.html" lang="ha">Karanta da Hausa</a>
+    <a href="yoruba.html" lang="yo">Kà á ní Yorùbá</a>
+    <a href="igbo.html" lang="ig">Gụọ ya n'Igbo</a>
+    <a href="pidgin.html" lang="pcm">Read am for Pidgin</a>
+  </div>
+</nav>
 
 <!-- ===== OUR MOVEMENT ===== -->
 <section class="sec" id="movement">
@@ -1265,29 +1352,30 @@ footer::before{content:"";position:absolute;inset:0;background-image:var(--grain
 <section class="sec" id="voices">
   <div class="wrap">
     <div class="shead rv">
-      <span class="eyebrow">Voices of the People</span>
+      <span class="eyebrow">In Their Own Words</span>
       <div>
-        <h2>What Nigerians are <span class="g">saying.</span></h2>
-        <p class="lead">The strength of FixNaija is the people who carry it — residents, volunteers and community stakeholders who share our vision.</p>
+        <h2>What the ticket <span class="g">stands for.</span></h2>
+        <p class="lead">Straight from the candidates and their published blueprint — so you can hold them to every word.</p>
       </div>
     </div>
     <div class="testi-grid">
       <div class="t-card rv">
-        <h3>FixNaija gives every citizen a voice</h3>
-        <p>"For the first time, I feel ordinary residents have a platform to raise our concerns and help shape the future of our community. FixNaija truly puts the people first."</p>
-        <div class="t-who">Community Volunteer · Lagos</div>
+        <h3>Judge us by results</h3>
+        <p>“Government will be judged by what changes in the lives of Nigerians.”</p>
+        <div class="t-who">Prince Adewole Adebayo · <a href="blueprint.html#promise">The blueprint</a></div>
       </div>
       <div class="t-card rv">
-        <h3>A movement that represents our communities</h3>
-        <p>"FixNaija renewed my confidence in participation. It is encouraging to see organizers who listen, engage and care about the challenges facing our neighbourhoods."</p>
-        <div class="t-who">Youth Organizer · Enugu</div>
+        <h3>Not the politics of big men</h3>
+        <p>“We are not going to do the usual politics, which is the politics of big men.”</p>
+        <div class="t-who">Usman M. Bugaje · <a href="leadership.html#running-mate">Running mate</a></div>
       </div>
       <div class="t-card rv">
-        <h3>Hope for a better Nigeria</h3>
-        <p>"The FixNaija vision inspires hope for better roads, healthcare, education, security and opportunity for every Nigerian. Together, we can build the country we deserve."</p>
-        <div class="t-who">Market Trader · Kano</div>
+        <h3>Nigeria already has what it takes</h3>
+        <p>“Nigeria does not suffer from a shortage of human talent, natural resources or patriotic aspiration.”</p>
+        <div class="t-who">Prince Adewole Adebayo · <a href="blueprint.html#promise">The blueprint</a></div>
       </div>
     </div>
+    <p class="voices-cta rv">A FixNaija member with a story to tell? <a href="mailto:fixnaijamovement@gmail.com?subject=My%20FixNaija%20story">Send it to us</a> — with your permission, we'll feature real voices from every state.</p>
   </div>
 </section>
 
@@ -1448,6 +1536,7 @@ footer::before{content:"";position:absolute;inset:0;background-image:var(--grain
       <span class="vdiv"></span>
       <svg class="fw-logo" viewBox="0 0 2736 1677" aria-hidden="true"><use href="#fwMark"/></svg>
     </a>
+    <div class="foot-langs"><span>Read in:</span><a href="hausa.html" lang="ha">Hausa</a><a href="yoruba.html" lang="yo">Yorùbá</a><a href="igbo.html" lang="ig">Igbo</a><a href="pidgin.html" lang="pcm">Pidgin</a></div>
     <div class="foot-bottom">
       <span>© 2026 FixNaija Movement · One Nigeria. 774 Communities.</span>
       <span><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a></span>

@@ -162,3 +162,9 @@ footer::before{content:"";position:absolute;inset:0;background-image:var(--grain
   .brand-sdp img{height:28px;border-radius:4px}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* ---------- language links in the footer (hausa.html, yoruba.html, igbo.html, pidgin.html) ---------- */
+.foot-langs{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;padding-top:18px;font-size:.84rem}
+.foot-langs span{color:#77857b}
+.foot-langs a{color:#aab6ad;text-decoration:none}
+.foot-langs a:hover,.foot-langs a[aria-current]{color:#fff}
