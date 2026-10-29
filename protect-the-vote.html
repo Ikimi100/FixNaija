@@ -91,6 +91,39 @@
   .loading-line.on{display:flex}
   .loading-line i{width:12px;height:12px;border:2px solid rgba(0,102,58,.25);border-top-color:var(--green);border-radius:50%;animation:spin .7s linear infinite}
   @keyframes spin{to{transform:rotate(360deg)}}
+  /* passport photograph */
+  .pv-photo{display:grid;grid-template-columns:132px 1fr;gap:20px;align-items:center;margin-bottom:6px;padding:16px;border:1px solid var(--rule);border-radius:12px;background:var(--paper-2);transition:border-color .2s,background .2s}
+  .pv-photo.err{border-color:#e0877e;background:#fdf3f2}
+  .pv-photo.ok{border-color:#bfe0cc;background:var(--green-tint)}
+  .pv-frame{position:relative;display:block;width:100%;aspect-ratio:7/9;border-radius:8px;border:2px dashed var(--rule-2);background:#fff;overflow:hidden;cursor:pointer;transition:border-color .2s}
+  .pv-frame:hover,.pv-frame:focus-within{border-color:var(--green)}
+  .pv-photo.ok .pv-frame{border-style:solid;border-color:var(--green)}
+  .pv-photo.err .pv-frame{border-color:#d14b3f}
+  .pv-frame svg{position:absolute;inset:14% 16% 0;width:68%;height:86%;color:#d6d1c4}
+  .pv-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .pv-frame .need{position:absolute;left:6px;right:6px;bottom:6px;text-align:center;font-family:var(--display);font-weight:700;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-2);background:rgba(255,255,255,.92);border-radius:4px;padding:4px 2px}
+  .pv-photo.ok .pv-frame .need{display:none}
+  .pv-photo-txt b{display:block;font-family:var(--display);font-weight:800;font-size:.98rem;color:var(--ink);margin-bottom:4px}
+  .pv-photo-txt p{font-size:.84rem;line-height:1.55;color:var(--muted);margin:0 0 12px}
+  .pv-photo-btns{display:flex;flex-wrap:wrap;gap:8px}
+  .pv-pbtn{position:relative;display:inline-flex;align-items:center;gap:7px;height:42px;padding:0 15px;border-radius:7px;border:1px solid var(--rule-2);background:#fff;color:var(--ink);font-family:var(--text);font-weight:600;font-size:.84rem;cursor:pointer;transition:border-color .2s,background .2s}
+  .pv-pbtn:hover,.pv-pbtn:focus-within{border-color:var(--green)}
+  .pv-pbtn.main{background:var(--green);border-color:var(--green);color:#fff}
+  .pv-pbtn.main:hover{background:#00552f}
+  .pv-pbtn input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+  @media (hover:hover) and (pointer:fine){.pv-pbtn.cam{display:none}}
+  .pv-photo-note{display:block;min-height:1.2em;margin-top:9px;font-size:.8rem;font-weight:600;color:var(--green-deep)}
+  .pv-photo.err .pv-photo-note{color:#b3261e}
+  @media(max-width:520px){
+    .pv-photo{grid-template-columns:96px 1fr;grid-template-areas:"f t" "f p" "b b" "n n";gap:2px 14px;align-items:start;padding:14px}
+    .pv-frame{grid-area:f}
+    .pv-photo-txt{display:contents}
+    .pv-photo-txt b{grid-area:t;font-size:.92rem}
+    .pv-photo-txt p{grid-area:p;margin:0;font-size:.78rem;line-height:1.5}
+    .pv-photo-btns{grid-area:b;margin-top:14px}
+    .pv-photo-btns .pv-pbtn{flex:1 1 0;justify-content:center;padding:0 10px}
+    .pv-photo-note{grid-area:n}
+  }
 </style>
 <script src="assets/fixnaija-ref.js"></script>
 <!-- Visitor counts: Vercel Web Analytics (no cookies, no personal data) -->
@@ -234,6 +267,24 @@
           <div class="field"><label for="pvEmail">Email <small>(optional)</small></label><input id="pvEmail" name="email" type="email" autocomplete="email" placeholder="you@email.com"></div>
         </div>
 
+        <div class="sub">Passport photograph</div>
+        <div class="pv-photo" id="pvPhotoBox">
+          <label class="pv-frame" for="pvPhotoFile" title="Add your passport photograph">
+            <svg viewBox="0 0 100 120" aria-hidden="true"><circle cx="50" cy="38" r="24" fill="currentColor"/><path d="M6 120c2-30 20-46 44-46s42 16 44 46z" fill="currentColor"/></svg>
+            <img id="pvPhotoImg" alt="Your passport photograph" hidden>
+            <span class="need">Required</span>
+          </label>
+          <div class="pv-photo-txt">
+            <b>Your passport photograph *</b>
+            <p id="pvPhotoHelp">INEC needs a recent passport photograph for every party agent. Face the camera on a plain, light background, with your whole face clearly visible and no sunglasses.</p>
+            <div class="pv-photo-btns">
+              <label class="pv-pbtn main cam"><input type="file" id="pvPhotoCam" accept="image/*" capture="user" aria-describedby="pvPhotoHelp"><span aria-hidden="true">📷</span> <span id="pvCamTxt">Take a photo</span></label>
+              <label class="pv-pbtn"><input type="file" id="pvPhotoFile" accept="image/*" aria-describedby="pvPhotoHelp"><span aria-hidden="true">🖼️</span> <span id="pvFileTxt">Upload a photo</span></label>
+            </div>
+            <span class="pv-photo-note" id="pvPhotoNote" role="status" aria-live="polite"></span>
+          </div>
+        </div>
+
         <div class="sub">Where you vote</div>
         <div class="frow">
           <div class="field"><label for="pvState">State *</label><select id="pvState" required><option value="">Select your state</option></select></div>
@@ -264,7 +315,7 @@
           <div class="field" style="display:flex;align-items:flex-end"><label class="check" style="margin:0 0 14px"><input type="checkbox" id="pvPhoneOk"><span>I have a smartphone for photos and messages on the day</span></label></div>
         </div>
 
-        <label class="check"><input type="checkbox" id="pvConsent" required><span>I agree that FixNaija Movement may store these details and contact me by phone, WhatsApp or email to organise training and election-day duties. Read our <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.</span></label>
+        <label class="check"><input type="checkbox" id="pvConsent" required><span>I agree that FixNaija Movement may store these details and my photograph, pass them to the party and INEC for my nomination as a party agent, and contact me by phone, WhatsApp or email to organise training and election-day duties. Read our <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.</span></label>
         <button class="pv-submit" type="submit" id="pvSubmit">Count me in as an agent →</button>
         <div class="pv-msg" id="pvMsg" role="status" aria-live="polite"></div>
       </form>
@@ -292,7 +343,8 @@
       <details class="qa"><summary>Do I have to vote at the same polling unit?</summary><div class="a">It helps — you can vote and serve in the same place. If you are registered elsewhere, tell us and coordinators will match you to a unit that works.</div></details>
       <details class="qa"><summary>Who officially appoints agents?</summary><div class="a">Party agents are formally nominated by the party and their details are submitted to INEC before the election. Signing up here puts your name forward; your coordinator will guide you through training and nomination.</div></details>
       <details class="qa"><summary>What if something goes wrong on the day?</summary><div class="a">Stay calm and safe. Write down what happened and the time, photograph what you are allowed to, and report to your coordinator straight away. Never get into an argument or a fight — your job is to watch and record.</div></details>
-      <details class="qa"><summary>How is my information used?</summary><div class="a">Only to organise training and election-day duties. It is never sold. See our <a href="privacy.html">Privacy Policy</a>.</div></details>
+      <details class="qa"><summary>Why do you need my photograph?</summary><div class="a">When the party submits its agents to INEC, each agent's details go with a passport photograph. Use a recent, clear photo of your face on a plain background — the page shapes it to passport size for you.</div></details>
+      <details class="qa"><summary>How is my information used?</summary><div class="a">Only to organise training, election-day duties and your nomination as a party agent — your details and photograph go to the party and INEC for that, and nowhere else. They are never sold, and your photo is never shown on the website. See our <a href="privacy.html">Privacy Policy</a>.</div></details>
     </div>
   </div>
 </section>
@@ -329,6 +381,7 @@
 </footer>
 
 <script src="assets/fixnaija-pages.js"></script>
+<script src="assets/fixnaija-photo.js"></script>
 <script>
 /* ===== Protect the vote: polling unit agent sign-up ===== */
 (function () {
@@ -394,12 +447,61 @@
     $('pvPuLoading').classList.remove('on');
   });
 
+  /* passport photograph: shaped + compressed in the browser, uploaded on submit */
+  let photo = null;   // { blob, url, path? } — path is set once it has been uploaded
+  const box = $('pvPhotoBox');
+  function photoNote(text, kind) {
+    $('pvPhotoNote').textContent = text || '';
+    box.classList.toggle('err', kind === 'err');
+    box.classList.toggle('ok', kind === 'ok');
+  }
+  async function takePhoto(input) {
+    const file = input.files && input.files[0];
+    input.value = '';
+    if (!file) return;
+    photoNote('Preparing your photo…');
+    try {
+      const p = await window.FXPhoto.prepare(file);
+      if (photo && photo.url) URL.revokeObjectURL(photo.url);
+      photo = p;
+      const img = $('pvPhotoImg'); img.src = p.url; img.hidden = false;
+      $('pvCamTxt').textContent = 'Retake'; $('pvFileTxt').textContent = 'Use another';
+      photoNote('✓ Photo added — make sure your face is clear.', 'ok');
+    } catch (err) {
+      const why = {
+        TYPE: 'That file is not a photo. Please choose a picture (JPG or PNG).',
+        BIG: 'That file is too large. Please choose a smaller photo.',
+        SMALL: 'That photo is too small. Please take a clearer one.'
+      }[err && err.code] || 'We could not open that photo. Please take a new one, or choose a JPG or PNG.';
+      photoNote(why + (photo ? ' (Your earlier photo is still saved.)' : ''), 'err');
+    }
+  }
+  $('pvPhotoCam').addEventListener('change', e => takePhoto(e.target));
+  $('pvPhotoFile').addEventListener('change', e => takePhoto(e.target));
+  async function uploadPhoto() {
+    if (photo.path) return photo.path;                      // already uploaded on an earlier try
+    const path = window.FXPhoto.newPath();
+    const r = await fetch(`${SUPABASE_URL}/storage/v1/object/${window.FXPhoto.BUCKET}/${path}`, {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'image/jpeg', 'x-upsert': 'false' },
+      body: photo.blob
+    });
+    if (!r.ok) { const t = await r.text().catch(() => ''); const e = new Error('photo ' + r.status + ' ' + t); e.status = r.status; e.body = t; throw e; }
+    photo.path = path;
+    return path;
+  }
+
   /* submit */
   function msg(text, kind) { const m = $('pvMsg'); m.textContent = text; m.className = 'pv-msg ' + kind; }
   $('pvForm').addEventListener('submit', async e => {
     e.preventDefault();
     const f = e.target;
     if (!f.checkValidity()) { f.reportValidity(); return; }
+    if (!photo) {
+      photoNote('Please add your passport photograph — INEC needs it for every agent.', 'err');
+      box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
     const pu = $('pvPU'), opt = pu.options[pu.selectedIndex];
     const v = id => $(id).value.trim();
     const row = {
@@ -407,11 +509,22 @@
       state: v('pvState'), lga: v('pvLGA'), ward: v('pvWard') || null,
       polling_unit: pu.value || null, delimitation: (opt && opt.dataset.delimitation) || null,
       role: v('pvRole'), registered_here: v('pvRegHere') || null, experience: v('pvExp') || null,
-      has_smartphone: $('pvPhoneOk').checked, consent: $('pvConsent').checked
+      has_smartphone: $('pvPhoneOk').checked, consent: $('pvConsent').checked,
+      photo_path: null
     };
     const btn = $('pvSubmit'); const label = btn.textContent;
-    btn.disabled = true; btn.textContent = 'Sending…'; $('pvMsg').className = 'pv-msg';
+    btn.disabled = true; btn.textContent = 'Uploading your photo…'; $('pvMsg').className = 'pv-msg';
     try {
+      try { row.photo_path = await uploadPhoto(); }
+      catch (pe) {
+        console.error('[FixNaija agents] photo', pe);
+        msg(/bucket not found/i.test(pe.body || '')
+          ? 'Photo uploads are being switched on — please try again in a little while.'
+          : 'Your photo did not upload. Please check your connection and try again.', 'err');
+        btn.disabled = false; btn.textContent = label;
+        return;
+      }
+      btn.textContent = 'Sending…';
       const r = await fetch(`${SUPABASE_URL}/rest/v1/pu_agents`, { method: 'POST', headers: { ...H, 'Prefer': 'return=minimal' }, body: JSON.stringify(row) });
       if (r.ok) {
         let where = tc(row.state); if (row.lga) where = tc(row.lga) + ', ' + where; if (row.ward) where = tc(row.ward) + ', ' + where;
@@ -424,7 +537,11 @@
         return;
       }
       const t = await r.text();
-      if (r.status === 409 && t.includes('DUPLICATE_PHONE')) msg('This phone number has already signed up as an agent — you are on the list, and a coordinator will be in touch.', 'info');
+      if (/PHOTO_(REQUIRED|NOT_FOUND)/.test(t)) {
+        if (photo) photo.path = null;                         // upload it again next time
+        msg('Your photo did not reach us. Please press the button again to resend it.', 'err');
+      }
+      else if (r.status === 409 && t.includes('DUPLICATE_PHONE')) msg('This phone number has already signed up as an agent — you are on the list, and a coordinator will be in touch.', 'info');
       else { console.error('[FixNaija agents]', r.status, t); msg('Sorry, your sign-up did not go through. Please check your connection and try again.', 'err'); }
     } catch (x) {
       console.error('[FixNaija agents]', x); msg('Sorry, your sign-up did not go through. Please check your connection and try again.', 'err');

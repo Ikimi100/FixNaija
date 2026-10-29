@@ -48,6 +48,7 @@ const TABLES: Record<string, TableRule> = {
     cols: [
       "full_name", "phone", "whatsapp", "email", "state", "lga", "ward", "polling_unit",
       "delimitation", "role", "registered_here", "experience", "has_smartphone", "consent",
+      "photo_path",
     ],
     fixed: { status: "new" },
   },
@@ -150,6 +151,14 @@ Deno.serve(async (req) => {
     if (typeof row.video_url !== "string" || !row.video_url.startsWith(prefix)) {
       return reply(400, { code: "BAD_VIDEO_URL" });
     }
+  }
+
+  // agent photos must be a file name the sign-up page could have made in the
+  // private agent-photos bucket (the database also checks the file exists)
+  if (body.table === "pu_agents" && row.photo_path != null) {
+    const ok = typeof row.photo_path === "string" &&
+      /^agents\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\.jpg$/.test(row.photo_path);
+    if (!ok) return reply(400, { code: "BAD_PHOTO_PATH" });
   }
 
   const key = serverKey();

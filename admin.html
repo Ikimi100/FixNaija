@@ -579,6 +579,36 @@ td.mono { font-family: 'Archivo', sans-serif; font-size: 0.8rem; white-space: no
 .cov-row .tr i{display:block;height:100%;background:var(--green);border-radius:4px;min-width:2px}
 .cov-row .vl{font-variant-numeric:tabular-nums;color:var(--muted);font-size:.78rem;white-space:nowrap;text-align:right;min-width:120px}
 #agents th,#agents td{padding-left:10px;padding-right:10px}
+
+/* ===== agent passport photos + CV pack ===== */
+.ag-ph-cell{width:58px}
+#agents #agKpis{grid-template-columns:repeat(5,1fr)}
+@media(max-width:1100px){#agents #agKpis{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:700px){#agents #agKpis{grid-template-columns:1fr 1fr}}
+.ag-ph{display:block;width:40px;height:52px;border-radius:6px;overflow:hidden;border:1px solid var(--border);background:#f1efe8;padding:0;cursor:zoom-in}
+.ag-ph img{width:100%;height:100%;object-fit:cover;display:block}
+.ag-ph.broken{border:1.5px dashed #d9a3a0;background:#fdf3f2;display:flex;align-items:center;justify-content:center;cursor:help}
+.ag-ph.broken img{display:none}
+.ag-ph.broken::after{content:"?";font-weight:800;color:#b3261e}
+.ag-ph-cell.busy{opacity:.45;pointer-events:none}
+.ag-ph-edit{display:block;margin-top:4px;border:0;background:none;padding:0;font:inherit;font-size:.68rem;font-weight:600;color:var(--green-dark);cursor:pointer}
+.ag-ph-add{display:flex;align-items:center;justify-content:center;width:40px;height:52px;border-radius:6px;border:1.5px dashed #e3a46f;background:#fff7f0;color:#b5530f;font:inherit;font-size:.62rem;font-weight:700;line-height:1.2;text-align:center;cursor:pointer}
+.ag-ph-add:hover{border-color:#b5530f}
+.btn-cv{background:var(--green);color:#fff;padding:8px 14px;font-size:.85rem}
+.btn-cv:hover{background:var(--green-dark)}
+.cv-modal{position:fixed;inset:0;z-index:300;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(13,20,15,.55)}
+.cv-modal[hidden]{display:none}
+.cv-box{width:100%;max-width:520px;max-height:calc(100vh - 32px);overflow:auto;background:#fff;border-radius:14px;padding:24px;box-shadow:0 30px 80px -20px rgba(0,0,0,.5)}
+.cv-box h3{font-size:1.25rem;margin-bottom:4px}
+.cv-sub{font-size:.84rem;color:var(--muted);margin-bottom:16px}
+.cv-opt{display:flex;gap:12px;align-items:flex-start;border:1.5px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:10px;cursor:pointer;font-size:.86rem;line-height:1.45;color:var(--muted)}
+.cv-opt b{display:block;color:var(--charcoal);font-size:.92rem}
+.cv-opt input{accent-color:var(--green);margin-top:3px}
+.cv-opt:has(input:checked){border-color:var(--green);background:#f0f8f3}
+.cv-check{display:flex;gap:10px;align-items:center;font-size:.86rem;margin:6px 0 12px;cursor:pointer}
+.cv-check input{accent-color:var(--green);width:16px;height:16px}
+.cv-note{font-size:.8rem;color:var(--muted);background:#f7f6f2;border-radius:8px;padding:10px 12px}
+.cv-btns{display:flex;justify-content:flex-end;gap:10px;margin-top:16px}
 .cov-row .vl b{color:var(--charcoal)}
 .ag-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:16px 22px 22px;border-top:1px solid var(--border)}
 .ag-facts .mini .v{font-size:1.2rem}
@@ -1022,17 +1052,33 @@ td.mono { font-family: 'Archivo', sans-serif; font-size: 0.8rem; white-space: no
                         <select id="agStatusFilter" aria-label="Filter by status" style="padding:9px 10px;border:1.5px solid var(--border);border-radius:8px;font:inherit;font-size:.85rem;background:#fff">
                             <option value="">All statuses</option><option value="new">New</option><option value="contacted">Contacted</option><option value="trained">Trained</option><option value="assigned">Assigned</option><option value="declined">Declined</option>
                         </select>
+                        <select id="agPhotoFilter" aria-label="Filter by photo" style="padding:9px 10px;border:1.5px solid var(--border);border-radius:8px;font:inherit;font-size:.85rem;background:#fff">
+                            <option value="">All photos</option><option value="yes">Has photo</option><option value="no">Photo needed</option>
+                        </select>
                         <input type="search" class="search-input" id="agSearch" placeholder="Search name, phone, ward, PU…">
+                        <button class="btn btn-cv" id="agCvBtn" title="Printable CVs with passport photos">Agent CVs (PDF)</button>
                         <button class="btn btn-gold" id="agExportBtn">Export CSV</button>
                     </div>
                 </div>
                 <div class="panel-body">
                     <div class="table-scroll" style="max-height:640px;overflow:auto">
                         <table>
-                            <thead><tr><th>Date</th><th>Name</th><th>WhatsApp</th><th>Where (LGA, state · ward)</th><th>Polling unit</th><th>Role</th><th>Votes here</th><th>Status</th></tr></thead>
-                            <tbody id="agTableBody"><tr><td colspan="8" class="loading-note">Loading…</td></tr></tbody>
+                            <thead><tr><th>Photo</th><th>Date</th><th>Name</th><th>WhatsApp</th><th>Where (LGA, state · ward)</th><th>Polling unit</th><th>Role</th><th>Votes here</th><th>Status</th></tr></thead>
+                            <tbody id="agTableBody"><tr><td colspan="9" class="loading-note">Loading…</td></tr></tbody>
                         </table>
                     </div>
+                </div>
+            </div>
+                    <input type="file" id="agPhotoInput" accept="image/*" hidden>
+            <div class="cv-modal" id="agCvModal" hidden>
+                <div class="cv-box" role="dialog" aria-modal="true" aria-labelledby="agCvTitle">
+                    <h3 id="agCvTitle">Agent CVs (PDF)</h3>
+                    <p class="cv-sub" id="agCvScope"></p>
+                    <label class="cv-opt"><input type="radio" name="agCvLayout" value="cv" checked><span><b>CV pack</b>One agent per A4 page: passport photo, contacts, polling unit, profile, notes and signature lines.</span></label>
+                    <label class="cv-opt"><input type="radio" name="agCvLayout" value="sheet"><span><b>Photo sheet</b>Six agents per page, ordered by state, LGA, ward and polling unit — handy for submissions.</span></label>
+                    <label class="cv-check"><input type="checkbox" id="agCvOnlyPhoto"> Only agents who have a photo</label>
+                    <p class="cv-note">The pack opens in a new tab with a list of everyone first. When the print window appears, choose <b>Save as PDF</b>. It follows the status, photo and search filters above.</p>
+                    <div class="cv-btns"><button class="btn btn-ghost" id="agCvCancel" type="button">Cancel</button><button class="btn btn-cv" id="agCvGo" type="button">Create PDF</button></div>
                 </div>
             </div>
         </section>
@@ -1107,6 +1153,8 @@ td.mono { font-family: 'Archivo', sans-serif; font-size: 0.8rem; white-space: no
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/fixnaija-photo.js"></script>
+<script src="assets/fixnaija-agent-cv.js"></script>
 <script>
 
 // =====================================================================
@@ -2574,7 +2622,7 @@ async function loadAgents() {
         allAgents = await fetchAll('pu_agents');
     } catch (error) {
         $('agKpis').innerHTML = ''; $('agRoles').innerHTML = $('agCoverage').innerHTML = '<li class="empty-note">—</li>';
-        body.innerHTML = `<tr><td colspan="8" class="empty-note">${tableMissing(error)
+        body.innerHTML = `<tr><td colspan="9" class="empty-note">${tableMissing(error)
             ? 'Agent sign-ups will show here once you run <b>database/supabase_pu_agents_setup.sql</b> in Supabase.'
             : 'Could not load agents: ' + escapeHtml(error.message)}</td></tr>`;
         return;
@@ -2592,8 +2640,11 @@ async function loadAgents() {
 function filteredAgents() {
     const q = ($('agSearch').value || '').trim().toLowerCase();
     const st = $('agStatusFilter').value;
+    const ph = $('agPhotoFilter').value;
     return allAgents.filter(r => {
         if (st && (r.status || 'new') !== st) return false;
+        if (ph === 'yes' && !r.photo_path) return false;
+        if (ph === 'no' && r.photo_path) return false;
         if (q) {
             const hay = [r.full_name, r.phone, r.whatsapp, r.email, r.state, r.lga, r.ward, r.polling_unit, r.delimitation, r.role].map(x => String(x || '').toLowerCase());
             if (!hay.some(x => x.includes(q))) return false;
@@ -2619,6 +2670,8 @@ function renderAgents() {
     kpi('Polling units covered', FX.fmt(coveredPUs), `of ${FX.fmt(TOTAL_PUS)} · ${FX.pctS(coveredPUs, TOTAL_PUS)}`, FX.pct(coveredPUs, TOTAL_PUS));
     kpi('States with agents', FX.fmt(states), `of 37 · ${FX.pctS(states, 37)}`, FX.pct(states, 37));
     kpi('Waiting for a call', FX.fmt(count('new')), `${FX.fmt(count('trained') + count('assigned'))} trained or assigned`, FX.pct(count('new'), all.length));
+    const withPhoto = all.filter(r => r.photo_path).length;
+    kpi('Passport photos', FX.fmt(withPhoto), all.length - withPhoto ? `${FX.fmt(all.length - withPhoto)} still needed` : 'everyone has one', FX.pct(withPhoto, all.length));
 
     // coverage by state (from the database when available)
     const cov = $('agCoverage');
@@ -2653,12 +2706,17 @@ function renderAgents() {
     // table
     $('agCount').textContent = rows.length === all.length ? `${all.length.toLocaleString()} total` : `${rows.length.toLocaleString()} of ${all.length.toLocaleString()}`;
     const body = $('agTableBody');
-    if (!rows.length) { body.innerHTML = `<tr><td colspan="8" class="empty-note">${all.length ? 'No agents match.' : 'No agent sign-ups yet.'}</td></tr>`; return; }
+    if (!rows.length) { body.innerHTML = `<tr><td colspan="9" class="empty-note">${all.length ? 'No agents match.' : 'No agent sign-ups yet.'}</td></tr>`; return; }
     const d = s => new Date(s).toLocaleString('en-NG', { day: '2-digit', month: 'short', year: '2-digit', hour: '2-digit', minute: '2-digit' });
     body.innerHTML = rows.slice(0, 500).map(r => {
         const wa = waLink(r.whatsapp || r.phone), cur = r.status || 'new';
         const opts = AG_STATUS.map(([v, l]) => `<option value="${v}"${v === cur ? ' selected' : ''}>${l}</option>`).join('');
+        const pid = escapeHtml(r.id);
+        const photoCell = r.photo_path
+            ? `<td class="ag-ph-cell" data-photo-cell="${pid}"><button type="button" class="ag-ph" data-open-photo="${escapeHtml(r.photo_path)}" title="Open the photo"><img data-path="${escapeHtml(r.photo_path)}" alt="Photo of ${escapeHtml(r.full_name || '')}"></button><button type="button" class="ag-ph-edit" data-photo-for="${pid}">Change</button></td>`
+            : `<td class="ag-ph-cell" data-photo-cell="${pid}"><button type="button" class="ag-ph-add" data-photo-for="${pid}" title="Add a passport photo for this agent">+ Add<br>photo</button></td>`;
         return `<tr>
+            ${photoCell}
             <td class="mono">${escapeHtml(d(r.created_at))}</td>
             <td><b>${escapeHtml(r.full_name || '')}</b></td>
             <td class="mono">${wa ? `<a href="${wa}" target="_blank" rel="noopener" style="color:var(--green-dark)">${escapeHtml(r.whatsapp || r.phone)}</a>` : escapeHtml(r.phone || '')}</td>
@@ -2668,8 +2726,110 @@ function renderAgents() {
             <td>${escapeHtml(r.registered_here || '—')}</td>
             <td><select class="status-select ag-status" data-v="${cur}" data-id="${escapeHtml(r.id)}">${opts}</select></td>
         </tr>`;
-    }).join('') + (rows.length > 500 ? `<tr><td colspan="8" class="empty-note">Showing the newest 500 — use search or Export CSV for the rest.</td></tr>` : '');
+    }).join('') + (rows.length > 500 ? `<tr><td colspan="9" class="empty-note">Showing the newest 500 — use search or Export CSV for the rest.</td></tr>` : '');
+    fillAgentPhotos();
 }
+
+// ---------- passport photos (private bucket "agent-photos") ----------
+const agPhotoUrls = new Map();          // path → { url, until }
+let agPhotoTarget = null;
+async function signAgentPhotos(paths) {
+    const now = Date.now();
+    const need = [...new Set(paths)].filter(p => { const c = agPhotoUrls.get(p); return !c || c.until < now + 10 * 60e3; });
+    for (let i = 0; i < need.length; i += 100) {
+        const chunk = need.slice(i, i + 100);
+        const { data, error } = await sb.storage.from(FXPhoto.BUCKET).createSignedUrls(chunk, 3600);
+        if (error) { console.warn('[FixNaija] photo links', error); break; }
+        (data || []).forEach(x => { if (x && x.signedUrl && !x.error) agPhotoUrls.set(x.path, { url: x.signedUrl, until: now + 3600e3 }); });
+    }
+    const out = new Map();
+    paths.forEach(p => { const c = agPhotoUrls.get(p); if (c) out.set(p, c.url); });
+    return out;
+}
+async function fillAgentPhotos() {
+    const imgs = [...document.querySelectorAll('#agTableBody img[data-path]')];
+    if (!imgs.length) return;
+    let urls;
+    try { urls = await signAgentPhotos(imgs.map(i => i.dataset.path)); } catch (_) { return; }
+    imgs.forEach(i => {
+        const box = i.closest('.ag-ph');
+        i.onerror = () => { box.classList.add('broken'); box.title = 'The photo file is missing — use Change to add it again'; };
+        const u = urls.get(i.dataset.path); if (u) i.src = u; else i.onerror();
+    });
+}
+function photoProblem(err) {
+    const m = String((err && (err.message || err.error)) || err || '');
+    if (err && err.code === 'TYPE') return 'That file is not a photo.';
+    if (err && err.code === 'SMALL') return 'That photo is too small — use a clearer one.';
+    if (err && (err.code === 'DECODE' || err.code === 'BIG')) return 'That photo could not be opened. Try a JPG or PNG.';
+    if (/bucket not found|photo_path|row-level|policy|schema cache/i.test(m)) return 'Photo storage is not set up yet. Run database/supabase_agent_photos_setup.sql in Supabase first.';
+    return m || 'Unknown error.';
+}
+$('agTableBody').addEventListener('click', async e => {
+    const open = e.target.closest('[data-open-photo]');
+    if (open) {
+        const urls = await signAgentPhotos([open.dataset.openPhoto]);
+        const u = urls.get(open.dataset.openPhoto);
+        if (u) window.open(u, '_blank', 'noopener'); else alert('This photo could not be opened.');
+        return;
+    }
+    const add = e.target.closest('[data-photo-for]');
+    if (add) { agPhotoTarget = add.dataset.photoFor; $('agPhotoInput').click(); }
+});
+$('agPhotoInput').addEventListener('change', async e => {
+    const file = e.target.files && e.target.files[0];
+    e.target.value = '';
+    const id = agPhotoTarget; agPhotoTarget = null;
+    if (!file || !id) return;
+    const r = allAgents.find(x => String(x.id) === String(id)); if (!r) return;
+    const cell = [...document.querySelectorAll('[data-photo-cell]')].find(c => c.dataset.photoCell === String(id));
+    if (cell) cell.classList.add('busy');
+    let path = null;
+    try {
+        const p = await FXPhoto.prepare(file);
+        path = FXPhoto.newPath();
+        const up = await sb.storage.from(FXPhoto.BUCKET).upload(path, p.blob, { contentType: 'image/jpeg', upsert: false });
+        URL.revokeObjectURL(p.url);
+        if (up.error) { path = null; throw up.error; }
+        const { error } = await sb.from('pu_agents').update({ photo_path: path }).eq('id', id);
+        if (error) throw error;
+        const old = r.photo_path; r.photo_path = path;
+        if (old) sb.storage.from(FXPhoto.BUCKET).remove([old]).catch(() => {});
+        renderAgents();
+    } catch (err) {
+        if (path) sb.storage.from(FXPhoto.BUCKET).remove([path]).catch(() => {});
+        alert('Could not save the photo: ' + photoProblem(err));
+    } finally {
+        if (cell) cell.classList.remove('busy');
+    }
+});
+
+// ---------- Agent CVs (PDF) ----------
+function agentScopeText(rows) {
+    const bits = [];
+    const st = $('agStatusFilter'), ph = $('agPhotoFilter'), q = ($('agSearch').value || '').trim();
+    if (st.value) bits.push('status: ' + st.options[st.selectedIndex].text);
+    if (ph.value) bits.push(ph.options[ph.selectedIndex].text.toLowerCase());
+    if (q) bits.push('search “' + q + '”');
+    const withPhoto = rows.filter(r => r.photo_path).length;
+    return `${rows.length.toLocaleString()} agent${rows.length === 1 ? '' : 's'} in this view · ${withPhoto.toLocaleString()} with a photo` + (bits.length ? ' · ' + bits.join(' · ') : ' · all agents');
+}
+$('agCvBtn').addEventListener('click', () => {
+    $('agCvScope').textContent = agentScopeText(filteredAgents());
+    $('agCvModal').hidden = false;
+    $('agCvGo').focus();
+});
+$('agCvCancel').addEventListener('click', () => { $('agCvModal').hidden = true; });
+$('agCvModal').addEventListener('click', e => { if (e.target === e.currentTarget) e.currentTarget.hidden = true; });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('agCvModal').hidden) $('agCvModal').hidden = true; });
+$('agCvGo').addEventListener('click', () => {
+    let rows = filteredAgents();
+    if ($('agCvOnlyPhoto').checked) rows = rows.filter(r => r.photo_path);
+    if (!rows.length) { alert('No agents to include — change the filters, or untick "Only agents who have a photo".'); return; }
+    const layout = (document.querySelector('input[name="agCvLayout"]:checked') || {}).value || 'cv';
+    $('agCvModal').hidden = true;
+    FXAgentCV.open({ rows, layout, sign: signAgentPhotos, scope: agentScopeText(rows), origin: location.origin });
+});
 
 async function updateAgentStatus(sel) {
     const id = sel.dataset.id, value = sel.value, prev = sel.dataset.v;
@@ -2686,9 +2846,10 @@ async function updateAgentStatus(sel) {
 
 $('agSearch').addEventListener('input', renderAgents);
 $('agStatusFilter').addEventListener('change', renderAgents);
+$('agPhotoFilter').addEventListener('change', renderAgents);
 $('agTableBody').addEventListener('change', e => { const s = e.target.closest('.ag-status'); if (s) updateAgentStatus(s); });
 $('agExportBtn').addEventListener('click', () => downloadCsv('fixnaija-pu-agents',
-    ['created_at', 'status', 'full_name', 'phone', 'whatsapp', 'email', 'state', 'lga', 'ward', 'polling_unit', 'delimitation', 'role', 'registered_here', 'experience', 'has_smartphone'], filteredAgents()));
+    ['created_at', 'status', 'full_name', 'phone', 'whatsapp', 'email', 'state', 'lga', 'ward', 'polling_unit', 'delimitation', 'role', 'registered_here', 'experience', 'has_smartphone', 'photo_path'], filteredAgents()));
 $('refreshLink').addEventListener('click', () => loadAgents());
 
 // =====================================================================
