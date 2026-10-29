@@ -38,3 +38,30 @@
 .mm-langs{display:flex;flex-wrap:wrap;gap:8px;padding:0 4px;margin-bottom:22px}
 .mm-langs a{flex:1 1 auto;text-align:center;padding:12px 10px;border-radius:12px;background:#fff;border:1px solid rgba(26,26,46,.08);text-decoration:none;color:#1A1A2E;font-weight:600;font-size:.9rem}
 .mm-langs a:hover{border-color:#008751;color:#008751}
+
+/* ---------- top menu: "More" dropdown with every other page (desktop) ---------- */
+.navbar .nav-links{gap:24px}
+@media(max-width:1400px){.navbar .nav-links{gap:19px}}
+@media(max-width:1300px){.navbar .nav-links{gap:16px}}
+.nav-more{position:relative}
+.nav-more-btn{position:relative;display:inline-flex;align-items:center;gap:6px;padding:8px 0;border:0;background:none;font:inherit;font-size:.82rem;font-weight:600;color:var(--ink,#0d140f);cursor:pointer;white-space:nowrap}
+.nav-more-btn svg{width:10px;height:7px;transition:transform .2s}
+.nav-more-btn::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:2px;background:var(--green,#00663a);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.nav-more-btn.active::after,.nav-more:hover .nav-more-btn::after{transform:scaleX(1)}
+.nav-drop{position:absolute;top:100%;right:-24px;padding-top:22px;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .18s,transform .18s,visibility .18s;z-index:1300}
+.nav-more:hover .nav-drop,.nav-more:focus-within .nav-drop{opacity:1;visibility:visible;transform:none}
+.nav-more:hover .nav-more-btn svg,.nav-more:focus-within .nav-more-btn svg{transform:rotate(180deg)}
+.nd-panel{display:grid;grid-template-columns:repeat(3,minmax(190px,1fr));gap:6px 18px;width:680px;max-width:calc(100vw - 40px);padding:20px 22px 18px;background:#fff;border:1px solid var(--rule,#e8e5dc);border-radius:14px;box-shadow:0 24px 60px -24px rgba(13,20,15,.35),0 2px 8px rgba(13,20,15,.06)}
+.nd-col{display:flex;flex-direction:column;gap:2px;min-width:0}
+.nd-h{display:block;font-family:var(--display,'Archivo',sans-serif);font-weight:700;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green,#00663a);margin:0 10px 6px}
+.nav-links .nd-col a{display:block;white-space:normal;font-size:inherit;font-weight:400;padding:9px 10px;border-radius:8px;text-decoration:none;color:var(--ink,#0d140f);transition:background .15s}
+.nav-links .nd-col a b{display:block;font-family:var(--display,'Archivo',sans-serif);font-weight:700;font-size:.9rem;letter-spacing:-.005em}
+.nav-links .nd-col a small{display:block;font-size:.74rem;color:var(--muted,#626b63);margin-top:1px}
+.nav-links .nd-col a:hover,.nav-links .nd-col a:focus-visible{background:var(--green-tint,#e8f3ed)}
+.nav-links .nd-col a.here b{color:var(--green,#00663a)}
+.nd-langs{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:8px;padding-top:14px;border-top:1px solid var(--rule,#e8e5dc)}
+.nd-langs .nd-h{margin:0 6px 0 10px}
+.nav-links .nd-langs a{white-space:nowrap;padding:6px 12px;border:1px solid var(--rule-2,#d6d1c4);border-radius:999px;text-decoration:none;color:var(--ink,#0d140f);font-size:.8rem;font-weight:600}
+.nav-links .nd-langs a:hover,.nav-links .nd-langs a.here{border-color:var(--green,#00663a);color:var(--green,#00663a)}
+.nav-links .nav-drop a::after{display:none}
+@media(max-width:1240px){.nav-more{display:none}}
